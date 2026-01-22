@@ -19,9 +19,12 @@ import Blog from "./pages/Blog";
 import PRVisa from "./pages/PRVisa";
 import WorkVisa from "./pages/WorkVisa";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="bg-white min-h-screen font-sans text-slate-800">
         <Navbar />
         <Routes>

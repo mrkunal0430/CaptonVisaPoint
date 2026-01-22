@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FiSend, FiUser, FiPhone, FiMail, FiMapPin } from "react-icons/fi";
+import {
+  FiSend,
+  FiUser,
+  FiPhone,
+  FiMail,
+  FiMapPin,
+  FiCheck,
+  FiX,
+} from "react-icons/fi";
+import axios from "axios";
+
+const API_URL = "http://localhost:5000/api";
 
 const LeadForm = ({
   title = "Get Your Free Consultation",
@@ -13,25 +24,75 @@ const LeadForm = ({
     service: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    // Add logic to submit to backend or email service
-    alert("Thank you! We will contact you shortly.");
+    setLoading(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const response = await axios.post(`${API_URL}/leads`, formData);
+
+      if (response.data.success) {
+        setStatus({
+          type: "success",
+          message: "Thank you! We will contact you shortly.",
+        });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+        // Reset form fields
+        e.target.reset();
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus({
+        type: "error",
+        message:
+          error.response?.data?.message ||
+          "Failed to submit. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-full -z-0" />
+    <div className="bg-white p-5 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-blue-50/50 rounded-bl-full -z-0" />
 
       <div className="relative z-10">
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">{title}</h3>
-        <p className="text-slate-500 mb-6 text-sm">{subtitle}</p>
+        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+          {title}
+        </h3>
+        <p className="text-slate-500 mb-4 sm:mb-6 text-xs sm:text-sm">
+          {subtitle}
+        </p>
+
+        {/* Status Message */}
+        {status.message && (
+          <div
+            className={`mb-4 p-3 rounded-lg flex items-center gap-2 ${
+              status.type === "success"
+                ? "bg-green-50 text-green-700 border border-green-200"
+                : "bg-red-50 text-red-700 border border-red-200"
+            }`}
+          >
+            {status.type === "success" ? <FiCheck /> : <FiX />}
+            <span className="text-sm">{status.message}</span>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="relative group">
@@ -41,6 +102,7 @@ const LeadForm = ({
               name="name"
               placeholder="Full Name"
               required
+              value={formData.name}
               className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue transition-all"
               onChange={handleChange}
             />
@@ -53,6 +115,7 @@ const LeadForm = ({
               name="phone"
               placeholder="Phone Number"
               required
+              value={formData.phone}
               className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue transition-all"
               onChange={handleChange}
             />
@@ -65,6 +128,7 @@ const LeadForm = ({
               name="email"
               placeholder="Email Address"
               required
+              value={formData.email}
               className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue transition-all"
               onChange={handleChange}
             />
@@ -76,7 +140,7 @@ const LeadForm = ({
               name="service"
               className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue transition-all text-slate-600 appearance-none cursor-pointer"
               onChange={handleChange}
-              defaultValue=""
+              value={formData.service}
               required
             >
               <option value="" disabled>
@@ -96,6 +160,7 @@ const LeadForm = ({
             name="message"
             placeholder="Your Message / Specific Country Requirement"
             rows="3"
+            value={formData.message}
             className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue transition-all text-sm"
             onChange={handleChange}
           ></textarea>
@@ -103,10 +168,20 @@ const LeadForm = ({
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-3.5 bg-gradient-to-r from-brand-blue to-blue-600 text-white rounded-xl font-semibold shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2"
+            className="w-full py-3.5 bg-gradient-to-r from-brand-blue to-blue-600 text-white rounded-xl font-semibold shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             type="submit"
+            disabled={loading}
           >
-            Get Free Counselling <FiSend />
+            {loading ? (
+              <>
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              <>
+                Get Free Counselling <FiSend />
+              </>
+            )}
           </motion.button>
         </form>
 
