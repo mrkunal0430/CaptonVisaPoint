@@ -12,10 +12,9 @@ import { Link } from "react-router-dom";
 import LeadForm from "../components/LeadForm";
 import Testimonials from "../components/Testimonials";
 import EligibilityCalculator from "../components/EligibilityCalculator";
-import LatestUpdates from "../components/LatestUpdates";
 import TrustBadges from "../components/TrustBadges";
 import Hero from "../components/Hero";
-import CountryCards from "../components/CountryCards";
+import PopularVisaCards from "../components/PopularVisaCards";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -24,96 +23,14 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const staggerContainer = {
-  initial: {},
-  whileInView: { transition: { staggerChildren: 0.1 } },
-};
-
 const Home = () => {
   return (
     <div className="w-full overflow-hidden">
       {/* Hero Section */}
       <Hero />
 
-      {/* Services Section */}
-      <section className="py-16 sm:py-24 bg-white relative">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            {...fadeInUp}
-            className="text-center max-w-2xl mx-auto mb-16"
-          >
-            <span className="text-brand-blue font-semibold tracking-wider text-sm uppercase">
-              Our Expertise
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mt-2 mb-4">
-              Comprehensive Services for <br /> Your Global Ambitions
-            </h2>
-            <div className="h-1.5 w-20 bg-brand-blue mx-auto rounded-full" />
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8"
-          >
-            {[
-              {
-                title: "MBBS Abroad",
-                desc: "Top medical universities in Russia, Uzbekistan & more with low fees.",
-                icon: "🩺",
-                link: "/mbbs",
-                color: "bg-blue-50 text-blue-600",
-              },
-              {
-                title: "Study Abroad",
-                desc: "Bachelors & Masters in UK, USA, Canada, Australia.",
-                icon: "🎓",
-                link: "/study-abroad",
-                color: "bg-purple-50 text-purple-600",
-              },
-              {
-                title: "Ausbildung",
-                desc: "Vocational training in Germany with stipend & job guarantee.",
-                icon: "🛠️",
-                link: "/ausbildung",
-                color: "bg-yellow-50 text-yellow-600",
-              },
-              {
-                title: "Language Prep",
-                desc: "IELTS, German (A1-B2) coaching to clear your path.",
-                icon: "🗣️",
-                link: "/language-coaching",
-                color: "bg-green-50 text-green-600",
-              },
-            ].map((service, idx) => (
-              <motion.Link
-                to={service.link}
-                key={idx}
-                variants={fadeInUp}
-                className="group p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 bg-white hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300"
-              >
-                <div
-                  className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl ${service.color} flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-sm group-hover:scale-110 transition-transform`}
-                >
-                  {service.icon}
-                </div>
-                <h3 className="text-base sm:text-xl font-bold text-brand-dark mb-2 sm:mb-3 group-hover:text-brand-blue transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-slate-500 mb-4 sm:mb-6 leading-relaxed text-xs sm:text-sm line-clamp-2 sm:line-clamp-none">
-                  {service.desc}
-                </p>
-                <div className="flex items-center text-brand-blue font-semibold text-xs sm:text-sm">
-                  Learn More{" "}
-                  <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </motion.Link>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {/* Popular Visa Cards Section */}
+      <PopularVisaCards />
 
       {/* Eligibility Calculator */}
       <EligibilityCalculator />
@@ -168,9 +85,6 @@ const Home = () => {
 
       {/* Testimonials */}
       <Testimonials />
-
-      {/* Countries Section */}
-      <CountryCards />
 
       {/* Why Choose Us */}
       <section className="py-16 sm:py-24 bg-white">
@@ -230,9 +144,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Latest Updates */}
-      <LatestUpdates />
 
       {/* FAQ Section */}
       <section className="py-16 sm:py-24 bg-slate-50">

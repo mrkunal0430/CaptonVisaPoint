@@ -9,8 +9,7 @@ const blogSchema = new mongoose.Schema({
   excerpt: {
     type: String,
     required: [true, 'Excerpt is required'],
-    trim: true,
-    maxlength: 300
+    trim: true
   },
   content: {
     type: String,

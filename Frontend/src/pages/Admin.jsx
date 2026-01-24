@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AdminLayout from "../components/admin/AdminLayout";
 import LeadsTable from "../components/admin/LeadsTable";
+import EligibilityLeadsTable from "../components/admin/EligibilityLeadsTable";
 import BlogManager from "../components/admin/BlogManager";
 import { FiLock, FiAlertCircle } from "react-icons/fi";
 
@@ -147,6 +148,7 @@ const Admin = () => {
       onLogout={handleLogout}
     >
       {activeTab === "leads" && <LeadsTable token={token} />}
+      {activeTab === "eligibility" && <EligibilityLeadsTable token={token} />}
       {activeTab === "blogs" && <BlogManager token={token} />}
     </AdminLayout>
   );

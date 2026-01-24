@@ -150,7 +150,7 @@ const CountryCard = ({ country, index }) => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex items-center bg-[#050A18] overflow-hidden pt-20">
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center bg-[#050A18] overflow-hidden">
       {/* 1. Background Effects */}
       <div className="absolute inset-0 z-0">
         {/* Gradient Mesh */}
@@ -279,7 +279,6 @@ const Hero = () => {
 
           {/* 3. Right Interactive Section - Country Cards Visual */}
           <div className="flex-1 w-full lg:h-[600px] relative flex md:items-center justify-center lg:justify-end">
-            <h1>jobefuebvu jsdbhvoui </h1>
             {/* Cards Grid - Irregular/Masonry Layout */}
             <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 transform lg:rotate-[-5deg] lg:-translate-y-8">
               {countries.map((country, idx) => (
@@ -287,7 +286,7 @@ const Hero = () => {
                   key={idx}
                   className={`${idx % 2 !== 0 ? "mt-8 md:mt-12" : ""}`}
                 >
-                  {" "} 
+                  {" "}
                   {/* Stagger effect */}
                   <CountryCard country={country} index={idx} />
                 </div>

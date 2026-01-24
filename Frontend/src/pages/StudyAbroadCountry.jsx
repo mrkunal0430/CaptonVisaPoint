@@ -15,7 +15,7 @@ const StudyAbroadCountry = () => {
     : "UK";
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero/Banner */}
       <div className="bg-slate-900 h-[40vh] relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-brand-blue/20" />

@@ -48,7 +48,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="pt-20">
+    <div>
       <section className="bg-slate-50 py-20 text-center">
         <div className="container mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">

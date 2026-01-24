@@ -17,7 +17,7 @@ const destinations = [
 
 const StudyAbroad = () => {
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero */}
       <section className="relative py-24 bg-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80')] bg-cover bg-center opacity-20" />

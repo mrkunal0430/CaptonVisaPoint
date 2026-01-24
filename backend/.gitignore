@@ -2,6 +2,10 @@
 node_modules/
 .pnpm-store
 
+# Lock files from other package managers (using pnpm)
+package-lock.json
+yarn.lock
+
 # Environment variables
 .env
 .env.local

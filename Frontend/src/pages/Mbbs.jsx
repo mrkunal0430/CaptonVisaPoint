@@ -1,189 +1,402 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FiCheckCircle, FiArrowRight } from "react-icons/fi";
+import { motion } from "framer-motion";
+import {
+  FiGlobe,
+  FiCheckCircle,
+  FiTrendingUp,
+  FiAward,
+  FiUsers,
+  FiBook,
+  FiMapPin,
+  FiArrowRight,
+} from "react-icons/fi";
 import LeadForm from "../components/LeadForm";
 
-const countries = [
-  { name: "Russia", flag: "🇷🇺", fee: "Low Cost", duration: "6 Years" },
-  {
-    name: "Uzbekistan",
-    flag: "🇺🇿",
-    fee: "Very Affordable",
-    duration: "5+1 Years",
-  },
-  { name: "Kazakhstan", flag: "🇰🇿", fee: "Affordable", duration: "5 Years" },
-  { name: "Georgia", flag: "🇬🇪", fee: "Moderate", duration: "6 Years" },
-  { name: "Philippines", flag: "🇵🇭", fee: "Affordable", duration: "5.5 Years" },
-  { name: "Egypt", flag: "🇪🇬", fee: "Moderate", duration: "5 Years" },
-  { name: "Kyrgyzstan", flag: "🇰🇬", fee: "Low Cost", duration: "5+1 Years" },
-  { name: "Bangladesh", flag: "🇧🇩", fee: "Moderate", duration: "5+1 Years" },
-];
-
 const Mbbs = () => {
+  const stats = [
+    { icon: <FiGlobe />, number: "70+", label: "Partner Universities" },
+    { icon: <FiUsers />, number: "4000+", label: "Students Placed" },
+    { icon: <FiMapPin />, number: "10+", label: "Countries" },
+    { icon: <FiAward />, number: "98%", label: "Success Rate" },
+  ];
+
+  const whyMbbs = [
+    {
+      icon: <FiCheckCircle className="text-3xl text-blue-500" />,
+      title: "Globally Recognized",
+      description:
+        "MBBS degrees recognized by WHO, NMC, and other international medical bodies",
+    },
+    {
+      icon: <FiTrendingUp className="text-3xl text-green-500" />,
+      title: "Excellent Career Prospects",
+      description:
+        " High demand for qualified doctors worldwide with lucrative career opportunities",
+    },
+    {
+      icon: <FiBook className="text-3xl text-purple-500" />,
+      title: "Quality Education",
+      description:
+        "World-class medical education with modern infrastructure and experienced faculty",
+    },
+    {
+      icon: <FiAward className="text-3xl text-orange-500" />,
+      title: "Affordable Options",
+      description:
+        "Multiple affordable options available both in India and abroad",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "What is the duration of MBBS?",
+      answer:
+        "MBBS is typically a 5.5 to 6-year program including internship, depending on the country and university.",
+    },
+    {
+      question: "Is NEET mandatory for MBBS abroad?",
+      answer:
+        "Yes, NEET qualification is mandatory for Indian students pursuing MBBS abroad to practice in India after completing the degree.",
+    },
+    {
+      question: "Can I practice in India after MBBS abroad?",
+      answer:
+        "Yes, after clearing the FMGE/NEXT exam conducted by NMC, you can practice in India.",
+    },
+    {
+      question: "What is the average cost of MBBS?",
+      answer:
+        "Costs vary widely - Government colleges in India: ₹10K-1L/year, Private: ₹10-25L/year, Abroad: $3000-8000/year",
+    },
+  ];
+
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="relative bg-blue-900 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1626315869436-d6781ba69d6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80')] bg-cover bg-center opacity-10" />
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+    <div>
+      {/* Hero Section */}
+      <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="relative z-10 container mx-auto px-6 text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            transition={{ duration: 0.8 }}
           >
-            MBBS Abroad
-          </motion.h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-            Study Medicine in Top Government Universities at Affordable Cost.
-            Recognized by NMC, WHO, and FAMER.
-          </p>
-          <div className="flex justify-center gap-4">
-            <button className="px-8 py-3 bg-yellow-400 text-slate-900 font-bold rounded-full hover:bg-yellow-300 transition-colors">
-              Get Free Counselling
-            </button>
-            <button className="px-8 py-3 bg-white/10 backdrop-blur border border-white/30 text-white font-bold rounded-full hover:bg-white/20 transition-colors">
-              Check Eligibility
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro & Info */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
-              Why Study MBBS Abroad?
-            </h2>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              With limited government seats in India and high fees in private
-              colleges, studying MBBS abroad has become the preferred choice for
-              thousands of Indian students. Countries like Russia, Uzbekistan,
-              and Kazakhstan offer high-quality education, English medium
-              curriculum, and globally recognized degrees at a fraction of the
-              cost.
+            <span className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-bold border border-white/30 mb-6 uppercase tracking-wider">
+              🩺 Medical Education
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+              Study MBBS
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-purple-200">
+                Your Medical Career Starts Here
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto mb-10 leading-relaxed">
+              Choose from top NMC-approved medical universities in India and
+              abroad. Affordable fees, quality education, and global
+              recognition.
             </p>
-            <ul className="space-y-4">
-              {[
-                "No Capitation Fee or Donation",
-                "Low Cost of Living & Tuition Fees",
-                "English Medium of Instruction",
-                "World Class Infrastructure & Hospitals",
-                "Valid for NEXT / FMGE Exam in India",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <FiCheckCircle className="text-green-500 shrink-0" />
-                  <span className="text-slate-700 font-medium">{item}</span>
-                </li>
-              ))}
-            </ul>
 
-            <div className="mt-8 p-4 bg-orange-50 border border-orange-100 rounded-xl">
-              <h4 className="font-bold text-orange-800 mb-2">
-                NEET Qualification Mandatory
-              </h4>
-              <p className="text-orange-700 text-sm">
-                As per NMC guidelines, you must qualify NEET (UG) to be eligible
-                to practice in India after completing your MBBS abroad.
-              </p>
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-10">
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+                >
+                  <div className="text-3xl mb-2 text-blue-200">{stat.icon}</div>
+                  <div className="text-3xl md:text-4xl font-bold mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-blue-100">{stat.label}</div>
+                </motion.div>
+              ))}
             </div>
-          </div>
-          <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl border-8 border-slate-50">
-              <img
-                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80"
-                alt="Medical Students"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-slate-100 max-w-xs">
-              <p className="font-bold text-lg text-slate-800 mb-2">
-                Need Help with NEET Counselling?
-              </p>
-              <button className="text-brand-blue font-bold flex items-center gap-2 hover:gap-3 transition-all">
-                Contact Us <FiArrowRight />
-              </button>
-            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2 border-white/50 flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-white rounded-full"></div>
           </div>
         </div>
       </section>
 
-      {/* Country Grid */}
+      {/* Two-Column Navigation Cards */}
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Top Countries for MBBS
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Choose Your Path
             </h2>
-            <p className="text-slate-500">
-              Choose from the best destinations preferred by Indian students
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Select the option that best suits your career goals and
+              aspirations
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {countries.map((country, idx) => (
-              <Link
-                to={`/mbbs/${country.name.toLowerCase()}`}
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* MBBS Abroad Card */}
+            <motion.div
+              whileHover={{ y: -10 }}
+              className="group bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 hover:border-blue-300 transition-all"
+            >
+              <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-8 text-white">
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                  <FiGlobe className="text-4xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-2">MBBS Abroad</h3>
+                <p className="text-blue-100">
+                  Study in globally recognized universities
+                </p>
+              </div>
+
+              <div className="p-8">
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        Affordable Tuition Fees
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        $3,000 - $8,000 per year
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        NMC Approved Universities
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        FMGE/NEXT eligible
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        No Donation Required
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        Low NEET cutoff: 130 marks
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        English Medium
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        No language barrier
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  to="/mbbs/abroad"
+                  className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors group-hover:shadow-lg"
+                >
+                  Explore MBBS Abroad <FiArrowRight />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* MBBS India Card */}
+            <motion.div
+              whileHover={{ y: -10 }}
+              className="group bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 hover:border-orange-300 transition-all"
+            >
+              <div className="bg-gradient-to-br from-orange-600 to-red-600 p-8 text-white">
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                  <FiMapPin className="text-4xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-2">MBBS India</h3>
+                <p className="text-orange-100">
+                  Study in premier Indian medical colleges
+                </p>
+              </div>
+
+              <div className="p-8">
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        117,825 MBBS Seats
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        Govt: 59,860 | Private: 57,965
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        NEET 2025 Based
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        Transparent merit-based admission
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        Government Colleges
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        Fees: ₹10,000 - 1 Lakh/year
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        Study in Home Country
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        No cultural adjustment needed
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  to="/mbbs/india"
+                  className="w-full bg-orange-600 text-white py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:bg-orange-700 transition-colors group-hover:shadow-lg"
+                >
+                  Explore MBBS India <FiArrowRight />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose MBBS */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Why Choose MBBS?
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Build a rewarding career in medicine with global opportunities
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {whyMbbs.map((item, idx) => (
+              <motion.div
                 key={idx}
-                className="group bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all border border-slate-100"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-blue-200 hover:shadow-lg transition-all"
               >
-                <div className="h-32 bg-blue-50 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform">
-                  {country.flag}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">
-                    {country.name}
-                  </h3>
-                  <div className="space-y-2 text-sm text-slate-500">
-                    <div className="flex justify-between">
-                      <span>Tuition Fee:</span>
-                      <span className="font-medium text-green-600">
-                        {country.fee}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Duration:</span>
-                      <span className="font-medium text-slate-700">
-                        {country.duration}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-brand-blue font-semibold">
-                    View Universities <FiArrowRight />
-                  </div>
-                </div>
-              </Link>
+                <div className="mb-4">{item.icon}</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  {item.description}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Lead Form */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="bg-gradient-to-br from-slate-900 to-blue-900 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative shadow-2xl">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl"></div>
-            <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
-              <div className="text-white">
-                <h2 className="text-3xl font-bold mb-4">Get Expert Guidance</h2>
-                <p className="text-blue-200 mb-8">
-                  Not sure which country is best for you? Fill out the form and
-                  let our experts guide you to your dream medical university.
+      {/* FAQ Section */}
+      <section className="py-20 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-slate-600">
+                Get answers to common questions about MBBS
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {faqs.map((faq, idx) => (
+                <details
+                  key={idx}
+                  className="group bg-white rounded-xl border border-slate-200 overflow-hidden"
+                >
+                  <summary className="flex justify-between items-center p-6 cursor-pointer font-bold text-lg text-slate-900 hover:bg-slate-50 transition-colors">
+                    {faq.question}
+                    <span className="text-blue-600 group-open:rotate-180 transition-transform">
+                      ▼
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-slate-600 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  Ready to Start Your MBBS Journey?
+                </h2>
+                <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                  Get expert guidance on admission, documentation, and
+                  university selection. Our counselors are here to help you
+                  every step of the way.
                 </p>
-                <div className="flex items-center gap-4 text-sm font-medium">
-                  <div className="px-4 py-2 bg-white/10 rounded-full border border-white/20">
-                    Shortlist Universities
-                  </div>
-                  <div className="px-4 py-2 bg-white/10 rounded-full border border-white/20">
-                    Check Eligibility
-                  </div>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    to="/contact"
+                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:shadow-xl transition-shadow inline-flex items-center gap-2"
+                  >
+                    Book Free Consultation <FiArrowRight />
+                  </Link>
+                  <a
+                    href="https://wa.me/919876543210"
+                    className="bg-green-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-600 transition-colors inline-flex items-center gap-2"
+                  >
+                    WhatsApp Us
+                  </a>
                 </div>
               </div>
-              <div>
+
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
                 <LeadForm
-                  title="Enquire Now"
-                  subtitle="Get a call back within 24 hours"
+                  title="Get Free Counselling"
+                  subtitle="Fill the form and our expert will call you back"
                 />
               </div>
             </div>

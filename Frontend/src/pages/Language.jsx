@@ -6,7 +6,7 @@ const Language = () => {
   const [activeTab, setActiveTab] = useState("german");
 
   return (
-    <div className="pt-20">
+    <div>
       <section className="bg-slate-900 text-white py-20">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">

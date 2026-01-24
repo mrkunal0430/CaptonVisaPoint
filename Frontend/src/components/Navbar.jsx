@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import {
   FiMapPin,
   FiPhone,
@@ -36,24 +37,74 @@ const Navbar = () => {
   // Navigation Data
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
     {
-      name: "Study Destinations",
+      name: "MBBS",
+      path: "/mbbs",
+      type: "mega",
+      columns: [
+        {
+          title: "MBBS Abroad",
+          path: "/mbbs/abroad",
+          items: [
+            { name: "Russia", path: "/mbbs/russia", flag: "🇷🇺" },
+            { name: "Georgia", path: "/mbbs/georgia", flag: "🇬🇪" },
+            { name: "Uzbekistan", path: "/mbbs/uzbekistan", flag: "🇺🇿" },
+            { name: "Kazakhstan", path: "/mbbs/kazakhstan", flag: "🇰🇿" },
+            { name: "Kyrgyzstan", path: "/mbbs/kyrgyzstan", flag: "🇰🇬" },
+            { name: "Tajikistan", path: "/mbbs/tajikistan", flag: "🇹🇯" },
+          ],
+        },
+        {
+          title: "MBBS India",
+          path: "/mbbs/india",
+          items: [
+            {
+              name: "Govt vs Private",
+              path: "/mbbs/india#govt-private",
+              flag: "🏛️",
+            },
+            { name: "Top Colleges", path: "/mbbs/india#colleges", flag: "🏫" },
+            {
+              name: "NEET Eligibility",
+              path: "/mbbs/india#eligibility",
+              flag: "✅",
+            },
+            {
+              name: "State-wise Seats",
+              path: "/mbbs/india#state-seats",
+              flag: "📊",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Study Abroads",
       path: "/study-abroad",
       type: "mega",
       columns: [
         {
           title: "Popular Countries",
           items: [
-            { name: "Study in USA", path: "/study-abroad/usa", flag: "🇺🇸" },
-            { name: "Study in UK", path: "/study-abroad/uk", flag: "🇬🇧" },
+            { name: "Study in Germany", path: "/study-abroad/usa", flag: "🇺🇸" },
+            { name: "Study in Syprus", path: "/study-abroad/uk", flag: "🇬🇧" },
             {
-              name: "Study in Canada",
+              name: "Study in France",
               path: "/study-abroad/canada",
               flag: "🇨🇦",
             },
             {
-              name: "Study in Australia",
+              name: "Study in UAE",
+              path: "/study-abroad/australia",
+              flag: "🇦🇺",
+            },
+            {
+              name: "Study in Moricious",
+              path: "/study-abroad/australia",
+              flag: "🇦🇺",
+            },
+            {
+              name: "Study in Singapore",
               path: "/study-abroad/australia",
               flag: "🇦🇺",
             },
@@ -82,19 +133,9 @@ const Navbar = () => {
         },
       ],
     },
-    {
-      name: "Services",
-      path: "/services",
-      type: "dropdown",
-      items: [
-        { name: "Visa Consultation", path: "/pr-visa" },
-        { name: "Career Counseling", path: "/contact" },
-        { name: "Language Training (IELTS/PTE)", path: "/language-coaching" },
-        { name: "Ausbildung Programs", path: "/ausbildung" },
-      ],
-    },
+    { name: "Coaching", path: "/coaching" },
+    { name: "Ausbildung", path: "/ausbildung" },
     { name: "Blog", path: "/blog" },
-    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -199,28 +240,51 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 15 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 grid grid-cols-2 gap-8 z-50 overflow-hidden"
+                      className="absolute top-full left-1/2 -translate-x-1/2 w-[480px] bg-white rounded-xl shadow-2xl border border-slate-100 p-5 grid grid-cols-2 gap-6 z-50 overflow-hidden"
                     >
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500" />
                       {link.columns.map((col, colIdx) => (
                         <div key={colIdx}>
-                          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">
-                            {col.title}
-                          </h4>
-                          <ul className="space-y-1">
+                          {/* Clickable Header */}
+                          <Link
+                            to={col.path}
+                            className="flex items-center gap-2 mb-2 px-2 py-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg hover:from-blue-100 hover:to-purple-100 transition-all group/header border border-slate-100"
+                          >
+                            <span className="text-sm font-bold text-slate-800 group-hover/header:text-blue-700">
+                              {col.title}
+                            </span>
+                            <FiArrowRight className="text-xs text-blue-500 opacity-0 group-hover/header:opacity-100 transition-opacity" />
+                          </Link>
+                          {/* Child Items - Indented */}
+                          <ul className="space-y-0.5 pl-3 border-l-2 border-slate-100 ml-2">
                             {col.items.map((item, itemIdx) => (
                               <li key={itemIdx}>
-                                <Link
-                                  to={item.path}
-                                  className="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 group/item transition-colors"
-                                >
-                                  <span className="text-xl shadow-sm rounded-full w-8 h-8 flex items-center justify-center bg-white border border-slate-100">
-                                    {item.flag}
-                                  </span>
-                                  <span className="text-sm font-semibold text-slate-700 group-hover/item:text-blue-600">
-                                    {item.name}
-                                  </span>
-                                </Link>
+                                {item.path.includes("#") ? (
+                                  <HashLink
+                                    smooth
+                                    to={item.path}
+                                    className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-blue-50 group/item transition-colors"
+                                  >
+                                    <span className="text-base">
+                                      {item.flag}
+                                    </span>
+                                    <span className="text-xs font-medium text-slate-600 group-hover/item:text-blue-600">
+                                      {item.name}
+                                    </span>
+                                  </HashLink>
+                                ) : (
+                                  <Link
+                                    to={item.path}
+                                    className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-blue-50 group/item transition-colors"
+                                  >
+                                    <span className="text-base">
+                                      {item.flag}
+                                    </span>
+                                    <span className="text-xs font-medium text-slate-600 group-hover/item:text-blue-600">
+                                      {item.name}
+                                    </span>
+                                  </Link>
+                                )}
                               </li>
                             ))}
                           </ul>
@@ -259,14 +323,11 @@ const Navbar = () => {
 
           {/* Desktop Actions */}
           <div className="hidden xl:flex items-center gap-4">
-            <button className="text-slate-500 hover:text-blue-600 transition-colors p-2">
-              <FiSearch size={22} />
-            </button>
             <Link
               to="/contact"
               className="bg-[#0f172a] text-white px-7 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-900/20 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
             >
-              Free Counselling <FiArrowRight />
+              Contact Us <FiArrowRight />
             </Link>
           </div>
 

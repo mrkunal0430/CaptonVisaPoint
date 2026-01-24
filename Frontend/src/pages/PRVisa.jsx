@@ -110,7 +110,7 @@ const PRVisa = () => {
   const country = countries[selectedCountry];
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-blue to-blue-700 text-white py-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px]" />

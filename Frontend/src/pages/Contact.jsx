@@ -40,7 +40,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-20">
+    <div>
       <div className="bg-blue-900 py-20 text-center text-white">
         <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
         <p className="opacity-90">We are here to help you.</p>
