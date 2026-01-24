@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -22,7 +24,7 @@ const Contact = () => {
     try {
       // Assuming backend is running on localhost:5000
       // In production, configure proxy or full URL
-      const res = await axios.post("http://localhost:5000/api/leads", formData);
+      const res = await axios.post(`${API_URL}/leads`, formData);
       if (res.status === 201 || res.status === 200) {
         setStatus("success");
         setFormData({
