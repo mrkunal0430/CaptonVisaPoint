@@ -1,13 +1,13 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/db');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/db");
 
 // Import routes
-const authRoutes = require('./routes/auth');
-const leadsRoutes = require('./routes/leads');
-const blogsRoutes = require('./routes/blogs');
-const eligibilityRoutes = require('./routes/eligibility');
+const authRoutes = require("./routes/auth");
+const leadsRoutes = require("./routes/leads");
+const blogsRoutes = require("./routes/blogs");
+const eligibilityRoutes = require("./routes/eligibility");
 
 const app = express();
 
@@ -15,32 +15,34 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://captonvisapoint.vercel.app/"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 // Health check route
-app.get('/', (req, res) => {
-  res.json({ message: 'Capton Visa Point API is running!' });
+app.get("/", (req, res) => {
+  res.json({ message: "Capton Visa Point API is running!" });
 });
 
 // API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/leads', leadsRoutes);
-app.use('/api/blogs', blogsRoutes);
-app.use('/api/eligibility', eligibilityRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/leads", leadsRoutes);
+app.use("/api/blogs", blogsRoutes);
+app.use("/api/eligibility", eligibilityRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error('Server Error:', err);
-  res.status(500).json({ message: 'Internal server error' });
+  console.error("Server Error:", err);
+  res.status(500).json({ message: "Internal server error" });
 });
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
+  res.status(404).json({ message: "Route not found" });
 });
 
 const PORT = process.env.PORT || 5000;
