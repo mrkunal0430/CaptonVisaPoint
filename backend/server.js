@@ -17,7 +17,7 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://captonvisapoint.vercel.app/"],
+    origin: ["http://localhost:5173", "https://capton-visa-point.vercel.app/"],
     credentials: true,
   }),
 );
