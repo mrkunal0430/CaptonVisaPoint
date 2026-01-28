@@ -17,10 +17,17 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://capton-visa-point.vercel.app/"],
+    origin: [
+      "http://localhost:5173",
+      "https://capton-visa-point.vercel.app"
+    ],
     credentials: true,
-  }),
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
 );
+app.options("*", cors());
+
 app.use(express.json());
 
 // Health check route
