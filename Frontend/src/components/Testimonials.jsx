@@ -1,243 +1,427 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FiChevronLeft, FiChevronRight, FiStar, FiPlay } from "react-icons/fi";
+import { motion } from "framer-motion";
+import {
+  FiStar,
+  FiMapPin,
+  FiAward,
+  FiGlobe,
+  FiUsers,
+  FiTrendingUp,
+} from "react-icons/fi";
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   const testimonials = [
     {
       name: "Priya Sharma",
-      country: "Canada PR",
+      role: "Software Engineer",
+      destination: "Canada",
       image:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-      video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       rating: 5,
-      text: "Capton Visa Point made my Canada PR dream come true! The team was professional, transparent, and guided me through every step. I got my PR in just 8 months.",
-      achievement: "Got PR Visa for Canada",
+      text: "Capton Visa Point made my Canada PR dream come true! The team was incredibly professional and guided me through every step. Got my PR in just 8 months!",
+      flag: "🇨🇦",
+      type: "PR Visa",
+      gradient: "from-blue-500 to-cyan-400",
     },
     {
       name: "Rahul Verma",
-      country: "MBBS in Russia",
+      role: "Medical Student",
+      destination: "Russia",
       image:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-      video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       rating: 5,
-      text: "From counselling to admission, everything was smooth. Now I'm studying at a top medical university in Moscow. Thank you Capton for making this possible!",
-      achievement: "Admitted to Moscow State University",
+      text: "From counselling to admission, everything was smooth. Now I'm studying MBBS at a top medical university in Moscow. Forever grateful!",
+      flag: "🇷🇺",
+      type: "MBBS Abroad",
+      gradient: "from-red-500 to-orange-400",
     },
     {
       name: "Sneha Patel",
-      country: "Ausbildung Germany",
+      role: "Nursing Professional",
+      destination: "Germany",
       image:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
-      video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       rating: 5,
-      text: "I'm earning while learning in Germany! The Ausbildung program was explained perfectly. Now I have a guaranteed job and great salary. Highly recommend!",
-      achievement: "Working as Nurse in Berlin",
+      text: "The Ausbildung program was explained perfectly. Now I'm earning while learning in Germany with a guaranteed job!",
+      flag: "🇩🇪",
+      type: "Ausbildung",
+      gradient: "from-yellow-500 to-amber-400",
     },
     {
       name: "Amit Kumar",
-      country: "Masters in UK",
+      role: "Masters Student",
+      destination: "UK",
       image:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
-      video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       rating: 5,
-      text: "Got admission to University of Manchester with scholarship! The visa process was handled professionally. Forever grateful to the Capton team.",
-      achievement: "Masters with 50% Scholarship",
+      text: "Got admission to University of Manchester with 50% scholarship! The visa process was handled so professionally.",
+      flag: "🇬🇧",
+      type: "Study Abroad",
+      gradient: "from-purple-500 to-pink-400",
     },
     {
       name: "Ananya Singh",
-      country: "Work Visa Australia",
+      role: "IT Professional",
+      destination: "Australia",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400",
-      video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       rating: 5,
-      text: "Landed my dream IT job in Sydney with their help. From job search to visa approval, the entire process was seamless. Best consultancy ever!",
-      achievement: "Software Engineer in Sydney",
+      text: "Landed my dream IT job in Sydney with their help. From job search to visa approval, the entire process was seamless!",
+      flag: "🇦🇺",
+      type: "Work Visa",
+      gradient: "from-green-500 to-emerald-400",
+    },
+    {
+      name: "Vikram Reddy",
+      role: "Business Analyst",
+      destination: "USA",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
+      rating: 5,
+      text: "H1B visa process seemed daunting, but Capton made it look easy. Now working at a Fortune 500 company!",
+      flag: "🇺🇸",
+      type: "Work Visa",
+      gradient: "from-indigo-500 to-blue-400",
+    },
+    {
+      name: "Meera Joshi",
+      role: "PhD Scholar",
+      destination: "Germany",
+      image:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
+      rating: 5,
+      text: "Got fully funded PhD position at TU Munich! The team helped me with everything from SOP to German visa.",
+      flag: "🇩🇪",
+      type: "Study Abroad",
+      gradient: "from-rose-500 to-red-400",
+    },
+    {
+      name: "Arjun Nair",
+      role: "Chef",
+      destination: "Canada",
+      image:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400",
+      rating: 5,
+      text: "As a skilled worker, I thought immigration would be tough. Now I'm a proud Canadian permanent resident!",
+      flag: "🇨🇦",
+      type: "PR Visa",
+      gradient: "from-teal-500 to-cyan-400",
+    },
+    {
+      name: "Divya Krishnan",
+      role: "Medical Student",
+      destination: "Philippines",
+      image:
+        "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400",
+      rating: 5,
+      text: "Affordable MBBS with great guidance! The team was available 24/7. Now in my 3rd year with excellent grades!",
+      flag: "🇵🇭",
+      type: "MBBS Abroad",
+      gradient: "from-orange-500 to-yellow-400",
+    },
+    {
+      name: "Karthik Menon",
+      role: "Data Scientist",
+      destination: "Netherlands",
+      image:
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400",
+      rating: 5,
+      text: "Highly Skilled Migrant visa done in record time! The attention to detail made all the difference.",
+      flag: "🇳🇱",
+      type: "Work Visa",
+      gradient: "from-violet-500 to-purple-400",
     },
   ];
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
+  const row1 = [...testimonials.slice(0, 5), ...testimonials.slice(0, 5)];
+  const row2 = [...testimonials.slice(5), ...testimonials.slice(5)];
 
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-    );
-  };
+  const TestimonialCard = ({ testimonial, size = "normal" }) => (
+    <div
+      className={`p-2 testimonial-card flex-shrink-0 ${size === "large" ? "w-[340px] sm:w-[420px]" : "w-[280px] sm:w-[340px]"} mx-2 sm:mx-3`}
+    >
+      <div className="group relative h-full">
+        {/* Animated gradient border */}
+        <div
+          className={`absolute -inset-[1px] bg-gradient-to-r ${testimonial.gradient} rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-500 animate-gradient-shift`}
+        />
 
-  return (
-    <section className="py-16 sm:py-24 bg-slate-50 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-blue-100/30 rounded-full blur-[120px] -z-0" />
+        {/* Card content */}
+        <div className="relative h-full bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/50 group-hover:border-transparent transition-all duration-500 overflow-hidden">
+          {/* Background glow */}
+          <div
+            className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${testimonial.gradient} opacity-[0.07] rounded-full blur-3xl group-hover:opacity-[0.15] transition-opacity duration-500`}
+          />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-16"
-        >
-          <span className="text-brand-blue font-semibold tracking-wider text-xs sm:text-sm uppercase">
-            Success Stories
-          </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-dark mt-2 mb-4">
-            Hear From Our Happy Students
-          </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base px-4 sm:px-0">
-            Real stories from real people who achieved their dreams with our
-            guidance
-          </p>
-          <div className="h-1.5 w-16 sm:w-20 bg-brand-blue mx-auto rounded-full mt-4" />
-        </motion.div>
-
-        <div className="max-w-6xl mx-auto">
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl"
-              >
-                {/* Left - Image/Video */}
-                <div className="relative h-[280px] sm:h-[400px] md:h-[500px] bg-slate-100 group">
-                  <img
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <a
-                      href={testimonials[currentIndex].video}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-14 h-14 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center text-brand-blue hover:scale-110 transition-transform shadow-2xl group-hover:bg-brand-blue group-hover:text-white"
-                    >
-                      <FiPlay size={24} className="ml-1 sm:ml-1" />
-                    </a>
-                  </div>
-
-                  {/* Achievement badge */}
-                  <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white">
-                    <p className="text-xs sm:text-sm font-light opacity-90 mb-1">
-                      Achievement
-                    </p>
-                    <p className="text-base sm:text-lg md:text-xl font-bold">
-                      {testimonials[currentIndex].achievement}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Right - Content */}
-                <div className="p-5 sm:p-8 md:p-12">
-                  {/* Rating */}
-                  <div className="flex gap-1 mb-4 sm:mb-6">
-                    {[...Array(testimonials[currentIndex].rating)].map(
-                      (_, i) => (
-                        <FiStar
-                          key={i}
-                          className="text-yellow-400 fill-yellow-400"
-                          size={16}
-                        />
-                      ),
-                    )}
-                  </div>
-
-                  {/* Quote */}
-                  <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed mb-6 sm:mb-8 italic">
-                    "{testimonials[currentIndex].text}"
-                  </p>
-
-                  {/* Author */}
-                  <div>
-                    <h4 className="text-lg sm:text-xl font-bold text-brand-dark">
-                      {testimonials[currentIndex].name}
-                    </h4>
-                    <p className="text-brand-blue font-medium text-sm sm:text-base">
-                      {testimonials[currentIndex].country}
-                    </p>
-                  </div>
-
-                  {/* Watch video link */}
-                  <a
-                    href={testimonials[currentIndex].video}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-6 text-brand-blue font-semibold hover:gap-3 transition-all"
-                  >
-                    <FiPlay /> Watch Full Story
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 sm:-translate-x-4 md:-translate-x-16 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white transition-all z-10"
-              aria-label="Previous testimonial"
-            >
-              <FiChevronLeft size={20} />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 sm:translate-x-4 md:translate-x-16 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white transition-all z-10"
-              aria-label="Next testimonial"
-            >
-              <FiChevronRight size={20} />
-            </button>
+          {/* Service type badge */}
+          <div
+            className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gradient-to-r ${testimonial.gradient} text-white text-[10px] sm:text-xs font-semibold mb-3 sm:mb-4 shadow-lg`}
+          >
+            <FiAward size={10} className="sm:w-3 sm:h-3" />
+            {testimonial.type}
           </div>
 
-          {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`h-2.5 rounded-full transition-all ${
-                  index === currentIndex
-                    ? "w-8 bg-brand-blue"
-                    : "w-2.5 bg-slate-300 hover:bg-slate-400"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+          {/* Quote */}
+          <p
+            className={`text-slate-600 leading-relaxed mb-4 sm:mb-5 ${size === "large" ? "text-sm sm:text-base" : "text-xs sm:text-sm"} line-clamp-4`}
+          >
+            "{testimonial.text}"
+          </p>
+
+          {/* Rating */}
+          <div className="flex gap-0.5 sm:gap-1 mb-3 sm:mb-4">
+            {[...Array(testimonial.rating)].map((_, i) => (
+              <FiStar
+                key={i}
+                className="text-amber-400 fill-amber-400 w-3 h-3 sm:w-4 sm:h-4"
               />
             ))}
           </div>
+
+          {/* Profile section */}
+          <div className="flex items-center gap-3 pt-3 sm:pt-4 border-t border-slate-100">
+            <div className="relative">
+              <div
+                className={`absolute -inset-1 bg-gradient-to-r ${testimonial.gradient} rounded-full opacity-50 blur-sm`}
+              />
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-white"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 text-sm sm:text-base">
+                {testimonial.flag}
+              </span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="font-bold text-slate-800 text-sm sm:text-base truncate">
+                {testimonial.name}
+              </h4>
+              <div className="flex items-center gap-1 text-[10px] sm:text-xs text-slate-500">
+                <FiMapPin size={10} className="text-slate-400" />
+                <span className="truncate">
+                  {testimonial.role} • {testimonial.destination}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const stats = [
+    {
+      icon: FiUsers,
+      value: "10,000+",
+      label: "Happy Students",
+      color: "text-blue-500",
+    },
+    {
+      icon: FiTrendingUp,
+      value: "98%",
+      label: "Success Rate",
+      color: "text-green-500",
+    },
+    {
+      icon: FiGlobe,
+      value: "25+",
+      label: "Countries",
+      color: "text-purple-500",
+    },
+    {
+      icon: FiStar,
+      value: "4.9",
+      label: "Google Rating",
+      color: "text-amber-500",
+    },
+  ];
+
+  return (
+    <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent" />
+
+      {/* Floating orbs */}
+      <div className="absolute top-20 left-[10%] w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-float-slow" />
+      <div className="absolute bottom-20 right-[10%] w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-float-slow-reverse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl" />
+
+      <div className="relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 sm:mb-16 lg:mb-20 px-4"
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-red-500/10 border border-amber-500/20 mb-4 sm:mb-6">
+            <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-amber-500"></span>
+            </span>
+            <span className="text-xs sm:text-sm font-semibold text-amber-700">
+              Trusted by 10,000+ Students Worldwide
+            </span>
+          </div>
+
+          {/* Title */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-4 sm:mb-6 leading-tight">
+            Success Stories That
+            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x">
+              Inspire Dreams
+            </span>
+          </h2>
+
+          <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg leading-relaxed">
+            Real journeys, real achievements. See how we've helped thousands
+            transform their international aspirations into reality.
+          </p>
+        </motion.div>
+
+        {/* Marquee Section */}
+        <div className="relative mb-12 sm:mb-16 lg:mb-20">
+          {/* Gradient overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-20 lg:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-20 lg:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none" />
+
+          {/* Row 1 */}
+          <div className="mb-4 sm:mb-6 overflow-hidden">
+            <div
+              className="flex animate-marquee-left"
+              style={{ width: "fit-content" }}
+            >
+              {row1.map((testimonial, index) => (
+                <TestimonialCard
+                  key={`row1-${index}`}
+                  testimonial={testimonial}
+                  size="large"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 */}
+          <div className="overflow-hidden">
+            <div
+              className="flex animate-marquee-right"
+              style={{ width: "fit-content" }}
+            >
+              {row2.map((testimonial, index) => (
+                <TestimonialCard
+                  key={`row2-${index}`}
+                  testimonial={testimonial}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Overall rating */}
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="px-4"
+        >
+          <div className="max-w-5xl mx-auto">
+            <div className="relative">
+              {/* Background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-2xl" />
+
+              <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 overflow-hidden">
+                {/* Decorative top border */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+
+                <div className="p-6 sm:p-8 lg:p-10">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                    {stats.map((stat, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="group text-center p-3 sm:p-4 rounded-xl sm:rounded-2xl hover:bg-slate-50/80 transition-all duration-300"
+                      >
+                        <div
+                          className={`inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                        >
+                          <stat.icon
+                            className={`w-5 h-5 sm:w-7 sm:h-7 ${stat.color}`}
+                          />
+                        </div>
+                        <div
+                          className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${stat.color} mb-0.5 sm:mb-1`}
+                        >
+                          {stat.value}
+                        </div>
+                        <div className="text-xs sm:text-sm text-slate-500 font-medium">
+                          {stat.label}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Trust badges */}
+                  <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-100">
+                    <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
+                      {[
+                        { label: "ISO Certified", icon: "🏆" },
+                        { label: "ICEF Agency", icon: "✓" },
+                        { label: "AIRC Member", icon: "🌐" },
+                        { label: "15+ Years", icon: "⭐" },
+                      ].map((badge, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-slate-50 rounded-full text-xs sm:text-sm text-slate-600 font-medium hover:bg-slate-100 transition-colors"
+                        >
+                          <span className="text-sm sm:text-base">
+                            {badge.icon}
+                          </span>
+                          <span>{badge.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-10 sm:mt-16"
+          transition={{ delay: 0.4 }}
+          className="text-center mt-10 sm:mt-12 lg:mt-16 px-4"
         >
-          <div className="inline-flex items-center gap-3 sm:gap-4 bg-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-md">
-            <div className="flex gap-0.5 sm:gap-1">
-              {[...Array(5)].map((_, i) => (
-                <FiStar
-                  key={i}
-                  className="text-yellow-400 fill-yellow-400"
-                  size={18}
-                />
-              ))}
-            </div>
-            <div className="border-l border-slate-200 pl-3 sm:pl-4">
-              <p className="text-xl sm:text-2xl font-bold text-brand-dark">
-                4.9/5
-              </p>
-              <p className="text-xs sm:text-sm text-slate-600">
-                Based on 2,500+ reviews
-              </p>
-            </div>
-          </div>
+          <p className="text-slate-500 text-xs sm:text-sm mb-3 sm:mb-4">
+            Ready to write your own success story?
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-purple-500/25 hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base"
+          >
+            Start Your Journey
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
         </motion.div>
       </div>
     </section>

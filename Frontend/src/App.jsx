@@ -19,12 +19,10 @@ import MbbsCountry from "./pages/MbbsCountry";
 import StudyAbroad from "./pages/StudyAbroad";
 import StudyAbroadCountry from "./pages/StudyAbroadCountry";
 import Ausbildung from "./pages/Ausbildung";
-import Language from "./pages/Language";
 import Coaching from "./pages/Coaching";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
-import PRVisa from "./pages/PRVisa";
-import WorkVisa from "./pages/WorkVisa";
+
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -67,13 +65,9 @@ const AppLayout = () => {
           />
 
           <Route path="/ausbildung" element={<Ausbildung />} />
-          <Route path="/language-coaching" element={<Language />} />
           <Route path="/coaching" element={<Coaching />} />
 
-          {/* Visa Routes */}
-          <Route path="/pr-visa" element={<PRVisa />} />
-          <Route path="/work-visa" element={<WorkVisa />} />
-
+     
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>

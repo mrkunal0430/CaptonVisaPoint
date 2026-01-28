@@ -15,33 +15,6 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-300">
-      {/* Newsletter Section */}
-      <div className="bg-brand-blue py-8 sm:py-12">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="text-center sm:text-left">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                Stay Updated with Latest Immigration News
-              </h3>
-              <p className="text-blue-100 text-sm sm:text-base">
-                Get visa updates, scholarship alerts, and expert tips directly
-                in your inbox
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 sm:px-6 py-3 rounded-xl flex-1 w-full sm:w-80 outline-none text-sm sm:text-base"
-              />
-              <button className="px-6 sm:px-8 py-3 bg-white text-brand-blue rounded-xl font-semibold hover:bg-blue-50 transition-all whitespace-nowrap text-sm sm:text-base">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer */}
       <div className="container mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 mb-12 sm:mb-16">
