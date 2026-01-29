@@ -19,7 +19,7 @@ import {
   FiShield,
   FiHome,
 } from "react-icons/fi";
-import LeadForm from "../components/LeadForm";
+import { WorkAbroadForm } from "../components/forms";
 
 const Ausbildung = () => {
   const [selectedSector, setSelectedSector] = useState(null);
@@ -1017,9 +1017,9 @@ const Ausbildung = () => {
                     </div>
                   </div>
                 </div>
-                <div className="p-8 bg-slate-50">
-                  <LeadForm
-                    title="Start Your Application"
+                <div className="p-6 bg-slate-50">
+                  <WorkAbroadForm
+                    title="Start Your Ausbildung Application"
                     subtitle="Fill in your details and we'll contact you within 24 hours"
                   />
                 </div>

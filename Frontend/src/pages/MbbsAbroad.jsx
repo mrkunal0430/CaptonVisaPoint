@@ -13,7 +13,7 @@ import {
   FiFileText,
   FiUsers,
 } from "react-icons/fi";
-import LeadForm from "../components/LeadForm";
+import { MbbsAbroadForm } from "../components/forms";
 import EligibilityQuiz from "../components/EligibilityQuiz";
 
 const MbbsAbroad = () => {
@@ -600,12 +600,10 @@ const MbbsAbroad = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-2xl">
-              <LeadForm
-                title="Get Free Consultation"
-                subtitle="Our expert will call you back within 24 hours"
-              />
-            </div>
+            <MbbsAbroadForm
+              title="Get Free Consultation"
+              subtitle="Our expert will call you back within 24 hours"
+            />
           </div>
         </div>
       </section>

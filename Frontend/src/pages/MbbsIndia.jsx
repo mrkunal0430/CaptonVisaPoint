@@ -13,7 +13,7 @@ import {
   FiUsers,
   FiCalendar,
 } from "react-icons/fi";
-import LeadForm from "../components/LeadForm";
+import { MbbsIndiaForm } from "../components/forms";
 
 const MbbsIndia = () => {
   const stats = [
@@ -863,12 +863,10 @@ const MbbsIndia = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-2xl">
-              <LeadForm
-                title="Get Expert Consultation"
-                subtitle="We'll help you secure your MBBS seat"
-              />
-            </div>
+            <MbbsIndiaForm
+              title="Get Expert Consultation"
+              subtitle="We'll help you secure your MBBS seat"
+            />
           </div>
         </div>
       </section>

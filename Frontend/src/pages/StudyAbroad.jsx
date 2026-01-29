@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiGlobe, FiBriefcase, FiAward, FiArrowRight } from "react-icons/fi";
-import LeadForm from "../components/LeadForm";
+import { StudyAbroadForm } from "../components/forms";
 
 const destinations = [
   { name: "United Kingdom", flag: "🇬🇧", desc: "1 Year Masters & PSW" },
@@ -139,8 +139,8 @@ const StudyAbroad = () => {
                 <span>✓ University Shortlisting</span>
               </div>
             </div>
-            <div className="md:w-1/2">
-              <LeadForm title="Check Eligibility" subtitle="" />
+            <div className="md:w-1/2 p-6">
+              <StudyAbroadForm title="Check Eligibility" subtitle="" />
             </div>
           </div>
         </div>

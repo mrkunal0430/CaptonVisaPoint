@@ -7,6 +7,7 @@ import {
   FiMenu,
   FiX,
   FiHome,
+  FiClipboard,
 } from "react-icons/fi";
 import { FaStethoscope } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -15,7 +16,8 @@ const AdminLayout = ({ children, activeTab, setActiveTab, onLogout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menuItems = [
-    { id: "leads", label: "Leads Management", icon: FiUsers },
+    { id: "service-leads", label: "Service Leads", icon: FiClipboard },
+    { id: "leads", label: "General Leads", icon: FiUsers },
     { id: "eligibility", label: "MBBS Eligibility", icon: FaStethoscope },
     { id: "blogs", label: "Blog Management", icon: FiFileText },
   ];

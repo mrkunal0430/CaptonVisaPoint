@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth");
 const leadsRoutes = require("./routes/leads");
 const blogsRoutes = require("./routes/blogs");
 const eligibilityRoutes = require("./routes/eligibility");
+const serviceLeadsRoutes = require("./routes/serviceLeads");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/leads", leadsRoutes);
 app.use("/api/blogs", blogsRoutes);
 app.use("/api/eligibility", eligibilityRoutes);
+app.use("/api/service-leads", serviceLeadsRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
