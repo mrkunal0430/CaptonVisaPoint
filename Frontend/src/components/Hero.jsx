@@ -1,154 +1,157 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   FiArrowRight,
   FiCheckCircle,
-  FiStar,
   FiGlobe,
-  FiTrendingUp,
   FiAward,
-  FiMapPin,
   FiBookOpen,
   FiBriefcase,
   FiSend,
+  FiHelpCircle,
 } from "react-icons/fi";
+import InquiryPopup from "./InquiryPopup";
 
-// Country Data
-const countries = [
+// Services Data with local images
+const services = [
   {
-    name: "Canada",
-    flag: "🇨🇦",
-    image:
-      "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=400&q=80",
-    stats: { highlight: "Top PR Choice", visa: "96% Success" },
-    color: "from-red-500 to-red-600",
+    name: "Study Abroad",
+    icon: "🎓",
+    image: "/Home_Hero/1.webp",
+    stats: { highlight: "100+ Universities", benefit: "Scholarship Support" },
+    link: "/study-abroad",
+    color: "from-blue-500 to-cyan-500",
   },
   {
-    name: "Australia",
-    flag: "🇦🇺",
-    image:
-      "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=400&q=80",
-    stats: { highlight: "High Wages", visa: "4yr PSW" },
-    color: "from-blue-500 to-blue-600",
+    name: "Work Visa",
+    icon: "💼",
+    image: "/Home_Hero/2.webp",
+    stats: { highlight: "15+ Countries", benefit: "Job Placement" },
+    link: "/work-visa",
+    color: "from-emerald-500 to-teal-500",
   },
   {
-    name: "UK",
-    flag: "🇬🇧",
-    image:
-      "https://images.unsplash.com/photo-1529655683826-ece48428bc5a?auto=format&fit=crop&w=400&q=80",
-    stats: { highlight: "1yr Masters", visa: "Quick Process" },
-    color: "from-indigo-500 to-indigo-600",
+    name: "MBBS Abroad",
+    icon: "🩺",
+    image: "/Home_Hero/3.webp",
+    stats: { highlight: "WHO Approved", benefit: "Low Tuition Fees" },
+    link: "/mbbs",
+    color: "from-red-500 to-rose-500",
   },
   {
-    name: "USA",
-    flag: "🇺🇸",
-    image:
-      "https://images.unsplash.com/photo-1534270804882-6b5048b1c1fc?auto=format&fit=crop&w=400&q=80",
-    stats: { highlight: "STEM OPT", visa: "Ivy League" },
-    color: "from-blue-600 to-red-600",
+    name: "Ausbildung",
+    icon: "🇩🇪",
+    image: "/Home_Hero/4.webp",
+    stats: { highlight: "Earn & Learn", benefit: "German Training" },
+    link: "/ausbildung",
+    color: "from-yellow-500 to-amber-500",
   },
   {
-    name: "Germany",
-    flag: "🇩🇪",
-    image:
-      "https://images.unsplash.com/photo-1560969184-10fe8719e654?auto=format&fit=crop&w=400&q=80",
-    stats: { highlight: "Free Tuition", visa: "Job Seeker" },
-    color: "from-yellow-500 to-yellow-600",
+    name: "Coaching",
+    icon: "📚",
+    image: "/Home_Hero/5.webp",
+    stats: { highlight: "IELTS | PTE", benefit: "Expert Trainers" },
+    link: "/coaching",
+    color: "from-purple-500 to-violet-500",
   },
   {
-    name: "France",
-    flag: "🇫🇷",
-    image:
-      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=400&q=80",
-    stats: { highlight: "Schengen Access", visa: "top Culture" },
-    color: "from-blue-400 to-indigo-500",
+    name: "PR Visa",
+    icon: "🌍",
+    image: "/Home_Hero/6.webp",
+    stats: { highlight: "Canada | Australia", benefit: "98% Success" },
+    link: "/pr-visa",
+    color: "from-indigo-500 to-blue-500",
   },
 ];
 
-const CountryCard = ({ country, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  // Stagger animation based on index
-
+const ServiceCard = ({ service, index }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative group cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <Link to={service.link}>
       <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: index * 0.5,
-        }}
-        whileHover={{ scale: 1.05, zIndex: 10, y: -5 }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="relative group cursor-pointer"
       >
-        {/* Main Card */}
-        <div
-          className={`
-                relative overflow-hidden rounded-2xl shadow-xl 
-                h-32 w-28 sm:h-40 sm:w-32 lg:h-48 lg:w-36
-                border border-white/10 bg-white/5 backdrop-blur-sm
-                transition-all duration-300
-                ${isHovered ? "shadow-cyan-500/20 border-cyan-400/30" : ""}
-            `}
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: index * 0.4,
+          }}
+          whileHover={{ scale: 1.05, zIndex: 10 }}
         >
-          <img
-            src={country.image}
-            alt={country.name}
-            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-          />
-          {/* Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+          {/* Main Card */}
+          <div className="relative overflow-hidden rounded-2xl shadow-xl h-36 w-28 sm:h-44 sm:w-34 lg:h-52 lg:w-40 border border-white/20 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-white/10 group-hover:border-white/40">
+            {/* Image - Clean without color overlay */}
+            <img
+              src={service.image}
+              alt={service.name}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
 
-          {/* Content */}
-          <div className="absolute bottom-0 left-0 w-full p-3 text-center">
-            <span className="text-2xl block mb-1 drop-shadow-md">
-              {country.flag}
-            </span>
-            <span className="text-white text-sm font-bold tracking-wide drop-shadow-md">
-              {country.name}
-            </span>
-          </div>
-        </div>
+            {/* Subtle dark gradient for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-        {/* Hover Floating Details (Desktop) */}
-        <AnimatePresence>
-          {isHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 5, scale: 0.9 }}
-              className="absolute -top-16 left-1/2 -translate-x-1/2 w-40 bg-white rounded-xl shadow-2xl p-3 z-20 pointer-events-none"
-            >
-              <div
-                className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45`}
-              />
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-                  <FiAward className="text-yellow-500" />
-                  {country.stats.highlight}
+            {/* Default Content - Icon & Name */}
+            <div className="absolute bottom-0 left-0 w-full p-3 text-center transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-4">
+              <span className="text-2xl sm:text-3xl block mb-1 drop-shadow-lg">
+                {service.icon}
+              </span>
+              <span className="text-white text-xs sm:text-sm font-bold tracking-wide drop-shadow-md block">
+                {service.name}
+              </span>
+            </div>
+
+            {/* Hover Content - Slides up from bottom */}
+            <div className="absolute inset-0 flex flex-col justify-end p-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+              {/* Glass panel background */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
+
+              {/* Content */}
+              <div className="relative z-10 text-center space-y-2">
+                <span className="text-2xl sm:text-3xl block drop-shadow-lg">
+                  {service.icon}
+                </span>
+                <span className="text-white text-xs sm:text-sm font-bold tracking-wide block">
+                  {service.name}
+                </span>
+
+                {/* Stats - Only visible on hover */}
+                <div className="pt-2 border-t border-white/20 space-y-1">
+                  <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-cyan-300 font-medium">
+                    <FiAward className="text-yellow-400" size={12} />
+                    <span>{service.stats.highlight}</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-green-300 font-medium">
+                    <FiCheckCircle className="text-green-400" size={12} />
+                    <span>{service.stats.benefit}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-slate-600">
-                  <FiCheckCircle className="text-green-500" />
-                  {country.stats.visa}
+
+                {/* Explore text */}
+                <div className="flex items-center justify-center gap-1 text-[10px] text-white/70 pt-1">
+                  <span>Explore</span>
+                  <FiArrowRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+
+            {/* Glowing border effect on hover */}
+            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: 'inset 0 0 20px rgba(255,255,255,0.1)' }} />
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </Link>
   );
 };
 
 const Hero = () => {
+  const [showInquiry, setShowInquiry] = useState(false);
+
   return (
     <section className="relative min-h-[90vh] md:min-h-screen flex items-center bg-[#050A18] overflow-hidden">
       {/* 1. Background Effects */}
@@ -196,13 +199,12 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight"
             >
-              Your Gateway to <br />
+              College Seats to <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">
-                Global Education
+                Global Career Success
               </span>{" "}
-              & Careers
             </motion.h1>
 
             {/* Subheadline */}
@@ -216,7 +218,7 @@ const Hero = () => {
               expert guidance. We turn your global aspirations into reality.
             </motion.p>
 
-            {/* New 4-Button CTA Layout */}
+            {/* 4-Button CTA Layout */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -233,7 +235,7 @@ const Hero = () => {
               <Link to="/pr-visa" className="group">
                 <button className="w-full py-4 px-6 bg-purple-500/10 border border-purple-500/30 rounded-xl hover:bg-purple-500 hover:text-white text-purple-400 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full backdrop-blur-sm">
                   <FiGlobe className="text-2xl mb-1" />
-                  Migrate
+                  PR Visa
                 </button>
               </Link>
 
@@ -247,71 +249,63 @@ const Hero = () => {
               <Link to="/contact" className="group">
                 <button className="w-full py-4 px-6 bg-slate-500/10 border border-slate-500/30 rounded-xl hover:bg-slate-200 hover:text-slate-900 text-slate-300 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full backdrop-blur-sm">
                   <FiSend className="text-2xl mb-1" />
-                  Visit
+                  Eligibility Check
                 </button>
               </Link>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 lg:gap-8"
-            >
-              {[
-                "Top Universities",
-                "Visa Assistance",
-                "Job Placement",
-                "Scholarships",
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 text-sm font-medium text-slate-300"
-                >
-                  <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-                    <FiCheckCircle size={12} />
-                  </div>
-                  {item}
-                </div>
-              ))}
-            </motion.div>
           </div>
 
-          {/* 3. Right Interactive Section - Country Cards Visual */}
+          {/* 3. Right Interactive Section - Service Cards Visual */}
           <div className="flex-1 w-full lg:h-[600px] relative flex md:items-center justify-center lg:justify-end">
-            {/* Cards Grid - Irregular/Masonry Layout */}
-            <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 transform lg:rotate-[-5deg] lg:-translate-y-8">
-              {countries.map((country, idx) => (
+            {/* Cards Grid - Masonry Layout */}
+            <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+              {services.map((service, idx) => (
                 <div
                   key={idx}
-                  className={`${idx % 2 !== 0 ? "mt-8 md:mt-12" : ""}`}
+                  className={`${idx % 2 !== 0 ? "mt-6 md:mt-10" : ""}`}
                 >
-                  {" "}
-                  {/* Stagger effect */}
-                  <CountryCard country={country} index={idx} />
+                  <ServiceCard service={service} index={idx} />
                 </div>
               ))}
             </div>
 
-            {/* Floating Elements */}
+            {/* Floating CTA Element */}
             <motion.div
-              animate={{ x: [0, -20, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[41%] -left-[10%] z-20 hidden md:block"
+              animate={{ x: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-[41%] -left-[5%] lg:-left-[10%] z-20 hidden sm:block"
             >
-              <div className="bg-white/10 backdrop-blur-xl p-3 rounded-2xl border border-white/20 shadow-2xl flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white">
-                  <FiCheckCircle size={20} />
+              <button
+                onClick={() => setShowInquiry(true)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 backdrop-blur-xl p-3 sm:p-4 rounded-2xl border border-white/20 shadow-2xl flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer group"
+              >
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition-colors">
+                  <FiHelpCircle size={22} />
                 </div>
-                <div>
-                  <p className="text-xs text-blue-200">Visa Success</p>
-                  <p className="text-white font-bold">99.8% Approved</p>
+                <div className="text-left">
+                  <p className="text-xs sm:text-sm text-blue-100 font-medium">Don't know what to do?</p>
+                  <p className="text-white font-bold text-sm sm:text-base">Get Free Counselling</p>
                 </div>
-              </div>
+                <FiArrowRight className="text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all" />
+              </button>
             </motion.div>
+
+            {/* Mobile Floating CTA */}
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              onClick={() => setShowInquiry(true)}
+              className="sm:hidden fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transition-transform"
+            >
+              <FiHelpCircle size={24} />
+            </motion.button>
           </div>
         </div>
       </div>
+
+      {/* Inquiry Popup */}
+      <InquiryPopup isOpen={showInquiry} onClose={() => setShowInquiry(false)} />
     </section>
   );
 };

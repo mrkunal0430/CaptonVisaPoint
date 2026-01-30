@@ -11,7 +11,7 @@ import {
   FiMapPin,
   FiArrowRight,
 } from "react-icons/fi";
-import LeadForm from "../components/LeadForm";
+import InquiryForm from "../components/InquiryForm";
 
 const Mbbs = () => {
   const stats = [
@@ -394,7 +394,7 @@ const Mbbs = () => {
               </div>
 
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                <LeadForm
+                <InquiryForm
                   title="Get Free Counselling"
                   subtitle="Fill the form and our expert will call you back"
                 />

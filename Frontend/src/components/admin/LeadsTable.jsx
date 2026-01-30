@@ -21,7 +21,6 @@ const LeadsTable = ({ token }) => {
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
-    service: "all",
     status: "all",
     search: "",
     startDate: "",
@@ -62,7 +61,6 @@ const LeadsTable = ({ token }) => {
     fetchLeads();
   }, [
     pagination.page,
-    filters.service,
     filters.status,
     filters.startDate,
     filters.endDate,
@@ -118,7 +116,6 @@ const LeadsTable = ({ token }) => {
 
   const clearFilters = () => {
     setFilters({
-      service: "all",
       status: "all",
       search: "",
       startDate: "",
@@ -127,7 +124,6 @@ const LeadsTable = ({ token }) => {
   };
 
   const hasActiveFilters =
-    filters.service !== "all" ||
     filters.status !== "all" ||
     filters.startDate ||
     filters.endDate;
@@ -174,7 +170,7 @@ const LeadsTable = ({ token }) => {
         <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
-          placeholder="Search by name, email, or phone..."
+          placeholder="Search by name, email, phone, or city..."
           className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all bg-white"
           value={filters.search}
           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
@@ -196,27 +192,7 @@ const LeadsTable = ({ token }) => {
             )}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-sm font-medium text-slate-600">
-                Service
-              </label>
-              <select
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue bg-white text-slate-700"
-                value={filters.service}
-                onChange={(e) =>
-                  setFilters({ ...filters, service: e.target.value })
-                }
-              >
-                <option value="all">All Services</option>
-                <option value="MBBS Abroad">MBBS Abroad</option>
-                <option value="Study Abroad">Study Abroad</option>
-                <option value="Ausbildung">Ausbildung</option>
-                <option value="Language Coaching">Language Coaching</option>
-                <option value="Visa Service">Visa Service</option>
-              </select>
-            </div>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-600">
                 Status
@@ -284,7 +260,7 @@ const LeadsTable = ({ token }) => {
                     <th className="p-4">Date</th>
                     <th className="p-4">Name</th>
                     <th className="p-4">Contact</th>
-                    <th className="p-4">Service</th>
+                    <th className="p-4">City</th>
                     <th className="p-4">Message</th>
                     <th className="p-4">Status</th>
                     <th className="p-4 text-center">Actions</th>
@@ -318,10 +294,8 @@ const LeadsTable = ({ token }) => {
                           </a>
                         </div>
                       </td>
-                      <td className="p-4">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
-                          {lead.service}
-                        </span>
+                      <td className="p-4 text-slate-600">
+                        {lead.city || "-"}
                       </td>
                       <td
                         className="p-4 text-sm text-slate-600 max-w-[200px] truncate"
@@ -409,12 +383,14 @@ const LeadsTable = ({ token }) => {
                   </a>
                 </div>
 
-                {/* Service Badge */}
-                <div>
-                  <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
-                    {lead.service}
-                  </span>
-                </div>
+                {/* City Badge */}
+                {lead.city && (
+                  <div>
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                      {lead.city}
+                    </span>
+                  </div>
+                )}
 
                 {/* Message */}
                 {lead.message && (

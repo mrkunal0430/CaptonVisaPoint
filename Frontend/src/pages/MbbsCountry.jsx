@@ -10,7 +10,7 @@ import {
   FiAward,
   FiStar,
 } from "react-icons/fi";
-import LeadForm from "../components/LeadForm";
+import InquiryForm from "../components/InquiryForm";
 
 // Country-specific data with partner universities (direct contracts) and other universities
 const countryData = {
@@ -542,7 +542,7 @@ const MbbsCountry = () => {
           {/* Sidebar Form */}
           <div className="md:col-span-1">
             <div className="sticky top-24">
-              <LeadForm
+              <InquiryForm
                 title={`Apply to ${countryName}`}
                 subtitle="Get free admission assessment now"
               />

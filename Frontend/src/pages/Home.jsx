@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FiArrowRight,
@@ -7,12 +7,15 @@ import {
   FiTarget,
   FiMessageCircle,
   FiChevronDown,
+  FiAward,
+  FiUsers,
+  FiStar,
+  FiPlay,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import LeadForm from "../components/LeadForm";
+import InquiryForm from "../components/InquiryForm";
+import InquiryPopup from "../components/InquiryPopup";
 import Testimonials from "../components/Testimonials";
-import EligibilityCalculator from "../components/EligibilityCalculator";
-import TrustBadges from "../components/TrustBadges";
 import Hero from "../components/Hero";
 import PopularVisaCards from "../components/PopularVisaCards";
 
@@ -24,6 +27,15 @@ const fadeInUp = {
 };
 
 const Home = () => {
+  const [showInquiry, setShowInquiry] = useState(false);
+
+  const scrollToWhyChooseUs = () => {
+    const element = document.getElementById("why-choose-us");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="w-full overflow-hidden">
       {/* Hero Section */}
@@ -32,62 +44,186 @@ const Home = () => {
       {/* Popular Visa Cards Section */}
       <PopularVisaCards />
 
-      {/* Eligibility Calculator */}
-      <EligibilityCalculator />
+      {/* Director Message - Premium Design */}
+      <section className="py-2 sm:py-3 relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
+        {/* Background Elements */}
 
-      {/* Director Message */}
-      <section className="py-16 sm:py-24 bg-blue-900 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-blue-500/20 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2"></div>
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-12">
-            <div className="w-full md:w-1/3">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/20 max-w-[280px] sm:max-w-none mx-auto">
-                <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Director"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-0 left-0 w-full p-4 sm:p-6 bg-gradient-to-t from-black/80 to-transparent">
-                  <p className="font-bold text-base sm:text-lg">
-                    Dr. A. Sharma
-                  </p>
-                  <p className="text-blue-200 text-xs sm:text-sm">
-                    Founder & Director
-                  </p>
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            {/* Left - Image Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-2"
+            >
+              <div className="relative max-w-sm mx-auto lg:mx-0">
+                {/* Decorative frame */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-xl" />
+                <div className="absolute -inset-px bg-gradient-to-br from-blue-500/50 via-purple-500/50 to-cyan-500/50 rounded-2xl" />
+
+                {/* Main image container */}
+                <div className="relative bg-slate-900 p-1 rounded-2xl">
+                  <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
+                    <img
+                      src="RichaMam.jpeg"
+                      alt="Director"
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+
+                    {/* Info card at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <div className="bg-white/10 backdrop-blur-xl rounded-xl p-4 border border-white/10">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
+                            RS
+                          </div>
+                          <div>
+                            <h4 className="text-white font-bold text-lg">
+                              Richa Sharma
+                            </h4>
+                            <p className="text-blue-300 text-sm">
+                              Founder & Director
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Floating stats cards */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute -right-15 top-8 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
+                >
+                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                    <FiUsers size={18} />
+                  </div>
+                  <div>
+                    <p className="text-slate-800 font-bold text-sm">5,000+</p>
+                    <p className="text-slate-500 text-xs">Students Guided</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                  className="absolute -left-14 bottom-32 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
+                >
+                  <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
+                    <FiAward size={18} />
+                  </div>
+                  <div>
+                    <p className="text-slate-800 font-bold text-sm">
+                      10+ Years
+                    </p>
+                    <p className="text-slate-500 text-xs">Experience</p>
+                  </div>
+                </motion.div>
               </div>
-            </div>
-            <div className="w-full md:w-2/3 space-y-6 sm:space-y-8 text-center md:text-left">
-              <FiMessageCircle className="text-4xl sm:text-5xl text-blue-300 opacity-50 mx-auto md:mx-0" />
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight">
-                "Our mission is to democratize international education. Every
-                student deserves a chance to shine globally."
+            </motion.div>
+
+            {/* Right - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="lg:col-span-3 text-center lg:text-left"
+            >
+              {/* Main quote */}
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-6">
+                Our mission is to{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">
+                  democratize international education
+                </span>
+                . Every student deserves a chance to shine globally.
               </h2>
-              <p className="text-blue-200 text-sm sm:text-lg leading-relaxed max-w-2xl mx-auto md:mx-0">
+
+              {/* Description */}
+              <p className="text-blue-200/80 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
                 At Capton Visa Point, we don't just process visas; we build
                 careers. With over a decade of experience, we understand the
                 nuances of global education systems and immigration laws. My
                 team and I are committed to providing you with honest,
-                transparent, and personalized guidance."
+                transparent, and personalized guidance.
               </p>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg"
-                alt="Signature"
-                className="h-12 sm:h-16 invert opacity-80 mx-auto md:mx-0"
-              />
-            </div>
+
+              {/* Stats row */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-10 mb-10">
+                <div className="text-center">
+                  <p className="text-3xl sm:text-4xl font-bold text-white">
+                    98%
+                  </p>
+                  <p className="text-blue-300 text-sm">Success Rate</p>
+                </div>
+                <div className="w-px h-12 bg-blue-500/30 hidden sm:block" />
+                <div className="text-center">
+                  <p className="text-3xl sm:text-4xl font-bold text-white">
+                    15+
+                  </p>
+                  <p className="text-blue-300 text-sm">Countries</p>
+                </div>
+                <div className="w-px h-12 bg-blue-500/30 hidden sm:block" />
+                <div className="text-center">
+                  <p className="text-3xl sm:text-4xl font-bold text-white">
+                    100+
+                  </p>
+                  <p className="text-blue-300 text-sm">University Partners</p>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowInquiry(true)}
+                  className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/25 flex items-center justify-center gap-3 hover:shadow-blue-500/40 transition-all"
+                >
+                  <FiPlay className="text-lg" />
+                  Free Consultation
+                  <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={scrollToWhyChooseUs}
+                  className="group px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold rounded-xl flex items-center justify-center gap-3 hover:bg-white/20 transition-all"
+                >
+                  <FiStar className="text-yellow-400" />
+                  Why Choose CaptonVisaPoint
+                  <FiChevronDown className="group-hover:translate-y-1 transition-transform" />
+                </motion.button>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
-
-      {/* Trust Badges */}
-      <TrustBadges />
 
       {/* Testimonials */}
       <Testimonials />
 
       {/* Why Choose Us */}
-      <section className="py-16 sm:py-24 bg-white">
+      <section
+        id="why-choose-us"
+        className="py-16 sm:py-24 bg-white scroll-mt-20"
+      >
         <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 sm:gap-16 items-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl sm:text-4xl font-bold text-brand-dark mb-4 sm:mb-6">
@@ -223,7 +359,7 @@ const Home = () => {
                 </ul>
               </div>
               <div>
-                <LeadForm
+                <InquiryForm
                   title="Book Free Counselling"
                   subtitle="Start your international journey today"
                 />
@@ -232,6 +368,12 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Inquiry Popup */}
+      <InquiryPopup
+        isOpen={showInquiry}
+        onClose={() => setShowInquiry(false)}
+      />
     </div>
   );
 };

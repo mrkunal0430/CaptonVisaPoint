@@ -17,11 +17,15 @@ const leadSchema = new mongoose.Schema({
     required: [true, 'Phone is required'],
     trim: true
   },
+  city: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   service: {
     type: String,
-    required: [true, 'Service interest is required'],
-    enum: ['MBBS Abroad', 'Study Abroad', 'Ausbildung', 'Language Coaching', 'Visa Service'],
-    default: 'Study Abroad'
+    enum: ['MBBS Abroad', 'Study Abroad', 'Ausbildung', 'Language Coaching', 'Visa Service', 'General Inquiry'],
+    default: 'General Inquiry'
   },
   message: {
     type: String,
@@ -41,5 +45,6 @@ const leadSchema = new mongoose.Schema({
 leadSchema.index({ createdAt: -1 });
 leadSchema.index({ service: 1 });
 leadSchema.index({ status: 1 });
+leadSchema.index({ city: 1 });
 
 module.exports = mongoose.model('Lead', leadSchema);

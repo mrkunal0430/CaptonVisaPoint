@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FiCheckCircle } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { FiCheckCircle, FiArrowRight } from "react-icons/fi";
 
-const visaData = [
+// MBBS destination data with country maps and visa types
+const mbbsCountries = [
   {
-    id: 1,
-    country: "CANADA",
-    gradient: "from-red-600 via-purple-600 to-blue-900",
+    id: "russia",
+    country: "Russia",
+    gradient: "from-red-500 via-rose-600 to-red-800",
     mapSvg: (
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute right-0 top-0 w-full h-full opacity-30"
-      >
+      <svg viewBox="0 0 100 60" className="w-full h-full">
         <path
-          d="M160,40 Q120,20 100,30 Q90,35 85,40 L80,50 Q75,60 70,65 L65,70 Q60,75 55,80 L50,90 Q45,100 40,110 L60,120 Q70,125 80,130 L90,135 Q100,140 110,145 L120,150 Q130,155 140,160 L145,165 Q150,170 155,175 L160,180 Q170,175 175,170 L180,165 Q185,160 190,150 L185,140 Q180,130 175,120 L170,110 Q165,100 160,90 L165,80 Q170,70 175,60 L180,50 Q175,45 170,40 Z"
-          fill="white"
+          d="M95,15 L90,12 L80,10 L70,8 L60,10 L50,8 L40,12 L30,10 L20,15 L15,20 L10,30 L12,40 L15,45 L25,50 L35,48 L45,52 L55,50 L65,55 L75,52 L85,48 L92,42 L95,35 L93,25 Z"
+          fill="currentColor"
         />
       </svg>
     ),
@@ -22,25 +21,20 @@ const visaData = [
       "PR Visa",
       "Work Visa",
       "Student Visa",
-      "Floater Visa",
-      "Program",
-      "Express Entry Program",
-      "PNP",
+      "FMGE Support",
+      "Express Entry",
       "Business Visa",
     ],
   },
   {
-    id: 2,
-    country: "AUSTRALIA",
-    gradient: "from-orange-500 via-yellow-600 to-gray-900",
+    id: "georgia",
+    country: "Georgia",
+    gradient: "from-orange-500 via-amber-500 to-yellow-600",
     mapSvg: (
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute right-0 top-0 w-full h-full opacity-30"
-      >
+      <svg viewBox="0 0 100 60" className="w-full h-full">
         <path
-          d="M140,30 Q160,35 175,50 L180,65 Q185,80 185,95 L180,110 Q175,125 170,135 L160,145 Q150,155 135,160 L120,165 Q105,170 90,165 L75,160 Q60,155 50,145 L40,130 Q35,115 35,100 L40,85 Q45,70 55,60 L70,50 Q85,40 100,35 L115,32 Q125,30 140,30 Z M95,70 Q105,65 115,70 L120,80 Q115,85 110,90 Z M145,95 Q150,105 145,115 L135,120 Q130,115 135,105 Z"
-          fill="white"
+          d="M20,25 L30,20 L45,18 L60,20 L75,22 L85,28 L88,35 L82,42 L70,45 L55,43 L40,45 L25,42 L15,35 L18,28 Z"
+          fill="currentColor"
         />
       </svg>
     ),
@@ -48,25 +42,20 @@ const visaData = [
       "PR Visa",
       "Work Visa",
       "Student Visa",
-      "Blue Card",
-      "Freelancer Visa",
       "Blue Card",
       "Freelancer Visa",
       "Visit Visa",
     ],
   },
   {
-    id: 4,
-    country: "UK",
-    gradient: "from-blue-600 via-indigo-700 to-gray-900",
+    id: "uzbekistan",
+    country: "Uzbekistan",
+    gradient: "from-blue-500 via-cyan-500 to-teal-600",
     mapSvg: (
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute right-0 top-0 w-full h-full opacity-30"
-      >
+      <svg viewBox="0 0 100 60" className="w-full h-full">
         <path
-          d="M100,20 Q105,22 110,25 L115,30 Q120,35 122,40 L125,50 Q127,60 125,70 L122,80 Q120,85 118,88 L115,92 Q112,95 108,98 L100,100 Q95,102 90,100 L85,98 Q82,95 80,92 L78,88 Q75,85 74,80 L72,70 Q70,60 72,50 L74,40 Q76,35 80,30 L85,25 Q90,22 95,20 Z M105,110 Q110,112 115,115 L120,120 Q125,125 128,130 L132,140 Q135,150 132,160 L128,170 Q125,175 120,180 L115,185 Q110,188 105,190 L95,188 Q90,186 85,182 L80,175 Q75,168 73,160 L70,150 Q68,140 70,130 L73,120 Q75,115 80,110 L85,107 Q90,105 95,105 Z"
-          fill="white"
+          d="M15,20 L25,15 L40,18 L55,15 L70,20 L80,25 L85,35 L80,45 L65,50 L50,48 L35,50 L20,45 L12,35 L15,25 Z"
+          fill="currentColor"
         />
       </svg>
     ),
@@ -80,17 +69,14 @@ const visaData = [
     ],
   },
   {
-    id: 5,
-    country: "UAE",
-    gradient: "from-emerald-500 via-teal-600 to-gray-900",
+    id: "kazakhstan",
+    country: "Kazakhstan",
+    gradient: "from-emerald-500 via-teal-500 to-cyan-600",
     mapSvg: (
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute right-0 top-0 w-full h-full opacity-30"
-      >
+      <svg viewBox="0 0 100 60" className="w-full h-full">
         <path
-          d="M150,50 Q160,55 165,65 L168,75 Q170,85 168,95 L165,105 Q162,115 155,125 L148,135 Q140,145 130,150 L120,155 Q110,158 100,155 L90,150 Q80,145 72,135 L65,125 Q58,115 55,105 L52,95 Q50,85 52,75 L55,65 Q60,55 70,50 L80,47 Q90,45 100,47 L110,50 Q120,52 130,55 Z"
-          fill="white"
+          d="M10,22 L25,15 L45,12 L65,15 L85,18 L95,28 L92,40 L80,48 L60,52 L40,50 L20,48 L8,38 L10,28 Z"
+          fill="currentColor"
         />
       </svg>
     ),
@@ -99,12 +85,55 @@ const visaData = [
       "Work Visa",
       "Student Visa",
       "Investor Visa",
-      "Busines Visa",
+      "Business Visa",
+      "Visit Visa",
+    ],
+  },
+  {
+    id: "kyrgyzstan",
+    country: "Kyrgyzstan",
+    gradient: "from-pink-500 via-rose-500 to-red-600",
+    mapSvg: (
+      <svg viewBox="0 0 100 60" className="w-full h-full">
+        <path
+          d="M20,20 L35,15 L55,18 L75,20 L85,28 L82,40 L68,48 L48,50 L30,46 L18,38 L15,28 Z"
+          fill="currentColor"
+        />
+      </svg>
+    ),
+    visaTypes: [
+      "PR Visa",
+      "Work Visa",
+      "Student Visa",
+      "Investor Visa",
+      "Business Visa",
+      "Visit Visa",
+    ],
+  },
+  {
+    id: "tajikistan",
+    country: "Tajikistan",
+    gradient: "from-purple-500 via-violet-500 to-indigo-600",
+    mapSvg: (
+      <svg viewBox="0 0 100 60" className="w-full h-full">
+        <path
+          d="M25,18 L42,12 L62,15 L78,22 L82,35 L75,48 L55,52 L35,48 L20,40 L18,28 Z"
+          fill="currentColor"
+        />
+      </svg>
+    ),
+    visaTypes: [
+      "PR Visa",
+      "Work Visa",
+      "Student Visa",
+      "Investor Visa",
+      "Business Visa",
       "Visit Visa",
     ],
   },
 ];
 
+// Flip Card Component with 4:3 aspect ratio
 const FlipCard = ({ data, index }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -130,7 +159,7 @@ const FlipCard = ({ data, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="h-[280px] perspective-1000"
+      className="aspect-[4/3] perspective-1000"
       onMouseEnter={() => !isMobile && setIsFlipped(true)}
       onMouseLeave={() => !isMobile && setIsFlipped(false)}
       onClick={handleInteraction}
@@ -145,43 +174,45 @@ const FlipCard = ({ data, index }) => {
       >
         {/* FRONT SIDE */}
         <div
-          className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${data.gradient} overflow-hidden shadow-2xl cursor-pointer`}
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${data.gradient} overflow-hidden shadow-xl cursor-pointer`}
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
         >
-          {/* Country Map SVG */}
-          {data.mapSvg}
+          {/* Country Map - Background */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-25">
+            <div className="w-[85%] h-[85%] text-white">{data.mapSvg}</div>
+          </div>
 
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+          {/* Decorative circles */}
+          <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-white/10" />
+          <div className="absolute -bottom-4 -left-4 w-14 h-14 rounded-full bg-white/10" />
 
           {/* Country Name */}
-          <div className="absolute top-8 left-8 z-10">
-            <h3 className="text-4xl font-black text-white tracking-tight drop-shadow-2xl">
+          <div className="absolute top-5 left-5 z-10">
+            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-lg">
               {data.country}
             </h3>
-            <div className="h-1 w-12 bg-white/80 mt-2 rounded-full" />
+            <div className="h-1 w-10 bg-white/70 mt-2 rounded-full" />
           </div>
 
           {/* Bottom text hint */}
-          <div className="absolute bottom-8 left-8 right-8 z-10">
-            <p className="text-white/90 text-sm font-medium">
+          <div className="absolute bottom-4 left-5 right-5 z-10">
+            <p className="text-white/80 text-xs sm:text-sm font-medium">
               {isMobile
                 ? "Tap to view visa types →"
                 : "Hover to view visa types →"}
             </p>
           </div>
-
-          {/* Decorative elements */}
-          <div className="absolute top-4 right-4 w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm" />
-          <div className="absolute bottom-4 right-4 w-24 h-24 rounded-full bg-white/5 backdrop-blur-sm" />
         </div>
 
         {/* BACK SIDE */}
         <div
-          className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${data.gradient} overflow-hidden shadow-2xl p-8 cursor-pointer`}
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${data.gradient} overflow-hidden shadow-xl p-5 cursor-pointer`}
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -193,32 +224,35 @@ const FlipCard = ({ data, index }) => {
 
           <div className="relative z-10 h-full flex flex-col">
             {/* Header */}
-            <div className="mb-6">
-              <h3 className="text-3xl font-black text-white mb-1">
+            <div className="mb-3">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
                 {data.country}
               </h3>
-              <div className="h-1 w-16 bg-white/80 rounded-full" />
+              <div className="h-0.5 w-12 bg-white/70 rounded-full" />
             </div>
 
             {/* Visa Types List */}
-            <div className="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
               {data.visaTypes.map((visa, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                  className="flex items-center gap-3 group"
-                >
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                    <FiCheckCircle className="text-white w-3 h-3" />
+                <div key={idx} className="flex items-center gap-2 group">
+                  <div className="flex-shrink-0 w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
+                    <FiCheckCircle className="text-white w-2.5 h-2.5" />
                   </div>
-                  <span className="text-white font-medium text-sm group-hover:translate-x-1 transition-transform">
+                  <span className="text-white font-medium text-xs sm:text-sm">
                     {visa}
                   </span>
-                </motion.div>
+                </div>
               ))}
             </div>
+
+            {/* Explore Link */}
+            <Link
+              to={`/mbbs/${data.id}`}
+              className="mt-3 flex items-center gap-1 text-white/90 hover:text-white text-xs sm:text-sm font-semibold"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Explore MBBS <FiArrowRight className="text-sm" />
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -228,115 +262,96 @@ const FlipCard = ({ data, index }) => {
 
 const PopularVisaCards = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-100/40 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Large Screen: Split Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-start">
-          {/* LEFT HALF - Header & Description */}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Desktop: Split Screen Layout (1:3 ratio) */}
+        <div className="hidden lg:grid lg:grid-cols-4 gap-8 items-start">
+          {/* LEFT PORTION (1/4) - Title & Description - Sticky */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="sticky top-24 space-y-8"
+            className="sticky top-24 space-y-6"
           >
             <div>
-              <h2 className="text-6xl font-black text-gray-900 mb-6 leading-tight">
-                Popular Visa
+              <h2 className="text-4xl xl:text-5xl font-black text-gray-900 mb-4 leading-tight">
+                Popular MBBS
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
                   Destinations
                 </span>
               </h2>
-              <div className="h-2 w-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6" />
-              <p className="text-xl text-gray-600 leading-relaxed">
-                We offer expert guidance and support that increases your chances
-                of visa success.
+              <div className="h-1.5 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6" />
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Expert guidance for your medical education journey abroad with
+                FMGE support.
               </p>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100"
-              >
-                <div className="text-4xl font-black text-blue-600 mb-2">
-                  98%
-                </div>
-                <div className="text-sm text-gray-600 font-medium">
-                  Success Rate
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100"
-              >
-                <div className="text-4xl font-black text-purple-600 mb-2">
-                  50+
-                </div>
-                <div className="text-sm text-gray-600 font-medium">
-                  Countries
-                </div>
-              </motion.div>
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="text-gray-500 italic"
+            {/* CTA Button */}
+            <Link
+              to="/mbbs/abroad"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm"
             >
-              "Hover over each card to discover the visa types available for
-              your dream destination."
-            </motion.p>
+              View All Countries <FiArrowRight />
+            </Link>
           </motion.div>
 
-          {/* RIGHT HALF - Cards in 2 Columns */}
-          <div className="grid grid-cols-2 gap-6">
-            {visaData.map((data, index) => (
-              <div key={data.id} className={index % 2 === 1 ? "mt-12" : ""}>
-                <FlipCard data={data} index={index} />
-              </div>
+          {/* RIGHT PORTION (3/4) - Cards Grid */}
+          <div className="lg:col-span-3 grid grid-cols-2 xl:grid-cols-3 gap-5">
+            {mbbsCountries.map((data, index) => (
+              <FlipCard key={data.id} data={data} index={index} />
             ))}
           </div>
         </div>
 
-        {/* Mobile & Tablet: Standard Layout */}
-        <div className="lg:hidden space-y-12">
+        {/* Mobile & Tablet: Stacked Layout */}
+        <div className="lg:hidden space-y-10">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-2xl"
+            className="text-center"
           >
-            <h2 className="text-5xl font-black text-gray-900 mb-4">
-              Popular Visa
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3">
+              Popular MBBS{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+                Destinations
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              We offer expert guidance and support that increases your chances
-              of visa success.
+            <div className="h-1.5 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mx-auto mb-4" />
+            <p className="text-base text-gray-600 max-w-lg mx-auto">
+              Expert guidance for your medical education journey abroad
             </p>
           </motion.div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {visaData.map((data, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {mbbsCountries.map((data, index) => (
               <FlipCard key={data.id} data={data} index={index} />
             ))}
           </div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Link
+              to="/mbbs/abroad"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              View All MBBS Countries <FiArrowRight />
+            </Link>
+          </motion.div>
         </div>
       </div>
 
@@ -346,7 +361,7 @@ const PopularVisaCards = () => {
         }
 
         .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
+          width: 3px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {

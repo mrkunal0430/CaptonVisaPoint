@@ -9,7 +9,7 @@ const router = express.Router();
 // @access  Public
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone, service, message } = req.body;
+    const { name, email, phone, city, service, message } = req.body;
 
     // Validate required fields
     if (!name || !email || !phone) {
@@ -20,7 +20,8 @@ router.post('/', async (req, res) => {
       name,
       email,
       phone,
-      service: service || 'Study Abroad',
+      city: city || '',
+      service: service || 'General Inquiry',
       message: message || ''
     });
 
@@ -64,12 +65,13 @@ router.get('/', protect, async (req, res) => {
       }
     }
 
-    // Search by name, email, or phone
+    // Search by name, email, phone, or city
     if (search) {
       filter.$or = [
         { name: { $regex: search, $options: 'i' } },
         { email: { $regex: search, $options: 'i' } },
-        { phone: { $regex: search, $options: 'i' } }
+        { phone: { $regex: search, $options: 'i' } },
+        { city: { $regex: search, $options: 'i' } }
       ];
     }
 

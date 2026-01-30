@@ -18,11 +18,11 @@ import MbbsIndia from "./pages/MbbsIndia";
 import MbbsCountry from "./pages/MbbsCountry";
 import StudyAbroad from "./pages/StudyAbroad";
 import StudyAbroadCountry from "./pages/StudyAbroadCountry";
+import UniversityDetail from "./pages/UniversityDetail";
 import Ausbildung from "./pages/Ausbildung";
 import Coaching from "./pages/Coaching";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
-
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -63,11 +63,14 @@ const AppLayout = () => {
             path="/study-abroad/:country"
             element={<StudyAbroadCountry />}
           />
+          <Route
+            path="/study-abroad/:country/:university"
+            element={<UniversityDetail />}
+          />
 
           <Route path="/ausbildung" element={<Ausbildung />} />
           <Route path="/coaching" element={<Coaching />} />
 
-     
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>

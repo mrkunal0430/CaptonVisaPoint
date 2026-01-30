@@ -15,7 +15,7 @@ import {
   FiCalendar,
   FiGlobe,
 } from "react-icons/fi";
-import LeadForm from "../components/LeadForm";
+import InquiryForm from "../components/InquiryForm";
 
 const Coaching = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -852,7 +852,7 @@ const Coaching = () => {
                   </ul>
                 </div>
                 <div className="p-8 bg-slate-50">
-                  <LeadForm
+                  <InquiryForm
                     title="Register for Free Demo"
                     subtitle="Fill in your details and we'll contact you within 24 hours"
                   />
