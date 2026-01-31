@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AdminLayout from "../components/admin/AdminLayout";
+import Dashboard from "../components/admin/Dashboard";
 import LeadsTable from "../components/admin/LeadsTable";
 import ServiceLeadsTable from "../components/admin/ServiceLeadsTable";
 import EligibilityLeadsTable from "../components/admin/EligibilityLeadsTable";
@@ -14,7 +15,7 @@ const Admin = () => {
   const [token, setToken] = useState(
     localStorage.getItem("adminToken") || null,
   );
-  const [activeTab, setActiveTab] = useState("service-leads");
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -148,6 +149,7 @@ const Admin = () => {
       setActiveTab={setActiveTab}
       onLogout={handleLogout}
     >
+      {activeTab === "dashboard" && <Dashboard token={token} setActiveTab={setActiveTab} />}
       {activeTab === "service-leads" && <ServiceLeadsTable token={token} />}
       {activeTab === "leads" && <LeadsTable token={token} />}
       {activeTab === "eligibility" && <EligibilityLeadsTable token={token} />}

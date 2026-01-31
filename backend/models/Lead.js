@@ -36,6 +36,11 @@ const leadSchema = new mongoose.Schema({
     type: String,
     enum: ['new', 'contacted', 'converted', 'closed'],
     default: 'new'
+  },
+  notes: {
+    type: String,
+    trim: true,
+    default: ''
   }
 }, {
   timestamps: true

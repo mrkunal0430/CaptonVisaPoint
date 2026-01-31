@@ -8,17 +8,19 @@ import {
   FiX,
   FiHome,
   FiClipboard,
+  FiAward,
+  FiGrid,
 } from "react-icons/fi";
-import { FaStethoscope } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const AdminLayout = ({ children, activeTab, setActiveTab, onLogout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menuItems = [
+    { id: "dashboard", label: "Dashboard", icon: FiGrid },
     { id: "service-leads", label: "Service Leads", icon: FiClipboard },
     { id: "leads", label: "General Leads", icon: FiUsers },
-    { id: "eligibility", label: "MBBS Eligibility", icon: FaStethoscope },
+    { id: "eligibility", label: "Eligibility Leads", icon: FiAward },
     { id: "blogs", label: "Blog Management", icon: FiFileText },
   ];
 

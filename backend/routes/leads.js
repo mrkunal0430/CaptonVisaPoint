@@ -103,15 +103,19 @@ router.get('/', protect, async (req, res) => {
 });
 
 // @route   PUT /api/leads/:id
-// @desc    Update lead status
+// @desc    Update lead status and notes
 // @access  Private (Admin only)
 router.put('/:id', protect, async (req, res) => {
   try {
-    const { status } = req.body;
+    const { status, notes } = req.body;
+    const updateData = {};
+
+    if (status) updateData.status = status;
+    if (notes !== undefined) updateData.notes = notes;
 
     const lead = await Lead.findByIdAndUpdate(
       req.params.id,
-      { status },
+      updateData,
       { new: true }
     );
 
@@ -141,6 +145,50 @@ router.delete('/:id', protect, async (req, res) => {
   } catch (error) {
     console.error('Delete Lead Error:', error);
     res.status(500).json({ message: 'Failed to delete lead' });
+  }
+});
+
+// @route   GET /api/leads/export
+// @desc    Export leads as CSV
+// @access  Private (Admin only)
+router.get('/export', protect, async (req, res) => {
+  try {
+    const { status, startDate, endDate } = req.query;
+
+    const filter = {};
+    if (status && status !== 'all') filter.status = status;
+    if (startDate || endDate) {
+      filter.createdAt = {};
+      if (startDate) filter.createdAt.$gte = new Date(startDate);
+      if (endDate) filter.createdAt.$lte = new Date(endDate + 'T23:59:59.999Z');
+    }
+
+    const leads = await Lead.find(filter).sort({ createdAt: -1 });
+
+    // Generate CSV
+    const headers = ['Date', 'Name', 'Email', 'Phone', 'City', 'Service', 'Message', 'Status'];
+    const csvRows = [headers.join(',')];
+
+    leads.forEach(lead => {
+      const row = [
+        new Date(lead.createdAt).toLocaleDateString(),
+        `"${(lead.name || '').replace(/"/g, '""')}"`,
+        `"${(lead.email || '').replace(/"/g, '""')}"`,
+        `"${(lead.phone || '').replace(/"/g, '""')}"`,
+        `"${(lead.city || '').replace(/"/g, '""')}"`,
+        `"${(lead.service || '').replace(/"/g, '""')}"`,
+        `"${(lead.message || '').replace(/"/g, '""')}"`,
+        lead.status
+      ];
+      csvRows.push(row.join(','));
+    });
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename=general-leads-${new Date().toISOString().split('T')[0]}.csv`);
+    res.send(csvRows.join('\n'));
+  } catch (error) {
+    console.error('Export Error:', error);
+    res.status(500).json({ message: 'Failed to export leads' });
   }
 });
 

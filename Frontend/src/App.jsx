@@ -23,6 +23,7 @@ import Ausbildung from "./pages/Ausbildung";
 import Coaching from "./pages/Coaching";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
+import EligibilityCheck from "./pages/EligibilityCheck";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -73,6 +74,8 @@ const AppLayout = () => {
 
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
+
+          <Route path="/eligibility-check" element={<EligibilityCheck />} />
         </Routes>
       </main>
       <Footer />

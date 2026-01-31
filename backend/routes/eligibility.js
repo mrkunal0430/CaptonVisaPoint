@@ -5,56 +5,70 @@ const { protect } = require('../middleware/auth');
 const router = express.Router();
 
 // @route   POST /api/eligibility
-// @desc    Submit MBBS eligibility check
+// @desc    Submit eligibility check
 // @access  Public
 router.post('/', async (req, res) => {
   try {
     const {
       name,
-      whatsapp,
       email,
-      pcbScore,
-      neetStatus,
-      annualBudget,
-      readiness,
-      totalScore,
-      eligibilityCategory,
-      consentGiven
+      phone,
+      city,
+      preference,
+      qualification,
+      age,
+      germanLevel,
+      neetAppeared,
+      neetScore,
+      preferredCountry,
+      preferredState,
+      highestQualification,
+      languageTest,
+      preferredSector,
+      score
     } = req.body;
 
     // Validate required fields
-    if (!name || !whatsapp || !email) {
-      return res.status(400).json({ message: 'Name, WhatsApp number, and email are required' });
+    if (!name || !email || !phone) {
+      return res.status(400).json({ message: 'Name, email, and phone are required' });
     }
 
-    if (!pcbScore || !neetStatus || !annualBudget || !readiness) {
-      return res.status(400).json({ message: 'All quiz answers are required' });
+    if (!preference) {
+      return res.status(400).json({ message: 'Preference selection is required' });
     }
 
-    if (totalScore === undefined || !eligibilityCategory) {
-      return res.status(400).json({ message: 'Score and eligibility category are required' });
+    if (score === undefined) {
+      return res.status(400).json({ message: 'Score is required' });
     }
 
-    if (!consentGiven) {
-      return res.status(400).json({ message: 'Consent is required to proceed' });
-    }
+    // Determine score category
+    let scoreCategory = 'Good';
+    if (score >= 70) scoreCategory = 'Excellent';
+    else if (score < 50) scoreCategory = 'Needs Work';
 
     const eligibilityLead = await EligibilityLead.create({
       name,
-      whatsapp,
       email,
-      pcbScore,
-      neetStatus,
-      annualBudget,
-      readiness,
-      totalScore,
-      eligibilityCategory,
-      consentGiven
+      phone,
+      city: city || '',
+      preference,
+      qualification: qualification || '',
+      age: age || '',
+      germanLevel: germanLevel || '',
+      neetAppeared: neetAppeared || '',
+      neetScore: neetScore || '',
+      preferredCountry: preferredCountry || '',
+      preferredState: preferredState || '',
+      highestQualification: highestQualification || '',
+      languageTest: languageTest || '',
+      preferredSector: preferredSector || '',
+      score,
+      scoreCategory
     });
 
     res.status(201).json({
       success: true,
-      message: 'Your eligibility check has been submitted. Our MBBS expert will contact you soon!',
+      message: 'Your eligibility check has been submitted. Our expert will contact you soon!',
       lead: eligibilityLead
     });
   } catch (error) {
@@ -69,7 +83,7 @@ router.post('/', async (req, res) => {
 router.get('/', protect, async (req, res) => {
   try {
     const {
-      eligibilityCategory,
+      preference,
       status,
       startDate,
       endDate,
@@ -83,8 +97,8 @@ router.get('/', protect, async (req, res) => {
     // Build filter query
     const filter = {};
 
-    if (eligibilityCategory && eligibilityCategory !== 'all') {
-      filter.eligibilityCategory = eligibilityCategory;
+    if (preference && preference !== 'all') {
+      filter.preference = preference;
     }
 
     if (status && status !== 'all') {
@@ -102,12 +116,12 @@ router.get('/', protect, async (req, res) => {
       }
     }
 
-    // Search by name, email, or whatsapp
+    // Search by name, email, or phone
     if (search) {
       filter.$or = [
         { name: { $regex: search, $options: 'i' } },
         { email: { $regex: search, $options: 'i' } },
-        { whatsapp: { $regex: search, $options: 'i' } }
+        { phone: { $regex: search, $options: 'i' } }
       ];
     }
 
@@ -142,6 +156,53 @@ router.get('/', protect, async (req, res) => {
   }
 });
 
+// @route   GET /api/eligibility/export
+// @desc    Export eligibility leads as CSV
+// @access  Private (Admin only)
+router.get('/export', protect, async (req, res) => {
+  try {
+    const { preference, status, startDate, endDate } = req.query;
+
+    const filter = {};
+    if (preference && preference !== 'all') filter.preference = preference;
+    if (status && status !== 'all') filter.status = status;
+    if (startDate || endDate) {
+      filter.createdAt = {};
+      if (startDate) filter.createdAt.$gte = new Date(startDate);
+      if (endDate) filter.createdAt.$lte = new Date(endDate + 'T23:59:59.999Z');
+    }
+
+    const leads = await EligibilityLead.find(filter).sort({ createdAt: -1 });
+
+    // Generate CSV
+    const headers = ['Date', 'Name', 'Email', 'Phone', 'City', 'Preference', 'Score', 'Score Category', 'Status', 'Notes'];
+    const csvRows = [headers.join(',')];
+
+    leads.forEach(lead => {
+      const row = [
+        new Date(lead.createdAt).toLocaleDateString(),
+        `"${(lead.name || '').replace(/"/g, '""')}"`,
+        `"${(lead.email || '').replace(/"/g, '""')}"`,
+        `"${(lead.phone || '').replace(/"/g, '""')}"`,
+        `"${(lead.city || '').replace(/"/g, '""')}"`,
+        `"${(lead.preference || '').replace(/"/g, '""')}"`,
+        lead.score || 0,
+        `"${(lead.scoreCategory || '').replace(/"/g, '""')}"`,
+        lead.status || 'new',
+        `"${(lead.notes || '').replace(/"/g, '""')}"`
+      ];
+      csvRows.push(row.join(','));
+    });
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename=eligibility-leads-${new Date().toISOString().split('T')[0]}.csv`);
+    res.send(csvRows.join('\n'));
+  } catch (error) {
+    console.error('Export Error:', error);
+    res.status(500).json({ message: 'Failed to export eligibility leads' });
+  }
+});
+
 // @route   GET /api/eligibility/stats
 // @desc    Get eligibility lead statistics
 // @access  Private (Admin only)
@@ -154,26 +215,19 @@ router.get('/stats', protect, async (req, res) => {
       EligibilityLead.countDocuments({ status: 'converted' })
     ]);
 
-    // Category breakdown
-    const categoryStats = await EligibilityLead.aggregate([
-      { $group: { _id: '$eligibilityCategory', count: { $sum: 1 } } }
+    // Preference breakdown
+    const preferenceStats = await EligibilityLead.aggregate([
+      { $group: { _id: '$preference', count: { $sum: 1 } } }
     ]);
 
-    // Score distribution
-    const scoreStats = await EligibilityLead.aggregate([
-      {
-        $bucket: {
-          groupBy: '$totalScore',
-          boundaries: [0, 4, 6, 8, 11],
-          default: 'Other',
-          output: { count: { $sum: 1 } }
-        }
-      }
+    // Score category breakdown
+    const scoreCategoryStats = await EligibilityLead.aggregate([
+      { $group: { _id: '$scoreCategory', count: { $sum: 1 } } }
     ]);
 
     // Average score
     const avgScoreResult = await EligibilityLead.aggregate([
-      { $group: { _id: null, avgScore: { $avg: '$totalScore' } } }
+      { $group: { _id: null, avgScore: { $avg: '$score' } } }
     ]);
     const avgScore = avgScoreResult[0]?.avgScore?.toFixed(1) || 0;
 
@@ -185,13 +239,31 @@ router.get('/stats', protect, async (req, res) => {
         contacted,
         converted,
         avgScore,
-        byCategory: categoryStats,
-        byScore: scoreStats
+        byPreference: preferenceStats,
+        byScoreCategory: scoreCategoryStats
       }
     });
   } catch (error) {
     console.error('Eligibility Stats Error:', error);
     res.status(500).json({ message: 'Failed to fetch stats' });
+  }
+});
+
+// @route   GET /api/eligibility/:id
+// @desc    Get single eligibility lead
+// @access  Private (Admin only)
+router.get('/:id', protect, async (req, res) => {
+  try {
+    const lead = await EligibilityLead.findById(req.params.id);
+
+    if (!lead) {
+      return res.status(404).json({ message: 'Eligibility lead not found' });
+    }
+
+    res.json({ success: true, lead });
+  } catch (error) {
+    console.error('Get Eligibility Lead Error:', error);
+    res.status(500).json({ message: 'Failed to fetch lead' });
   }
 });
 

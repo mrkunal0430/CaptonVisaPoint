@@ -72,7 +72,7 @@ const InquiryForm = ({
   };
 
   const inputBaseClass =
-    "w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue transition-all text-slate-700";
+    "w-full pl-10 pr-4 py-3 bg-bg-soft border border-border-light rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all text-text-secondary";
 
   const isCompact = variant === "compact" || variant === "popup";
 
@@ -82,7 +82,7 @@ const InquiryForm = ({
         isCompact ? "p-4 sm:p-6" : "p-5 sm:p-8"
       }`}
     >
-      <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-blue-50/50 rounded-bl-full -z-0" />
+      <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-brand-blue-soft/50 rounded-bl-full -z-0" />
 
       <div className="relative z-10">
         <h3
@@ -104,8 +104,8 @@ const InquiryForm = ({
           <div
             className={`mb-4 p-3 rounded-lg flex items-center gap-2 ${
               status.type === "success"
-                ? "bg-green-50 text-green-700 border border-green-200"
-                : "bg-red-50 text-red-700 border border-red-200"
+                ? "bg-success-soft text-success border border-success/20"
+                : "bg-red-50 text-red-600 border border-red-200"
             }`}
           >
             {status.type === "success" ? <FiCheck /> : <FiX />}
@@ -184,7 +184,7 @@ const InquiryForm = ({
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-3.5 bg-gradient-to-r from-brand-blue to-blue-600 text-white rounded-xl font-semibold shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full py-3.5 bg-brand-blue hover:bg-brand-blue-dark text-white rounded-xl font-semibold shadow-lg shadow-brand-blue/25 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
             type="submit"
             disabled={loading}
           >

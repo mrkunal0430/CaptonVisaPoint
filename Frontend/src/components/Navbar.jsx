@@ -36,7 +36,6 @@ const Navbar = () => {
 
   // Navigation Data
   const navLinks = [
-    { name: "Home", path: "/" },
     {
       name: "MBBS",
       path: "/mbbs",
@@ -116,50 +115,49 @@ const Navbar = () => {
     },
     { name: "Coaching", path: "/coaching" },
     { name: "Ausbildung", path: "/ausbildung" },
-    { name: "Blog", path: "/blog" },
   ];
 
   return (
     <header className="fixed w-full z-50 font-sans">
-      {/* 1. Top Utility Bar - Dark & Premium */}
+      {/* 1. Top Utility Bar - Professional Dark */}
       <div
-        className={`hidden sm:block w-full bg-[#051024] text-white transition-all duration-300 ${scrolled ? "h-0 overflow-hidden opacity-0" : "h-8 border-b border-white/10"}`}
+        className={`hidden sm:block w-full bg-slate-900 text-slate-300 transition-all duration-300 ${scrolled ? "h-0 overflow-hidden opacity-0" : "h-9"}`}
       >
         <div className="container mx-auto px-4 lg:px-8 h-full flex justify-between items-center text-[10px] lg:text-xs font-medium tracking-wide">
           <div className="flex items-center gap-6">
             <a
               href="mailto:info@captonvisa.com"
-              className="flex items-center gap-2 hover:text-blue-300 transition-colors"
+              className="flex items-center gap-2 hover:text-white transition-colors"
             >
               <FiMail className="text-blue-400" /> info@captonvisa.com
             </a>
             <a
               href="tel:+919876543210"
-              className="hidden sm:flex items-center gap-2 hover:text-blue-300 transition-colors"
+              className="hidden sm:flex items-center gap-2 hover:text-white transition-colors"
             >
               <FiPhone className="text-blue-400" /> +91 98765 43210
             </a>
             <span className="hidden md:flex items-center gap-2 text-slate-400">
-              <FiMapPin /> Kerala • Dubai • Canada
+              <FiMapPin className="text-blue-400" /> Kerala • Dubai • Canada
             </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3 border-r border-white/20 pr-4">
+            <div className="flex items-center gap-3 border-r border-slate-700 pr-4">
               <a href="#" className="hover:text-blue-400 transition-colors">
                 <FaFacebookF />
               </a>
               <a href="#" className="hover:text-pink-400 transition-colors">
                 <FaInstagram />
               </a>
-              <a href="#" className="hover:text-blue-500 transition-colors">
+              <a href="#" className="hover:text-blue-400 transition-colors">
                 <FaLinkedinIn />
               </a>
-              <a href="#" className="hover:text-red-500 transition-colors">
+              <a href="#" className="hover:text-red-400 transition-colors">
                 <FaYoutube />
               </a>
             </div>
-            <Link to="/contact" className="hover:text-blue-300">
+            <Link to="/contact" className="hover:text-white transition-colors">
               Login / Sign Up
             </Link>
           </div>
@@ -168,7 +166,7 @@ const Navbar = () => {
 
       {/* 2. Main Navigation Bar */}
       <nav
-        className={`w-full bg-white transition-all duration-300 ${scrolled ? "shadow-lg py-2" : "shadow-sm py-3"}`}
+        className={`w-full bg-gradient-to-r from-slate-50 to-white transition-all duration-300 ${scrolled ? "shadow-xl shadow-slate-200/50 py-2 border-b border-slate-100" : "shadow-md py-3"}`}
       >
         <div className="container mx-auto px-3 sm:px-4 lg:px-8 flex justify-between items-center text-slate-800">
           {/* Branding */}
@@ -176,7 +174,7 @@ const Navbar = () => {
             to="/"
             className="flex items-center gap-2 sm:gap-3 group relative z-50"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-gradient-to-tr from-blue-700 to-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl lg:text-2xl shadow-lg group-hover:rotate-6 transition-transform duration-300">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-gradient-to-tr from-blue-600 to-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl lg:text-2xl shadow-lg shadow-blue-500/20 group-hover:rotate-6 transition-transform duration-300">
               C
             </div>
             <div className="flex flex-col leading-none">
@@ -303,10 +301,16 @@ const Navbar = () => {
           </ul>
 
           {/* Desktop Actions */}
-          <div className="hidden xl:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-3">
+            <Link
+              to="/eligibility-check"
+              className="bg-green-500 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-green-500/25 hover:bg-green-600 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+            >
+              Free Eligibility Check
+            </Link>
             <Link
               to="/contact"
-              className="bg-[#0f172a] text-white px-7 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-900/20 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+              className="bg-blue-500 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-500/25 hover:bg-blue-600 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
             >
               Contact Us <FiArrowRight />
             </Link>
@@ -405,10 +409,18 @@ const Navbar = () => {
                   ))}
                 </ul>
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 space-y-3">
+                  <Link
+                    to="/eligibility-check"
+                    onClick={() => setIsOpen(false)}
+                    className="block w-full py-4 bg-green-500 text-white rounded-xl text-center font-bold shadow-lg shadow-green-500/25 hover:bg-green-600 transition-colors"
+                  >
+                    Free Eligibility Check
+                  </Link>
                   <Link
                     to="/contact"
-                    className="block w-full py-4 bg-blue-600 text-white rounded-xl text-center font-bold shadow-lg"
+                    onClick={() => setIsOpen(false)}
+                    className="block w-full py-4 bg-blue-500 text-white rounded-xl text-center font-bold shadow-lg shadow-blue-500/25 hover:bg-blue-600 transition-colors"
                   >
                     Book Free Consultation
                   </Link>

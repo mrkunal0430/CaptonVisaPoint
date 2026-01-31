@@ -11,7 +11,7 @@ import {
   FiSend,
   FiHelpCircle,
 } from "react-icons/fi";
-import InquiryPopup from "./InquiryPopup";
+import InquiryPopup from "./forms/InquiryPopup";
 
 // Services Data with local images
 const services = [
@@ -21,7 +21,7 @@ const services = [
     image: "/Home_Hero/1.webp",
     stats: { highlight: "100+ Universities", benefit: "Scholarship Support" },
     link: "/study-abroad",
-    color: "from-blue-500 to-cyan-500",
+    color: "from-blue-500 to-blue-600",
   },
   {
     name: "Work Visa",
@@ -29,7 +29,7 @@ const services = [
     image: "/Home_Hero/2.webp",
     stats: { highlight: "15+ Countries", benefit: "Job Placement" },
     link: "/work-visa",
-    color: "from-emerald-500 to-teal-500",
+    color: "from-blue-500 to-blue-600",
   },
   {
     name: "MBBS Abroad",
@@ -37,7 +37,7 @@ const services = [
     image: "/Home_Hero/3.webp",
     stats: { highlight: "WHO Approved", benefit: "Low Tuition Fees" },
     link: "/mbbs",
-    color: "from-red-500 to-rose-500",
+    color: "from-blue-500 to-blue-600",
   },
   {
     name: "Ausbildung",
@@ -45,7 +45,7 @@ const services = [
     image: "/Home_Hero/4.webp",
     stats: { highlight: "Earn & Learn", benefit: "German Training" },
     link: "/ausbildung",
-    color: "from-yellow-500 to-amber-500",
+    color: "from-blue-500 to-blue-600",
   },
   {
     name: "Coaching",
@@ -53,7 +53,7 @@ const services = [
     image: "/Home_Hero/5.webp",
     stats: { highlight: "IELTS | PTE", benefit: "Expert Trainers" },
     link: "/coaching",
-    color: "from-purple-500 to-violet-500",
+    color: "from-blue-500 to-blue-600",
   },
   {
     name: "PR Visa",
@@ -61,7 +61,7 @@ const services = [
     image: "/Home_Hero/6.webp",
     stats: { highlight: "Canada | Australia", benefit: "98% Success" },
     link: "/pr-visa",
-    color: "from-indigo-500 to-blue-500",
+    color: "from-blue-500 to-blue-600",
   },
 ];
 
@@ -135,13 +135,19 @@ const ServiceCard = ({ service, index }) => {
                 {/* Explore text */}
                 <div className="flex items-center justify-center gap-1 text-[10px] text-white/70 pt-1">
                   <span>Explore</span>
-                  <FiArrowRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
+                  <FiArrowRight
+                    size={10}
+                    className="group-hover:translate-x-0.5 transition-transform"
+                  />
                 </div>
               </div>
             </div>
 
             {/* Glowing border effect on hover */}
-            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: 'inset 0 0 20px rgba(255,255,255,0.1)' }} />
+            <div
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style={{ boxShadow: "inset 0 0 20px rgba(255,255,255,0.1)" }}
+            />
           </div>
         </motion.div>
       </motion.div>
@@ -153,22 +159,22 @@ const Hero = () => {
   const [showInquiry, setShowInquiry] = useState(false);
 
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex items-center bg-[#050A18] overflow-hidden">
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center bg-gradient-to-br from-white via-blue-50 to-slate-50 overflow-hidden">
       {/* 1. Background Effects */}
       <div className="absolute inset-0 z-0">
-        {/* Gradient Mesh */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#051024] via-[#081838] to-[#020617] opacity-90" />
+        {/* Soft gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/50 to-slate-50 opacity-90" />
 
-        {/* Animated Orbs */}
-        <div className="absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-blue-600/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[0%] right-[-5%] w-[35vw] h-[35vw] bg-purple-600/10 rounded-full blur-[100px] animate-pulse delay-1000" />
+        {/* Animated Orbs - Soft blue tones */}
+        <div className="absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-blue-200/30 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[0%] right-[-5%] w-[35vw] h-[35vw] bg-blue-100/40 rounded-full blur-[100px] animate-pulse delay-1000" />
 
         {/* Grid Pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "radial-gradient(circle, #fff 1px, transparent 1px)",
+              "radial-gradient(circle, #3b82f6 1px, transparent 1px)",
             backgroundSize: "30px 30px",
           }}
         />
@@ -183,13 +189,13 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/30 border border-blue-500/30 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 border border-blue-200"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              <span className="text-blue-300 text-xs font-bold tracking-wider uppercase">
+              <span className="text-blue-700 text-xs font-bold tracking-wider uppercase">
                 No.1 Study Abroad Consultant
               </span>
             </motion.div>
@@ -199,10 +205,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 leading-[1.1] tracking-tight"
             >
               College Seats to <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700">
                 Global Career Success
               </span>{" "}
             </motion.h1>
@@ -212,7 +218,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg text-blue-100/70 font-light leading-relaxed max-w-lg mx-auto lg:mx-0"
+              className="text-lg text-slate-600 font-light leading-relaxed max-w-lg mx-auto lg:mx-0"
             >
               Study abroad, work overseas, and build your dream future with
               expert guidance. We turn your global aspirations into reality.
@@ -226,28 +232,28 @@ const Hero = () => {
               className="grid grid-cols-2 gap-4 w-full"
             >
               <Link to="/study-abroad" className="group">
-                <button className="w-full py-4 px-6 bg-yellow-500/10 border border-yellow-500/30 rounded-xl hover:bg-yellow-500 hover:text-slate-900 text-yellow-400 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full backdrop-blur-sm">
+                <button className="w-full py-4 px-6 bg-blue-500 rounded-xl hover:bg-blue-600 text-white font-bold transition-all flex flex-col items-center justify-center gap-2 h-full shadow-md hover:shadow-lg">
                   <FiBookOpen className="text-2xl mb-1" />
                   Study
                 </button>
               </Link>
 
               <Link to="/pr-visa" className="group">
-                <button className="w-full py-4 px-6 bg-purple-500/10 border border-purple-500/30 rounded-xl hover:bg-purple-500 hover:text-white text-purple-400 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full backdrop-blur-sm">
+                <button className="w-full py-4 px-6 bg-blue-100 border border-blue-200 rounded-xl hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full">
                   <FiGlobe className="text-2xl mb-1" />
                   PR Visa
                 </button>
               </Link>
 
               <Link to="/work-visa" className="group">
-                <button className="w-full py-4 px-6 bg-teal-500/10 border border-teal-500/30 rounded-xl hover:bg-teal-500 hover:text-white text-teal-400 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full backdrop-blur-sm">
+                <button className="w-full py-4 px-6 bg-blue-100 border border-blue-200 rounded-xl hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full">
                   <FiBriefcase className="text-2xl mb-1" />
                   Work
                 </button>
               </Link>
 
               <Link to="/contact" className="group">
-                <button className="w-full py-4 px-6 bg-slate-500/10 border border-slate-500/30 rounded-xl hover:bg-slate-200 hover:text-slate-900 text-slate-300 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full backdrop-blur-sm">
+                <button className="w-full py-4 px-6 bg-amber-500 rounded-xl hover:bg-amber-600 text-white font-bold transition-all flex flex-col items-center justify-center gap-2 h-full shadow-md hover:shadow-lg">
                   <FiSend className="text-2xl mb-1" />
                   Eligibility Check
                 </button>
@@ -277,14 +283,18 @@ const Hero = () => {
             >
               <button
                 onClick={() => setShowInquiry(true)}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 backdrop-blur-xl p-3 sm:p-4 rounded-2xl border border-white/20 shadow-2xl flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer group"
+                className="bg-blue-500 p-3 sm:p-4 rounded-2xl border border-blue-400 shadow-xl shadow-blue-500/20 flex items-center gap-3 hover:scale-105 hover:bg-blue-600 transition-all cursor-pointer group"
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition-colors">
                   <FiHelpCircle size={22} />
                 </div>
                 <div className="text-left">
-                  <p className="text-xs sm:text-sm text-blue-100 font-medium">Don't know what to do?</p>
-                  <p className="text-white font-bold text-sm sm:text-base">Get Free Counselling</p>
+                  <p className="text-xs sm:text-sm text-blue-100 font-medium">
+                    Don't know what to do?
+                  </p>
+                  <p className="text-white font-bold text-sm sm:text-base">
+                    Get Free Counselling
+                  </p>
                 </div>
                 <FiArrowRight className="text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all" />
               </button>
@@ -296,7 +306,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               onClick={() => setShowInquiry(true)}
-              className="sm:hidden fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transition-transform"
+              className="sm:hidden fixed bottom-6 right-6 z-50 bg-blue-500 p-4 rounded-full shadow-xl shadow-blue-500/30 flex items-center justify-center text-white hover:scale-110 hover:bg-blue-600 transition-all"
             >
               <FiHelpCircle size={24} />
             </motion.button>
@@ -305,7 +315,10 @@ const Hero = () => {
       </div>
 
       {/* Inquiry Popup */}
-      <InquiryPopup isOpen={showInquiry} onClose={() => setShowInquiry(false)} />
+      <InquiryPopup
+        isOpen={showInquiry}
+        onClose={() => setShowInquiry(false)}
+      />
     </section>
   );
 };

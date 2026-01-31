@@ -12,6 +12,11 @@ import {
   FiFilter,
   FiX,
   FiMessageSquare,
+  FiDownload,
+  FiMessageCircle,
+  FiEdit3,
+  FiSave,
+  FiEye,
 } from "react-icons/fi";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -20,6 +25,9 @@ const LeadsTable = ({ token }) => {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedLead, setSelectedLead] = useState(null);
+  const [editingNotes, setEditingNotes] = useState(null);
+  const [notesText, setNotesText] = useState("");
   const [filters, setFilters] = useState({
     status: "all",
     search: "",
@@ -101,6 +109,35 @@ const LeadsTable = ({ token }) => {
     }
   };
 
+  const handleNotesUpdate = async (id) => {
+    try {
+      await axios.put(
+        `${API_URL}/leads/${id}`,
+        { notes: notesText },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setEditingNotes(null);
+      setNotesText("");
+      fetchLeads();
+    } catch (error) {
+      console.error("Error updating notes:", error);
+      alert("Failed to update notes");
+    }
+  };
+
+  const handleExport = () => {
+    const params = new URLSearchParams();
+    if (filters.status !== "all") params.append("status", filters.status);
+    if (filters.startDate) params.append("startDate", filters.startDate);
+    if (filters.endDate) params.append("endDate", filters.endDate);
+    window.open(`${API_URL}/leads/export?${params.toString()}`, "_blank");
+  };
+
+  const startEditNotes = (lead) => {
+    setEditingNotes(lead._id);
+    setNotesText(lead.notes || "");
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case "new":
@@ -140,7 +177,14 @@ const LeadsTable = ({ token }) => {
             {pagination.total} total leads
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
+          >
+            <FiDownload size={18} />
+            <span className="hidden sm:inline">Export CSV</span>
+          </button>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-colors ${
@@ -317,14 +361,32 @@ const LeadsTable = ({ token }) => {
                           <option value="closed">Closed</option>
                         </select>
                       </td>
-                      <td className="p-4 text-center">
-                        <button
-                          onClick={() => handleDelete(lead._id)}
-                          className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Delete Lead"
-                        >
-                          <FiTrash2 size={18} />
-                        </button>
+                      <td className="p-4">
+                        <div className="flex items-center justify-center gap-1">
+                          <button
+                            onClick={() => setSelectedLead(lead)}
+                            className="p-2 text-slate-400 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-colors"
+                            title="View Details"
+                          >
+                            <FiEye size={18} />
+                          </button>
+                          <a
+                            href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-colors"
+                            title="WhatsApp"
+                          >
+                            <FiMessageCircle size={18} />
+                          </a>
+                          <button
+                            onClick={() => handleDelete(lead._id)}
+                            className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                            title="Delete Lead"
+                          >
+                            <FiTrash2 size={18} />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -403,7 +465,23 @@ const LeadsTable = ({ token }) => {
                 )}
 
                 {/* Actions */}
-                <div className="flex justify-end pt-2 border-t border-slate-100">
+                <div className="flex justify-between pt-2 border-t border-slate-100">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setSelectedLead(lead)}
+                      className="flex items-center gap-2 px-3 py-2 text-brand-blue hover:bg-blue-50 rounded-lg text-sm font-medium"
+                    >
+                      <FiEye size={16} /> View
+                    </button>
+                    <a
+                      href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-3 py-2 text-green-600 hover:bg-green-50 rounded-lg text-sm font-medium"
+                    >
+                      <FiMessageCircle size={16} /> WhatsApp
+                    </a>
+                  </div>
                   <button
                     onClick={() => handleDelete(lead._id)}
                     className="flex items-center gap-2 px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors text-sm font-medium"
@@ -501,6 +579,124 @@ const LeadsTable = ({ token }) => {
               Clear Filters
             </button>
           )}
+        </div>
+      )}
+
+      {/* Lead Detail Modal */}
+      {selectedLead && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-slate-100 p-4 flex items-center justify-between">
+              <h3 className="text-lg font-bold text-slate-800">Lead Details</h3>
+              <button
+                onClick={() => setSelectedLead(null)}
+                className="p-2 hover:bg-slate-100 rounded-lg"
+              >
+                <FiX size={20} />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-5">
+              {/* Basic Info */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-slate-400">Full Name</label>
+                  <p className="font-medium text-slate-800">{selectedLead.name}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">Email</label>
+                  <p className="font-medium text-slate-800">{selectedLead.email}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">Phone</label>
+                  <p className="font-medium text-slate-800">{selectedLead.phone}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">City</label>
+                  <p className="font-medium text-slate-800">{selectedLead.city || "-"}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">Status</label>
+                  <p className="font-medium text-slate-800 capitalize">{selectedLead.status}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">Date</label>
+                  <p className="font-medium text-slate-800">
+                    {new Date(selectedLead.createdAt).toLocaleString()}
+                  </p>
+                </div>
+              </div>
+
+              {/* Message */}
+              {selectedLead.message && (
+                <div>
+                  <label className="text-xs text-slate-400">Message</label>
+                  <p className="font-medium text-slate-700 bg-slate-50 p-3 rounded-lg mt-1">
+                    {selectedLead.message}
+                  </p>
+                </div>
+              )}
+
+              {/* Notes */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs text-slate-400">Notes</label>
+                  {editingNotes === selectedLead._id ? (
+                    <button
+                      onClick={() => handleNotesUpdate(selectedLead._id)}
+                      className="text-xs text-green-600 hover:text-green-700 flex items-center gap-1"
+                    >
+                      <FiSave size={12} /> Save
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => startEditNotes(selectedLead)}
+                      className="text-xs text-brand-blue hover:text-blue-600 flex items-center gap-1"
+                    >
+                      <FiEdit3 size={12} /> Edit
+                    </button>
+                  )}
+                </div>
+                {editingNotes === selectedLead._id ? (
+                  <textarea
+                    value={notesText}
+                    onChange={(e) => setNotesText(e.target.value)}
+                    className="w-full p-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue text-sm"
+                    rows={3}
+                    placeholder="Add notes about this lead..."
+                  />
+                ) : (
+                  <p className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
+                    {selectedLead.notes || "No notes yet"}
+                  </p>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-slate-100">
+                <a
+                  href={`tel:${selectedLead.phone}`}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand-blue text-white rounded-xl font-medium hover:bg-blue-700"
+                >
+                  <FiPhone size={18} /> Call
+                </a>
+                <a
+                  href={`https://wa.me/${selectedLead.phone?.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700"
+                >
+                  <FiMessageCircle size={18} /> WhatsApp
+                </a>
+                <a
+                  href={`mailto:${selectedLead.email}`}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-700 rounded-xl font-medium hover:bg-slate-200"
+                >
+                  <FiMail size={18} /> Email
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

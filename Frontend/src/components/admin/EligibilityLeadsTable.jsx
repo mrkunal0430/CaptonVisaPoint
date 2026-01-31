@@ -13,12 +13,16 @@ import {
   FiX,
   FiChevronDown,
   FiChevronUp,
-  FiAward,
+  FiMapPin,
+  FiGlobe,
+  FiBriefcase,
   FiBookOpen,
-  FiDollarSign,
-  FiHeart,
+  FiAward,
+  FiDownload,
+  FiMessageCircle,
+  FiEdit3,
+  FiSave,
 } from "react-icons/fi";
-import { FaStethoscope } from "react-icons/fa";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -27,8 +31,10 @@ const EligibilityLeadsTable = ({ token }) => {
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
   const [expandedLead, setExpandedLead] = useState(null);
+  const [editingNotes, setEditingNotes] = useState(null);
+  const [notesText, setNotesText] = useState("");
   const [filters, setFilters] = useState({
-    eligibilityCategory: "all",
+    preference: "all",
     status: "all",
     search: "",
     startDate: "",
@@ -86,7 +92,7 @@ const EligibilityLeadsTable = ({ token }) => {
     fetchStats();
   }, [
     pagination.page,
-    filters.eligibilityCategory,
+    filters.preference,
     filters.status,
     filters.startDate,
     filters.endDate,
@@ -102,7 +108,9 @@ const EligibilityLeadsTable = ({ token }) => {
   }, [filters.search]);
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this eligibility lead?")) {
+    if (
+      window.confirm("Are you sure you want to delete this eligibility lead?")
+    ) {
       try {
         await axios.delete(`${API_URL}/eligibility/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -121,7 +129,7 @@ const EligibilityLeadsTable = ({ token }) => {
       await axios.put(
         `${API_URL}/eligibility/${id}`,
         { status: newStatus },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       fetchLeads();
       fetchStats();
@@ -140,6 +148,36 @@ const EligibilityLeadsTable = ({ token }) => {
     }
   };
 
+  const handleNotesUpdate = async (id) => {
+    try {
+      await axios.put(
+        `${API_URL}/eligibility/${id}`,
+        { notes: notesText },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setEditingNotes(null);
+      setNotesText("");
+      fetchLeads();
+    } catch (error) {
+      console.error("Error updating notes:", error);
+      alert("Failed to update notes");
+    }
+  };
+
+  const handleExport = () => {
+    const params = new URLSearchParams();
+    if (filters.preference !== "all") params.append("preference", filters.preference);
+    if (filters.status !== "all") params.append("status", filters.status);
+    if (filters.startDate) params.append("startDate", filters.startDate);
+    if (filters.endDate) params.append("endDate", filters.endDate);
+    window.open(`${API_URL}/eligibility/export?${params.toString()}`, "_blank");
+  };
+
+  const startEditNotes = (lead) => {
+    setEditingNotes(lead._id);
+    setNotesText(lead.notes || "");
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case "new":
@@ -153,15 +191,28 @@ const EligibilityLeadsTable = ({ token }) => {
     }
   };
 
-  const getCategoryColor = (category) => {
-    switch (category) {
-      case "Highly Eligible":
-        return "bg-green-100 text-green-700 border-green-300";
-      case "Eligible with Guidance":
+  const getPreferenceLabel = (pref) => {
+    const labels = {
+      ausbildung: "Ausbildung",
+      "mbbs-abroad": "MBBS Abroad",
+      "mbbs-india": "MBBS India",
+      "study-abroad": "Study Abroad",
+      jobs: "Jobs/Work",
+    };
+    return labels[pref] || pref;
+  };
+
+  const getPreferenceColor = (pref) => {
+    switch (pref) {
+      case "ausbildung":
         return "bg-blue-100 text-blue-700 border-blue-300";
-      case "Borderline":
-        return "bg-yellow-100 text-yellow-700 border-yellow-300";
-      case "Not Eligible Yet":
+      case "mbbs-abroad":
+        return "bg-green-100 text-green-700 border-green-300";
+      case "mbbs-india":
+        return "bg-purple-100 text-purple-700 border-purple-300";
+      case "study-abroad":
+        return "bg-cyan-100 text-cyan-700 border-cyan-300";
+      case "jobs":
         return "bg-orange-100 text-orange-700 border-orange-300";
       default:
         return "bg-slate-100 text-slate-700 border-slate-300";
@@ -169,15 +220,14 @@ const EligibilityLeadsTable = ({ token }) => {
   };
 
   const getScoreColor = (score) => {
-    if (score >= 8) return "text-green-600 bg-green-50";
-    if (score >= 6) return "text-blue-600 bg-blue-50";
-    if (score >= 4) return "text-yellow-600 bg-yellow-50";
-    return "text-orange-600 bg-orange-50";
+    if (score >= 70) return "text-green-600 bg-green-50";
+    if (score >= 50) return "text-yellow-600 bg-yellow-50";
+    return "text-red-600 bg-red-50";
   };
 
   const clearFilters = () => {
     setFilters({
-      eligibilityCategory: "all",
+      preference: "all",
       status: "all",
       search: "",
       startDate: "",
@@ -186,10 +236,72 @@ const EligibilityLeadsTable = ({ token }) => {
   };
 
   const hasActiveFilters =
-    filters.eligibilityCategory !== "all" ||
+    filters.preference !== "all" ||
     filters.status !== "all" ||
     filters.startDate ||
     filters.endDate;
+
+  const renderLeadDetails = (lead) => {
+    const details = [];
+
+    if (lead.preference === "ausbildung") {
+      if (lead.qualification)
+        details.push({ label: "Qualification", value: lead.qualification });
+      if (lead.age) details.push({ label: "Age", value: lead.age });
+      if (lead.germanLevel)
+        details.push({ label: "German Level", value: lead.germanLevel });
+    } else if (
+      lead.preference === "mbbs-abroad" ||
+      lead.preference === "mbbs-india"
+    ) {
+      if (lead.neetAppeared)
+        details.push({ label: "NEET Appeared", value: lead.neetAppeared });
+      if (lead.neetScore)
+        details.push({ label: "NEET Score", value: lead.neetScore });
+      if (lead.preferredCountry)
+        details.push({
+          label: "Preferred Country",
+          value: lead.preferredCountry,
+        });
+      if (lead.preferredState)
+        details.push({ label: "Preferred State", value: lead.preferredState });
+    } else if (lead.preference === "study-abroad") {
+      if (lead.highestQualification)
+        details.push({
+          label: "Qualification",
+          value: lead.highestQualification,
+        });
+      if (lead.languageTest)
+        details.push({ label: "Language Test", value: lead.languageTest });
+      if (lead.age) details.push({ label: "Age", value: lead.age });
+      if (lead.preferredCountry)
+        details.push({
+          label: "Preferred Country",
+          value: lead.preferredCountry,
+        });
+    } else if (lead.preference === "jobs") {
+      if (lead.highestQualification)
+        details.push({
+          label: "Qualification",
+          value: lead.highestQualification,
+        });
+      if (lead.preferredSector)
+        details.push({
+          label: "Preferred Sector",
+          value: lead.preferredSector,
+        });
+      if (lead.preferredCountry)
+        details.push({
+          label: "Preferred Country",
+          value: lead.preferredCountry,
+        });
+      if (lead.age) details.push({ label: "Age", value: lead.age });
+    }
+
+    if (lead.city) details.push({ label: "City", value: lead.city });
+
+    return details;
+  };
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -197,19 +309,26 @@ const EligibilityLeadsTable = ({ token }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
-            <FaStethoscope className="text-green-600" />
-            MBBS Eligibility Leads
+            <FiAward className="text-green-600" />
+            Eligibility Check Leads
           </h2>
           <p className="text-sm text-slate-500 mt-1">
             {pagination.total} total eligibility checks
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
+          >
+            <FiDownload size={18} />
+            <span className="hidden sm:inline">Export CSV</span>
+          </button>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-colors ${
               showFilters || hasActiveFilters
-                ? "bg-green-600 text-white"
+                ? "bg-emerald-600 text-white"
                 : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
             }`}
           >
@@ -236,7 +355,9 @@ const EligibilityLeadsTable = ({ token }) => {
       {stats && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
-            <div className="text-2xl font-bold text-slate-800">{stats.total}</div>
+            <div className="text-2xl font-bold text-slate-800">
+              {stats.total}
+            </div>
             <div className="text-sm text-slate-500">Total Checks</div>
           </div>
           <div className="bg-green-50 rounded-xl p-4 border border-green-100">
@@ -244,11 +365,15 @@ const EligibilityLeadsTable = ({ token }) => {
             <div className="text-sm text-green-600">New Leads</div>
           </div>
           <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
-            <div className="text-2xl font-bold text-blue-600">{stats.avgScore}</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {stats.avgScore}%
+            </div>
             <div className="text-sm text-blue-600">Avg Score</div>
           </div>
           <div className="bg-purple-50 rounded-xl p-4 border border-purple-100">
-            <div className="text-2xl font-bold text-purple-600">{stats.converted}</div>
+            <div className="text-2xl font-bold text-purple-600">
+              {stats.converted}
+            </div>
             <div className="text-sm text-purple-600">Converted</div>
           </div>
         </div>
@@ -259,7 +384,7 @@ const EligibilityLeadsTable = ({ token }) => {
         <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
-          placeholder="Search by name, email, or WhatsApp..."
+          placeholder="Search by name, email, or phone..."
           className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-all bg-white"
           value={filters.search}
           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
@@ -284,25 +409,28 @@ const EligibilityLeadsTable = ({ token }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-600">
-                Eligibility Category
+                Preference
               </label>
               <select
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
-                value={filters.eligibilityCategory}
+                value={filters.preference}
                 onChange={(e) =>
-                  setFilters({ ...filters, eligibilityCategory: e.target.value })
+                  setFilters({ ...filters, preference: e.target.value })
                 }
               >
-                <option value="all">All Categories</option>
-                <option value="Highly Eligible">Highly Eligible</option>
-                <option value="Eligible with Guidance">Eligible with Guidance</option>
-                <option value="Borderline">Borderline</option>
-                <option value="Not Eligible Yet">Not Eligible Yet</option>
+                <option value="all">All Preferences</option>
+                <option value="ausbildung">Ausbildung</option>
+                <option value="mbbs-abroad">MBBS Abroad</option>
+                <option value="mbbs-india">MBBS India</option>
+                <option value="study-abroad">Study Abroad</option>
+                <option value="jobs">Jobs/Work</option>
               </select>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-slate-600">Status</label>
+              <label className="text-sm font-medium text-slate-600">
+                Status
+              </label>
               <select
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
                 value={filters.status}
@@ -319,7 +447,9 @@ const EligibilityLeadsTable = ({ token }) => {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-slate-600">From Date</label>
+              <label className="text-sm font-medium text-slate-600">
+                From Date
+              </label>
               <input
                 type="date"
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
@@ -331,7 +461,9 @@ const EligibilityLeadsTable = ({ token }) => {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-slate-600">To Date</label>
+              <label className="text-sm font-medium text-slate-600">
+                To Date
+              </label>
               <input
                 type="date"
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
@@ -361,15 +493,15 @@ const EligibilityLeadsTable = ({ token }) => {
             (sortOrder === "desc" ? <FiChevronDown /> : <FiChevronUp />)}
         </button>
         <button
-          onClick={() => handleSort("totalScore")}
+          onClick={() => handleSort("score")}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
-            sortBy === "totalScore"
+            sortBy === "score"
               ? "bg-green-100 text-green-700"
               : "bg-slate-100 text-slate-600 hover:bg-slate-200"
           }`}
         >
           Score
-          {sortBy === "totalScore" &&
+          {sortBy === "score" &&
             (sortOrder === "desc" ? <FiChevronDown /> : <FiChevronUp />)}
         </button>
       </div>
@@ -391,8 +523,8 @@ const EligibilityLeadsTable = ({ token }) => {
                     <th className="p-4">Date</th>
                     <th className="p-4">Name</th>
                     <th className="p-4">Contact</th>
+                    <th className="p-4">Preference</th>
                     <th className="p-4 text-center">Score</th>
-                    <th className="p-4">Category</th>
                     <th className="p-4">Status</th>
                     <th className="p-4 text-center">Details</th>
                     <th className="p-4 text-center">Actions</th>
@@ -414,12 +546,10 @@ const EligibilityLeadsTable = ({ token }) => {
                         <td className="p-4">
                           <div className="flex flex-col text-sm gap-1">
                             <a
-                              href={`https://wa.me/${lead.whatsapp?.replace(/\D/g, "")}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                              href={`tel:${lead.phone}`}
                               className="text-green-600 hover:text-green-700 flex items-center gap-1.5"
                             >
-                              <FiPhone size={14} /> {lead.whatsapp}
+                              <FiPhone size={14} /> {lead.phone}
                             </a>
                             <a
                               href={`mailto:${lead.email}`}
@@ -429,22 +559,22 @@ const EligibilityLeadsTable = ({ token }) => {
                             </a>
                           </div>
                         </td>
+                        <td className="p-4">
+                          <span
+                            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getPreferenceColor(
+                              lead.preference,
+                            )}`}
+                          >
+                            {getPreferenceLabel(lead.preference)}
+                          </span>
+                        </td>
                         <td className="p-4 text-center">
                           <span
                             className={`inline-flex items-center justify-center w-12 h-12 rounded-full font-bold text-lg ${getScoreColor(
-                              lead.totalScore
+                              lead.score,
                             )}`}
                           >
-                            {lead.totalScore}
-                          </span>
-                        </td>
-                        <td className="p-4">
-                          <span
-                            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryColor(
-                              lead.eligibilityCategory
-                            )}`}
-                          >
-                            {lead.eligibilityCategory}
+                            {lead.score}%
                           </span>
                         </td>
                         <td className="p-4">
@@ -454,7 +584,7 @@ const EligibilityLeadsTable = ({ token }) => {
                               handleStatusUpdate(lead._id, e.target.value)
                             }
                             className={`text-xs font-semibold px-3 py-1.5 rounded-full border cursor-pointer focus:ring-2 focus:ring-offset-1 ${getStatusColor(
-                              lead.status
+                              lead.status,
                             )}`}
                           >
                             <option value="new">New</option>
@@ -467,7 +597,7 @@ const EligibilityLeadsTable = ({ token }) => {
                           <button
                             onClick={() =>
                               setExpandedLead(
-                                expandedLead === lead._id ? null : lead._id
+                                expandedLead === lead._id ? null : lead._id,
                               )
                             }
                             className="p-2 text-slate-500 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
@@ -479,51 +609,79 @@ const EligibilityLeadsTable = ({ token }) => {
                             )}
                           </button>
                         </td>
-                        <td className="p-4 text-center">
-                          <button
-                            onClick={() => handleDelete(lead._id)}
-                            className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                            title="Delete Lead"
-                          >
-                            <FiTrash2 size={18} />
-                          </button>
+                        <td className="p-4">
+                          <div className="flex items-center justify-center gap-1">
+                            <a
+                              href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-colors"
+                              title="WhatsApp"
+                            >
+                              <FiMessageCircle size={18} />
+                            </a>
+                            <button
+                              onClick={() => handleDelete(lead._id)}
+                              className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                              title="Delete Lead"
+                            >
+                              <FiTrash2 size={18} />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                       {expandedLead === lead._id && (
                         <tr className="bg-slate-50">
                           <td colSpan={8} className="p-4">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                                <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                                  <FiBookOpen size={12} /> PCB Score
-                                </div>
-                                <div className="font-medium text-slate-800">
-                                  {lead.pcbScore}
-                                </div>
+                            <div className="space-y-4">
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {renderLeadDetails(lead).map((detail, idx) => (
+                                  <div
+                                    key={idx}
+                                    className="bg-white p-3 rounded-lg border border-slate-200"
+                                  >
+                                    <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
+                                      <FiBookOpen size={12} /> {detail.label}
+                                    </div>
+                                    <div className="font-medium text-slate-800 capitalize">
+                                      {detail.value}
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
-                              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                                <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                                  <FiAward size={12} /> NEET Status
+                              {/* Notes Section */}
+                              <div className="bg-white p-4 rounded-lg border border-slate-200">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-sm font-medium text-slate-600">Notes</span>
+                                  {editingNotes === lead._id ? (
+                                    <button
+                                      onClick={() => handleNotesUpdate(lead._id)}
+                                      className="text-xs text-green-600 hover:text-green-700 flex items-center gap-1"
+                                    >
+                                      <FiSave size={12} /> Save
+                                    </button>
+                                  ) : (
+                                    <button
+                                      onClick={() => startEditNotes(lead)}
+                                      className="text-xs text-brand-blue hover:text-blue-600 flex items-center gap-1"
+                                    >
+                                      <FiEdit3 size={12} /> Edit
+                                    </button>
+                                  )}
                                 </div>
-                                <div className="font-medium text-slate-800">
-                                  {lead.neetStatus}
-                                </div>
-                              </div>
-                              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                                <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                                  <FiDollarSign size={12} /> Annual Budget
-                                </div>
-                                <div className="font-medium text-slate-800">
-                                  {lead.annualBudget}
-                                </div>
-                              </div>
-                              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                                <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                                  <FiHeart size={12} /> Readiness
-                                </div>
-                                <div className="font-medium text-slate-800">
-                                  {lead.readiness}
-                                </div>
+                                {editingNotes === lead._id ? (
+                                  <textarea
+                                    value={notesText}
+                                    onChange={(e) => setNotesText(e.target.value)}
+                                    className="w-full p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-sm"
+                                    rows={2}
+                                    placeholder="Add notes..."
+                                  />
+                                ) : (
+                                  <p className="text-sm text-slate-600">
+                                    {lead.notes || "No notes yet"}
+                                  </p>
+                                )}
                               </div>
                             </div>
                           </td>
@@ -557,21 +715,21 @@ const EligibilityLeadsTable = ({ token }) => {
                     </div>
                     <div
                       className={`flex items-center justify-center w-14 h-14 rounded-full font-bold text-xl ${getScoreColor(
-                        lead.totalScore
+                        lead.score,
                       )}`}
                     >
-                      {lead.totalScore}
+                      {lead.score}%
                     </div>
                   </div>
 
-                  {/* Category & Status */}
+                  {/* Preference & Status */}
                   <div className="flex flex-wrap items-center gap-2">
                     <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryColor(
-                        lead.eligibilityCategory
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getPreferenceColor(
+                        lead.preference,
                       )}`}
                     >
-                      {lead.eligibilityCategory}
+                      {getPreferenceLabel(lead.preference)}
                     </span>
                     <select
                       value={lead.status}
@@ -579,7 +737,7 @@ const EligibilityLeadsTable = ({ token }) => {
                         handleStatusUpdate(lead._id, e.target.value)
                       }
                       className={`text-xs font-semibold px-3 py-1.5 rounded-full border cursor-pointer ${getStatusColor(
-                        lead.status
+                        lead.status,
                       )}`}
                     >
                       <option value="new">New</option>
@@ -592,13 +750,11 @@ const EligibilityLeadsTable = ({ token }) => {
                   {/* Contact Info */}
                   <div className="flex flex-wrap gap-3">
                     <a
-                      href={`https://wa.me/${lead.whatsapp?.replace(/\D/g, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`tel:${lead.phone}`}
                       className="flex items-center gap-2 px-3 py-2 bg-green-50 rounded-lg text-sm text-green-700 hover:bg-green-100 transition-colors"
                     >
                       <FiPhone size={16} />
-                      {lead.whatsapp}
+                      {lead.phone}
                     </a>
                     <a
                       href={`mailto:${lead.email}`}
@@ -614,11 +770,13 @@ const EligibilityLeadsTable = ({ token }) => {
                 <div className="border-t border-slate-100">
                   <button
                     onClick={() =>
-                      setExpandedLead(expandedLead === lead._id ? null : lead._id)
+                      setExpandedLead(
+                        expandedLead === lead._id ? null : lead._id,
+                      )
                     }
                     className="w-full px-4 py-3 flex items-center justify-between text-sm text-slate-600 hover:bg-slate-50 transition-colors"
                   >
-                    <span>View Quiz Answers</span>
+                    <span>View Details</span>
                     {expandedLead === lead._id ? (
                       <FiChevronUp />
                     ) : (
@@ -628,44 +786,66 @@ const EligibilityLeadsTable = ({ token }) => {
 
                   {expandedLead === lead._id && (
                     <div className="px-4 pb-4 space-y-3">
+                      {renderLeadDetails(lead).map((detail, idx) => (
+                        <div key={idx} className="bg-slate-50 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
+                            <FiBookOpen size={12} /> {detail.label}
+                          </div>
+                          <div className="font-medium text-slate-800 capitalize">
+                            {detail.value}
+                          </div>
+                        </div>
+                      ))}
+                      {/* Notes Section */}
                       <div className="bg-slate-50 p-3 rounded-lg">
-                        <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                          <FiBookOpen size={12} /> PCB Score
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2 text-slate-500 text-xs">
+                            <FiBookOpen size={12} /> Notes
+                          </div>
+                          {editingNotes === lead._id ? (
+                            <button
+                              onClick={() => handleNotesUpdate(lead._id)}
+                              className="text-xs text-green-600 hover:text-green-700 flex items-center gap-1"
+                            >
+                              <FiSave size={12} /> Save
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => startEditNotes(lead)}
+                              className="text-xs text-brand-blue hover:text-blue-600 flex items-center gap-1"
+                            >
+                              <FiEdit3 size={12} /> Edit
+                            </button>
+                          )}
                         </div>
-                        <div className="font-medium text-slate-800">
-                          {lead.pcbScore}
-                        </div>
-                      </div>
-                      <div className="bg-slate-50 p-3 rounded-lg">
-                        <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                          <FiAward size={12} /> NEET Status
-                        </div>
-                        <div className="font-medium text-slate-800">
-                          {lead.neetStatus}
-                        </div>
-                      </div>
-                      <div className="bg-slate-50 p-3 rounded-lg">
-                        <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                          <FiDollarSign size={12} /> Annual Budget
-                        </div>
-                        <div className="font-medium text-slate-800">
-                          {lead.annualBudget}
-                        </div>
-                      </div>
-                      <div className="bg-slate-50 p-3 rounded-lg">
-                        <div className="flex items-center gap-2 text-slate-500 text-xs mb-1">
-                          <FiHeart size={12} /> Readiness
-                        </div>
-                        <div className="font-medium text-slate-800">
-                          {lead.readiness}
-                        </div>
+                        {editingNotes === lead._id ? (
+                          <textarea
+                            value={notesText}
+                            onChange={(e) => setNotesText(e.target.value)}
+                            className="w-full p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-sm bg-white"
+                            rows={2}
+                            placeholder="Add notes..."
+                          />
+                        ) : (
+                          <div className="font-medium text-slate-800">
+                            {lead.notes || "No notes yet"}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
                 </div>
 
                 {/* Actions */}
-                <div className="flex justify-end px-4 py-3 border-t border-slate-100 bg-slate-50">
+                <div className="flex justify-between px-4 py-3 border-t border-slate-100 bg-slate-50">
+                  <a
+                    href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors text-sm font-medium"
+                  >
+                    <FiMessageCircle size={16} /> WhatsApp
+                  </a>
                   <button
                     onClick={() => handleDelete(lead._id)}
                     className="flex items-center gap-2 px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors text-sm font-medium"
@@ -683,14 +863,20 @@ const EligibilityLeadsTable = ({ token }) => {
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="text-sm text-slate-500 text-center sm:text-left">
                   Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
-                  {Math.min(pagination.page * pagination.limit, pagination.total)}{" "}
+                  {Math.min(
+                    pagination.page * pagination.limit,
+                    pagination.total,
+                  )}{" "}
                   of {pagination.total}
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <button
                     disabled={pagination.page === 1}
                     onClick={() =>
-                      setPagination({ ...pagination, page: pagination.page - 1 })
+                      setPagination({
+                        ...pagination,
+                        page: pagination.page - 1,
+                      })
                     }
                     className="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
@@ -731,7 +917,10 @@ const EligibilityLeadsTable = ({ token }) => {
                   <button
                     disabled={pagination.page === pagination.pages}
                     onClick={() =>
-                      setPagination({ ...pagination, page: pagination.page + 1 })
+                      setPagination({
+                        ...pagination,
+                        page: pagination.page + 1,
+                      })
                     }
                     className="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
@@ -745,7 +934,7 @@ const EligibilityLeadsTable = ({ token }) => {
       ) : (
         <div className="bg-white rounded-xl p-12 text-center">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FaStethoscope className="text-slate-400 text-2xl" />
+            <FiAward className="text-slate-400 text-2xl" />
           </div>
           <h3 className="text-lg font-semibold text-slate-800 mb-2">
             No Eligibility Leads Found

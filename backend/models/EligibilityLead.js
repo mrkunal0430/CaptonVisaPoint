@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
 
 const eligibilityLeadSchema = new mongoose.Schema({
-  // Personal Details
+  // Personal Details (Step 3)
   name: {
     type: String,
     required: [true, 'Name is required'],
-    trim: true
-  },
-  whatsapp: {
-    type: String,
-    required: [true, 'WhatsApp number is required'],
     trim: true
   },
   email: {
@@ -18,62 +13,87 @@ const eligibilityLeadSchema = new mongoose.Schema({
     trim: true,
     lowercase: true
   },
+  phone: {
+    type: String,
+    required: [true, 'Phone number is required'],
+    trim: true
+  },
+  city: {
+    type: String,
+    trim: true,
+    default: ''
+  },
 
-  // Quiz Answers
-  pcbScore: {
+  // Step 1 - Preference Type
+  preference: {
     type: String,
     required: true,
-    enum: ['85% & above', '75% – 84%', '60% – 74%', 'Below 60%']
+    enum: ['ausbildung', 'mbbs-abroad', 'mbbs-india', 'study-abroad', 'jobs']
   },
-  neetStatus: {
+
+  // Step 2 - Ausbildung specific
+  qualification: {
     type: String,
-    required: true,
-    enum: [
-      'NEET qualified with good score',
-      'NEET qualified (average / borderline)',
-      'Appeared but not qualified',
-      'Not appeared yet'
-    ]
+    enum: ['10th', '12th', 'diploma', 'graduation', 'bachelors', 'masters', 'others', ''],
+    default: ''
   },
-  annualBudget: {
+  age: {
     type: String,
-    required: true,
-    enum: [
-      '₹6 Lakhs & above per year',
-      '₹5 – 6 Lakhs per year',
-      '₹4 – 5 Lakhs per year',
-      'Below ₹4 Lakhs per year'
-    ]
+    default: ''
   },
-  readiness: {
+  germanLevel: {
     type: String,
-    required: true,
-    enum: [
-      'Fully ready with family & financial support',
-      'Ready but need guidance',
-      'Interested but unsure',
-      'Not comfortable yet'
-    ]
+    enum: ['A1', 'A2', 'B1', 'B2', 'Not Started', ''],
+    default: ''
+  },
+
+  // Step 2 - MBBS specific
+  neetAppeared: {
+    type: String,
+    enum: ['yes', 'no', 'waiting', ''],
+    default: ''
+  },
+  neetScore: {
+    type: String,
+    default: ''
+  },
+  preferredCountry: {
+    type: String,
+    default: ''
+  },
+  preferredState: {
+    type: String,
+    default: ''
+  },
+
+  // Step 2 - Study Abroad specific
+  highestQualification: {
+    type: String,
+    default: ''
+  },
+  languageTest: {
+    type: String,
+    default: ''
+  },
+
+  // Step 2 - Jobs specific
+  preferredSector: {
+    type: String,
+    enum: ['health care', 'it', 'hospitality', 'others', ''],
+    default: ''
   },
 
   // Scoring
-  totalScore: {
+  score: {
     type: Number,
     required: true,
-    min: 2,
-    max: 10
+    min: 0,
+    max: 100
   },
-  eligibilityCategory: {
+  scoreCategory: {
     type: String,
-    required: true,
-    enum: ['Highly Eligible', 'Eligible with Guidance', 'Borderline', 'Not Eligible Yet']
-  },
-
-  // Consent
-  consentGiven: {
-    type: Boolean,
-    required: true,
-    default: true
+    enum: ['Excellent', 'Good', 'Needs Work'],
+    default: 'Good'
   },
 
   // Status for admin tracking
@@ -95,8 +115,8 @@ const eligibilityLeadSchema = new mongoose.Schema({
 
 // Indexes for filtering and sorting
 eligibilityLeadSchema.index({ createdAt: -1 });
-eligibilityLeadSchema.index({ totalScore: -1 });
-eligibilityLeadSchema.index({ eligibilityCategory: 1 });
+eligibilityLeadSchema.index({ score: -1 });
+eligibilityLeadSchema.index({ preference: 1 });
 eligibilityLeadSchema.index({ status: 1 });
 
 module.exports = mongoose.model('EligibilityLead', eligibilityLeadSchema);

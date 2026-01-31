@@ -8,14 +8,13 @@ const mbbsCountries = [
   {
     id: "russia",
     country: "Russia",
-    gradient: "from-red-500 via-rose-600 to-red-800",
+    gradient: "from-blue-500 via-blue-600 to-blue-700",
     mapSvg: (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
-        <path
-          d="M95,15 L90,12 L80,10 L70,8 L60,10 L50,8 L40,12 L30,10 L20,15 L15,20 L10,30 L12,40 L15,45 L25,50 L35,48 L45,52 L55,50 L65,55 L75,52 L85,48 L92,42 L95,35 L93,25 Z"
-          fill="currentColor"
-        />
-      </svg>
+      <img
+        src="/Home_Map/Russia.webp"
+        viewBox="0 0 100 60"
+        className="w-full h-full"
+      />
     ),
     visaTypes: [
       "PR Visa",
@@ -29,14 +28,13 @@ const mbbsCountries = [
   {
     id: "georgia",
     country: "Georgia",
-    gradient: "from-orange-500 via-amber-500 to-yellow-600",
+    gradient: "from-blue-500 via-blue-600 to-blue-700",
     mapSvg: (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
-        <path
-          d="M20,25 L30,20 L45,18 L60,20 L75,22 L85,28 L88,35 L82,42 L70,45 L55,43 L40,45 L25,42 L15,35 L18,28 Z"
-          fill="currentColor"
-        />
-      </svg>
+      <img
+        src="/Home_Map/Georgia.webp"
+        viewBox="0 0 100 60"
+        className="w-full h-full"
+      />
     ),
     visaTypes: [
       "PR Visa",
@@ -49,15 +47,14 @@ const mbbsCountries = [
   },
   {
     id: "uzbekistan",
-    country: "Uzbekistan",
-    gradient: "from-blue-500 via-cyan-500 to-teal-600",
+    country: "Uzbekisthan",
+    gradient: "from-blue-500 via-blue-600 to-blue-700",
     mapSvg: (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
-        <path
-          d="M15,20 L25,15 L40,18 L55,15 L70,20 L80,25 L85,35 L80,45 L65,50 L50,48 L35,50 L20,45 L12,35 L15,25 Z"
-          fill="currentColor"
-        />
-      </svg>
+      <img
+        src="/Home_Map/Uzbekisthan.webp"
+        viewBox="0 0 100 60"
+        className="w-full h-full"
+      />
     ),
     visaTypes: [
       "PR Visa",
@@ -71,14 +68,13 @@ const mbbsCountries = [
   {
     id: "kazakhstan",
     country: "Kazakhstan",
-    gradient: "from-emerald-500 via-teal-500 to-cyan-600",
+    gradient: "from-blue-500 via-blue-600 to-blue-700",
     mapSvg: (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
-        <path
-          d="M10,22 L25,15 L45,12 L65,15 L85,18 L95,28 L92,40 L80,48 L60,52 L40,50 L20,48 L8,38 L10,28 Z"
-          fill="currentColor"
-        />
-      </svg>
+      <img
+        src="/Home_Map/Kazakhstan.webp"
+        viewBox="0 0 100 60"
+        className="w-full h-full"
+      />
     ),
     visaTypes: [
       "PR Visa",
@@ -92,14 +88,13 @@ const mbbsCountries = [
   {
     id: "kyrgyzstan",
     country: "Kyrgyzstan",
-    gradient: "from-pink-500 via-rose-500 to-red-600",
+    gradient: "from-blue-500 via-blue-600 to-blue-700",
     mapSvg: (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
-        <path
-          d="M20,20 L35,15 L55,18 L75,20 L85,28 L82,40 L68,48 L48,50 L30,46 L18,38 L15,28 Z"
-          fill="currentColor"
-        />
-      </svg>
+      <img
+        src="/Home_Map/Kyrgystan.webp"
+        viewBox="0 0 100 60"
+        className="w-full h-full"
+      />
     ),
     visaTypes: [
       "PR Visa",
@@ -113,14 +108,13 @@ const mbbsCountries = [
   {
     id: "tajikistan",
     country: "Tajikistan",
-    gradient: "from-purple-500 via-violet-500 to-indigo-600",
+    gradient: "from-blue-500 via-blue-600 to-blue-700",
     mapSvg: (
-      <svg viewBox="0 0 100 60" className="w-full h-full">
-        <path
-          d="M25,18 L42,12 L62,15 L78,22 L82,35 L75,48 L55,52 L35,48 L20,40 L18,28 Z"
-          fill="currentColor"
-        />
-      </svg>
+      <img
+        src="/Home_Map/Tajikistan.webp"
+        viewBox="0 0 100 60"
+        className="w-full h-full"
+      />
     ),
     visaTypes: [
       "PR Visa",
@@ -262,10 +256,10 @@ const FlipCard = ({ data, index }) => {
 
 const PopularVisaCards = () => {
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-bg-soft to-white relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-100/40 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      <div className="absolute top-0 left-0 w-72 h-72 bg-brand-blue-soft/60 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-brand-blue-soft/40 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Desktop: Split Screen Layout (1:3 ratio) */}
@@ -279,14 +273,14 @@ const PopularVisaCards = () => {
             className="sticky top-24 space-y-6"
           >
             <div>
-              <h2 className="text-4xl xl:text-5xl font-black text-gray-900 mb-4 leading-tight">
+              <h2 className="text-4xl xl:text-5xl font-black text-brand-dark mb-4 leading-tight">
                 Popular MBBS
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-blue-light">
                   Destinations
                 </span>
               </h2>
-              <div className="h-1.5 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6" />
+              <div className="h-1.5 w-16 bg-brand-blue rounded-full mb-6" />
               <p className="text-lg text-gray-600 leading-relaxed">
                 Expert guidance for your medical education journey abroad with
                 FMGE support.
@@ -296,7 +290,7 @@ const PopularVisaCards = () => {
             {/* CTA Button */}
             <Link
               to="/mbbs/abroad"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-blue text-white font-bold rounded-full hover:bg-brand-blue-dark hover:shadow-lg hover:shadow-brand-blue/25 hover:scale-105 transition-all duration-300 text-sm"
             >
               View All Countries <FiArrowRight />
             </Link>
@@ -319,13 +313,13 @@ const PopularVisaCards = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3">
+            <h2 className="text-3xl sm:text-4xl font-black text-brand-dark mb-3">
               Popular MBBS{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-blue-light">
                 Destinations
               </span>
             </h2>
-            <div className="h-1.5 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mx-auto mb-4" />
+            <div className="h-1.5 w-16 bg-brand-blue rounded-full mx-auto mb-4" />
             <p className="text-base text-gray-600 max-w-lg mx-auto">
               Expert guidance for your medical education journey abroad
             </p>
@@ -347,7 +341,7 @@ const PopularVisaCards = () => {
           >
             <Link
               to="/mbbs/abroad"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue text-white font-bold rounded-full hover:bg-brand-blue-dark hover:shadow-lg hover:shadow-brand-blue/25 hover:scale-105 transition-all duration-300"
             >
               View All MBBS Countries <FiArrowRight />
             </Link>

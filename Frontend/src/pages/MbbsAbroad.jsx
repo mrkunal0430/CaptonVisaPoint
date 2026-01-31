@@ -221,49 +221,226 @@ const MbbsAbroad = () => {
 
   return (
     <div>
-      {/* Hero Banner */}
-      <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600')] bg-cover bg-center"></div>
+      {/* Premium Hero Section - Split Layout */}
+      <section className="relative min-h-[85vh] lg:min-h-[90vh] bg-gradient-to-br from-slate-50 via-blue-50/50 to-white overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Gradient orbs */}
+          <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-purple-200/30 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-blue-100/20 to-transparent rounded-full" />
+
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2UyZThmMCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30"></div>
 
-        <div className="relative z-10 container mx-auto px-6 text-center text-white">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-bold border border-white/30 mb-6 uppercase tracking-wider">
-              🌍 International Medical Education
-            </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-              Study MBBS Abroad
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Affordable • NMC Approved • Global Recognition • Low NEET Cutoff
-            </p>
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 h-full">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[85vh] lg:min-h-[90vh] py-16 lg:py-0">
+            {/* LEFT - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="order-2 lg:order-1"
+            >
+              {/* Badge */}
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 border border-blue-200 text-blue-700 text-sm font-semibold mb-6"
+              >
+                <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                2025 Admissions Open
+              </motion.span>
 
-            {/* Stats Overlay */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                <div className="text-3xl font-bold">70+</div>
-                <div className="text-sm text-blue-200">Universities</div>
+              {/* Main Heading */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-6">
+                Study{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+                  MBBS Abroad
+                </span>
+              </h1>
+
+              {/* Description */}
+              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8 max-w-xl">
+                Get transparent counselling for MBBS admissions in Europe &
+                Asia. 100% accurate information about eligibility, fees,
+                university selection, and visa support.
+              </p>
+
+              {/* Key Points */}
+              <div className="space-y-4 mb-10">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
+                    <FiAward className="text-white text-lg" />
+                  </div>
+                  <span className="text-slate-700 font-medium">
+                    WHO & NMC recognized universities
+                  </span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-green-500/25">
+                    <FiCheckCircle className="text-white text-lg" />
+                  </div>
+                  <span className="text-slate-700 font-medium">
+                    Degree 100% valid in India
+                  </span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-500/25">
+                    <FiUsers className="text-white text-lg" />
+                  </div>
+                  <span className="text-slate-700 font-medium">
+                    End-to-end admission support
+                  </span>
+                </motion.div>
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                <div className="text-3xl font-bold">2000+</div>
-                <div className="text-sm text-blue-200">Doctors Trained</div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1 transition-all duration-300"
+                  >
+                    Free Counselling <FiArrowRight />
+                  </Link>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <a
+                    href="#countries"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold rounded-xl hover:border-blue-300 hover:text-blue-600 hover:shadow-lg transition-all duration-300"
+                  >
+                    View Countries
+                  </a>
+                </motion.div>
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                <div className="text-3xl font-bold">4000+</div>
-                <div className="text-sm text-blue-200">Students</div>
+
+              {/* Stats Row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 }}
+                className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-slate-200"
+              >
+                <div>
+                  <div className="text-3xl font-black text-slate-900">70+</div>
+                  <div className="text-sm text-slate-500">Universities</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-black text-slate-900">
+                    2000+
+                  </div>
+                  <div className="text-sm text-slate-500">Students Placed</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-black text-slate-900">98%</div>
+                  <div className="text-sm text-slate-500">Success Rate</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* RIGHT - Doctor Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
+            >
+              {/* Decorative background for image */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-blue-100 via-purple-50 to-indigo-100 rounded-full opacity-50" />
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                <div className="text-3xl font-bold">98%</div>
-                <div className="text-sm text-blue-200">Success Rate</div>
+
+              {/* Floating cards around image */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-10 left-0 sm:left-4 lg:left-0 z-20 bg-white rounded-2xl shadow-xl p-4 border border-slate-100"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                    <FiCheckCircle className="text-green-600" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-slate-900">
+                      NMC Approved
+                    </div>
+                    <div className="text-xs text-slate-500">
+                      All Universities
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5,
+                }}
+                className="absolute bottom-20 right-0 sm:right-4 lg:right-10 z-20 bg-white rounded-2xl shadow-xl p-4 border border-slate-100"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                    <FiGlobe className="text-blue-600" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-slate-900">
+                      6 Countries
+                    </div>
+                    <div className="text-xs text-slate-500">
+                      Partner Network
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Doctor Image */}
+              <div className="relative z-10">
+                <img
+                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=800&fit=crop&crop=top"
+                  alt="Medical Professional"
+                  className="w-[280px] sm:w-[350px] lg:w-[420px] h-auto object-cover rounded-3xl shadow-2xl"
+                />
+                {/* Image overlay gradient */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-slate-900/20 via-transparent to-transparent" />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -570,32 +747,32 @@ const MbbsAbroad = () => {
       </section>
 
       {/* CTA with Form */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-slate-50">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">
                 Start Your MBBS Abroad Journey Today
               </h2>
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Get expert guidance from our team of experienced counselors.
                 We've helped 2000+ students achieve their dream of becoming
                 doctors.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <FiCheckCircle className="text-2xl" />
-                  <span className="text-lg">Free counseling session</span>
+                  <FiCheckCircle className="text-2xl text-blue-500" />
+                  <span className="text-lg text-slate-700">Free counseling session</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <FiCheckCircle className="text-2xl" />
-                  <span className="text-lg">
+                  <FiCheckCircle className="text-2xl text-blue-500" />
+                  <span className="text-lg text-slate-700">
                     Complete documentation support
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <FiCheckCircle className="text-2xl" />
-                  <span className="text-lg">FMGE coaching included</span>
+                  <FiCheckCircle className="text-2xl text-blue-500" />
+                  <span className="text-lg text-slate-700">FMGE coaching included</span>
                 </div>
               </div>
             </div>

@@ -1,13 +1,13 @@
 import React from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
-import InquiryForm from "../components/InquiryForm";
+import InquiryForm from "../components/forms/InquiryForm";
 
 const Contact = () => {
   return (
     <div>
-      <div className="bg-blue-900 py-20 text-center text-white">
-        <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-        <p className="opacity-90">We are here to help you.</p>
+      <div className="bg-gradient-to-br from-white via-blue-50 to-slate-50 py-20 text-center border-b border-slate-100">
+        <h1 className="text-4xl font-bold mb-4 text-slate-800">Contact Us</h1>
+        <p className="text-slate-600">We are here to help you.</p>
       </div>
 
       <div className="container mx-auto px-6 py-20">
@@ -19,7 +19,7 @@ const Contact = () => {
             </h2>
             <div className="space-y-8">
               <div className="flex gap-4">
-                <div className="w-12 h-12 bg-blue-50 text-brand-blue rounded-full flex items-center justify-center text-xl shrink-0">
+                <div className="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xl shrink-0">
                   <FiMapPin />
                 </div>
                 <div>
@@ -30,7 +30,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="w-12 h-12 bg-blue-50 text-brand-blue rounded-full flex items-center justify-center text-xl shrink-0">
+                <div className="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xl shrink-0">
                   <FiPhone />
                 </div>
                 <div>
@@ -40,7 +40,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="w-12 h-12 bg-blue-50 text-brand-blue rounded-full flex items-center justify-center text-xl shrink-0">
+                <div className="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xl shrink-0">
                   <FiMail />
                 </div>
                 <div>

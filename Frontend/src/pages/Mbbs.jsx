@@ -11,7 +11,7 @@ import {
   FiMapPin,
   FiArrowRight,
 } from "react-icons/fi";
-import InquiryForm from "../components/InquiryForm";
+import InquiryForm from "../components/forms/InquiryForm";
 
 const Mbbs = () => {
   const stats = [
@@ -74,30 +74,30 @@ const Mbbs = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-slate-50 overflow-hidden">
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 text-center text-white">
+        <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-bold border border-white/30 mb-6 uppercase tracking-wider">
+            <span className="inline-block bg-blue-100 border border-blue-200 px-6 py-2 rounded-full text-sm font-bold text-blue-700 mb-6 uppercase tracking-wider">
               🩺 Medical Education
             </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-slate-800">
               Study MBBS
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-purple-200">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">
                 Your Medical Career Starts Here
               </span>
             </h1>
-            <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto mb-10 leading-relaxed">
+            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
               Choose from top NMC-approved medical universities in India and
               abroad. Affordable fees, quality education, and global
               recognition.
@@ -111,13 +111,13 @@ const Mbbs = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
                 >
-                  <div className="text-3xl mb-2 text-blue-200">{stat.icon}</div>
-                  <div className="text-3xl md:text-4xl font-bold mb-1">
+                  <div className="text-3xl mb-2 text-blue-500">{stat.icon}</div>
+                  <div className="text-3xl md:text-4xl font-bold mb-1 text-slate-800">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-blue-100">{stat.label}</div>
+                  <div className="text-sm text-slate-500">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -126,8 +126,8 @@ const Mbbs = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-white/50 flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-white rounded-full"></div>
+          <div className="w-6 h-10 rounded-full border-2 border-blue-300 flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-blue-500 rounded-full"></div>
           </div>
         </div>
       </section>
@@ -364,15 +364,15 @@ const Mbbs = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-slate-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">
                   Ready to Start Your MBBS Journey?
                 </h2>
-                <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                   Get expert guidance on admission, documentation, and
                   university selection. Our counselors are here to help you
                   every step of the way.
@@ -380,7 +380,7 @@ const Mbbs = () => {
                 <div className="flex flex-wrap gap-4">
                   <Link
                     to="/contact"
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:shadow-xl transition-shadow inline-flex items-center gap-2"
+                    className="bg-blue-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 hover:shadow-xl transition-all inline-flex items-center gap-2"
                   >
                     Book Free Consultation <FiArrowRight />
                   </Link>
@@ -393,7 +393,7 @@ const Mbbs = () => {
                 </div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+              <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-lg">
                 <InquiryForm
                   title="Get Free Counselling"
                   subtitle="Fill the form and our expert will call you back"
