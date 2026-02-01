@@ -21,7 +21,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://capton-visa-point.vercel.app",
-      "https://www.captonvisapoint.com/"
+      "https://www.captonvisapoint.com"
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
