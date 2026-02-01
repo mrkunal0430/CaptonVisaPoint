@@ -168,39 +168,38 @@ const FlipCard = ({ data, index }) => {
       >
         {/* FRONT SIDE */}
         <div
-          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${data.gradient} overflow-hidden shadow-xl cursor-pointer`}
+          className="absolute inset-0 rounded-2xl bg-white overflow-hidden shadow-xl cursor-pointer border border-slate-200"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
         >
-          {/* Country Map - Background */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-25">
-            <div className="w-[85%] h-[85%] text-white">{data.mapSvg}</div>
+          {/* Country Map - Background (Full display, no overlay) */}
+          <div className="absolute inset-0">
+            <div className="w-full h-full">{data.mapSvg}</div>
           </div>
 
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          {/* Top accent bar */}
+          <div
+            className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${data.gradient}`}
+          />
 
-          {/* Decorative circles */}
-          <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-white/10" />
-          <div className="absolute -bottom-4 -left-4 w-14 h-14 rounded-full bg-white/10" />
-
-          {/* Country Name */}
-          <div className="absolute top-5 left-5 z-10">
-            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-lg">
+          {/* Country Name with background for readability */}
+          <div className="absolute top-4 right-4 z-10">
+            <h3 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">
               {data.country}
             </h3>
-            <div className="h-1 w-10 bg-white/70 mt-2 rounded-full" />
           </div>
 
-          {/* Bottom text hint */}
-          <div className="absolute bottom-4 left-5 right-5 z-10">
-            <p className="text-white/80 text-xs sm:text-sm font-medium">
-              {isMobile
-                ? "Tap to view visa types →"
-                : "Hover to view visa types →"}
-            </p>
+          {/* Bottom text hint with background */}
+          <div className="absolute bottom-4 left-4 right-4 z-10">
+            <div className="bg-black backdrop-blur-sm px-3 py-2 rounded-lg">
+              <p className="text-white text-xs sm:text-sm font-medium">
+                {isMobile
+                  ? "Tap to view visa types →"
+                  : "Hover to view visa types →"}
+              </p>
+            </div>
           </div>
         </div>
 

@@ -179,7 +179,7 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-slate-900">
-                CAPTON<span className="text-blue-600">VISA</span>
+                CAPTON<span className="text-blue-600">VISAPOINT</span>
               </span>
               <span className="hidden sm:block text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase mt-0.5">
                 Global Education
