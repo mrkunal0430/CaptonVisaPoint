@@ -5,7 +5,9 @@
       "Bash(findstr:*)",
       "Bash(timeout:*)",
       "Bash(find:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npm install:*)",
+      "Bash(pnpm add:*)"
     ]
   }
 }

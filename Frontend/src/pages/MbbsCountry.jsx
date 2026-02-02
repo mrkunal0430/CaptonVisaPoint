@@ -297,6 +297,226 @@ const countryData = {
       },
     ],
   },
+  germany: {
+    name: "Germany",
+    bannerImage:
+      "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    partnerUniversities: [
+      {
+        name: "University of Heidelberg",
+        location: "Heidelberg",
+        fees: "€1,500 / semester",
+      },
+      {
+        name: "Ludwig Maximilian University",
+        location: "Munich",
+        fees: "€258 / semester",
+      },
+      {
+        name: "Charité - Universitätsmedizin Berlin",
+        location: "Berlin",
+        fees: "€315 / semester",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "RWTH Aachen University",
+        location: "Aachen",
+        fees: "€294 / semester",
+      },
+      {
+        name: "University of Freiburg",
+        location: "Freiburg",
+        fees: "€1,500 / semester",
+      },
+      {
+        name: "University of Tübingen",
+        location: "Tübingen",
+        fees: "€1,500 / semester",
+      },
+      {
+        name: "University of Göttingen",
+        location: "Göttingen",
+        fees: "€381 / semester",
+      },
+    ],
+  },
+  nepal: {
+    name: "Nepal",
+    bannerImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    partnerUniversities: [
+      {
+        name: "Kathmandu Medical College",
+        location: "Kathmandu",
+        fees: "$6,500 / year",
+      },
+      {
+        name: "Manipal College of Medical Sciences",
+        location: "Pokhara",
+        fees: "$7,000 / year",
+      },
+      {
+        name: "Nepal Medical College",
+        location: "Kathmandu",
+        fees: "$6,800 / year",
+      },
+      {
+        name: "KIST Medical College",
+        location: "Lalitpur",
+        fees: "$6,200 / year",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "B.P. Koirala Institute of Health Sciences",
+        location: "Dharan",
+        fees: "$5,500 / year",
+      },
+      {
+        name: "Patan Academy of Health Sciences",
+        location: "Lalitpur",
+        fees: "$5,800 / year",
+      },
+      {
+        name: "Gandaki Medical College",
+        location: "Pokhara",
+        fees: "$6,500 / year",
+      },
+      {
+        name: "Chitwan Medical College",
+        location: "Chitwan",
+        fees: "$6,000 / year",
+      },
+    ],
+  },
+  italy: {
+    name: "Italy",
+    bannerImage:
+      "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    partnerUniversities: [
+      {
+        name: "University of Bologna",
+        location: "Bologna",
+        fees: "€2,000 / year",
+      },
+      {
+        name: "Sapienza University of Rome",
+        location: "Rome",
+        fees: "€2,800 / year",
+      },
+      {
+        name: "University of Padua",
+        location: "Padua",
+        fees: "€2,500 / year",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "University of Milan",
+        location: "Milan",
+        fees: "€3,000 / year",
+      },
+      {
+        name: "University of Pavia",
+        location: "Pavia",
+        fees: "€2,200 / year",
+      },
+      {
+        name: "University of Turin",
+        location: "Turin",
+        fees: "€2,600 / year",
+      },
+      {
+        name: "University of Naples Federico II",
+        location: "Naples",
+        fees: "€2,000 / year",
+      },
+      {
+        name: "University of Pisa",
+        location: "Pisa",
+        fees: "€2,400 / year",
+      },
+    ],
+  },
+  bangladesh: {
+    name: "Bangladesh",
+    bannerImage:
+      "https://images.unsplash.com/photo-1562979314-bee7453e911c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    partnerUniversities: [
+      {
+        name: "Dhaka Medical College",
+        location: "Dhaka",
+        fees: "$8,000 / year",
+      },
+      {
+        name: "Chittagong Medical College",
+        location: "Chittagong",
+        fees: "$7,500 / year",
+      },
+      {
+        name: "Sylhet MAG Osmani Medical College",
+        location: "Sylhet",
+        fees: "$7,200 / year",
+      },
+      {
+        name: "Rajshahi Medical College",
+        location: "Rajshahi",
+        fees: "$7,000 / year",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "Sir Salimullah Medical College",
+        location: "Dhaka",
+        fees: "$8,500 / year",
+      },
+      {
+        name: "Mymensingh Medical College",
+        location: "Mymensingh",
+        fees: "$7,800 / year",
+      },
+      {
+        name: "Rangpur Medical College",
+        location: "Rangpur",
+        fees: "$6,800 / year",
+      },
+      {
+        name: "Comilla Medical College",
+        location: "Comilla",
+        fees: "$7,000 / year",
+      },
+    ],
+  },
+  barbados: {
+    name: "Barbados",
+    bannerImage:
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    partnerUniversities: [
+      {
+        name: "American University of Barbados",
+        location: "Wildey, St. Michael",
+        fees: "$16,500 / year",
+      },
+      {
+        name: "Ross University School of Medicine",
+        location: "Bridgetown",
+        fees: "$18,000 / year",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "University of the West Indies",
+        location: "Cave Hill",
+        fees: "$15,000 / year",
+      },
+      {
+        name: "Texila American University",
+        location: "Wildey",
+        fees: "$14,500 / year",
+      },
+    ],
+  },
 };
 
 // Default country data for countries not in the list

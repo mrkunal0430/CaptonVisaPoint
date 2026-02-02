@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const connectDB = require("./config/db");
 
 // Import routes
@@ -15,7 +17,34 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Middleware
+// Security Middleware - Helmet (sets various HTTP headers for security)
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginEmbedderPolicy: false,
+}));
+
+// Rate limiting - Prevent brute force and DDoS attacks
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: { message: "Too many requests, please try again later" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Stricter rate limit for form submissions
+const formLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 10, // Limit each IP to 10 form submissions per hour
+  message: { message: "Too many submissions, please try again later" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Apply general rate limiting to all requests
+app.use(generalLimiter);
+
+// CORS Configuration
 app.use(
   cors({
     origin: [
@@ -30,7 +59,9 @@ app.use(
 );
 app.options("*", cors());
 
-app.use(express.json());
+// Body parsing with size limits to prevent large payload attacks
+app.use(express.json({ limit: "10kb" }));
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 // Health check route
 app.get("/", (req, res) => {
@@ -39,14 +70,16 @@ app.get("/", (req, res) => {
 
 // API Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/leads", leadsRoutes);
 app.use("/api/blogs", blogsRoutes);
-app.use("/api/eligibility", eligibilityRoutes);
-app.use("/api/service-leads", serviceLeadsRoutes);
+
+// Apply stricter rate limiting to form submission routes
+app.use("/api/leads", formLimiter, leadsRoutes);
+app.use("/api/eligibility", formLimiter, eligibilityRoutes);
+app.use("/api/service-leads", formLimiter, serviceLeadsRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error("Server Error:", err);
+  console.error("Server Error:", err.message);
   res.status(500).json({ message: "Internal server error" });
 });
 
@@ -58,6 +91,6 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📍 API URL: http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
+  console.log(`API URL: http://localhost:${PORT}`);
 });

@@ -61,13 +61,13 @@ const ServicesShowcase = () => {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <Link
-                        to="/mbbs/india"
+                        to="/mbbs/india#contact-form"
                         className="px-3 py-2 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
                       >
                         NEET Counselling 2026
                       </Link>
                       <Link
-                        to="/mbbs/india"
+                        to="/mbbs/india#nri-quota"
                         className="px-3 py-2 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
                       >
                         NRI MBBS Seats
@@ -89,17 +89,25 @@ const ServicesShowcase = () => {
                       </Link>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {["Russia", "Georgia", "Uzbekistan", "Kazakhstan"].map(
-                        (country) => (
-                          <Link
-                            key={country}
-                            to={`/mbbs/${country.toLowerCase()}`}
-                            className="px-3 py-2 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 hover:border-green-300 hover:bg-green-50 transition-all"
-                          >
-                            {country}
-                          </Link>
-                        ),
-                      )}
+                      {[
+                        "Russia",
+                        "Georgia",
+                        "Uzbekistan",
+                        "Kazakhstan",
+                        "Germany",
+                        "Nepal",
+                        "Italy",
+                        "Bangladesh",
+                        "Barbados",
+                      ].map((country) => (
+                        <Link
+                          key={country}
+                          to={`/mbbs/${country.toLowerCase()}`}
+                          className="px-3 py-2 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 hover:border-green-300 hover:bg-green-50 transition-all"
+                        >
+                          {country}
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>

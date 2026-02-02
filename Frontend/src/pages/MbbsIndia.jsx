@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   FiCheckCircle,
@@ -16,6 +16,25 @@ import {
 import { MbbsIndiaForm } from "../components/forms";
 
 const MbbsIndia = () => {
+  const location = useLocation();
+
+  // Handle hash-based navigation for smooth scrolling
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        // Wait for the page to render, then scroll
+        setTimeout(() => {
+          const yOffset = -80; // Offset for fixed navbar
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location]);
+
   const stats = [
     { number: "117,825", label: "Total MBBS Seats", color: "text-blue-600" },
     { number: "59,860", label: "Govt/Semi-Govt", color: "text-green-600" },
@@ -213,7 +232,9 @@ const MbbsIndia = () => {
                     >
                       {stat.number}
                     </div>
-                    <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">{stat.label}</div>
+                    <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">
+                      {stat.label}
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -296,7 +317,9 @@ const MbbsIndia = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
                   <FiBook className="text-3xl sm:text-4xl text-blue-600 mb-2 sm:mb-3" />
-                  <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Total Seats</h3>
+                  <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">
+                    Total Seats
+                  </h3>
                   <p className="text-slate-600 text-xs sm:text-sm">
                     117,825 MBBS seats across India
                   </p>
@@ -312,7 +335,9 @@ const MbbsIndia = () => {
                 </div>
                 <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
                   <FiCalendar className="text-3xl sm:text-4xl text-purple-600 mb-2 sm:mb-3" />
-                  <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Duration</h3>
+                  <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">
+                    Duration
+                  </h3>
                   <p className="text-slate-600 text-xs sm:text-sm">
                     5.5 years (including internship)
                   </p>
@@ -328,9 +353,13 @@ const MbbsIndia = () => {
         <div className="absolute inset-0 opacity-10">
           <div className="flex justify-around items-center h-full">
             <div className="text-4xl sm:text-6xl lg:text-8xl">🕉️</div>
-            <div className="text-4xl sm:text-6xl lg:text-8xl hidden sm:block">🪷</div>
+            <div className="text-4xl sm:text-6xl lg:text-8xl hidden sm:block">
+              🪷
+            </div>
             <div className="text-4xl sm:text-6xl lg:text-8xl">🏛️</div>
-            <div className="text-4xl sm:text-6xl lg:text-8xl hidden sm:block">📿</div>
+            <div className="text-4xl sm:text-6xl lg:text-8xl hidden sm:block">
+              📿
+            </div>
             <div className="text-4xl sm:text-6xl lg:text-8xl">🕌</div>
           </div>
         </div>
@@ -362,11 +391,15 @@ const MbbsIndia = () => {
                   key={idx}
                   className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-md"
                 >
-                  <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{item.icon}</div>
+                  <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">
+                    {item.icon}
+                  </div>
                   <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">
                     {item.category}
                   </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm">{item.marks}</p>
+                  <p className="text-slate-600 text-xs sm:text-sm">
+                    {item.marks}
+                  </p>
                 </div>
               ))}
             </div>
@@ -424,7 +457,9 @@ const MbbsIndia = () => {
               <table className="w-full min-w-[400px]">
                 <thead className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
                   <tr>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">Category</th>
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                      Category
+                    </th>
                     <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Percentile
                     </th>
@@ -487,7 +522,9 @@ const MbbsIndia = () => {
                 <div className="flex items-start gap-2 sm:gap-3">
                   <FiCheckCircle className="text-green-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
-                    <p className="font-semibold text-slate-900 text-sm sm:text-base">Low Fees</p>
+                    <p className="font-semibold text-slate-900 text-sm sm:text-base">
+                      Low Fees
+                    </p>
                     <p className="text-xs sm:text-sm text-slate-600">
                       ₹10,000 - 1 Lakh per year
                     </p>
@@ -543,7 +580,9 @@ const MbbsIndia = () => {
                 <div className="flex items-start gap-2 sm:gap-3">
                   <FiCheckCircle className="text-purple-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
-                    <p className="font-semibold text-slate-900 text-sm sm:text-base">Higher Fees</p>
+                    <p className="font-semibold text-slate-900 text-sm sm:text-base">
+                      Higher Fees
+                    </p>
                     <p className="text-xs sm:text-sm text-slate-600">
                       ₹10 - 25 Lakhs per year
                     </p>
@@ -603,20 +642,36 @@ const MbbsIndia = () => {
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center text-white">
             <div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">600+</div>
-              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">Medical Colleges</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">
+                600+
+              </div>
+              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">
+                Medical Colleges
+              </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">5.5 Years</div>
-              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">Course Duration</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">
+                5.5 Years
+              </div>
+              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">
+                Course Duration
+              </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">NMC</div>
-              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">Approved</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">
+                NMC
+              </div>
+              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">
+                Approved
+              </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">100%</div>
-              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">Practical Training</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">
+                100%
+              </div>
+              <div className="text-blue-100 text-xs sm:text-sm lg:text-base">
+                Practical Training
+              </div>
             </div>
           </div>
         </div>
@@ -688,10 +743,18 @@ const MbbsIndia = () => {
               <table className="w-full min-w-[450px]">
                 <thead className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
                   <tr>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">State</th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">Govt</th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">Private</th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">Total</th>
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                      State
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                      Govt
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                      Private
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                      Total
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -740,7 +803,9 @@ const MbbsIndia = () => {
                   className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-slate-50 rounded-lg sm:rounded-xl border border-slate-200 hover:border-blue-300 transition-colors"
                 >
                   <FiCheckCircle className="text-green-500 text-lg sm:text-xl flex-shrink-0" />
-                  <span className="text-slate-700 font-medium text-xs sm:text-sm lg:text-base">{doc}</span>
+                  <span className="text-slate-700 font-medium text-xs sm:text-sm lg:text-base">
+                    {doc}
+                  </span>
                 </div>
               ))}
             </div>
@@ -808,7 +873,9 @@ const MbbsIndia = () => {
                 {challenges.map((challenge, idx) => (
                   <li key={idx} className="flex items-start gap-2 sm:gap-3">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
-                    <span className="text-slate-700 text-sm sm:text-base">{challenge}</span>
+                    <span className="text-slate-700 text-sm sm:text-base">
+                      {challenge}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -818,13 +885,17 @@ const MbbsIndia = () => {
             <div className="bg-green-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-green-200">
               <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <FiTrendingUp className="text-2xl sm:text-3xl lg:text-4xl text-green-600" />
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">Perks</h3>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">
+                  Perks
+                </h3>
               </div>
               <ul className="space-y-2 sm:space-y-3">
                 {perks.map((perk, idx) => (
                   <li key={idx} className="flex items-start gap-2 sm:gap-3">
                     <FiCheckCircle className="text-green-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
-                    <span className="text-slate-700 text-sm sm:text-base">{perk}</span>
+                    <span className="text-slate-700 text-sm sm:text-base">
+                      {perk}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -833,8 +904,417 @@ const MbbsIndia = () => {
         </div>
       </section>
 
+      {/* NRI MBBS Admission Section */}
+      <section
+        id="nri-quota"
+        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 relative overflow-hidden"
+      >
+        {/* Decorative Background */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-amber-500 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-bold mb-4 sm:mb-6 shadow-lg"
+            >
+              <span className="text-xl sm:text-2xl">🌟</span>
+              <span>NRI Quota MBBS Admission</span>
+            </motion.div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
+              MBBS Admission for NRI Students
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto">
+              Special quota for Non-Resident Indians, OCI & PIO card holders
+              seeking medical education in India
+            </p>
+          </div>
+
+          {/* What is NRI Quota */}
+          <div className="max-w-5xl mx-auto mb-8 sm:mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-white to-orange-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-orange-200 shadow-xl"
+            >
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center text-2xl sm:text-3xl shadow-lg">
+                  🎓
+                </div>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900">
+                  What is NRI Quota MBBS?
+                </h3>
+              </div>
+              <p className="text-slate-700 text-sm sm:text-base lg:text-lg leading-relaxed">
+                NRI or Non-Resident Indian quota is a{" "}
+                <span className="font-bold text-orange-600">
+                  special reservation system
+                </span>{" "}
+                in Indian medical education. Aspirants who hold NRI, OCI
+                (Overseas Citizen of India), and PIO (Person of Indian Origin)
+                status may get admission in medical colleges under the NRI
+                allocation of seats. This provides an excellent opportunity for
+                Indian students settled abroad to pursue MBBS in India.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Who Qualifies */}
+          <div className="max-w-6xl mx-auto mb-8 sm:mb-12">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-6 sm:mb-8 text-center">
+              Who Comes Under NRI Quota?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {[
+                {
+                  icon: "🌍",
+                  title: "Indian Origin Abroad",
+                  desc: "Aspirants of Indian origin settled abroad",
+                  color: "from-blue-500 to-blue-600",
+                },
+                {
+                  icon: "👨‍👩‍👧‍👦",
+                  title: "Children of NRIs",
+                  desc: "Children of Indian citizens living abroad for business or employment",
+                  color: "from-purple-500 to-purple-600",
+                },
+                {
+                  icon: "🏛️",
+                  title: "Government Employees",
+                  desc: "Children of state/central govt employees on deputation abroad",
+                  color: "from-green-500 to-green-600",
+                },
+                {
+                  icon: "🛂",
+                  title: "NRI/OCI/PIO Status",
+                  desc: "Living outside India for 5+ years or holding OCI/PIO card",
+                  color: "from-orange-500 to-orange-600",
+                },
+                {
+                  icon: "🎂",
+                  title: "Born Abroad",
+                  desc: "Candidates born abroad but parents are Indian",
+                  color: "from-pink-500 to-pink-600",
+                },
+                {
+                  icon: "📚",
+                  title: "Foreign Education",
+                  desc: "Completed 10th and 12th from the residing country",
+                  color: "from-indigo-500 to-indigo-600",
+                },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-lg hover:shadow-xl transition-all"
+                >
+                  <div
+                    className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center text-2xl sm:text-3xl mb-4 shadow-md`}
+                  >
+                    {item.icon}
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-base sm:text-lg mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* NRI Eligibility for NEET */}
+          <div className="max-w-5xl mx-auto mb-8 sm:mb-12">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-blue-200 shadow-xl">
+              <div className="flex items-center gap-3 mb-6 sm:mb-8">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg">
+                  <FiCheckCircle className="text-2xl sm:text-3xl text-white" />
+                </div>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900">
+                  NRI Eligibility Criteria for NEET
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-100">
+                    <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2 text-base sm:text-lg">
+                      <FiCalendar className="text-blue-600" />
+                      Age Requirement
+                    </h4>
+                    <p className="text-slate-700 text-sm sm:text-base">
+                      Must be at least{" "}
+                      <span className="font-bold text-blue-600">
+                        17 years old
+                      </span>{" "}
+                      as on 31st December of admission year
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-5 border border-green-100">
+                    <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2 text-base sm:text-lg">
+                      <FiBook className="text-green-600" />
+                      Educational Qualification
+                    </h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
+                        <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                        <span>Passed 10th & 12th from residing country</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
+                        <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                        <span>
+                          Minimum{" "}
+                          <span className="font-bold text-green-600">
+                            60% marks
+                          </span>{" "}
+                          in PCB
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-5 border border-purple-100">
+                    <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2 text-base sm:text-lg">
+                      <FiFileText className="text-purple-600" />
+                      Other Requirements
+                    </h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
+                        <FiCheckCircle className="text-purple-500 mt-1 flex-shrink-0" />
+                        <span>Valid passport mandatory</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
+                        <FiCheckCircle className="text-purple-500 mt-1 flex-shrink-0" />
+                        <span>Bonafide NRI candidates only</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
+                        <FiCheckCircle className="text-purple-500 mt-1 flex-shrink-0" />
+                        <span>Real blood relation for sponsorship</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-5 border border-orange-100">
+                    <div className="flex items-center gap-2 mb-2">
+                      <FiAward className="text-orange-600 text-xl" />
+                      <h4 className="font-bold text-slate-900 text-base sm:text-lg">
+                        NEET Qualification
+                      </h4>
+                    </div>
+                    <p className="text-slate-700 text-sm sm:text-base">
+                      Must qualify NEET-UG examination with valid score
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* NRI Admission Process */}
+          <div className="max-w-6xl mx-auto mb-8 sm:mb-12">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-6 sm:mb-8 text-center">
+              NRI MBBS Admission Process 2025-26
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
+              {[
+                {
+                  step: "1",
+                  title: "Register & Qualify NEET",
+                  desc: "Register for NEET-UG and qualify with valid score",
+                  icon: "📝",
+                  color: "from-red-500 to-pink-500",
+                },
+                {
+                  step: "2",
+                  title: "Research Colleges",
+                  desc: "Shortlist top colleges offering NRI quota seats",
+                  icon: "🔍",
+                  color: "from-blue-500 to-cyan-500",
+                },
+                {
+                  step: "3",
+                  title: "Prepare Documents",
+                  desc: "Gather all required documents and certificates",
+                  icon: "📄",
+                  color: "from-green-500 to-emerald-500",
+                },
+                {
+                  step: "4",
+                  title: "NEET Counselling",
+                  desc: "Participate in centralized counselling process",
+                  icon: "💼",
+                  color: "from-purple-500 to-violet-500",
+                },
+                {
+                  step: "5",
+                  title: "Seat Allotment",
+                  desc: "Check allotment and confirm your seat",
+                  icon: "✅",
+                  color: "from-orange-500 to-amber-500",
+                },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 border-2 border-slate-200 shadow-lg hover:shadow-2xl transition-all relative"
+                >
+                  <div
+                    className={`absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg`}
+                  >
+                    {item.step}
+                  </div>
+                  <div className="text-4xl mb-4 mt-4">{item.icon}</div>
+                  <h4 className="font-bold text-slate-900 text-base sm:text-lg mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Required Documents */}
+          <div className="max-w-5xl mx-auto mb-8 sm:mb-12">
+            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl text-white">
+              <div className="flex items-center gap-3 mb-6 sm:mb-8">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
+                  <FiFileText className="text-2xl sm:text-3xl text-white" />
+                </div>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold">
+                  Required Documents for NRI Admission
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                {[
+                  "Valid Passport",
+                  "Passport Size Photographs",
+                  "Stamp Size Photographs",
+                  "Joint Declaration by Parents",
+                  "NOC from Ambassador/Authority",
+                  "NOC from Ministry of External Affairs",
+                  "Student's Visa",
+                  "10th Mark Sheet",
+                  "12th Mark Sheet",
+                  "Passing Certificates",
+                  "Health Certificate",
+                  "Migration Certificate",
+                ].map((doc, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.05 }}
+                    className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/20 hover:bg-white/20 transition-all"
+                  >
+                    <FiCheckCircle className="text-orange-400 text-lg sm:text-xl flex-shrink-0" />
+                    <span className="text-sm sm:text-base font-medium">
+                      {doc}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Benefits of NRI Quota */}
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl text-white">
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4 shadow-lg">
+                  <FiTrendingUp className="text-3xl sm:text-4xl" />
+                </div>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">
+                  Benefits of NRI Quota MBBS
+                </h3>
+                <p className="text-green-100 text-sm sm:text-base">
+                  Why choose NRI quota for medical education in India
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                {[
+                  {
+                    icon: "🎯",
+                    title: "Reserved Seats",
+                    desc: "Dedicated quota ensures better chances of admission",
+                  },
+                  {
+                    icon: "🏆",
+                    title: "Quality Education",
+                    desc: "Study at India's premier medical institutions",
+                  },
+                  {
+                    icon: "💰",
+                    title: "Cost-Effective",
+                    desc: "More affordable than medical education abroad",
+                  },
+                  {
+                    icon: "🌏",
+                    title: "Cultural Connect",
+                    desc: "Stay connected to Indian roots and culture",
+                  },
+                  {
+                    icon: "👨‍⚕️",
+                    title: "Global Recognition",
+                    desc: "NMC approved degrees recognized worldwide",
+                  },
+                  {
+                    icon: "🔄",
+                    title: "Easy Transition",
+                    desc: "Smooth process for students from abroad",
+                  },
+                ].map((benefit, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.05 }}
+                    className="flex items-start gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 hover:bg-white/20 transition-all"
+                  >
+                    <div className="text-4xl flex-shrink-0">{benefit.icon}</div>
+                    <div>
+                      <h4 className="font-bold text-lg sm:text-xl mb-1">
+                        {benefit.title}
+                      </h4>
+                      <p className="text-green-100 text-sm sm:text-base">
+                        {benefit.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-orange-600 to-red-600 text-white">
+      <section
+        id="contact-form"
+        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-orange-600 to-red-600 text-white"
+      >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div className="text-center lg:text-left">
@@ -848,7 +1328,9 @@ const MbbsIndia = () => {
               <div className="space-y-3 sm:space-y-4 inline-block lg:block">
                 <div className="flex items-center gap-2 sm:gap-3 justify-center lg:justify-start">
                   <FiCheckCircle className="text-lg sm:text-xl lg:text-2xl flex-shrink-0" />
-                  <span className="text-sm sm:text-base lg:text-lg">NEET counselling support</span>
+                  <span className="text-sm sm:text-base lg:text-lg">
+                    NEET counselling support
+                  </span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 justify-center lg:justify-start">
                   <FiCheckCircle className="text-lg sm:text-xl lg:text-2xl flex-shrink-0" />
@@ -858,7 +1340,9 @@ const MbbsIndia = () => {
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 justify-center lg:justify-start">
                   <FiCheckCircle className="text-lg sm:text-xl lg:text-2xl flex-shrink-0" />
-                  <span className="text-sm sm:text-base lg:text-lg">100% admission assistance</span>
+                  <span className="text-sm sm:text-base lg:text-lg">
+                    100% admission assistance
+                  </span>
                 </div>
               </div>
             </div>
