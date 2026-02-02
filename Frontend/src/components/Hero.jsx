@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -65,7 +65,7 @@ const services = [
   },
 ];
 
-const ServiceCard = ({ service, index }) => {
+const ServiceCard = memo(({ service, index }) => {
   return (
     <Link to={service.link}>
       <motion.div
@@ -90,6 +90,7 @@ const ServiceCard = ({ service, index }) => {
             <img
               src={service.image}
               alt={service.name}
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
 
@@ -153,7 +154,7 @@ const ServiceCard = ({ service, index }) => {
       </motion.div>
     </Link>
   );
-};
+});
 
 const Hero = () => {
   const [showInquiry, setShowInquiry] = useState(false);
@@ -180,7 +181,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container mx-auto px-6 py-6 relative z-10 w-full">
+      <div className="container mx-auto px-6 pb-6 relative z-10 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           {/* 2. Left Content Section */}
           <div className="flex-1 text-center lg:text-left space-y-8 max-w-2xl">
@@ -189,7 +190,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 border border-blue-200"
+              className="inline-flex items-center gap-2 px-4 pb-1 rounded-full bg-blue-100 border border-blue-200"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
@@ -218,7 +219,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg text-slate-600 font-light leading-relaxed max-w-lg mx-auto lg:mx-0"
+              className="text-md text-black font-medium leading-relaxed max-w-lg mx-auto lg:mx-0"
             >
               Study abroad, work overseas, and build your dream future with
               expert guidance. We turn your global aspirations into reality.
@@ -252,10 +253,10 @@ const Hero = () => {
                 </button>
               </Link>
 
-              <Link to="/contact" className="group">
+              <Link to="/eligibility-check" className="group">
                 <button className="w-full py-4 px-6 bg-amber-500 rounded-xl hover:bg-amber-600 text-white font-bold transition-all flex flex-col items-center justify-center gap-2 h-full shadow-md hover:shadow-lg">
                   <FiSend className="text-2xl mb-1" />
-                  Eligibility Check
+                  Free Eligibility Check
                 </button>
               </Link>
             </motion.div>

@@ -93,9 +93,6 @@ export const trackFormSubmission = (serviceType, formData) => {
     serviceType,
     source: formData.source,
   });
-
-  // Console log for debugging (remove in production)
-  console.log('Lead tracked:', { serviceType, source: formData.source });
 };
 
 /**

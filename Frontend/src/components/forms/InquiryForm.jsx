@@ -115,7 +115,7 @@ const InquiryForm = ({
 
         <form
           onSubmit={handleSubmit}
-          className={`space-y-${isCompact ? "3" : "4"}`}
+          className={isCompact ? "space-y-3" : "space-y-4"}
         >
           <div className="relative group">
             <FiUser className="absolute top-3.5 left-3 text-slate-400 group-focus-within:text-brand-blue transition-colors" />

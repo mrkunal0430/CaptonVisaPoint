@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiCheckCircle, FiArrowRight } from "react-icons/fi";
@@ -12,8 +12,9 @@ const mbbsCountries = [
     mapSvg: (
       <img
         src="/Home_Map/Russia.webp"
-        viewBox="0 0 100 60"
-        className="w-full h-full"
+        alt="Russia map"
+        loading="lazy"
+        className="w-full h-full object-cover"
       />
     ),
     visaTypes: [
@@ -32,8 +33,9 @@ const mbbsCountries = [
     mapSvg: (
       <img
         src="/Home_Map/Georgia.webp"
-        viewBox="0 0 100 60"
-        className="w-full h-full"
+        alt="Georgia map"
+        loading="lazy"
+        className="w-full h-full object-cover"
       />
     ),
     visaTypes: [
@@ -52,8 +54,9 @@ const mbbsCountries = [
     mapSvg: (
       <img
         src="/Home_Map/Uzbekisthan.webp"
-        viewBox="0 0 100 60"
-        className="w-full h-full"
+        alt="Uzbekistan map"
+        loading="lazy"
+        className="w-full h-full object-cover"
       />
     ),
     visaTypes: [
@@ -72,8 +75,9 @@ const mbbsCountries = [
     mapSvg: (
       <img
         src="/Home_Map/Kazakhstan.webp"
-        viewBox="0 0 100 60"
-        className="w-full h-full"
+        alt="Kazakhstan map"
+        loading="lazy"
+        className="w-full h-full object-cover"
       />
     ),
     visaTypes: [
@@ -92,8 +96,9 @@ const mbbsCountries = [
     mapSvg: (
       <img
         src="/Home_Map/Kyrgystan.webp"
-        viewBox="0 0 100 60"
-        className="w-full h-full"
+        alt="Kyrgyzstan map"
+        loading="lazy"
+        className="w-full h-full object-cover"
       />
     ),
     visaTypes: [
@@ -112,8 +117,9 @@ const mbbsCountries = [
     mapSvg: (
       <img
         src="/Home_Map/Tajikistan.webp"
-        viewBox="0 0 100 60"
-        className="w-full h-full"
+        alt="Tajikistan map"
+        loading="lazy"
+        className="w-full h-full object-cover"
       />
     ),
     visaTypes: [
@@ -128,11 +134,11 @@ const mbbsCountries = [
 ];
 
 // Flip Card Component with 4:3 aspect ratio
-const FlipCard = ({ data, index }) => {
+const FlipCard = memo(({ data, index }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
@@ -251,7 +257,7 @@ const FlipCard = ({ data, index }) => {
       </motion.div>
     </motion.div>
   );
-};
+});
 
 const PopularVisaCards = () => {
   return (

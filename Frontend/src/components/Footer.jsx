@@ -25,7 +25,7 @@ const Footer = () => {
                 <span className="text-white font-bold text-xl">C</span>
               </div>
               <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Capton<span className="text-blue-400">Visa</span>
+                Capton<span className="text-blue-400">VisaPoint</span>
               </span>
             </Link>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -53,7 +53,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Study Services */}
+          {/* MBBS & Study Abroad */}
           <div>
             <h4 className="text-white font-bold mb-6 flex items-center gap-2">
               <span className="w-1 h-5 bg-blue-500 rounded-full"></span>
@@ -61,14 +61,14 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               {[
-                { name: "MBBS Abroad", link: "/mbbs" },
-                { name: "Study in USA", link: "/study-abroad" },
-                { name: "Study in UK", link: "/study-abroad" },
-                { name: "Study in Canada", link: "/study-abroad" },
-                { name: "Study in Australia", link: "/study-abroad" },
-                { name: "Study in Germany", link: "/study-abroad" },
+                { name: "MBBS Abroad", link: "/mbbs/abroad" },
+                { name: "MBBS India", link: "/mbbs/india" },
+                { name: "Study in Germany", link: "/study-abroad/germany" },
+                { name: "Study in Cyprus", link: "/study-abroad/cyprus" },
+                { name: "Study in France", link: "/study-abroad/france" },
+                { name: "Study in UK", link: "/study-abroad/uk" },
+                { name: "Study in Canada", link: "/study-abroad/canada" },
                 { name: "Ausbildung Germany", link: "/ausbildung" },
-                { name: "Scholarships", link: "/blog" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -82,22 +82,22 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Immigration Services */}
+          {/* Healthcare Jobs */}
           <div>
             <h4 className="text-white font-bold mb-6 flex items-center gap-2">
               <span className="w-1 h-5 bg-green-500 rounded-full"></span>
-              Immigration
+              Healthcare Jobs
             </h4>
             <ul className="space-y-3 text-sm">
               {[
-                { name: "Canada PR", link: "/pr-visa" },
-                { name: "Australia PR", link: "/pr-visa" },
-                { name: "Germany Blue Card", link: "/pr-visa" },
-                { name: "UK Skilled Worker", link: "/work-visa" },
-                { name: "Work Visa", link: "/work-visa" },
-                { name: "Job Seeker Visa", link: "/work-visa" },
-                { name: "Visit Visa", link: "/contact" },
-                { name: "Points Calculator", link: "/pr-visa" },
+                { name: "Healthcare Jobs", link: "/healthcare" },
+                { name: "UAE Healthcare", link: "/healthcare/uae" },
+                { name: "Nursing in UAE", link: "/healthcare/uae" },
+                { name: "Germany Healthcare", link: "/healthcare/germany" },
+                { name: "Nursing in Germany", link: "/healthcare/germany" },
+                { name: "Elderly Care Germany", link: "/healthcare/germany" },
+                { name: "Free Eligibility Check", link: "/eligibility-check" },
+                { name: "Partner With Us", link: "/partner" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -119,14 +119,14 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               {[
-                { name: "IELTS Coaching", link: "/language-coaching" },
-                { name: "PTE Coaching", link: "/language-coaching" },
-                { name: "German Language", link: "/language-coaching" },
-                { name: "TOEFL Coaching", link: "/language-coaching" },
+                { name: "German Language", link: "/coaching" },
+                { name: "IELTS Coaching", link: "/coaching" },
+                { name: "Online Classes", link: "/coaching" },
+                { name: "Offline Classes", link: "/coaching" },
                 { name: "Blog & News", link: "/blog" },
                 { name: "Success Stories", link: "/blog" },
-                { name: "Free Webinars", link: "/contact" },
-                { name: "Download Brochures", link: "/contact" },
+                { name: "Eligibility Check", link: "/eligibility-check" },
+                { name: "Book Free Demo", link: "/contact" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -148,11 +148,10 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm mb-6">
               {[
-                { name: "About Us", link: "/about" },
-                { name: "Our Team", link: "/about" },
-                { name: "Careers", link: "/contact" },
-                { name: "Office Locations", link: "/contact" },
+                { name: "About Us", link: "/contact" },
                 { name: "Contact Us", link: "/contact" },
+                { name: "Partner With Us", link: "/partner" },
+                { name: "Careers", link: "/contact" },
                 { name: "Testimonials", link: "/" },
               ].map((item) => (
                 <li key={item.name}>
@@ -185,10 +184,10 @@ const Footer = () => {
               <div className="flex gap-3 items-center">
                 <FiMail className="text-purple-400 shrink-0" />
                 <a
-                  href="mailto:info@captonvisa.com"
+                  href="mailto:info@captonvisapoint.com"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  info@captonvisa.com
+                  info@captonvisapoint.com
                 </a>
               </div>
             </div>

@@ -19,6 +19,7 @@ import Testimonials from "../components/Testimonials";
 import Hero from "../components/Hero";
 import PopularVisaCards from "../components/PopularVisaCards";
 import LatestBlogs from "../components/LatestBlogs";
+import ServicesShowcase from "../components/ServicesShowcase";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -69,7 +70,8 @@ const Home = () => {
                   <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
                     <img
                       src="RichaMam.jpeg"
-                      alt="Director"
+                      alt="Richa Sharma - Founder & Director"
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                     {/* Gradient overlay */}
@@ -104,7 +106,7 @@ const Home = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute -right-15 top-8 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
+                  className="absolute -right-16 top-8 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
                 >
                   <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                     <FiUsers size={18} />
@@ -123,7 +125,7 @@ const Home = () => {
                     ease: "easeInOut",
                     delay: 1,
                   }}
-                  className="absolute -left-14 bottom-32 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
+                  className="absolute -left-16 bottom-32 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
                 >
                   <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
                     <FiAward size={18} />
@@ -184,9 +186,7 @@ const Home = () => {
                   <p className="text-3xl sm:text-4xl font-bold text-slate-800">
                     100+
                   </p>
-                  <p className="text-blue-500 text-sm">
-                    University Partners
-                  </p>
+                  <p className="text-blue-500 text-sm">University Partners</p>
                 </div>
               </div>
 
@@ -218,6 +218,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Services Showcase */}
+      <ServicesShowcase />
 
       {/* Testimonials */}
       <Testimonials />
@@ -272,6 +275,7 @@ const Home = () => {
           <div className="h-[300px] sm:h-full bg-bg-light rounded-2xl sm:rounded-[3rem] p-6 sm:p-8 md:p-12 relative overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover opacity-80"
               alt="Happy Team"
             />

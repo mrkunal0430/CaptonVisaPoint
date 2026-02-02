@@ -334,26 +334,27 @@ const MbbsCountry = () => {
   return (
     <div>
       {/* Banner */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-slate-50 overflow-hidden">
-        <div className="absolute inset-0 bg-white/80 z-10" />
+      <section className="relative min-h-[70vh] pt-24 pb-12 flex items-center justify-center overflow-hidden">
         <img
           src={data.bannerImage}
           alt={countryName}
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+        {/* Dark gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/50 to-slate-900/30" />
         <div className="relative z-20 text-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="bg-blue-100 border border-blue-200 px-4 py-1.5 rounded-full text-sm font-semibold text-blue-700 mb-4 inline-block uppercase tracking-wider">
+            <span className="bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-1.5 rounded-full text-sm font-semibold text-white mb-4 inline-block uppercase tracking-wider">
               MBBS in {countryName}
             </span>
-            <h1 className="text-4xl md:text-7xl font-bold mb-6 text-slate-800">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-lg">
               Study MBBS in {countryName}
             </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
               Top-ranked universities, English medium education, and globally
               recognized degrees.
             </p>
