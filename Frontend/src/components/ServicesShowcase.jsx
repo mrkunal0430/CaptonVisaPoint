@@ -1,7 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FiArrowRight, FiBook, FiMonitor, FiGlobe } from "react-icons/fi";
+import { FiArrowRight, FiBook, FiMonitor } from "react-icons/fi";
 
 const ServicesShowcase = () => {
   return (
@@ -129,7 +128,11 @@ const ServicesShowcase = () => {
               <div className="lg:col-span-1 bg-gradient-to-br from-green-600 to-green-700 p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-2">Low Budget</h3>
                 <p className="text-green-100 text-sm">High ROI Countries</p>
-                <div className="mt-4 text-4xl">💰</div>
+                <img
+                  src="/Home_Hero/4.webp"
+                  alt="Low Budget Study Abroad"
+                  className="mt-4 rounded-lg w-full h-32 object-cover opacity-80"
+                />
               </div>
 
               {/* Right - Countries */}
@@ -174,7 +177,11 @@ const ServicesShowcase = () => {
               <div className="lg:col-span-1 bg-gradient-to-br from-red-500 to-red-600 p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-2">Healthcare</h3>
                 <p className="text-red-100 text-sm">Jobs Abroad</p>
-                <div className="mt-4 text-4xl">🏥</div>
+                <img
+                  src="/Home_Hero/6.webp"
+                  alt="Healthcare Jobs"
+                  className="mt-4 rounded-lg w-full h-32 object-cover opacity-80"
+                />
               </div>
 
               {/* Right - Options */}
@@ -252,9 +259,13 @@ const ServicesShowcase = () => {
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Title */}
               <div className="lg:col-span-1 bg-gradient-to-br from-yellow-500 to-amber-500 p-6 text-white flex flex-col justify-center">
-                <div className="text-4xl mb-2">🇩🇪</div>
                 <h3 className="text-xl font-bold mb-1">Germany</h3>
                 <p className="text-yellow-100 text-sm">Study & Work</p>
+                <img
+                  src="/Home_Hero/2.webp"
+                  alt="Study Work Settle in Germany"
+                  className="mt-4 rounded-lg w-full h-32 object-cover opacity-80"
+                />
               </div>
 
               {/* Right - Options */}
@@ -317,7 +328,7 @@ const ServicesShowcase = () => {
               </div>
               <div className="p-6">
                 <img
-                  src="/Home_Hero/2.webp"
+                  src="/Ausbildung.webp"
                   alt="Ausbildung"
                   className="w-full h-32 object-cover rounded-lg mb-4"
                 />
@@ -352,6 +363,11 @@ const ServicesShowcase = () => {
                 <p className="text-orange-100 text-sm">School & Coaching</p>
               </div>
               <div className="p-6">
+                <img
+                  src="/German_Language.jpg"
+                  alt="Learn German Language"
+                  className="w-full h-32 object-cover rounded-lg mb-4"
+                />
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <Link
                     to="/coaching"

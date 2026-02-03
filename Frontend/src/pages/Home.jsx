@@ -148,22 +148,35 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:col-span-3 text-center lg:text-left"
             >
+              {/* Section Label */}
+
               {/* Main quote */}
               <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-800 leading-tight mb-6">
                 Our mission is to{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">
                   democratize international education
                 </span>
-                . Every student deserves a chance to shine globally.
+                , ensuring that every student has the right to shine globally.
               </h2>
 
               {/* Description */}
-              <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
-                At Capton Visa Point, we don't just process visas; we build
-                careers. With over a decade of experience, we understand the
-                nuances of global education systems and immigration laws. My
-                team and I are committed to providing you with honest,
-                transparent, and personalized guidance.
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-4 max-w-2xl mx-auto lg:mx-0">
+                My journey into education and career consulting was shaped by
+                experience. Despite strong academic performance, I could not
+                pursue medicine due to lack of timely and correct guidance—a
+                reality many students face.
+              </p>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 max-w-2xl mx-auto lg:mx-0">
+                At Capton Visa Point, we don't just process visas—we build
+                careers. Our guidance is honest, transparent, and personalized,
+                based on each student's individual profile, not trending
+                countries. We assess skills, budget, long-term goals, and future
+                job market demand to deliver meaningful outcomes.
+              </p>
+
+              {/* Tagline */}
+              <p className="text-xl sm:text-2xl font-bold text-blue-600 mb-8">
+                Right Guidance. Right Time. Right Country.
               </p>
 
               {/* Stats row */}

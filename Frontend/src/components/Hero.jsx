@@ -16,51 +16,54 @@ import InquiryPopup from "./forms/InquiryPopup";
 // Services Data with local images
 const services = [
   {
-    name: "Study Abroad",
-    icon: "🎓",
-    image: "/Home_Hero/1.webp",
-    stats: { highlight: "100+ Universities", benefit: "Scholarship Support" },
-    link: "/study-abroad",
-    color: "from-blue-500 to-blue-600",
-  },
-  {
-    name: "Work Visa",
-    icon: "💼",
-    image: "/Home_Hero/2.webp",
-    stats: { highlight: "15+ Countries", benefit: "Job Placement" },
-    link: "/work-visa",
-    color: "from-blue-500 to-blue-600",
-  },
-  {
-    name: "MBBS Abroad",
+    name: "MBBS",
     icon: "🩺",
-    image: "/Home_Hero/3.webp",
+    image: "/Home_Hero/1.webp",
     stats: { highlight: "WHO Approved", benefit: "Low Tuition Fees" },
     link: "/mbbs",
     color: "from-blue-500 to-blue-600",
   },
   {
-    name: "Ausbildung",
+    name: "Study Work Settle",
+    subtitle: "in Germany",
     icon: "🇩🇪",
-    image: "/Home_Hero/4.webp",
+    image: "/Home_Hero/2.webp",
+    stats: { highlight: "PR Pathway", benefit: "Work Permit" },
+    link: "/study-abroad/germany",
+    color: "from-blue-500 to-blue-600",
+  },
+  {
+    name: "Ausbildung",
+    icon: "🎓",
+    image: "/Home_Hero/3.webp",
     stats: { highlight: "Earn & Learn", benefit: "German Training" },
     link: "/ausbildung",
     color: "from-blue-500 to-blue-600",
   },
   {
-    name: "Coaching",
+    name: "Low Budget",
+    subtitle: "Study Abroad",
+    icon: "💰",
+    image: "/Home_Hero/4.webp",
+    stats: { highlight: "Affordable", benefit: "Scholarship Support" },
+    link: "/study-abroad",
+    color: "from-blue-500 to-blue-600",
+  },
+  {
+    name: "Learn German",
+    subtitle: "Language",
     icon: "📚",
     image: "/Home_Hero/5.webp",
-    stats: { highlight: "IELTS | PTE", benefit: "Expert Trainers" },
+    stats: { highlight: "A1 to C1", benefit: "Expert Trainers" },
     link: "/coaching",
     color: "from-blue-500 to-blue-600",
   },
   {
-    name: "PR Visa",
-    icon: "🌍",
+    name: "Healthcare Jobs",
+    icon: "🏥",
     image: "/Home_Hero/6.webp",
-    stats: { highlight: "Canada | Australia", benefit: "98% Success" },
-    link: "/pr-visa",
+    stats: { highlight: "UAE | Germany", benefit: "Direct Placement" },
+    link: "/healthcare",
     color: "from-blue-500 to-blue-600",
   },
 ];
@@ -102,8 +105,13 @@ const ServiceCard = memo(({ service, index }) => {
               <span className="text-2xl sm:text-3xl block mb-1 drop-shadow-lg">
                 {service.icon}
               </span>
-              <span className="text-white text-xs sm:text-sm font-bold tracking-wide drop-shadow-md block">
+              <span className="text-white text-xs sm:text-sm font-bold tracking-wide drop-shadow-md block leading-tight">
                 {service.name}
+                {service.subtitle && (
+                  <span className="block text-[10px] sm:text-xs font-medium opacity-90">
+                    {service.subtitle}
+                  </span>
+                )}
               </span>
             </div>
 
@@ -117,8 +125,13 @@ const ServiceCard = memo(({ service, index }) => {
                 <span className="text-2xl sm:text-3xl block drop-shadow-lg">
                   {service.icon}
                 </span>
-                <span className="text-white text-xs sm:text-sm font-bold tracking-wide block">
+                <span className="text-white text-xs sm:text-sm font-bold tracking-wide block leading-tight">
                   {service.name}
+                  {service.subtitle && (
+                    <span className="block text-[10px] sm:text-xs font-medium opacity-90">
+                      {service.subtitle}
+                    </span>
+                  )}
                 </span>
 
                 {/* Stats - Only visible on hover */}
