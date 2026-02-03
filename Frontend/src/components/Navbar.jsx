@@ -241,9 +241,11 @@ const Navbar = () => {
             className="flex items-center gap-2 sm:gap-3 group relative z-50"
             aria-label="Capton Visa Point - Home"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-gradient-to-tr from-blue-600 to-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl lg:text-2xl shadow-lg shadow-blue-500/20 group-hover:rotate-6 transition-transform duration-300">
-              C
-            </div>
+            <img
+              src="/logo.png"
+              alt="Capton Visa Point Logo"
+              className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+            />
             <div className="flex flex-col leading-none">
               <span className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-slate-900">
                 CAPTON<span className="text-blue-600">VISAPOINT</span>

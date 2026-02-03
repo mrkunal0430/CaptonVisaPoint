@@ -19,15 +19,22 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2 sm:col-span-2 md:col-span-3 lg:col-span-1 space-y-6">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 bg-gradient-to-tr from-blue-600 to-blue-500 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <span className="text-white font-bold text-xl">C</span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="Capton Visa Point Logo"
+                className="w-10 h-10 object-contain"
+                style={{
+                  filter: "drop-shadow(0 0 0 transparent)",
+                  mixBlendMode: "screen",
+                }}
+              />
               <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Capton<span className="text-blue-400">VisaPoint</span>
               </span>
             </Link>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-              India's leading immigration and education consultancy. Your trusted partner for global opportunities.
+              India's leading immigration and education consultancy. Your
+              trusted partner for global opportunities.
             </p>
             <div className="flex gap-3">
               {[
@@ -160,7 +167,7 @@ const Footer = () => {
               <div className="flex gap-3 items-start">
                 <FiMapPin className="text-blue-400 mt-1 shrink-0" />
                 <span className="text-slate-400">
-                  Connaught Place, New Delhi, India
+                  B-15 , Ram Dutt Enclave, Uttam Nagar , New Delhi - 110059
                 </span>
               </div>
               <div className="flex gap-3 items-center">
@@ -169,7 +176,7 @@ const Footer = () => {
                   href="tel:+919876543210"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  +91 98765 43210
+                  +91 99147 73125
                 </a>
               </div>
               <div className="flex gap-3 items-center">
@@ -189,13 +196,20 @@ const Footer = () => {
         <div className="border-t border-slate-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
             <p>
-              &copy; {new Date().getFullYear()} Capton Visa Point. All rights reserved.
+              &copy; {new Date().getFullYear()} Capton Visa Point. All rights
+              reserved.
             </p>
             <div className="flex flex-wrap gap-6 justify-center">
-              <Link to="/contact" className="hover:text-white transition-colors">
+              <Link
+                to="/contact"
+                className="hover:text-white transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link to="/contact" className="hover:text-white transition-colors">
+              <Link
+                to="/contact"
+                className="hover:text-white transition-colors"
+              >
                 Terms of Service
               </Link>
             </div>

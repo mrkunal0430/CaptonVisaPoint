@@ -82,11 +82,11 @@ const Home = () => {
                       <div className="bg-white/90 backdrop-blur-xl rounded-xl p-4 border border-slate-200 shadow-lg">
                         <div className="flex items-center gap-3">
                           <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-lg">
-                            RS
+                            RP
                           </div>
                           <div>
                             <h4 className="text-slate-800 font-bold text-lg">
-                              Richa Sharma
+                              Richa Pal
                             </h4>
                             <p className="text-blue-500 text-sm">
                               Founder & Director
