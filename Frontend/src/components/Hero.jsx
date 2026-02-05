@@ -88,7 +88,7 @@ const ServiceCard = memo(({ service, index }) => {
           whileHover={{ scale: 1.05, zIndex: 10 }}
         >
           {/* Main Card */}
-          <div className="relative overflow-hidden rounded-2xl shadow-xl h-36 w-28 sm:h-44 sm:w-34 lg:h-52 lg:w-40 border border-white/20 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-white/10 group-hover:border-white/40">
+          <div className="relative overflow-hidden rounded-2xl shadow-xl h-36 w-28 min-[400px]:h-40 min-[400px]:w-32 sm:h-48 sm:w-40 md:h-52 md:w-44 lg:h-56 lg:w-44 border border-white/20 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-white/10 group-hover:border-white/40">
             {/* Image - Clean without color overlay */}
             <img
               src={service.image}
@@ -180,8 +180,8 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/50 to-slate-50 opacity-90" />
 
         {/* Animated Orbs - Soft blue tones */}
-        <div className="absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-blue-200/30 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[0%] right-[-5%] w-[35vw] h-[35vw] bg-blue-100/40 rounded-full blur-[100px] animate-pulse delay-1000" />
+        <div className="absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-blue-200/30 rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[0%] right-[-5%] w-[35vw] h-[35vw] max-w-[450px] max-h-[450px] bg-blue-100/40 rounded-full blur-[60px] sm:blur-[80px] lg:blur-[100px] animate-pulse delay-1000" />
 
         {/* Grid Pattern */}
         <div
@@ -194,10 +194,10 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container mx-auto px-6 pb-6 relative z-10 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-6 relative z-10 w-full">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-10 lg:gap-12">
           {/* 2. Left Content Section */}
-          <div className="flex-1 text-center lg:text-left space-y-8 max-w-2xl">
+          <div className="flex-1 text-center lg:text-left space-y-5 sm:space-y-6 max-w-xl lg:max-w-md xl:max-w-lg">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -209,7 +209,7 @@ const Hero = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              <span className="text-blue-700 text-xs font-bold tracking-wider uppercase">
+              <span className="text-blue-700 text-[10px] sm:text-xs font-bold tracking-wider uppercase">
                 No.1 Study Abroad Consultant
               </span>
             </motion.div>
@@ -219,7 +219,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 leading-[1.1] tracking-tight"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 leading-[1.1] tracking-tight"
             >
               College Seats to <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700">
@@ -232,7 +232,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-md text-black font-medium leading-relaxed max-w-lg mx-auto lg:mx-0"
+              className="text-xs sm:text-sm md:text-base text-black font-medium leading-relaxed max-w-md mx-auto lg:mx-0"
             >
               Study abroad, work overseas, and build your dream future with
               expert guidance. We turn your global aspirations into reality.
@@ -243,42 +243,42 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="grid grid-cols-2 gap-4 w-full"
+              className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-2 sm:gap-3 w-full max-w-sm lg:max-w-md"
             >
               <Link to="/study-abroad" className="group">
-                <button className="w-full py-4 px-6 bg-blue-500 rounded-xl hover:bg-blue-600 text-white font-bold transition-all flex flex-col items-center justify-center gap-2 h-full shadow-md hover:shadow-lg">
-                  <FiBookOpen className="text-2xl mb-1" />
+                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-500 rounded-lg hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full shadow-md hover:shadow-lg">
+                  <FiBookOpen className="text-lg sm:text-xl" />
                   Study
                 </button>
               </Link>
 
               <Link to="/pr-visa" className="group">
-                <button className="w-full py-4 px-6 bg-blue-100 border border-blue-200 rounded-xl hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full">
-                  <FiGlobe className="text-2xl mb-1" />
+                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-100 border border-blue-200 rounded-lg hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full">
+                  <FiGlobe className="text-lg sm:text-xl" />
                   PR Visa
                 </button>
               </Link>
 
               <Link to="/work-visa" className="group">
-                <button className="w-full py-4 px-6 bg-blue-100 border border-blue-200 rounded-xl hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-bold transition-all flex flex-col items-center justify-center gap-2 h-full">
-                  <FiBriefcase className="text-2xl mb-1" />
+                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-100 border border-blue-200 rounded-lg hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full">
+                  <FiBriefcase className="text-lg sm:text-xl" />
                   Work
                 </button>
               </Link>
 
               <Link to="/eligibility-check" className="group">
-                <button className="w-full py-4 px-6 bg-amber-500 rounded-xl hover:bg-amber-600 text-white font-bold transition-all flex flex-col items-center justify-center gap-2 h-full shadow-md hover:shadow-lg">
-                  <FiSend className="text-2xl mb-1" />
-                  Free Eligibility Check
+                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-amber-500 rounded-lg hover:bg-amber-600 text-white font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full shadow-md hover:shadow-lg">
+                  <FiSend className="text-lg sm:text-xl" />
+                  Free Check
                 </button>
               </Link>
             </motion.div>
           </div>
 
           {/* 3. Right Interactive Section - Service Cards Visual */}
-          <div className="flex-1 w-full lg:h-[600px] relative flex md:items-center justify-center lg:justify-end">
+          <div className="flex-[1.2] w-full lg:h-[600px] relative flex md:items-center justify-center lg:justify-end">
             {/* Cards Grid - Masonry Layout */}
-            <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+            <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-[12px] sm:gap-[16px] md:gap-[20px]">
               {services.map((service, idx) => (
                 <div
                   key={idx}

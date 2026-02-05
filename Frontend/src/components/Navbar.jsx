@@ -314,7 +314,7 @@ const Navbar = () => {
 
           {/* Mobile Toggle */}
           <button
-            className="xl:hidden text-3xl text-slate-800 p-2 -mr-2"
+            className="xl:hidden text-3xl text-slate-800 p-2 -mr-2 relative z-50"
             onClick={openMobileMenu}
             aria-label="Open menu"
             aria-expanded={isOpen}
@@ -343,7 +343,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl z-50 overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl z-[60] overflow-y-auto"
               role="dialog"
               aria-modal="true"
               aria-label="Navigation menu"
@@ -376,20 +376,31 @@ const Navbar = () => {
                             />
                           </summary>
                           <div className="pl-4 pb-4 bg-slate-50/50 rounded-xl space-y-1 mt-1">
-                            {link.columns.map((col) =>
-                              col.items.map((item, itemIdx) => (
+                            {link.columns.map((col, colIdx) =>
+                              col.items && col.items.length > 0 ? (
+                                col.items.map((item, itemIdx) => (
+                                  <Link
+                                    key={`${colIdx}-${itemIdx}`}
+                                    to={item.path}
+                                    onClick={closeMobileMenu}
+                                    className="flex items-center gap-3 py-2 px-2 text-slate-600 font-medium hover:bg-blue-50 rounded-lg transition-colors"
+                                  >
+                                    {item.flag && (
+                                      <span className="text-xl">{item.flag}</span>
+                                    )}
+                                    {item.name}
+                                  </Link>
+                                ))
+                              ) : (
                                 <Link
-                                  key={itemIdx}
-                                  to={item.path}
+                                  key={colIdx}
+                                  to={col.path}
                                   onClick={closeMobileMenu}
                                   className="flex items-center gap-3 py-2 px-2 text-slate-600 font-medium hover:bg-blue-50 rounded-lg transition-colors"
                                 >
-                                  {item.flag && (
-                                    <span className="text-xl">{item.flag}</span>
-                                  )}
-                                  {item.name}
+                                  {col.title}
                                 </Link>
-                              )),
+                              )
                             )}
                           </div>
                         </details>
