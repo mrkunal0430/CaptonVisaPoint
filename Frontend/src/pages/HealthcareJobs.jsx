@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import {
   FiArrowRight,
   FiCheckCircle,
@@ -75,6 +76,11 @@ const benefits = [
 const HealthcareJobs = () => {
   return (
     <div className="bg-white">
+      <SEO
+        title="Healthcare Jobs Abroad"
+        description="Explore healthcare job opportunities in UAE and Germany with Capton Visa Point. Direct placement for nurses, doctors, and healthcare professionals. Career after MBBS — work abroad with visa support, attractive salaries, and PR pathway."
+        keywords="healthcare jobs abroad, nursing jobs UAE, healthcare Germany, medical jobs abroad, nurse recruitment, doctor jobs overseas, career after MBBS, doctor career path, medical career options, scope of MBBS abroad, healthcare career India, government jobs after MBBS, best specialization after MBBS, medical profession growth, healthcare recruitment, work abroad after MBBS"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center text-white overflow-hidden">
         <div className="absolute inset-0">

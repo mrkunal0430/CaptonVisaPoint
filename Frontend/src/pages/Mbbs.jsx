@@ -12,6 +12,7 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
+import SEO from "../components/SEO";
 
 const Mbbs = () => {
   const stats = [
@@ -73,6 +74,11 @@ const Mbbs = () => {
 
   return (
     <div>
+      <SEO
+        title="MBBS Abroad & India"
+        description="Study MBBS abroad or in India with Capton Visa Point. WHO-approved universities, low tuition fees, 98% success rate. Complete MBBS admission guidance for 2026-2027 — NEET counseling, university shortlisting, documentation, and visa filing for Russia, Georgia, Uzbekistan, Kazakhstan, Germany, Italy, and top Indian medical colleges."
+        keywords="MBBS in India, MBBS course in India, MBBS degree in India, study MBBS in India, MBBS medical course, MBBS abroad, study MBBS abroad, MBBS abroad admission, MBBS abroad consultants, cheapest MBBS abroad, low cost MBBS abroad, MBBS abroad eligibility, MBBS abroad fees, MBBS abroad universities, MBBS admission, MBBS admission process, MBBS admission 2026, MBBS admission 2027, top MBBS colleges in India, best MBBS colleges in India, government MBBS colleges in India, private MBBS colleges in India, MBBS consultants in India, best MBBS consultants, medical admission consultants, NEET exam, NEET UG exam, NEET cutoff for MBBS, NEET counseling process, NEET qualifying marks, WHO approved medical universities, NMC approved medical colleges, career after MBBS, PG after MBBS, MD after MBBS, MS after MBBS, scope of MBBS in India, scope of MBBS abroad, FMGE exam after MBBS abroad, NEXT exam for MBBS students, best country for MBBS for Indian students, MBBS abroad vs India, MBBS admission help India, medical education consultants India, MBBS career guidance, study medicine abroad for Indians"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-slate-50 overflow-hidden">
         {/* Animated Background Elements */}

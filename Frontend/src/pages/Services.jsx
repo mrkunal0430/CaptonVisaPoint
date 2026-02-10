@@ -7,6 +7,7 @@ import {
   FiGlobe,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const Services = () => {
   const services = [
@@ -49,6 +50,11 @@ const Services = () => {
 
   return (
     <div>
+      <SEO
+        title="Our Services"
+        description="Explore Capton Visa Point services — MBBS abroad & India admissions, study abroad programs, Ausbildung in Germany, German language coaching (A1–C1), IELTS training, healthcare jobs in UAE & Germany, NEET counseling, and complete visa assistance. Trusted education consultants for Indian students."
+        keywords="study abroad services, MBBS abroad, MBBS in India, MBBS admission services, MBBS counseling services, MBBS admission agents, overseas MBBS consultants, Ausbildung Germany, German language coaching, visa assistance, IELTS coaching, IELTS PTE coaching, medical admission consultants, MBBS admission guidance, MBBS seat booking, education loan for MBBS, MBBS financial planning, healthcare jobs abroad, study visa, work visa, PR visa, visitor visa, MBBS abroad consultancy India, medical education consultants India"
+      />
       <section className="bg-slate-50 py-20 text-center">
         <div className="container mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">

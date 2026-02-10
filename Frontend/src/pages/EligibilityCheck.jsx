@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import SEO from "../components/SEO";
 import {
   FiCheck,
   FiChevronRight,
@@ -874,6 +875,11 @@ const EligibilityCheck = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+      <SEO
+        title="Free Eligibility Check"
+        description="Check your eligibility for MBBS abroad, MBBS in India, Ausbildung in Germany, study abroad programs, and immigration. Free assessment from Capton Visa Point experts — NEET score evaluation, MBBS admission guidance, and personalized counseling for 2026-2027 intake."
+        keywords="eligibility check, free assessment, study abroad eligibility, MBBS eligibility, MBBS abroad eligibility, MBBS admission enquiry, MBBS admission help, NEET score for MBBS, NEET qualified MBBS admission, NEET failed MBBS options, low NEET score MBBS options, best MBBS option for low NEET score, MBBS for average NEET marks, MBBS admission consultants, MBBS counseling experts, MBBS career counseling, medical admission guidance, MBBS abroad eligibility criteria, MBBS abroad admission requirements, Ausbildung eligibility, immigration assessment, MBBS admission help India, MBBS admission enquiry India, MBBS admission helpline, apply MBBS online"
+      />
       {/* Hero Section */}
       <section className="relative py-16 sm:py-20 bg-gradient-to-br from-blue-600 to-blue-700 overflow-hidden">
         <div className="absolute inset-0 opacity-10">

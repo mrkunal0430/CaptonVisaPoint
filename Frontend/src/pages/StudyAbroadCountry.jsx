@@ -15,6 +15,7 @@ import {
   FiDollarSign,
   FiClock,
 } from "react-icons/fi";
+import SEO from "../components/SEO";
 import { StudyAbroadForm } from "../components/forms";
 import { getCountryById, preferredCountries } from "../data/studyAbroadData";
 
@@ -82,6 +83,11 @@ const StudyAbroadCountry = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title={`Study in ${countryData?.name || "Abroad"}`}
+        description={`Study in ${countryData?.name || "abroad"} with Capton Visa Point. Expert guidance on top universities, courses, fees, scholarships, visa process, accommodation, and career opportunities. Complete admission support for Indian students.`}
+        keywords={`study in ${countryData?.name || "abroad"}, universities ${countryData?.name || ""}, study abroad ${countryData?.name || ""}, education consultants, ${countryData?.name || ""} admission, ${countryData?.name || ""} student visa, ${countryData?.name || ""} scholarships, study abroad for Indian students, overseas education, top universities abroad, study abroad 2026, study abroad 2027`}
+      />
       {/* Hero Banner */}
       <section className="relative h-[60vh] min-h-[500px] flex items-center overflow-hidden">
         <div className="absolute inset-0">

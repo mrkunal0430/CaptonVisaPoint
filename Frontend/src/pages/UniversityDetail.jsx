@@ -13,6 +13,7 @@ import {
   FiUsers,
   FiArrowRight,
 } from "react-icons/fi";
+import SEO from "../components/SEO";
 import { StudyAbroadForm } from "../components/forms";
 import {
   getCountryById,
@@ -49,6 +50,11 @@ const UniversityDetail = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title={university?.name || "University Details"}
+        description={`Explore ${university?.name || "this university"} — courses, fees, eligibility, campus life, and admission process. Apply with expert guidance from Capton Visa Point.`}
+        keywords={`${university?.name || "university"}, study abroad university, admission, courses, fees`}
+      />
       {/* Hero Banner */}
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
         <div className="absolute inset-0">

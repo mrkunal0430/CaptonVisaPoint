@@ -1,10 +1,16 @@
 import React from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
+import SEO from "../components/SEO";
 
 const Contact = () => {
   return (
     <div>
+      <SEO
+        title="Contact Us"
+        description="Contact Capton Visa Point for free counselling on MBBS abroad, MBBS in India, study abroad, Ausbildung, and immigration. Book a free consultation — MBBS admission help, NEET counseling, visa guidance, and career planning."
+        keywords="contact Capton Visa Point, free consultation, study abroad counselling, immigration consultants, MBBS admission help, MBBS admission enquiry, MBBS admission helpline, MBBS guidance center, MBBS abroad counseling experts, MBBS abroad admission India helpline, MBBS consultants near me, best medical education consultants, MBBS career guidance, medical admission experts, apply MBBS online, MBBS admission enquiry India"
+      />
       <div className="bg-gradient-to-br from-white via-blue-50 to-slate-50 py-20 text-center border-b border-slate-100">
         <h1 className="text-4xl font-bold mb-4 text-slate-800">Contact Us</h1>
         <p className="text-slate-600">We are here to help you.</p>

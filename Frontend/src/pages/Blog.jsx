@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import {
   FiCalendar,
   FiUser,
@@ -75,6 +76,11 @@ const Blog = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <SEO
+        title="Blog"
+        description="Read the latest articles on MBBS abroad, MBBS in India, NEET preparation, Ausbildung in Germany, study abroad tips, visa guidance, scholarship guides, FMGE & NEXT exam coaching, and career advice from Capton Visa Point experts."
+        keywords="study abroad blog, MBBS abroad tips, MBBS India blog, NEET preparation tips, Ausbildung blog, visa guidance articles, education blog, Capton Visa Point blog, MBBS admission guidance, MBBS abroad complete information, MBBS admission India complete guide, medical education complete guide, MBBS study complete guide, MBBS career complete guide, FMGE exam tips, NEXT exam tips, scholarship guides"
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 py-20 overflow-hidden">
         {/* Background Pattern */}

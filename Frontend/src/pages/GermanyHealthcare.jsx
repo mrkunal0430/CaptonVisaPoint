@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import {
   FiArrowRight,
   FiCheckCircle,
@@ -155,6 +156,11 @@ const process = [
 const GermanyHealthcare = () => {
   return (
     <div className="bg-white">
+      <SEO
+        title="Healthcare Jobs in Germany"
+        description="Build your healthcare career in Germany — nursing and medical professional opportunities with excellent salaries, work-life balance, and permanent residency pathway. Apply through Capton Visa Point."
+        keywords="healthcare jobs Germany, nursing jobs Germany, doctor jobs Germany, medical jobs Germany, healthcare recruitment Germany, work in Germany"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center text-white overflow-hidden">
         <div className="absolute inset-0">

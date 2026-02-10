@@ -13,6 +13,7 @@ import {
   FiFileText,
   FiUsers,
 } from "react-icons/fi";
+import SEO from "../components/SEO";
 import { MbbsAbroadForm } from "../components/forms";
 import EligibilityQuiz from "../components/EligibilityQuiz";
 
@@ -221,6 +222,11 @@ const MbbsAbroad = () => {
 
   return (
     <div>
+      <SEO
+        title="MBBS Abroad"
+        description="Study MBBS abroad at affordable, WHO & NMC approved universities. Capton Visa Point offers complete MBBS abroad admission guidance for 2026-2027 in Russia, Georgia, Uzbekistan, Kazakhstan, Italy, Nepal, Bangladesh, Kyrgyzstan, Germany, and more. Low tuition fees, direct placement, and visa support for Indian students."
+        keywords="MBBS abroad, study MBBS abroad, MBBS abroad admission, MBBS abroad consultants, cheapest MBBS abroad, MBBS without NEET abroad, low cost MBBS abroad, MBBS abroad eligibility, MBBS abroad fees, MBBS abroad universities, MBBS in Russia, study MBBS in Russia, MBBS in Russia fees, MBBS in Russia for Indian students, Russia MBBS admission, top medical universities in Russia, MBBS in Italy, study MBBS in Italy, MBBS in Italy fees, MBBS in Italy for Indian students, English medium MBBS in Italy, MBBS in Kazakhstan, study MBBS in Kazakhstan, MBBS in Kazakhstan fees, low cost MBBS in Kazakhstan, MBBS in Bangladesh, study MBBS in Bangladesh, MBBS in Bangladesh fees, MBBS in Nepal, study MBBS in Nepal, MBBS in Nepal fees, MBBS in Georgia, MBBS in Uzbekistan, MBBS in Kyrgyzstan, MBBS in Armenia, MBBS in Egypt, MBBS in Poland, MBBS in Germany, MBBS in Philippines, MBBS in China, MBBS in Ukraine, MBBS in Romania, cheapest MBBS country for Indians, lowest fees MBBS abroad, MBBS abroad under 25 lakhs, MBBS abroad under 30 lakhs, MBBS abroad under 35 lakhs, affordable MBBS abroad universities, MBBS abroad cost comparison, best country for MBBS for Indian students, WHO approved medical universities, NMC approved medical colleges, MBBS abroad valid in India, FMGE exam after MBBS abroad, NEXT exam for MBBS students, MBBS abroad recognition in India, medical council approved colleges, MBBS abroad visa process, student visa for MBBS, MBBS abroad consultants India, MBBS abroad admission India, international MBBS admission, foreign medical universities, MBBS abroad without donation, MBBS abroad January intake, MBBS abroad September intake, best MBBS destination 2026, best MBBS destination 2027, MBBS abroad safe universities, MBBS abroad Indian students support, MBBS abroad clinical exposure, MBBS abroad hospital training"
+      />
       {/* Premium Hero Section - Split Layout */}
       <section className="relative min-h-[85vh] lg:min-h-[90vh] bg-gradient-to-br from-slate-50 via-blue-50/50 to-white overflow-hidden">
         {/* Background decorative elements */}

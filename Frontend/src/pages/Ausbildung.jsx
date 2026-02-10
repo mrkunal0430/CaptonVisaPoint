@@ -19,6 +19,7 @@ import {
   FiShield,
   FiHome,
 } from "react-icons/fi";
+import SEO from "../components/SEO";
 import { WorkAbroadForm } from "../components/forms";
 
 const Ausbildung = () => {
@@ -458,6 +459,11 @@ const Ausbildung = () => {
 
   return (
     <div className="bg-gradient-to-b from-white to-slate-50">
+      <SEO
+        title="Ausbildung in Germany"
+        description="Ausbildung (German vocational training) — earn while you learn in Germany. Capton Visa Point provides complete guidance on Ausbildung programs, eligibility, German language training (A1–C1), visa process, and PR pathway. Trusted consultants for Indian students seeking career stability in Germany."
+        keywords="Ausbildung Germany, German vocational training, earn and learn Germany, Ausbildung visa, work in Germany, Ausbildung consultants India, Ausbildung eligibility, Ausbildung admission, study work settle in Germany, PR pathway Germany, work permit Germany, German language training, learn German for Ausbildung, Ausbildung for Indian students, vocational training abroad, career in Germany, Germany work visa, Ausbildung 2026, Ausbildung 2027"
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-24">
         {/* Animated Background */}

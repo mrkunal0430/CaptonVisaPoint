@@ -13,6 +13,7 @@ import {
   FiUsers,
   FiCalendar,
 } from "react-icons/fi";
+import SEO from "../components/SEO";
 import { MbbsIndiaForm } from "../components/forms";
 
 const MbbsIndia = () => {
@@ -182,6 +183,11 @@ const MbbsIndia = () => {
 
   return (
     <div>
+      <SEO
+        title="MBBS in India"
+        description="Get expert guidance for MBBS admissions in India 2026-2027 — government vs private colleges, NEET eligibility & cutoff, top medical colleges, state-wise seat availability, management quota, and NRI quota. Capton Visa Point helps families make the right choice with ethical, budget-clear advice."
+        keywords="MBBS in India, MBBS course in India, MBBS degree in India, MBBS education in India, study MBBS in India, MBBS admission, MBBS admission process, MBBS admission 2026, MBBS admission 2027, top MBBS colleges in India, best MBBS colleges in India, government MBBS colleges in India, private MBBS colleges in India, top government medical colleges, best private medical colleges, MBBS colleges with low fees, affordable MBBS colleges in India, AIIMS MBBS colleges, state quota MBBS colleges, low fees MBBS colleges, cheapest MBBS colleges in India, MBBS colleges under 10 lakhs, MBBS colleges under 15 lakhs, MBBS colleges under 20 lakhs, MBBS fees structure, MBBS tuition fees in India, MBBS admission in India, MBBS admission without donation, MBBS admission through NEET, NEET MBBS admission, MBBS counseling India, all India MBBS counseling, state MBBS counseling, MBBS seat allotment, NEET exam, NEET UG exam, NEET preparation, NEET exam syllabus, NEET cutoff for MBBS, NEET score for MBBS, NEET qualifying marks, NEET cutoff for government MBBS, NEET cutoff for private MBBS, private MBBS admission, management quota MBBS seats, MBBS without donation India, direct MBBS admission, NRI quota MBBS admission, MBBS in Punjab, MBBS in Haryana, MBBS in Karnataka, MBBS in Maharashtra, MBBS in Tamil Nadu, MBBS in Rajasthan, MBBS in Uttar Pradesh, MBBS in Delhi, MBBS in Gujarat, MBBS in Madhya Pradesh, MBBS in West Bengal, MBBS in Bihar, MBBS in Kerala, MBBS in Andhra Pradesh, MBBS in Telangana, MBBS colleges in Delhi, MBBS colleges in Mumbai, MBBS colleges in Bangalore, MBBS colleges in Chennai, MBBS colleges in Hyderabad, MBBS colleges in Pune, MBBS colleges in Jaipur, MBBS colleges in Lucknow, MBBS admission consultants, MBBS admission guidance, MBBS consultants in Delhi, MBBS consultants in Punjab, MBBS consultants in Haryana, MBBS consultants in Rajasthan, MBBS consultants near me"
+      />
       {/* Hero Banner with Indian Theme */}
       <section className="relative min-h-screen pt-24 pb-12 flex items-center justify-center bg-gradient-to-br from-orange-50 via-white to-purple-50 overflow-hidden">
         {/* Decorative Elements */}

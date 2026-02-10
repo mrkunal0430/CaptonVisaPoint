@@ -15,6 +15,7 @@ import {
   FiCalendar,
   FiGlobe,
 } from "react-icons/fi";
+import SEO from "../components/SEO";
 import InquiryForm from "../components/forms/InquiryForm";
 
 const Coaching = () => {
@@ -486,6 +487,11 @@ const Coaching = () => {
 
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white">
+      <SEO
+        title="German Language & IELTS Coaching"
+        description="Learn German (A1–C1) and prepare for IELTS with expert trainers at Capton Visa Point. In-house language coaching for MBBS students, Ausbildung aspirants, and study abroad candidates. Personalized training, mock tests, and study materials."
+        keywords="German language course, IELTS coaching, learn German A1 C1, German language training India, IELTS preparation, language coaching, NEET preparation, MBBS entrance exam, FMGE coaching after MBBS abroad, NEXT exam coaching, IELTS PTE coaching, medical entrance exams India, German language for MBBS, German language for Ausbildung, English medium MBBS abroad, MBBS medium of instruction"
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-slate-50 py-24">
         {/* Animated Background Elements */}

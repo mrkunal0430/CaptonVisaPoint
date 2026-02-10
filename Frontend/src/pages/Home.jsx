@@ -17,6 +17,7 @@ import InquiryForm from "../components/forms/InquiryForm";
 import InquiryPopup from "../components/forms/InquiryPopup";
 import Testimonials from "../components/Testimonials";
 import Hero from "../components/Hero";
+import SEO from "../components/SEO";
 import PopularVisaCards from "../components/PopularVisaCards";
 import LatestBlogs from "../components/LatestBlogs";
 import ServicesShowcase from "../components/ServicesShowcase";
@@ -40,6 +41,11 @@ const Home = () => {
 
   return (
     <div className="w-full overflow-hidden">
+      <SEO
+        title="Study & Immigration Consultants"
+        description="Capton Visa Point — trusted MBBS abroad & India consultants. Expert guidance for MBBS admission 2026-2027, Study in Germany, Ausbildung, German language training (A1–C1), IELTS coaching, and healthcare jobs. End-to-end support from NEET counseling to visa filing across Germany, USA, UK, Canada, and Australia."
+        keywords="MBBS in India, MBBS abroad, study MBBS abroad, MBBS admission, MBBS admission 2026, MBBS admission 2027, MBBS consultants in India, MBBS abroad consultants, best MBBS consultants, medical admission consultants, MBBS counseling services, trusted MBBS consultants, study abroad consultants, study in Germany, Ausbildung, German language training, B.Tech Germany, IELTS coaching, visa consultants, Capton Visa Point, NEET exam, NEET UG exam, NEET counseling process, medical education consultants India, overseas MBBS consultants, MBBS admission guidance, healthcare jobs abroad, best MBBS destination 2026, MBBS abroad admission India"
+      />
       {/* Hero Section */}
       <Hero />
 

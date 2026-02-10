@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import SEO from "../components/SEO";
 import {
   FiCalendar,
   FiUser,
@@ -209,6 +210,11 @@ const BlogDetail = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <SEO
+        title={blog?.title || "Blog"}
+        description={blog?.excerpt || "Read this article on Capton Visa Point blog for expert guidance on studying abroad, MBBS, and immigration."}
+        keywords={`${blog?.category || "study abroad"}, Capton Visa Point blog, education articles`}
+      />
       {/* Hero Image */}
       <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] overflow-hidden">
         <img

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import {
   FiArrowRight,
   FiCheckCircle,
@@ -121,6 +122,11 @@ const requirements = [
 const UAEHealthcare = () => {
   return (
     <div className="bg-white">
+      <SEO
+        title="Healthcare Jobs in UAE"
+        description="Work as a healthcare professional in UAE — nursing jobs, doctor positions, and allied health roles with attractive salaries, tax-free income, and visa sponsorship. Apply through Capton Visa Point."
+        keywords="healthcare jobs UAE, nursing jobs Dubai, doctor jobs UAE, medical jobs UAE, healthcare recruitment UAE, work in UAE"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center text-white overflow-hidden">
         <div className="absolute inset-0">

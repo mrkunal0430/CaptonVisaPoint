@@ -15,6 +15,7 @@ import {
 } from "react-icons/fi";
 import { StudyAbroadForm } from "../components/forms";
 import { preferredCountries, otherCountries } from "../data/studyAbroadData";
+import SEO from "../components/SEO";
 
 const StudyAbroad = () => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -125,6 +126,11 @@ const StudyAbroad = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title="Study Abroad"
+        description="Study abroad with Capton Visa Point — explore top destinations like Germany, UK, USA, Canada, Australia, France, UAE, Cyprus, and more. Complete guidance from university shortlisting, documentation, APS, visa filing, to pre-departure support. Affordable study abroad options with scholarship support."
+        keywords="study abroad, study in Germany, study in UK, study in USA, study in Canada, study in Australia, study in France, study in UAE, overseas education consultants, study abroad consultants, B.Tech in Germany, study work settle in Germany, low budget study abroad, affordable study abroad, study abroad scholarships, study abroad visa process, university shortlisting, APS documentation, study abroad admission, overseas education, international education, foreign university admission, study abroad for Indian students, best country to study abroad, study abroad 2026, study abroad 2027"
+      />
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
         {/* Animated Background */}

@@ -8,6 +8,7 @@ import {
   FiCheckCircle,
   FiArrowRight,
 } from "react-icons/fi";
+import SEO from "../components/SEO";
 import InquiryForm from "../components/forms/InquiryForm";
 
 const benefits = [
@@ -70,6 +71,11 @@ const partnerTypes = [
 const PartnerWithUs = () => {
   return (
     <div className="bg-white">
+      <SEO
+        title="Partner With Us"
+        description="Partner with Capton Visa Point — join our network of MBBS admission consultants, education institutions, and recruiters. Collaborate on MBBS abroad, study abroad, Ausbildung, and healthcare recruitment programs."
+        keywords="partner with Capton Visa Point, education partnership, recruitment partnership, consultant partnership, study abroad partners, MBBS admission partner, medical admission partner, MBBS seat booking consultants, MBBS admission assistance India, overseas medical education India, MBBS abroad admission India consultants, international MBBS admission India, MBBS admission consultancy India"
+      />
       {/* Hero Section with Background Image */}
       <section className="relative min-h-[50vh] flex items-center text-white overflow-hidden">
         {/* Background Image */}

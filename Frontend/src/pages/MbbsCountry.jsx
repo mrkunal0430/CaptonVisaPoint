@@ -11,6 +11,7 @@ import {
   FiStar,
 } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
+import SEO from "../components/SEO";
 
 // Country-specific data with partner universities (direct contracts) and other universities
 const countryData = {
@@ -553,6 +554,11 @@ const MbbsCountry = () => {
 
   return (
     <div>
+      <SEO
+        title={`MBBS in ${country?.name || "Abroad"}`}
+        description={`Study MBBS in ${country?.name || "abroad"} with Capton Visa Point. Complete MBBS admission guidance 2026-2027 — fees structure, eligibility, WHO & NMC approved universities, visa process, hostel facilities, and Indian food availability. Affordable MBBS for Indian students.`}
+        keywords={`MBBS in ${country?.name || "abroad"}, study MBBS in ${country?.name || "abroad"}, MBBS in ${country?.name || "abroad"} fees, MBBS in ${country?.name || "abroad"} for Indian students, ${country?.name || ""} MBBS admission, top medical universities in ${country?.name || "abroad"}, low cost MBBS in ${country?.name || "abroad"}, MBBS in ${country?.name || "abroad"} eligibility, MBBS in ${country?.name || "abroad"} consultants, MBBS in ${country?.name || "abroad"} without donation, MBBS abroad, MBBS abroad admission, MBBS abroad consultants, cheapest MBBS abroad, WHO approved medical universities, NMC approved medical colleges, MBBS abroad for Indian students, MBBS abroad visa process, MBBS abroad living cost, Indian food availability MBBS abroad, safety for Indian students abroad, MBBS abroad accommodation, MBBS abroad student life, FMGE exam after MBBS abroad, NEXT exam for MBBS students`}
+      />
       {/* Banner */}
       <section className="relative min-h-[70vh] pt-24 pb-12 flex items-center justify-center overflow-hidden">
         <img

@@ -229,6 +229,10 @@ const Navbar = () => {
 
   return (
     <header className="fixed w-full z-50 font-sans">
+      {/* SEO: Hidden description for search engine crawlers */}
+      <p className="sr-only">
+        At Capton Visa Point, we don't just offer consultancy—we offer responsible guidance that families can truly rely on. We understand the emotional and financial weight a parent carries while planning a child's education abroad, which is why our advice is always ethical, realistic, and student-centric. Every recommendation is based on facts, eligibility, budget clarity, and future career stability, not sales targets. Whether it's MBBS abroad, Study in Germany, B.Tech in Germany, or Ausbildung (German vocational training), we map the right path with complete transparency. Our in-house German language training (A1–C1) and IELTS coaching ensure students are academically and linguistically ready before departure. From university shortlisting, APS, documentation, visa filing, and interview preparation to pre-departure guidance, we support families end-to-end. With coverage across Germany, USA, UK, Canada, and Australia, Capton Visa Point stands as a trusted partner that protects both your child's future and your hard-earned money.
+      </p>
       <nav
         className={navClassName}
         role="navigation"
@@ -250,8 +254,8 @@ const Navbar = () => {
               <span className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-slate-900">
                 CAPTON<span className="text-blue-600">VISAPOINT</span>
               </span>
-              <span className="hidden sm:block text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase mt-0.5">
-                Global Education
+              <span className="hidden sm:block text-[10px] font-bold text-black tracking-[0.2em] uppercase mt-0.5">
+                College Seats to Global Career Success
               </span>
             </div>
           </Link>
@@ -386,7 +390,9 @@ const Navbar = () => {
                                     className="flex items-center gap-3 py-2 px-2 text-slate-600 font-medium hover:bg-blue-50 rounded-lg transition-colors"
                                   >
                                     {item.flag && (
-                                      <span className="text-xl">{item.flag}</span>
+                                      <span className="text-xl">
+                                        {item.flag}
+                                      </span>
                                     )}
                                     {item.name}
                                   </Link>
@@ -400,7 +406,7 @@ const Navbar = () => {
                                 >
                                   {col.title}
                                 </Link>
-                              )
+                              ),
                             )}
                           </div>
                         </details>
