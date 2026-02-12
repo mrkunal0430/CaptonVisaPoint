@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { getBlogImageUrl } from "../../utils/blog";
 import {
   FiPlus,
   FiEdit2,
@@ -14,7 +15,8 @@ import {
   FiFileText,
   FiRefreshCw,
   FiAlertCircle,
-  FiLink,
+  FiUpload,
+  FiTag,
 } from "react-icons/fi";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -27,7 +29,6 @@ const BlogManager = ({ token }) => {
   const [editingBlog, setEditingBlog] = useState(null);
   const [formError, setFormError] = useState("");
   const [imageError, setImageError] = useState(false);
-  const [imageLoading, setImageLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -35,9 +36,16 @@ const BlogManager = ({ token }) => {
     content: "",
     category: "General",
     author: "Admin",
-    image: "",
     isPublished: true,
+    tags: [],
   });
+
+  // Image states
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+
+  // Tag input state
+  const [tagInput, setTagInput] = useState("");
 
   const fetchBlogs = async () => {
     setLoading(true);
@@ -80,12 +88,16 @@ const BlogManager = ({ token }) => {
       content: blog.content,
       category: blog.category,
       author: blog.author,
-      image: blog.image || "",
       isPublished: blog.isPublished,
+      tags: blog.tags || [],
     });
+
+    const imgUrl = getBlogImageUrl(blog, "");
+    setImagePreview(imgUrl);
+    setImageFile(null);
+    setTagInput("");
     setFormError("");
     setImageError(false);
-    setImageLoading(false);
     setShowModal(true);
   };
 
@@ -97,12 +109,14 @@ const BlogManager = ({ token }) => {
       content: "",
       category: "General",
       author: "Admin",
-      image: "",
       isPublished: true,
+      tags: [],
     });
+    setImageFile(null);
+    setImagePreview("");
+    setTagInput("");
     setFormError("");
     setImageError(false);
-    setImageLoading(false);
     setShowModal(true);
   };
 
@@ -112,41 +126,124 @@ const BlogManager = ({ token }) => {
     setSaving(true);
 
     try {
+      const submitData = new FormData();
+      submitData.append("title", formData.title);
+      submitData.append("excerpt", formData.excerpt);
+      submitData.append("content", formData.content);
+      submitData.append("category", formData.category);
+      submitData.append("author", formData.author);
+      submitData.append("isPublished", formData.isPublished);
+      submitData.append("tags", JSON.stringify(formData.tags));
+
+      if (imageFile) {
+        submitData.append("image", imageFile);
+      }
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       if (editingBlog) {
-        await axios.put(`${API_URL}/blogs/${editingBlog._id}`, formData, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.put(
+          `${API_URL}/blogs/${editingBlog._id}`,
+          submitData,
+          config
+        );
       } else {
-        await axios.post(`${API_URL}/blogs`, formData, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.post(`${API_URL}/blogs`, submitData, config);
       }
       setShowModal(false);
       fetchBlogs();
     } catch (error) {
       console.error("Error saving blog:", error);
-      const errorMessage = error.response?.data?.message ||
-                          error.response?.data?.error ||
-                          "Failed to save blog. Please check all fields and try again.";
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Failed to save blog. Please check all fields and try again.";
       setFormError(errorMessage);
     } finally {
       setSaving(false);
     }
   };
 
-  const handleImageChange = (url) => {
-    setFormData({ ...formData, image: url });
+  // Image file handler
+  const handleImageFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/webp",
+    ];
+    if (!allowedTypes.includes(file.type)) {
+      setFormError("Invalid file type. Only JPEG, PNG, and WebP are allowed.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setFormError("File too large. Maximum size is 5MB.");
+      return;
+    }
+
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
     setImageError(false);
-    setImageLoading(true);
+    setFormError("");
+  };
+
+  const handleRemoveImage = () => {
+    setImageFile(null);
+    setImagePreview("");
+    setImageError(false);
+  };
+
+  // Tag handlers
+  const handleAddTag = () => {
+    const tag = tagInput.trim();
+    if (!tag) return;
+    if (formData.tags.includes(tag)) {
+      setTagInput("");
+      return;
+    }
+    setFormData({ ...formData, tags: [...formData.tags, tag] });
+    setTagInput("");
+  };
+
+  const handleRemoveTag = (tagToRemove) => {
+    setFormData({
+      ...formData,
+      tags: formData.tags.filter((t) => t !== tagToRemove),
+    });
+  };
+
+  const handleTagKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAddTag();
+    }
+    if (e.key === "," || e.key === "Tab") {
+      e.preventDefault();
+      handleAddTag();
+    }
   };
 
   const togglePublishStatus = async (blog) => {
     try {
-      await axios.put(
-        `${API_URL}/blogs/${blog._id}`,
-        { ...blog, isPublished: !blog.isPublished },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const submitData = new FormData();
+      submitData.append("title", blog.title);
+      submitData.append("excerpt", blog.excerpt);
+      submitData.append("content", blog.content);
+      submitData.append("category", blog.category);
+      submitData.append("author", blog.author);
+      submitData.append("isPublished", !blog.isPublished);
+      submitData.append("tags", JSON.stringify(blog.tags || []));
+
+      await axios.put(`${API_URL}/blogs/${blog._id}`, submitData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       fetchBlogs();
     } catch (error) {
       console.error("Error updating blog:", error);
@@ -200,10 +297,10 @@ const BlogManager = ({ token }) => {
               {/* Image */}
               <div className="h-40 sm:h-44 overflow-hidden relative">
                 <img
-                  src={
-                    blog.image ||
+                  src={getBlogImageUrl(
+                    blog,
                     "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400"
-                  }
+                  )}
                   alt={blog.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -217,7 +314,9 @@ const BlogManager = ({ token }) => {
                         : "bg-red-100/90 text-red-600 hover:bg-red-200"
                     }`}
                     title={
-                      blog.isPublished ? "Click to unpublish" : "Click to publish"
+                      blog.isPublished
+                        ? "Click to unpublish"
+                        : "Click to publish"
                     }
                   >
                     {blog.isPublished ? (
@@ -244,9 +343,28 @@ const BlogManager = ({ token }) => {
                 <h3 className="font-bold text-slate-800 mb-2 line-clamp-2 leading-snug">
                   {blog.title}
                 </h3>
-                <p className="text-slate-500 text-sm mb-4 line-clamp-2 flex-grow">
+                <p className="text-slate-500 text-sm mb-3 line-clamp-2 flex-grow">
                   {blog.excerpt}
                 </p>
+
+                {/* Tags */}
+                {blog.tags && blog.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {blog.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {blog.tags.length > 3 && (
+                      <span className="text-xs text-slate-400">
+                        +{blog.tags.length - 3} more
+                      </span>
+                    )}
+                  </div>
+                )}
 
                 {/* Meta */}
                 <div className="flex items-center gap-3 text-xs text-slate-400 mb-4">
@@ -331,9 +449,14 @@ const BlogManager = ({ token }) => {
               {/* Error Message */}
               {formError && (
                 <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
-                  <FiAlertCircle className="text-red-500 flex-shrink-0 mt-0.5" size={20} />
+                  <FiAlertCircle
+                    className="text-red-500 flex-shrink-0 mt-0.5"
+                    size={20}
+                  />
                   <div>
-                    <p className="text-red-700 font-medium">Failed to save blog</p>
+                    <p className="text-red-700 font-medium">
+                      Failed to save blog
+                    </p>
                     <p className="text-red-600 text-sm mt-1">{formError}</p>
                   </div>
                 </div>
@@ -356,7 +479,7 @@ const BlogManager = ({ token }) => {
                 />
               </div>
 
-              {/* Category & Author - Side by Side on larger screens */}
+              {/* Category & Author */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-slate-700">
@@ -396,13 +519,62 @@ const BlogManager = ({ token }) => {
                 </div>
               </div>
 
+              {/* Tags */}
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700 flex items-center gap-2">
+                  <FiTag size={14} /> Tags
+                </label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    placeholder="Add a tag and press Enter..."
+                    className="flex-1 px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all"
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    onKeyDown={handleTagKeyDown}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddTag}
+                    className="px-4 py-3 bg-slate-100 text-slate-600 rounded-xl hover:bg-slate-200 transition-colors font-medium text-sm"
+                  >
+                    Add
+                  </button>
+                </div>
+
+                {formData.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {formData.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-brand-blue text-sm font-medium rounded-full"
+                      >
+                        {tag}
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveTag(tag)}
+                          className="hover:text-red-500 transition-colors"
+                        >
+                          <FiX size={14} />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <p className="text-xs text-slate-400">
+                  Press Enter, Tab, or comma to add a tag. Click x to remove.
+                </p>
+              </div>
+
               {/* Excerpt */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-medium text-slate-700">
                     Excerpt (Short Description) *
                   </label>
-                  <span className={`text-xs ${formData.excerpt.length > 500 ? 'text-orange-500' : 'text-slate-400'}`}>
+                  <span
+                    className={`text-xs ${formData.excerpt.length > 500 ? "text-orange-500" : "text-slate-400"}`}
+                  >
                     {formData.excerpt.length} characters
                   </span>
                 </div>
@@ -422,7 +594,10 @@ const BlogManager = ({ token }) => {
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-medium text-slate-700">
-                    Content * <span className="text-slate-400 font-normal">(URLs will be clickable)</span>
+                    Content *{" "}
+                    <span className="text-slate-400 font-normal">
+                      (URLs will be clickable)
+                    </span>
                   </label>
                   <span className="text-xs text-slate-400">
                     {formData.content.split(/\s+/).filter(Boolean).length} words
@@ -444,63 +619,77 @@ The content can be as long as you need - there's no character limit."
                 ></textarea>
               </div>
 
-              {/* Image URL */}
+              {/* Image Upload */}
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700 flex items-center gap-2">
-                  <FiImage size={16} /> Image URL
+                  <FiImage size={16} /> Blog Image
                 </label>
+
                 <div className="relative">
-                  <FiLink className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                   <input
-                    type="text"
-                    placeholder="https://images.unsplash.com/photo-xxxxx or any image URL"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all"
-                    value={formData.image}
-                    onChange={(e) => handleImageChange(e.target.value)}
+                    type="file"
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    onChange={handleImageFileChange}
+                    className="hidden"
+                    id="blog-image-upload"
                   />
+                  <label
+                    htmlFor="blog-image-upload"
+                    className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-slate-300 rounded-xl cursor-pointer hover:border-brand-blue hover:bg-blue-50/50 transition-all"
+                  >
+                    <FiUpload className="text-slate-400 mb-2" size={24} />
+                    <span className="text-sm text-slate-500 font-medium">
+                      Click to upload image
+                    </span>
+                    <span className="text-xs text-slate-400 mt-1">
+                      JPEG, PNG, or WebP (max 5MB)
+                    </span>
+                  </label>
                 </div>
-                <p className="text-xs text-slate-400">
-                  Paste any public image URL. Leave empty to use default image.
-                </p>
 
                 {/* Image Preview */}
-                {formData.image && (
-                  <div className="mt-3 rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
-                    {imageLoading && !imageError && (
-                      <div className="h-40 flex items-center justify-center">
-                        <div className="w-8 h-8 border-3 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
-                      </div>
-                    )}
+                {imagePreview && (
+                  <div className="mt-3 rounded-xl overflow-hidden border border-slate-200 bg-slate-50 relative">
                     {imageError ? (
                       <div className="h-40 flex flex-col items-center justify-center text-center p-4">
-                        <FiAlertCircle className="text-red-400 mb-2" size={32} />
-                        <p className="text-red-500 font-medium text-sm">Failed to load image</p>
-                        <p className="text-slate-400 text-xs mt-1">
-                          Check if the URL is correct and publicly accessible
+                        <FiAlertCircle
+                          className="text-red-400 mb-2"
+                          size={32}
+                        />
+                        <p className="text-red-500 font-medium text-sm">
+                          Failed to load image
                         </p>
                       </div>
                     ) : (
                       <img
-                        src={formData.image}
+                        src={imagePreview}
                         alt="Preview"
-                        className={`w-full h-40 object-cover ${imageLoading ? 'hidden' : 'block'}`}
-                        onLoad={() => {
-                          setImageLoading(false);
-                          setImageError(false);
-                        }}
-                        onError={() => {
-                          setImageLoading(false);
-                          setImageError(true);
-                        }}
+                        className="w-full h-40 object-cover"
+                        onError={() => setImageError(true)}
                       />
                     )}
-                    {!imageLoading && !imageError && (
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                      title="Remove image"
+                    >
+                      <FiX size={14} />
+                    </button>
+                    {!imageError && (
                       <div className="px-3 py-2 bg-green-50 border-t border-green-100 flex items-center gap-2 text-green-600 text-xs">
-                        <FiCheck size={14} /> Image loaded successfully
+                        <FiCheck size={14} />
+                        {imageFile
+                          ? `Selected: ${imageFile.name}`
+                          : "Current image"}
                       </div>
                     )}
                   </div>
                 )}
+
+                <p className="text-xs text-slate-400">
+                  Upload a blog cover image. Leave empty to use default image.
+                </p>
               </div>
 
               {/* Publish Toggle */}
@@ -514,10 +703,7 @@ The content can be as long as you need - there's no character limit."
                     setFormData({ ...formData, isPublished: e.target.checked })
                   }
                 />
-                <label
-                  htmlFor="isPublished"
-                  className="flex-1 cursor-pointer"
-                >
+                <label htmlFor="isPublished" className="flex-1 cursor-pointer">
                   <span className="font-medium text-slate-700">
                     Publish immediately
                   </span>

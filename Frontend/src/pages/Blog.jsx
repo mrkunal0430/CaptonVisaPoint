@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
+import { getBlogImageUrl } from "../utils/blog";
 import {
   FiCalendar,
   FiUser,
@@ -31,6 +32,8 @@ const Blog = () => {
   const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const tagFromUrl = searchParams.get("tag");
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -57,6 +60,13 @@ const Blog = () => {
       result = result.filter((blog) => blog.category === activeCategory);
     }
 
+    // Filter by tag from URL
+    if (tagFromUrl) {
+      result = result.filter(
+        (blog) => blog.tags && blog.tags.includes(tagFromUrl),
+      );
+    }
+
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
@@ -64,12 +74,14 @@ const Blog = () => {
         (blog) =>
           blog.title.toLowerCase().includes(query) ||
           blog.excerpt.toLowerCase().includes(query) ||
-          blog.category.toLowerCase().includes(query)
+          blog.category.toLowerCase().includes(query) ||
+          (blog.tags &&
+            blog.tags.some((tag) => tag.toLowerCase().includes(query))),
       );
     }
 
     setFilteredBlogs(result);
-  }, [activeCategory, searchQuery, blogs]);
+  }, [activeCategory, searchQuery, blogs, tagFromUrl]);
 
   const featuredBlog = filteredBlogs[0];
   const remainingBlogs = filteredBlogs.slice(1);
@@ -182,10 +194,7 @@ const Blog = () => {
                     <div className="grid lg:grid-cols-2 gap-0">
                       <div className="h-64 lg:h-96 overflow-hidden relative">
                         <img
-                          src={
-                            featuredBlog.image ||
-                            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800"
-                          }
+                          src={getBlogImageUrl(featuredBlog)}
                           alt={featuredBlog.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
@@ -199,7 +208,7 @@ const Blog = () => {
                           <span className="flex items-center gap-1.5">
                             <FiCalendar />
                             {new Date(
-                              featuredBlog.createdAt
+                              featuredBlog.createdAt,
                             ).toLocaleDateString("en-US", {
                               month: "long",
                               day: "numeric",
@@ -214,6 +223,18 @@ const Blog = () => {
                         <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-4 group-hover:text-brand-blue transition-colors leading-tight">
                           {featuredBlog.title}
                         </h3>
+                        {featuredBlog.tags && featuredBlog.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {featuredBlog.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-xs bg-blue-50 text-brand-blue px-3 py-1 rounded-full font-medium"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                         <p className="text-slate-600 mb-6 line-clamp-3 text-lg">
                           {featuredBlog.excerpt}
                         </p>
@@ -242,10 +263,7 @@ const Blog = () => {
                       >
                         <div className="h-52 overflow-hidden relative">
                           <img
-                            src={
-                              post.image ||
-                              "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800"
-                            }
+                            src={getBlogImageUrl(post)}
                             alt={post.title}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
@@ -264,7 +282,7 @@ const Blog = () => {
                                   month: "short",
                                   day: "numeric",
                                   year: "numeric",
-                                }
+                                },
                               )}
                             </span>
                             <span className="flex items-center gap-1">
@@ -275,6 +293,23 @@ const Blog = () => {
                           <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-brand-blue transition-colors line-clamp-2 leading-snug">
                             {post.title}
                           </h3>
+                          {post.tags && post.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5 mb-3">
+                              {post.tags.slice(0, 3).map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="text-xs bg-slate-100 text-slate-600 px-2.5 py-0.5 rounded-full"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                              {post.tags.length > 3 && (
+                                <span className="text-xs text-slate-400">
+                                  +{post.tags.length - 3}
+                                </span>
+                              )}
+                            </div>
+                          )}
                           <p className="text-slate-500 text-sm mb-4 flex-grow line-clamp-3">
                             {post.excerpt}
                           </p>
@@ -314,31 +349,6 @@ const Blog = () => {
               )}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-to-br from-brand-blue to-blue-700">
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Stay Updated with Latest News
-            </h2>
-            <p className="text-blue-100 mb-8">
-              Get the latest visa updates, scholarship opportunities, and study
-              abroad tips delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-5 py-3.5 rounded-xl focus:outline-none focus:ring-4 focus:ring-white/20"
-              />
-              <button className="px-8 py-3.5 bg-white text-brand-blue rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-lg">
-                Subscribe
-              </button>
-            </div>
-          </div>
         </div>
       </section>
     </div>

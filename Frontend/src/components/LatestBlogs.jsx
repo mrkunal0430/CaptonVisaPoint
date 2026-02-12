@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiCalendar, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { getBlogImageUrl } from "../utils/blog";
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -107,10 +108,10 @@ const LatestBlogs = () => {
                   {/* Image */}
                   <div className="h-48 overflow-hidden relative">
                     <img
-                      src={
-                        blog.image ||
+                      src={getBlogImageUrl(
+                        blog,
                         "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600"
-                      }
+                      )}
                       alt={blog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

@@ -80,6 +80,15 @@ app.use("/api/service-leads", formLimiter, serviceLeadsRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error("Server Error:", err.message);
+
+  // Handle Multer errors
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(400).json({ message: 'File too large. Maximum size is 5MB.' });
+  }
+  if (err.message && err.message.includes('Invalid file type')) {
+    return res.status(400).json({ message: err.message });
+  }
+
   res.status(500).json({ message: "Internal server error" });
 });
 

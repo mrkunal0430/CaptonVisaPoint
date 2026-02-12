@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
+import { getBlogImageUrl } from "../utils/blog";
 import {
   FiCalendar,
   FiUser,
@@ -213,15 +214,15 @@ const BlogDetail = () => {
       <SEO
         title={blog?.title || "Blog"}
         description={blog?.excerpt || "Read this article on Capton Visa Point blog for expert guidance on studying abroad, MBBS, and immigration."}
-        keywords={`${blog?.category || "study abroad"}, Capton Visa Point blog, education articles`}
+        keywords={`${blog?.category || "study abroad"}, ${(blog?.tags || []).join(", ")}, Capton Visa Point blog, education articles`}
       />
       {/* Hero Image */}
       <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] overflow-hidden">
         <img
-          src={
-            blog.image ||
+          src={getBlogImageUrl(
+            blog,
             "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200"
-          }
+          )}
           alt={blog.title}
           className="w-full h-full object-cover"
         />
@@ -302,6 +303,22 @@ const BlogDetail = () => {
                 </span>
               </div>
 
+              {/* Tags */}
+              {blog.tags && blog.tags.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 mb-8">
+                  <FiTag className="text-slate-400" size={16} />
+                  {blog.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      to={`/blog?tag=${encodeURIComponent(tag)}`}
+                      className="text-sm bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full hover:bg-brand-blue hover:text-white transition-colors font-medium"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
               {/* Excerpt */}
               <div className="bg-slate-50 rounded-2xl p-6 mb-8 border-l-4 border-brand-blue">
                 <p className="text-lg text-slate-700 italic leading-relaxed">
@@ -370,10 +387,10 @@ const BlogDetail = () => {
                     >
                       <div className="h-40 overflow-hidden">
                         <img
-                          src={
-                            relatedBlog.image ||
+                          src={getBlogImageUrl(
+                            relatedBlog,
                             "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400"
-                          }
+                          )}
                           alt={relatedBlog.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />

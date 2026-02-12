@@ -21,14 +21,24 @@ const blogSchema = new mongoose.Schema({
     enum: ['Visa Updates', 'Study Abroad', 'MBBS', 'Coaching', 'Immigration', 'Scholarships', 'General'],
     default: 'General'
   },
+  tags: {
+    type: [String],
+    default: []
+  },
   author: {
     type: String,
     required: true,
     default: 'Admin'
   },
   image: {
-    type: String,
-    default: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800'
+    url: {
+      type: String,
+      default: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800'
+    },
+    publicId: {
+      type: String,
+      default: null
+    }
   },
   isPublished: {
     type: Boolean,
@@ -41,5 +51,17 @@ const blogSchema = new mongoose.Schema({
 // Index for sorting by date
 blogSchema.index({ createdAt: -1 });
 blogSchema.index({ category: 1 });
+blogSchema.index({ tags: 1 });
+
+// Virtual for backward compatibility: old blogs stored image as plain string
+blogSchema.virtual('imageUrl').get(function() {
+  if (typeof this.image === 'string') {
+    return this.image;
+  }
+  return this.image?.url || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800';
+});
+
+blogSchema.set('toJSON', { virtuals: true });
+blogSchema.set('toObject', { virtuals: true });
 
 module.exports = mongoose.model('Blog', blogSchema);
