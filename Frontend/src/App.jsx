@@ -21,6 +21,7 @@ const Mbbs = lazy(() => import("./pages/Mbbs"));
 const MbbsAbroad = lazy(() => import("./pages/MbbsAbroad"));
 const MbbsIndia = lazy(() => import("./pages/MbbsIndia"));
 const MbbsCountry = lazy(() => import("./pages/MbbsCountry"));
+const MbbsUniversity = lazy(() => import("./pages/MbbsUniversity"));
 
 // Study Abroad Routes
 const StudyAbroad = lazy(() => import("./pages/StudyAbroad"));
@@ -73,6 +74,10 @@ const AppLayout = () => {
             <Route path="/mbbs" element={<Mbbs />} />
             <Route path="/mbbs/abroad" element={<MbbsAbroad />} />
             <Route path="/mbbs/india" element={<MbbsIndia />} />
+            <Route
+              path="/mbbs/:country/:university"
+              element={<MbbsUniversity />}
+            />
             <Route path="/mbbs/:country" element={<MbbsCountry />} />
 
             <Route path="/study-abroad" element={<StudyAbroad />} />
@@ -105,7 +110,7 @@ const AppLayout = () => {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/919876543210"
+        href="https://wa.me/919914773125?text=Hello%20CaptonVisaPoint%2C%20I%20have%20a%20query%20regarding%20your%20services."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 hover:scale-110 transition-all"

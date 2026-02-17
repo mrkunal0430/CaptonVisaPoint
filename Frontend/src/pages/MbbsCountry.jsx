@@ -9,6 +9,9 @@ import {
   FiFileText,
   FiAward,
   FiStar,
+  FiMapPin,
+  FiArrowRight,
+  FiGlobe,
 } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
 import SEO from "../components/SEO";
@@ -19,36 +22,96 @@ const countryData = {
     name: "Russia",
     bannerImage:
       "https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years (including 1 year internship)",
+    medium: "English",
+    recognition: "WHO, NMC (India), FAIMER",
+    currency: "Russian Ruble (1 Ruble ≈ 1 INR)",
+    costOfLiving: "$100–120 / month",
+    feePayment: "Online bank transfer or USD cash payment after arrival",
     partnerUniversities: [
       {
         name: "Kazan State Medical University",
         location: "Kazan",
         fees: "$5,500 / year",
-      },
-      {
-        name: "Izhevsk State Medical University",
-        location: "Izhevsk",
-        fees: "$4,500 / year",
+        slug: "kazan-state-medical-university",
       },
       {
         name: "Crimea Federal University",
         location: "Simferopol",
         fees: "$3,500 / year",
+        slug: "crimea-federal-university",
       },
       {
         name: "Omsk State Medical University",
         location: "Omsk",
         fees: "$4,000 / year",
+        slug: "omsk-state-medical-university",
       },
       {
         name: "Novosibirsk State University",
         location: "Novosibirsk",
         fees: "$5,000 / year",
+        slug: "novosibirsk-state-university",
+      },
+      {
+        name: "Izhevsk State Medical University",
+        location: "Izhevsk",
+        fees: "$4,500 / year",
+        slug: "izhevsk-state-medical-university",
+      },
+      {
+        name: "Kazan Federal University",
+        location: "Kazan",
+        fees: "$5,200 / year",
+        slug: "kazan-federal-university",
+      },
+      {
+        name: "Bashkir State Medical University",
+        location: "Ufa",
+        fees: "$4,000 / year",
+        slug: "bashkir-state-medical-university",
+      },
+      {
+        name: "Kemerovo State Medical University",
+        location: "Kemerovo",
+        fees: "$3,800 / year",
+        slug: "kemerovo-state-medical-university",
       },
       {
         name: "Voronezh State Medical University",
         location: "Voronezh",
         fees: "$4,200 / year",
+        slug: "voronezh-state-medical-university",
+      },
+      {
+        name: "North Western State Medical University",
+        location: "Saint Petersburg",
+        fees: "$5,800 / year",
+        slug: "north-western-state-medical-university",
+      },
+      {
+        name: "Irkutsk State Medical University",
+        location: "Irkutsk",
+        fees: "$4,000 / year",
+        slug: "irkutsk-state-medical-university",
+      },
+      {
+        name: "Samara State Medical University",
+        location: "Samara",
+        fees: "$4,500 / year",
+        slug: "samara-state-medical-university",
+      },
+      {
+        name: "Sevastopol State University",
+        location: "Sevastopol",
+        fees: "$3,500 / year",
+        slug: "sevastopol-state-university",
+      },
+      {
+        name: "Ulyanovsk State University",
+        location: "Ulyanovsk",
+        fees: "$3,800 / year",
+        slug: "ulyanovsk-state-university",
       },
     ],
     otherUniversities: [
@@ -56,11 +119,6 @@ const countryData = {
         name: "First Moscow State Medical University",
         location: "Moscow",
         fees: "$8,000 / year",
-      },
-      {
-        name: "Bashkir State Medical University",
-        location: "Ufa",
-        fees: "$4,000 / year",
       },
       {
         name: "Orenburg State Medical University",
@@ -78,28 +136,48 @@ const countryData = {
     name: "Georgia",
     bannerImage:
       "https://images.unsplash.com/photo-1565008576549-57569a49371d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years (including 1 year internship)",
+    medium: "English",
+    recognition: "WHO, NMC (India), FAIMER",
+    currency: "Georgian Lari (GEL)",
+    costOfLiving: "$150–200 / month",
+    feePayment: "Direct bank transfer or USD payment",
     partnerUniversities: [
+      {
+        name: "SEU University",
+        location: "Tbilisi",
+        fees: "$5,200 / year",
+        slug: "seu-university",
+      },
       {
         name: "BAU International University",
         location: "Batumi",
         fees: "$5,500 / year",
-      },
-      {
-        name: "Georgian American University",
-        location: "Tbilisi",
-        fees: "$5,800 / year",
+        slug: "bau-international-university",
       },
       {
         name: "East European University",
         location: "Tbilisi",
         fees: "$5,000 / year",
+        slug: "east-european-university",
       },
-      { name: "Alte University", location: "Tbilisi", fees: "$4,800 / year" },
-      { name: "SEU University", location: "Tbilisi", fees: "$5,200 / year" },
       {
-        name: "Caucasus University",
+        name: "Georgian American University",
         location: "Tbilisi",
-        fees: "$5,500 / year",
+        fees: "$5,800 / year",
+        slug: "georgian-american-university",
+      },
+      {
+        name: "Alte University",
+        location: "Tbilisi",
+        fees: "$4,800 / year",
+        slug: "alte-university",
+      },
+      {
+        name: "Avicenna Medical University",
+        location: "Tbilisi",
+        fees: "$5,000 / year",
+        slug: "avicenna-medical-university-georgia",
       },
     ],
     otherUniversities: [
@@ -114,6 +192,11 @@ const countryData = {
         fees: "$6,500 / year",
       },
       {
+        name: "Caucasus University",
+        location: "Tbilisi",
+        fees: "$5,500 / year",
+      },
+      {
         name: "European University",
         location: "Tbilisi",
         fees: "$5,000 / year",
@@ -124,46 +207,72 @@ const countryData = {
     name: "Uzbekistan",
     bannerImage:
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "5+1 Years (5 years study + 1 year internship)",
+    medium: "English",
+    recognition: "WHO, NMC (India), FAIMER",
+    currency: "Uzbek Som (UZS)",
+    costOfLiving: "$80–120 / month",
+    feePayment: "USD payment – online transfer or cash",
     partnerUniversities: [
       {
-        name: "Fergana Medical Institute",
-        location: "Fergana",
-        fees: "$3,200 / year",
+        name: "Tashkent State Medical Institute",
+        location: "Tashkent",
+        fees: "$3,800 / year",
+        slug: "tashkent-state-medical-institute",
       },
       {
         name: "Tashkent Medical Academy (Termez Branch)",
         location: "Termez",
         fees: "$3,000 / year",
+        slug: "tashkent-medical-academy-termez",
+      },
+      {
+        name: "Samarkand State Medical University",
+        location: "Samarkand",
+        fees: "$3,300 / year",
+        slug: "samarkand-state-medical-university",
       },
       {
         name: "Bukhara State Medical Institute",
         location: "Bukhara",
         fees: "$3,500 / year",
+        slug: "bukhara-state-medical-institute",
       },
       {
-        name: "Samarkand State Medical Academy",
-        location: "Samarkand",
-        fees: "$3,300 / year",
-      },
-      {
-        name: "Tashkent State Medical Institute",
-        location: "Tashkent",
-        fees: "$3,800 / year",
-      },
-      {
-        name: "Andijan State Medical Institute",
-        location: "Andijan",
-        fees: "$3,000 / year",
+        name: "Fergana Medical Institute",
+        location: "Fergana",
+        fees: "$3,200 / year",
+        slug: "fergana-medical-institute",
       },
       {
         name: "Gulistan State University",
         location: "Gulistan",
         fees: "$2,800 / year",
+        slug: "gulistan-state-university",
       },
       {
         name: "Bukhara Innovative Medical Institute",
         location: "Bukhara",
         fees: "$3,200 / year",
+        slug: "bukhara-innovative-medical-institute",
+      },
+      {
+        name: "Kimyo International University in Tashkent",
+        location: "Tashkent",
+        fees: "$3,500 / year",
+        slug: "kimyo-international-university",
+      },
+      {
+        name: "Andijan State Medical Institute",
+        location: "Andijan",
+        fees: "$3,000 / year",
+        slug: "andijan-state-medical-institute",
+      },
+      {
+        name: "Mamun University",
+        location: "Khiva",
+        fees: "$3,000 / year",
+        slug: "mamun-university",
       },
     ],
     otherUniversities: [
@@ -183,13 +292,25 @@ const countryData = {
     name: "Kazakhstan",
     bannerImage:
       "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "5+1 Years (5 years study + 1 year internship)",
+    medium: "English / Russian",
+    recognition: "WHO, NMC (India), FAIMER",
+    currency: "Kazakhstani Tenge (KZT)",
+    costOfLiving: "$120–180 / month",
+    feePayment: "USD payment – bank transfer or cash",
     partnerUniversities: [
+      {
+        name: "Caspian International School of Medicine",
+        location: "Almaty",
+        fees: "$4,200 / year",
+        slug: "caspian-international-school-of-medicine",
+      },
       {
         name: "Kazakh Russian Medical University",
         location: "Almaty",
         fees: "$4,500 / year",
+        slug: "kazakh-russian-medical-university",
       },
-      { name: "Caspian University", location: "Almaty", fees: "$4,200 / year" },
     ],
     otherUniversities: [
       {
@@ -223,28 +344,50 @@ const countryData = {
     name: "Kyrgyzstan",
     bannerImage:
       "https://images.unsplash.com/photo-1571940747783-5d5db2ac5ce5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "5+1 Years (5 years study + 1 year internship)",
+    medium: "English",
+    recognition: "WHO, NMC (India), FAIMER",
+    currency: "Kyrgyzstani Som (KGS)",
+    costOfLiving: "$80–120 / month",
+    feePayment: "USD payment – online transfer or cash",
     partnerUniversities: [
       {
         name: "Kyrgyz State Medical Academy",
         location: "Bishkek",
         fees: "$4,000 / year",
+        slug: "kyrgyz-state-medical-academy",
       },
       {
-        name: "International School of Medicine (IESM)",
-        location: "Bishkek (Central Campus)",
+        name: "International School of Medicine (ISM) – Central Campus",
+        location: "Bishkek",
         fees: "$4,500 / year",
+        slug: "international-school-of-medicine-central",
       },
       {
-        name: "International School of Medicine (ISM)",
+        name: "International School of Medicine (ISM) – Issyk-Kul",
         location: "Issyk-Kul",
         fees: "$4,200 / year",
+        slug: "international-school-of-medicine-issyk-kul",
+      },
+      {
+        name: "Kyrgyz-Uzbek International University",
+        location: "Osh",
+        fees: "$3,500 / year",
+        slug: "kyrgyz-uzbek-international-university",
       },
       {
         name: "International Medical University (IMU)",
         location: "Bishkek",
         fees: "$4,300 / year",
+        slug: "international-medical-university-imu",
       },
-      { name: "Osh State University", location: "Osh", fees: "$3,500 / year" },
+    ],
+    otherUniversities: [
+      {
+        name: "Osh State University",
+        location: "Osh",
+        fees: "$3,500 / year",
+      },
       {
         name: "Jalalabad State University",
         location: "Jalalabad",
@@ -255,8 +398,6 @@ const countryData = {
         location: "Kant",
         fees: "$3,800 / year",
       },
-    ],
-    otherUniversities: [
       {
         name: "Kyrgyz-Russian Slavic University",
         location: "Bishkek",
@@ -273,11 +414,18 @@ const countryData = {
     name: "Tajikistan",
     bannerImage:
       "https://images.unsplash.com/photo-1614531341773-3bff8b7cb3fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "5+1 Years (5 years study + 1 year internship)",
+    medium: "English",
+    recognition: "WHO, NMC (India), FAIMER",
+    currency: "Tajikistani Somoni (TJS)",
+    costOfLiving: "$70–100 / month",
+    feePayment: "USD payment – bank transfer or cash",
     partnerUniversities: [
       {
         name: "Avicenna Tajik State Medical University",
         location: "Dushanbe",
         fees: "$3,500 / year",
+        slug: "avicenna-tajik-state-medical-university",
       },
     ],
     otherUniversities: [
@@ -555,9 +703,9 @@ const MbbsCountry = () => {
   return (
     <div>
       <SEO
-        title={`MBBS in ${country?.name || "Abroad"}`}
-        description={`Study MBBS in ${country?.name || "abroad"} with Capton Visa Point. Complete MBBS admission guidance 2026-2027 — fees structure, eligibility, WHO & NMC approved universities, visa process, hostel facilities, and Indian food availability. Affordable MBBS for Indian students.`}
-        keywords={`MBBS in ${country?.name || "abroad"}, study MBBS in ${country?.name || "abroad"}, MBBS in ${country?.name || "abroad"} fees, MBBS in ${country?.name || "abroad"} for Indian students, ${country?.name || ""} MBBS admission, top medical universities in ${country?.name || "abroad"}, low cost MBBS in ${country?.name || "abroad"}, MBBS in ${country?.name || "abroad"} eligibility, MBBS in ${country?.name || "abroad"} consultants, MBBS in ${country?.name || "abroad"} without donation, MBBS abroad, MBBS abroad admission, MBBS abroad consultants, cheapest MBBS abroad, WHO approved medical universities, NMC approved medical colleges, MBBS abroad for Indian students, MBBS abroad visa process, MBBS abroad living cost, Indian food availability MBBS abroad, safety for Indian students abroad, MBBS abroad accommodation, MBBS abroad student life, FMGE exam after MBBS abroad, NEXT exam for MBBS students`}
+        title={`MBBS in ${countryName} | Fees, Universities & Admission 2026-2027`}
+        description={`Study MBBS in ${countryName} with Capton Visa Point. Complete MBBS admission guidance 2026-2027 — fees structure, eligibility, WHO & NMC approved universities, visa process, hostel facilities, and Indian food availability. Affordable MBBS for Indian students.`}
+        keywords={`MBBS in ${countryName}, study MBBS in ${countryName}, MBBS in ${countryName} fees, MBBS in ${countryName} for Indian students, ${countryName} MBBS admission, top medical universities in ${countryName}, low cost MBBS in ${countryName}, MBBS in ${countryName} eligibility, MBBS in ${countryName} consultants, MBBS abroad, WHO approved medical universities, NMC approved medical colleges, FMGE exam after MBBS abroad, NEXT exam for MBBS students`}
       />
       {/* Banner */}
       <section className="relative min-h-[70vh] pt-24 pb-12 flex items-center justify-center overflow-hidden">
@@ -606,7 +754,7 @@ const MbbsCountry = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
                 <FiDollarSign className="text-3xl text-green-500 mb-3" />
                 <h3 className="font-bold text-slate-800">Affordable Fees</h3>
@@ -617,14 +765,19 @@ const MbbsCountry = () => {
               </div>
               <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
                 <FiBookOpen className="text-3xl text-blue-500 mb-3" />
-                <h3 className="font-bold text-slate-800">English Medium</h3>
+                <h3 className="font-bold text-slate-800">
+                  {data.medium || "English"} Medium
+                </h3>
                 <p className="text-slate-500 text-sm">
-                  Entire course is taught in English for international students.
+                  Entire course is taught in {data.medium || "English"} for
+                  international students.
                 </p>
               </div>
               <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
                 <FiCheck className="text-3xl text-purple-500 mb-3" />
-                <h3 className="font-bold text-slate-800">NMC Recognized</h3>
+                <h3 className="font-bold text-slate-800">
+                  {data.recognition || "NMC"} Recognized
+                </h3>
                 <p className="text-slate-500 text-sm">
                   Graduates are eligible to sit for FMGE/NEXT in India.
                 </p>
@@ -633,107 +786,151 @@ const MbbsCountry = () => {
                 <FiClock className="text-3xl text-orange-500 mb-3" />
                 <h3 className="font-bold text-slate-800">Duration</h3>
                 <p className="text-slate-500 text-sm">
-                  6 Years (including internship) standard duration.
+                  {data.duration || "6 Years (including internship)"} standard
+                  duration.
                 </p>
               </div>
+              {data.costOfLiving && (
+                <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
+                  <FiDollarSign className="text-3xl text-teal-500 mb-3" />
+                  <h3 className="font-bold text-slate-800">Cost of Living</h3>
+                  <p className="text-slate-500 text-sm">
+                    Average monthly cost: {data.costOfLiving}
+                  </p>
+                </div>
+              )}
+              {data.currency && (
+                <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
+                  <FiAward className="text-3xl text-indigo-500 mb-3" />
+                  <h3 className="font-bold text-slate-800">Currency</h3>
+                  <p className="text-slate-500 text-sm">{data.currency}</p>
+                </div>
+              )}
             </div>
 
-            {/* Direct Partner Universities Section */}
+            {/* Fee Payment Info */}
+            {data.feePayment && (
+              <div className="p-5 bg-blue-50 rounded-xl border border-blue-100">
+                <h3 className="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                  <FiDollarSign className="text-blue-500" /> Fee Payment Method
+                </h3>
+                <p className="text-slate-600 text-sm">{data.feePayment}</p>
+              </div>
+            )}
+
+            {/* Top Universities Section */}
             {data.partnerUniversities &&
               data.partnerUniversities.length > 0 && (
                 <div>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="p-3 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl">
-                      <FiAward className="text-2xl text-white" />
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl">
+                      <FiGlobe className="text-2xl text-white" />
                     </div>
                     <div>
                       <h2 className="text-2xl font-bold text-slate-900">
-                        Our Direct Partner Universities
+                        Top Medical Universities in {countryName}
                       </h2>
                       <p className="text-sm text-slate-500">
-                        Universities with Direct Admission Contract
+                        Recommended universities for Indian students – Session
+                        2026-27
                       </p>
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-2xl p-6 border border-amber-200 mb-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <FiStar className="text-amber-600" />
-                      <p className="text-amber-800 font-medium text-sm">
-                        ✨ These universities have direct contracts with Capton
-                        Visa Point - enjoy hassle-free admission, priority
-                        processing & dedicated support!
-                      </p>
-                    </div>
+                  <p className="text-slate-600 text-sm mb-6 pl-1">
+                    Explore the best medical universities in {countryName}{" "}
+                    handpicked by our expert counsellors. These institutes offer
+                    quality MBBS education at affordable fees with full
+                    admission support from Capton Visa Point.
+                  </p>
 
-                    <div className="grid gap-4">
-                      {data.partnerUniversities.map((uni, idx) => (
-                        <div
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    {data.partnerUniversities.map((uni, idx) => {
+                      const CardWrapper = uni.slug ? Link : "div";
+                      const cardProps = uni.slug
+                        ? { to: `/mbbs/${countryKey}/${uni.slug}` }
+                        : {};
+                      return (
+                        <CardWrapper
                           key={idx}
-                          className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 rounded-xl bg-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg transition-all group"
+                          {...cardProps}
+                          className="group relative bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
                         >
-                          {/* Partner Badge */}
-                          <div className="absolute top-0 right-0">
-                            <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl flex items-center gap-1">
-                              <FiStar className="text-yellow-200 text-xs" />
-                              DIRECT PARTNER
-                            </div>
-                          </div>
+                          {/* Top accent bar */}
+                          <div className="h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
-                          <div className="mt-4 sm:mt-0">
-                            <h4 className="font-bold text-lg text-slate-900 group-hover:text-amber-600 transition-colors">
+                          <div className="p-5">
+                            {/* University number badge */}
+                            <div className="flex items-start justify-between mb-3">
+                              <span className="inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-lg text-sm font-bold">
+                                {String(idx + 1).padStart(2, "0")}
+                              </span>
+                              {uni.slug && (
+                                <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-500 bg-blue-50 px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                                  View Details{" "}
+                                  <FiArrowRight className="text-[10px]" />
+                                </span>
+                              )}
+                            </div>
+
+                            <h4 className="font-bold text-lg text-slate-900 group-hover:text-blue-600 transition-colors mb-2 leading-snug">
                               {uni.name}
                             </h4>
-                            <p className="text-slate-500 flex items-center gap-2 text-sm">
-                              <span className="inline-block w-2 h-2 bg-amber-400 rounded-full"></span>
-                              {uni.location}
-                            </p>
-                          </div>
 
-                          <div className="text-left sm:text-right mt-3 sm:mt-0">
-                            <p className="text-xs text-slate-400 font-semibold uppercase">
-                              Est. Tuition Fee
-                            </p>
-                            <p className="text-amber-600 font-bold text-lg">
-                              {uni.fees}
-                            </p>
-                            <span className="inline-block mt-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
-                              ✓ Priority Admission
-                            </span>
+                            <div className="flex items-center gap-1.5 text-slate-500 text-sm mb-4">
+                              <FiMapPin className="text-xs flex-shrink-0" />
+                              <span>{uni.location}</span>
+                            </div>
+
+                            <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+                              <div>
+                                <p className="text-[10px] text-slate-400 uppercase font-semibold tracking-wider">
+                                  Tuition Fee
+                                </p>
+                                <p className="text-blue-600 font-bold text-lg">
+                                  {uni.fees}
+                                </p>
+                              </div>
+                              <span className="inline-flex items-center gap-1 text-xs bg-green-50 text-green-700 px-2.5 py-1 rounded-full font-medium border border-green-100">
+                                <FiCheck className="text-[10px]" /> Recommended
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        </CardWrapper>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
-            {/* Other Universities Section */}
+            {/* More Universities Section */}
             {data.otherUniversities && data.otherUniversities.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                  Other Top Universities in {countryName}
+                <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                  <FiBookOpen className="text-slate-400" /> More Universities in{" "}
+                  {countryName}
                 </h2>
-                <div className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   {data.otherUniversities.map((uni, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col sm:flex-row items-center justify-between p-6 rounded-xl border border-slate-200 hover:border-brand-blue hover:shadow-lg transition-all bg-white group"
+                      className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all bg-white group"
                     >
-                      <div>
-                        <h4 className="font-bold text-lg text-slate-900 group-hover:text-brand-blue transition-colors">
+                      <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-500 font-bold text-sm flex-shrink-0 group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
+                        {String(idx + 1).padStart(2, "0")}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-slate-900 text-sm group-hover:text-blue-600 transition-colors truncate">
                           {uni.name}
                         </h4>
-                        <p className="text-slate-500 flex items-center gap-2 text-sm">
-                          <span className="inline-block w-2 h-2 bg-slate-300 rounded-full"></span>{" "}
-                          {uni.location}
-                        </p>
-                      </div>
-                      <div className="text-right mt-4 sm:mt-0">
-                        <p className="text-xs text-slate-400 font-semibold uppercase">
-                          Est. Tuition Fee
-                        </p>
-                        <p className="text-brand-blue font-bold">{uni.fees}</p>
+                        <div className="flex items-center gap-3 mt-1">
+                          <span className="text-xs text-slate-400 flex items-center gap-1">
+                            <FiMapPin className="text-[10px]" /> {uni.location}
+                          </span>
+                          <span className="text-xs font-semibold text-blue-600">
+                            {uni.fees}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -800,20 +997,20 @@ const MbbsCountry = () => {
 
               {data.partnerUniversities &&
                 data.partnerUniversities.length > 0 && (
-                  <div className="mt-6 p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border border-amber-200">
-                    <h4 className="font-bold text-amber-700 mb-2 flex items-center gap-2">
-                      <FiStar className="text-amber-500" /> Partner Advantage
+                  <div className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-200">
+                    <h4 className="font-bold text-blue-700 mb-2 flex items-center gap-2">
+                      <FiStar className="text-blue-500" /> Admission Support
                     </h4>
                     <p className="text-sm text-slate-600">
-                      We have{" "}
-                      <span className="font-bold text-amber-600">
-                        {data.partnerUniversities.length} direct partner{" "}
+                      We work with{" "}
+                      <span className="font-bold text-blue-600">
+                        {data.partnerUniversities.length} top{" "}
                         {data.partnerUniversities.length === 1
                           ? "university"
                           : "universities"}
                       </span>{" "}
-                      in {countryName}. Apply through us for priority admission
-                      and dedicated support!
+                      in {countryName}. Apply through us for smooth admission,
+                      visa help & complete guidance!
                     </p>
                   </div>
                 )}
