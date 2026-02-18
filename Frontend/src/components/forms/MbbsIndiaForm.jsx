@@ -170,7 +170,7 @@ const MbbsIndiaForm = ({
         <div
           className={`mb-4 p-3 rounded-lg flex items-center gap-2 ${
             status.type === "success"
-              ? "bg-green-50 text-green-700 border border-green-200"
+              ? "bg-blue-50 text-blue-800 border border-blue-200"
               : "bg-red-50 text-red-700 border border-red-200"
           }`}
         >

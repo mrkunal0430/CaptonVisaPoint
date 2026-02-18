@@ -4,21 +4,23 @@
 @theme {
   --font-sans: "Inter", sans-serif;
 
-  /* Primary Colors - Soft Blue */
-  --color-primary: #3b82f6; /* Blue 500 - Main brand color */
+  /* Primary Colors - Deep Navy Blue */
+  --color-primary: #1e3a8a; /* Blue 900 - Main brand color */
   --color-primary-light: #dbeafe; /* Blue 100 - Light accents */
-  --color-primary-dark: #2563eb; /* Blue 600 - Hover states */
+  --color-primary-dark: #1e40af; /* Blue 800 - Hover states */
   --color-primary-soft: #eff6ff; /* Blue 50 - Soft backgrounds */
 
-  /* Legacy aliases for compatibility */
-  --color-brand-blue: #3b82f6;
-  --color-brand-blue-light: #60a5fa; /* Blue 400 */
-  --color-brand-blue-dark: #2563eb;
+  /* Brand aliases */
+  --color-brand-blue: #1d4ed8; /* Blue 700 - CTAs & buttons */
+  --color-brand-blue-light: #2563eb; /* Blue 600 - Links */
+  --color-brand-blue-dark: #1e40af; /* Blue 800 - Hover */
+  --color-brand-blue-soft: #dbeafe; /* Blue 100 - Soft backgrounds */
   --color-brand-dark: #1e293b; /* Slate 800 - Dark text */
 
   /* Accent Color - Warm Amber */
   --color-accent: #f59e0b; /* Amber 500 */
   --color-accent-light: #fef3c7; /* Amber 100 */
+  --color-accent-dark: #d97706; /* Amber 600 - Hover */
 
   /* Background Colors - All Light */
   --color-bg-white: #ffffff;
@@ -29,6 +31,12 @@
   --color-text-dark: #1e293b; /* Slate 800 */
   --color-text-body: #475569; /* Slate 600 */
   --color-text-muted: #94a3b8; /* Slate 400 */
+
+  /* Semantic Colors */
+  --color-success: #16a34a; /* Green 600 */
+  --color-success-soft: #f0fdf4; /* Green 50 */
+  --color-error: #dc2626; /* Red 600 */
+  --color-error-soft: #fef2f2; /* Red 50 */
 }
 
 @layer utilities {

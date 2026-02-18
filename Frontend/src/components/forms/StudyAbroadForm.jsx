@@ -131,7 +131,7 @@ const StudyAbroadForm = ({
   };
 
   const inputClass =
-    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all text-slate-700";
+    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-slate-700";
   const labelClass = "block text-sm font-medium text-slate-700 mb-1.5";
 
   const countries = [
@@ -158,7 +158,7 @@ const StudyAbroadForm = ({
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                 step >= s
-                  ? "bg-purple-600 text-white"
+                  ? "bg-blue-700 text-white"
                   : "bg-slate-100 text-slate-400"
               }`}
             >
@@ -167,7 +167,7 @@ const StudyAbroadForm = ({
             {s < 3 && (
               <div
                 className={`w-8 h-1 mx-1 rounded ${
-                  step > s ? "bg-purple-600" : "bg-slate-200"
+                  step > s ? "bg-blue-700" : "bg-slate-200"
                 }`}
               />
             )}
@@ -180,7 +180,7 @@ const StudyAbroadForm = ({
         <div
           className={`mb-4 p-3 rounded-lg flex items-center gap-2 ${
             status.type === "success"
-              ? "bg-green-50 text-green-700 border border-green-200"
+              ? "bg-blue-50 text-blue-800 border border-blue-200"
               : "bg-red-50 text-red-700 border border-red-200"
           }`}
         >
@@ -197,7 +197,7 @@ const StudyAbroadForm = ({
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-2 text-purple-600 font-semibold mb-4">
+            <div className="flex items-center gap-2 text-blue-700 font-semibold mb-4">
               <FiUser />
               <span>Basic Details</span>
             </div>
@@ -271,7 +271,7 @@ const StudyAbroadForm = ({
               type="button"
               onClick={() => validateStep(1) && setStep(2)}
               disabled={!validateStep(1)}
-              className="w-full py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-blue-700 text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next: Education Details
             </button>
@@ -285,7 +285,7 @@ const StudyAbroadForm = ({
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-2 text-purple-600 font-semibold mb-4">
+            <div className="flex items-center gap-2 text-blue-700 font-semibold mb-4">
               <FiBook />
               <span>Education & Language</span>
             </div>
@@ -379,7 +379,7 @@ const StudyAbroadForm = ({
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="flex-1 py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors"
+                className="flex-1 py-3 bg-blue-700 text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors"
               >
                 Next: Preferences
               </button>
@@ -394,7 +394,7 @@ const StudyAbroadForm = ({
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-2 text-purple-600 font-semibold mb-4">
+            <div className="flex items-center gap-2 text-blue-700 font-semibold mb-4">
               <FiGlobe />
               <span>Country & Budget Preference</span>
             </div>
@@ -411,7 +411,7 @@ const StudyAbroadForm = ({
                     onClick={() => handleCountryChange(country.name)}
                     className={`p-3 rounded-xl border-2 text-sm font-medium transition-all flex items-center justify-center gap-2 ${
                       formData.countryPreferenceStudy.includes(country.name)
-                        ? "border-purple-500 bg-purple-50 text-purple-700"
+                        ? "border-blue-600 bg-blue-50 text-blue-800"
                         : "border-slate-200 hover:border-slate-300 text-slate-600"
                     }`}
                   >
@@ -449,7 +449,7 @@ const StudyAbroadForm = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+                className="flex-1 py-3 bg-gradient-to-r from-blue-700 to-pink-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

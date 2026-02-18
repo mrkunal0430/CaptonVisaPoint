@@ -54,13 +54,13 @@ const StudyAbroad = () => {
       title: "Global Career Opportunities",
       desc: "Access international job markets with globally recognized qualifications",
       icon: <FiBriefcase />,
-      color: "from-blue-500 to-indigo-600",
+      color: "from-blue-500 to-blue-700",
     },
     {
       title: "World-Class Education",
       desc: "Learn from renowned professors at top-ranked universities worldwide",
       icon: <FiAward />,
-      color: "from-purple-500 to-pink-600",
+      color: "from-blue-600 to-pink-600",
     },
     {
       title: "Cultural Immersion",
@@ -72,7 +72,7 @@ const StudyAbroad = () => {
       title: "Personal Growth",
       desc: "Gain independence, resilience, and adaptability",
       icon: <FiStar />,
-      color: "from-green-500 to-teal-600",
+      color: "from-blue-600 to-blue-700",
     },
   ];
 
@@ -132,11 +132,11 @@ const StudyAbroad = () => {
         keywords="study abroad, study in Germany, study in UK, study in USA, study in Canada, study in Australia, study in France, study in UAE, overseas education consultants, study abroad consultants, B.Tech in Germany, study work settle in Germany, low budget study abroad, affordable study abroad, study abroad scholarships, study abroad visa process, university shortlisting, APS documentation, study abroad admission, overseas education, international education, foreign university admission, study abroad for Indian students, best country to study abroad, study abroad 2026, study abroad 2027"
       />
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-blue-950">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-float-slow" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float-slow-reverse" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-float-slow-reverse" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-blue-500/10 to-transparent rounded-full" />
         </div>
 
@@ -217,7 +217,7 @@ const StudyAbroad = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full font-bold text-lg shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:scale-105 transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-bold text-lg shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:scale-105 transition-all"
                 >
                   Start Your Journey <FiArrowRight />
                 </Link>
@@ -487,10 +487,10 @@ const StudyAbroad = () => {
       </section>
 
       {/* Process Timeline */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-950 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -518,7 +518,7 @@ const StudyAbroad = () => {
                 transition={{ delay: i * 0.1 }}
                 className="relative p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 hover:bg-white/15 transition-all group"
               >
-                <div className="absolute -top-3 -left-3 w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg">
+                <div className="absolute -top-3 -left-3 w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold shadow-lg">
                   {step.step}
                 </div>
                 <div className="pt-4">
@@ -585,7 +585,7 @@ const StudyAbroad = () => {
       </section>
 
       {/* CTA with Existing Form */}
-      <section className="py-24 bg-gradient-to-r from-blue-600 to-indigo-700">
+      <section className="py-24 bg-gradient-to-r from-blue-600 to-blue-800">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
             <div className="lg:w-1/2 p-8 lg:p-12 bg-gradient-to-br from-slate-900 to-blue-900 text-white flex flex-col justify-center">
@@ -604,7 +604,7 @@ const StudyAbroad = () => {
                   "Visa Support",
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-blue-100">
-                    <FiCheckCircle className="text-green-400" /> {item}
+                    <FiCheckCircle className="text-blue-400" /> {item}
                   </li>
                 ))}
               </ul>

@@ -141,11 +141,11 @@ const LeadsTable = ({ token }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case "new":
-        return "bg-green-100 text-green-700 border-green-200";
+        return "bg-blue-100 text-blue-800 border-blue-200";
       case "contacted":
         return "bg-yellow-100 text-yellow-700 border-yellow-200";
       case "converted":
-        return "bg-purple-100 text-purple-700 border-purple-200";
+        return "bg-blue-100 text-blue-800 border-blue-200";
       default:
         return "bg-slate-100 text-slate-700 border-slate-200";
     }
@@ -180,7 +180,7 @@ const LeadsTable = ({ token }) => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-blue-700 text-white rounded-xl hover:bg-blue-800 transition-colors"
           >
             <FiDownload size={18} />
             <span className="hidden sm:inline">Export CSV</span>
@@ -374,7 +374,7 @@ const LeadsTable = ({ token }) => {
                             href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-colors"
+                            className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                             title="WhatsApp"
                           >
                             <FiMessageCircle size={18} />
@@ -477,7 +477,7 @@ const LeadsTable = ({ token }) => {
                       href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-3 py-2 text-green-600 hover:bg-green-50 rounded-lg text-sm font-medium"
+                      className="flex items-center gap-2 px-3 py-2 text-blue-700 hover:bg-blue-50 rounded-lg text-sm font-medium"
                     >
                       <FiMessageCircle size={16} /> WhatsApp
                     </a>
@@ -644,7 +644,7 @@ const LeadsTable = ({ token }) => {
                   {editingNotes === selectedLead._id ? (
                     <button
                       onClick={() => handleNotesUpdate(selectedLead._id)}
-                      className="text-xs text-green-600 hover:text-green-700 flex items-center gap-1"
+                      className="text-xs text-blue-700 hover:text-blue-800 flex items-center gap-1"
                     >
                       <FiSave size={12} /> Save
                     </button>
@@ -684,7 +684,7 @@ const LeadsTable = ({ token }) => {
                   href={`https://wa.me/${selectedLead.phone?.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-blue-700 text-white rounded-xl font-medium hover:bg-blue-800"
                 >
                   <FiMessageCircle size={18} /> WhatsApp
                 </a>

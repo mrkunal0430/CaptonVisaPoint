@@ -1613,7 +1613,7 @@ const MbbsUniversity = () => {
               <p className="text-xs text-slate-400 uppercase font-semibold tracking-wider">
                 Total Cost
               </p>
-              <p className="text-xl font-bold text-green-600 mt-1">
+              <p className="text-xl font-bold text-blue-700 mt-1">
                 {uniData.totalFees}
               </p>
             </div>
@@ -1669,9 +1669,9 @@ const MbbsUniversity = () => {
                 {uniData.highlights.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100"
+                    className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-blue-50 rounded-xl border border-blue-100"
                   >
-                    <FiCheck className="text-green-500 mt-0.5 flex-shrink-0" />
+                    <FiCheck className="text-blue-600 mt-0.5 flex-shrink-0" />
                     <span className="text-slate-700 text-sm font-medium">
                       {item}
                     </span>
@@ -1687,7 +1687,7 @@ const MbbsUniversity = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <FiFileText className="text-purple-500" /> Eligibility Criteria
+                <FiFileText className="text-blue-600" /> Eligibility Criteria
               </h2>
               <ul className="space-y-3">
                 {uniData.eligibility.map((item, idx) => (
@@ -1695,7 +1695,7 @@ const MbbsUniversity = () => {
                     key={idx}
                     className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl"
                   >
-                    <div className="w-6 h-6 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                       {idx + 1}
                     </div>
                     <span className="text-slate-700 text-sm">{item}</span>
@@ -1719,7 +1719,7 @@ const MbbsUniversity = () => {
                     key={idx}
                     className="flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all"
                   >
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                       {step.step}
                     </div>
                     <div>
@@ -1738,7 +1738,7 @@ const MbbsUniversity = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                <FiHome className="text-teal-500" /> Hostel & Accommodation
+                <FiHome className="text-blue-600" /> Hostel & Accommodation
               </h2>
               <p className="text-slate-600 leading-relaxed mb-6">
                 {uniData.hostel}
@@ -1747,7 +1747,7 @@ const MbbsUniversity = () => {
                 {uniData.facilities.map((f, idx) => (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-1.5 bg-teal-50 text-teal-700 border border-teal-200 px-4 py-2 rounded-full text-sm font-medium"
+                    className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200 px-4 py-2 rounded-full text-sm font-medium"
                   >
                     <FiShield className="text-xs" /> {f}
                   </span>
@@ -1764,30 +1764,30 @@ const MbbsUniversity = () => {
                 subtitle="Get free admission assessment"
               />
 
-              <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
+              <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl border border-blue-100">
                 <h4 className="font-bold text-blue-700 mb-3 flex items-center gap-2">
                   <FiShield className="text-blue-500" /> Why Apply Through
                   Capton Visa Point?
                 </h4>
                 <ul className="text-sm text-slate-600 space-y-2.5">
                   <li className="flex items-start gap-2">
-                    <FiCheck className="text-green-500 mt-0.5 flex-shrink-0" />{" "}
+                    <FiCheck className="text-blue-600 mt-0.5 flex-shrink-0" />{" "}
                     Direct admission – no middlemen
                   </li>
                   <li className="flex items-start gap-2">
-                    <FiCheck className="text-green-500 mt-0.5 flex-shrink-0" />{" "}
+                    <FiCheck className="text-blue-600 mt-0.5 flex-shrink-0" />{" "}
                     Complete visa & documentation support
                   </li>
                   <li className="flex items-start gap-2">
-                    <FiCheck className="text-green-500 mt-0.5 flex-shrink-0" />{" "}
+                    <FiCheck className="text-blue-600 mt-0.5 flex-shrink-0" />{" "}
                     Pre-departure & airport assistance
                   </li>
                   <li className="flex items-start gap-2">
-                    <FiCheck className="text-green-500 mt-0.5 flex-shrink-0" />{" "}
+                    <FiCheck className="text-blue-600 mt-0.5 flex-shrink-0" />{" "}
                     On-ground support after arrival
                   </li>
                   <li className="flex items-start gap-2">
-                    <FiCheck className="text-green-500 mt-0.5 flex-shrink-0" />{" "}
+                    <FiCheck className="text-blue-600 mt-0.5 flex-shrink-0" />{" "}
                     Transparent fees – no hidden charges
                   </li>
                 </ul>

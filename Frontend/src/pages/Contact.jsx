@@ -1,4 +1,3 @@
-import React from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
 import SEO from "../components/SEO";
@@ -58,13 +57,14 @@ const Contact = () => {
             {/* Map Placeholder */}
             <div className="mt-8 sm:mt-12 h-48 sm:h-64 bg-slate-200 rounded-2xl overflow-hidden">
               <iframe
-                src="https://maps.google.com/maps?q=B-15+Ram+Dutt+Enclave+Uttam+Nagar+New+Delhi+110059&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14009.41697869707!2d77.04799969929806!3d28.619143260748913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d05848d401105%3A0x800ea34b008c1c8d!2sCAPTON%20VISA%20POINT!5e0!3m2!1sen!2sin!4v1771365478964!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
-                title="Google Map"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Capton Visa Point Location"
               ></iframe>
             </div>
           </div>

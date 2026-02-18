@@ -31,20 +31,20 @@ const Ausbildung = () => {
       icon: <FiDollarSign />,
       title: "Earn While You Learn",
       description: "Get monthly stipend €900-€1,300 that increases each year",
-      gradient: "from-green-500 to-emerald-500",
+      gradient: "from-blue-600 to-blue-600",
     },
     {
       icon: <FiAward />,
       title: "Zero Tuition Fees",
       description:
         "Completely free education - companies pay for your training",
-      gradient: "from-blue-500 to-cyan-500",
+      gradient: "from-blue-500 to-blue-600",
     },
     {
       icon: <FiBriefcase />,
       title: "85% Job Placement",
       description: "Most trainees get hired by their training company",
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-blue-600 to-pink-500",
     },
     {
       icon: <FiGlobe />,
@@ -56,7 +56,7 @@ const Ausbildung = () => {
       icon: <FiTrendingUp />,
       title: "High Earning Potential",
       description: "Post-completion salary €2,500-€4,000+ per month",
-      gradient: "from-indigo-500 to-purple-500",
+      gradient: "from-blue-600 to-blue-600",
     },
     {
       icon: <FiShield />,
@@ -132,7 +132,7 @@ const Ausbildung = () => {
       avgSalary: "€3,500-€5,000",
       duration: "3 years",
       germanLevel: "B1",
-      gradient: "from-blue-500 to-cyan-500",
+      gradient: "from-blue-500 to-blue-600",
       roles: [
         "IT Specialist (Fachinformatiker/in)",
         "Software Developer (Anwendungsentwickler/in)",
@@ -180,7 +180,7 @@ const Ausbildung = () => {
       avgSalary: "€2,500-€3,500",
       duration: "3 years",
       germanLevel: "B1-B2",
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-blue-600 to-pink-500",
       roles: [
         "Hotel Manager (Hotelfachmann/-frau)",
         "Restaurant Specialist (Restaurantfachmann/-frau)",
@@ -228,7 +228,7 @@ const Ausbildung = () => {
       avgSalary: "€2,800-€4,000",
       duration: "3 years",
       germanLevel: "B2",
-      gradient: "from-indigo-500 to-purple-500",
+      gradient: "from-blue-600 to-blue-600",
       roles: [
         "Office Management (Kaufmann/-frau für Büromanagement)",
         "Banking Professional (Bankkaufmann/-frau)",
@@ -465,12 +465,12 @@ const Ausbildung = () => {
         keywords="Ausbildung Germany, German vocational training, earn and learn Germany, Ausbildung visa, work in Germany, Ausbildung consultants India, Ausbildung eligibility, Ausbildung admission, study work settle in Germany, PR pathway Germany, work permit Germany, German language training, learn German for Ausbildung, Ausbildung for Indian students, vocational training abroad, career in Germany, Germany work visa, Ausbildung 2026, Ausbildung 2027"
       />
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-blue-950 text-white py-24">
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden opacity-10">
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-yellow-400 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute top-1/2 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute -bottom-24 left-1/3 w-96 h-96 bg-purple-400 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute -bottom-24 left-1/3 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -529,7 +529,7 @@ const Ausbildung = () => {
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-extrabold text-green-300">
+                  <div className="text-3xl font-extrabold text-blue-300">
                     85%
                   </div>
                   <div className="text-xs text-blue-100 mt-1">
@@ -553,7 +553,7 @@ const Ausbildung = () => {
               />
               <div className="absolute -bottom-6 -left-6 bg-white text-slate-900 p-6 rounded-2xl shadow-2xl">
                 <div className="flex items-center gap-3 mb-2">
-                  <FiCheckCircle className="text-green-500 text-2xl" />
+                  <FiCheckCircle className="text-blue-600 text-2xl" />
                   <span className="font-bold text-lg">2-3.5 Years</span>
                 </div>
                 <p className="text-sm text-slate-600">Dual Education System</p>
@@ -607,7 +607,7 @@ const Ausbildung = () => {
       </section>
 
       {/* Why Choose Ausbildung */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-blue-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
@@ -643,13 +643,13 @@ const Ausbildung = () => {
       </section>
 
       {/* Salary Progression */}
-      <section className="py-16 bg-gradient-to-r from-green-600 to-emerald-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-700 text-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
               Your Earning Journey
             </h2>
-            <p className="text-xl text-green-100 max-w-2xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
               Watch your income grow from day one through completion and beyond
             </p>
           </div>
@@ -660,17 +660,17 @@ const Ausbildung = () => {
                 key={index}
                 className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all text-center"
               >
-                <div className="text-green-200 font-bold mb-2">{item.year}</div>
+                <div className="text-blue-200 font-bold mb-2">{item.year}</div>
                 <div className="text-4xl font-extrabold text-white mb-3">
                   {item.amount}
                 </div>
-                <p className="text-green-100 text-sm">{item.description}</p>
+                <p className="text-blue-100 text-sm">{item.description}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-lg text-green-100 max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+            <p className="text-lg text-blue-100 max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
               <FiTrendingUp className="inline-block mr-2 text-yellow-300" />
               After Ausbildung, your career earnings can reach{" "}
               <span className="font-bold text-yellow-300">
@@ -774,7 +774,7 @@ const Ausbildung = () => {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                  <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
                     <th className="px-6 py-4 text-left font-bold">Feature</th>
                     <th className="px-6 py-4 text-left font-bold">
                       <div className="flex items-center gap-2">
@@ -801,7 +801,7 @@ const Ausbildung = () => {
                       <td className="px-6 py-4 font-bold text-slate-900">
                         {item.feature}
                       </td>
-                      <td className="px-6 py-4 text-green-600 font-semibold">
+                      <td className="px-6 py-4 text-blue-700 font-semibold">
                         {item.ausbildung}
                       </td>
                       <td className="px-6 py-4 text-slate-600">
@@ -843,7 +843,7 @@ const Ausbildung = () => {
                     {step.step}
                   </div>
                   <div className="flex-1">
-                    <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
+                    <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-blue-700 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
                       {step.icon}
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-2">
@@ -856,7 +856,7 @@ const Ausbildung = () => {
                           key={idx}
                           className="flex items-start gap-2 text-slate-700"
                         >
-                          <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                          <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                           <span className="text-sm">{detail}</span>
                         </li>
                       ))}
@@ -870,13 +870,13 @@ const Ausbildung = () => {
       </section>
 
       {/* Application Process */}
-      <section className="py-16 bg-gradient-to-br from-indigo-600 to-purple-700 text-white">
+      <section className="py-16 bg-gradient-to-br from-blue-700 to-blue-800 text-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
               Step-by-Step Application Process
             </h2>
-            <p className="text-xl text-indigo-100 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Your complete roadmap from preparation to starting your Ausbildung
               in Germany
             </p>
@@ -892,15 +892,15 @@ const Ausbildung = () => {
                   {phase.phase}
                 </div>
                 <h3 className="text-2xl font-bold mb-2">{phase.title}</h3>
-                <div className="flex items-center gap-2 text-indigo-200 text-sm mb-4">
+                <div className="flex items-center gap-2 text-blue-200 text-sm mb-4">
                   <FiClock />
                   {phase.duration}
                 </div>
                 <ul className="space-y-3">
                   {phase.steps.map((step, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm">
-                      <FiCheckCircle className="text-green-300 mt-1 flex-shrink-0" />
-                      <span className="text-indigo-100">{step}</span>
+                      <FiCheckCircle className="text-blue-300 mt-1 flex-shrink-0" />
+                      <span className="text-blue-100">{step}</span>
                     </li>
                   ))}
                 </ul>
@@ -909,7 +909,7 @@ const Ausbildung = () => {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-lg text-indigo-100 max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+            <p className="text-lg text-blue-100 max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
               <FiTarget className="inline-block mr-2 text-yellow-300" />
               Total Timeline:{" "}
               <span className="font-bold text-yellow-300">
@@ -1006,7 +1006,7 @@ const Ausbildung = () => {
                       "Visa guidance",
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <FiCheckCircle className="text-green-300 flex-shrink-0" />
+                        <FiCheckCircle className="text-blue-300 flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -1084,8 +1084,8 @@ const Ausbildung = () => {
 
             <div className="p-8 max-h-[70vh] overflow-y-auto">
               <div className="grid md:grid-cols-3 gap-4 mb-8">
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center">
-                  <FiDollarSign className="text-3xl text-green-600 mx-auto mb-2" />
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
+                  <FiDollarSign className="text-3xl text-blue-700 mx-auto mb-2" />
                   <div className="text-sm text-slate-600 mb-1">
                     Avg Salary (Post-Ausbildung)
                   </div>
@@ -1100,8 +1100,8 @@ const Ausbildung = () => {
                     {selectedSector.duration}
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center">
-                  <FiGlobe className="text-3xl text-purple-600 mx-auto mb-2" />
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
+                  <FiGlobe className="text-3xl text-blue-700 mx-auto mb-2" />
                   <div className="text-sm text-slate-600 mb-1">
                     German Level
                   </div>
@@ -1136,9 +1136,9 @@ const Ausbildung = () => {
                   {selectedSector.benefits.map((benefit, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-3 bg-green-50 rounded-lg p-3"
+                      className="flex items-start gap-3 bg-blue-50 rounded-lg p-3"
                     >
-                      <FiCheckCircle className="text-green-600 flex-shrink-0 mt-1" />
+                      <FiCheckCircle className="text-blue-700 flex-shrink-0 mt-1" />
                       <span className="text-slate-700">{benefit}</span>
                     </div>
                   ))}

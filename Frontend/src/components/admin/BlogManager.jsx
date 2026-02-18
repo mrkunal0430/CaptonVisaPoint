@@ -310,7 +310,7 @@ const BlogManager = ({ token }) => {
                     onClick={() => togglePublishStatus(blog)}
                     className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-full backdrop-blur transition-colors ${
                       blog.isPublished
-                        ? "bg-green-100/90 text-green-700 hover:bg-green-200"
+                        ? "bg-blue-100/90 text-blue-800 hover:bg-blue-200"
                         : "bg-red-100/90 text-red-600 hover:bg-red-200"
                     }`}
                     title={
@@ -677,7 +677,7 @@ The content can be as long as you need - there's no character limit."
                       <FiX size={14} />
                     </button>
                     {!imageError && (
-                      <div className="px-3 py-2 bg-green-50 border-t border-green-100 flex items-center gap-2 text-green-600 text-xs">
+                      <div className="px-3 py-2 bg-blue-50 border-t border-blue-100 flex items-center gap-2 text-blue-700 text-xs">
                         <FiCheck size={14} />
                         {imageFile
                           ? `Selected: ${imageFile.name}`

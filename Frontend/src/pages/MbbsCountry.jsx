@@ -756,7 +756,7 @@ const MbbsCountry = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                <FiDollarSign className="text-3xl text-green-500 mb-3" />
+                <FiDollarSign className="text-3xl text-blue-600 mb-3" />
                 <h3 className="font-bold text-slate-800">Affordable Fees</h3>
                 <p className="text-slate-500 text-sm">
                   Low tuition & living costs compared to private colleges in
@@ -774,7 +774,7 @@ const MbbsCountry = () => {
                 </p>
               </div>
               <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                <FiCheck className="text-3xl text-purple-500 mb-3" />
+                <FiCheck className="text-3xl text-blue-600 mb-3" />
                 <h3 className="font-bold text-slate-800">
                   {data.recognition || "NMC"} Recognized
                 </h3>
@@ -792,7 +792,7 @@ const MbbsCountry = () => {
               </div>
               {data.costOfLiving && (
                 <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                  <FiDollarSign className="text-3xl text-teal-500 mb-3" />
+                  <FiDollarSign className="text-3xl text-blue-600 mb-3" />
                   <h3 className="font-bold text-slate-800">Cost of Living</h3>
                   <p className="text-slate-500 text-sm">
                     Average monthly cost: {data.costOfLiving}
@@ -801,7 +801,7 @@ const MbbsCountry = () => {
               )}
               {data.currency && (
                 <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                  <FiAward className="text-3xl text-indigo-500 mb-3" />
+                  <FiAward className="text-3xl text-blue-600 mb-3" />
                   <h3 className="font-bold text-slate-800">Currency</h3>
                   <p className="text-slate-500 text-sm">{data.currency}</p>
                 </div>
@@ -823,7 +823,7 @@ const MbbsCountry = () => {
               data.partnerUniversities.length > 0 && (
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl">
+                    <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl">
                       <FiGlobe className="text-2xl text-white" />
                     </div>
                     <div>
@@ -857,7 +857,7 @@ const MbbsCountry = () => {
                           className="group relative bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
                         >
                           {/* Top accent bar */}
-                          <div className="h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
+                          <div className="h-1.5 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-600" />
 
                           <div className="p-5">
                             {/* University number badge */}
@@ -891,7 +891,7 @@ const MbbsCountry = () => {
                                   {uni.fees}
                                 </p>
                               </div>
-                              <span className="inline-flex items-center gap-1 text-xs bg-green-50 text-green-700 px-2.5 py-1 rounded-full font-medium border border-green-100">
+                              <span className="inline-flex items-center gap-1 text-xs bg-blue-50 text-blue-800 px-2.5 py-1 rounded-full font-medium border border-blue-100">
                                 <FiCheck className="text-[10px]" /> Recommended
                               </span>
                             </div>
@@ -971,25 +971,25 @@ const MbbsCountry = () => {
                 subtitle="Get free admission assessment now"
               />
 
-              <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
+              <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl border border-blue-100">
                 <h4 className="font-bold text-brand-blue mb-2 flex items-center gap-2">
                   <FiAward className="text-amber-500" /> Why Capton Visa Point?
                 </h4>
                 <ul className="text-sm text-slate-600 space-y-2">
                   <li className="flex items-center gap-2">
-                    <FiCheck className="text-green-500" /> Direct university
+                    <FiCheck className="text-blue-600" /> Direct university
                     partnerships
                   </li>
                   <li className="flex items-center gap-2">
-                    <FiCheck className="text-green-500" /> Hassle-free admission
+                    <FiCheck className="text-blue-600" /> Hassle-free admission
                     process
                   </li>
                   <li className="flex items-center gap-2">
-                    <FiCheck className="text-green-500" /> Complete visa
+                    <FiCheck className="text-blue-600" /> Complete visa
                     assistance
                   </li>
                   <li className="flex items-center gap-2">
-                    <FiCheck className="text-green-500" /> Pre-departure
+                    <FiCheck className="text-blue-600" /> Pre-departure
                     guidance
                   </li>
                 </ul>
@@ -997,7 +997,7 @@ const MbbsCountry = () => {
 
               {data.partnerUniversities &&
                 data.partnerUniversities.length > 0 && (
-                  <div className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-200">
+                  <div className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl border border-blue-200">
                     <h4 className="font-bold text-blue-700 mb-2 flex items-center gap-2">
                       <FiStar className="text-blue-500" /> Admission Support
                     </h4>

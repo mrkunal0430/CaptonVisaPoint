@@ -110,7 +110,7 @@ const MbbsAbroad = () => {
 
   const benefits = [
     {
-      icon: <FiDollarSign className="text-4xl text-green-500" />,
+      icon: <FiDollarSign className="text-4xl text-blue-600" />,
       title: "Affordable Fees",
       description:
         "Government-funded universities with low tuition fees. No donation or capitation fees required. Total cost much lower than private Indian colleges.",
@@ -122,7 +122,7 @@ const MbbsAbroad = () => {
         "Degrees recognized by WHO, NMC, UNESCO, FAIMER. Eligible to appear for FMGE/NEXT, USMLE, PLAB exams. Practice anywhere in the world.",
     },
     {
-      icon: <FiBook className="text-4xl text-purple-500" />,
+      icon: <FiBook className="text-4xl text-blue-600" />,
       title: "No IELTS/TOEFL Needed",
       description:
         "Complete MBBS program taught in English. No language proficiency tests required. Qualified international faculty with modern teaching methods.",
@@ -233,7 +233,7 @@ const MbbsAbroad = () => {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Gradient orbs */}
           <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-purple-200/30 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-blue-100/20 to-transparent rounded-full" />
 
           {/* Subtle grid pattern */}
@@ -263,7 +263,7 @@ const MbbsAbroad = () => {
               {/* Main Heading */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-6">
                 Study{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-blue-700">
                   MBBS Abroad
                 </span>
               </h1>
@@ -297,7 +297,7 @@ const MbbsAbroad = () => {
                   transition={{ delay: 0.5 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-green-500/25">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-600/25">
                     <FiCheckCircle className="text-white text-lg" />
                   </div>
                   <span className="text-slate-700 font-medium">
@@ -311,7 +311,7 @@ const MbbsAbroad = () => {
                   transition={{ delay: 0.6 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-500/25">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-600/25">
                     <FiUsers className="text-white text-lg" />
                   </div>
                   <span className="text-slate-700 font-medium">
@@ -329,7 +329,7 @@ const MbbsAbroad = () => {
                 >
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1 transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1 transition-all duration-300"
                   >
                     Free Counselling <FiArrowRight />
                   </Link>
@@ -382,7 +382,7 @@ const MbbsAbroad = () => {
             >
               {/* Decorative background for image */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-blue-100 via-purple-50 to-indigo-100 rounded-full opacity-50" />
+                <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-blue-100 via-blue-50 to-blue-100 rounded-full opacity-50" />
               </div>
 
               {/* Floating cards around image */}
@@ -396,8 +396,8 @@ const MbbsAbroad = () => {
                 className="absolute top-10 left-0 sm:left-4 lg:left-0 z-20 bg-white rounded-2xl shadow-xl p-4 border border-slate-100"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                    <FiCheckCircle className="text-green-600" />
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                    <FiCheckCircle className="text-blue-700" />
                   </div>
                   <div>
                     <div className="text-sm font-bold text-slate-900">
@@ -451,7 +451,7 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Eligibility Quiz Section */}
-      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-blue-50">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto">
             <motion.div
@@ -543,7 +543,7 @@ const MbbsAbroad = () => {
                 </div>
                 <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-2 text-slate-600">
-                    <FiDollarSign className="text-green-500" />
+                    <FiDollarSign className="text-blue-600" />
                     <span className="text-sm font-semibold">
                       {country.avgFees}
                     </span>
@@ -555,7 +555,7 @@ const MbbsAbroad = () => {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-600">
-                    <FiCheckCircle className="text-purple-500" />
+                    <FiCheckCircle className="text-blue-600" />
                     <span className="text-sm">{country.benefit}</span>
                   </div>
                 </div>
@@ -598,7 +598,7 @@ const MbbsAbroad = () => {
                       <FiMapPin className="text-blue-500" />
                       {uni.location}
                     </div>
-                    <div className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    <div className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
                       {uni.ranking}
                     </div>
                   </div>
@@ -644,14 +644,14 @@ const MbbsAbroad = () => {
             {/* Documents Required */}
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <FiFileText className="text-purple-600" />
+                <FiFileText className="text-blue-700" />
                 Documents Required
               </h2>
               <div className="bg-white rounded-2xl p-8 border border-slate-200">
                 <ul className="space-y-4">
                   {documents.map((doc, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                      <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                       <span className="text-slate-700 leading-relaxed">
                         {doc}
                       </span>
@@ -702,7 +702,7 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Admission Process Timeline */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">

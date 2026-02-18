@@ -23,14 +23,14 @@ const Services = () => {
       description:
         "Navigate the complex work permit requirements for various countries. We assist with skilled worker visas, employer-sponsored visas, and temporary work permits.",
       icon: FiBriefcase,
-      color: "text-green-600 bg-green-50",
+      color: "text-blue-700 bg-blue-50",
     },
     {
       title: "Permanent Residency (PR)",
       description:
         "Settle abroad permanently. We specialize in Canada Express Entry, PNP, and Australia PR pathways. Assessment and comprehensive filing support.",
       icon: FiAnchor,
-      color: "text-purple-600 bg-purple-50",
+      color: "text-blue-700 bg-blue-50",
     },
     {
       title: "Visitor / Tourist Visa",

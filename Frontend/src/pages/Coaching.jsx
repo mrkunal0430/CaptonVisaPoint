@@ -69,7 +69,7 @@ const Coaching = () => {
       name: "IELTS Coaching",
       category: "english",
       icon: "🎓",
-      gradient: "from-blue-500 to-cyan-500",
+      gradient: "from-blue-500 to-blue-600",
       rating: 4.9,
       students: "25,000+",
       duration: "8-12 Weeks",
@@ -105,7 +105,7 @@ const Coaching = () => {
       name: "PTE Academic",
       category: "english",
       icon: "📝",
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-blue-600 to-pink-500",
       rating: 4.8,
       students: "15,000+",
       duration: "6-10 Weeks",
@@ -144,7 +144,7 @@ const Coaching = () => {
       name: "TOEFL iBT",
       category: "english",
       icon: "🌐",
-      gradient: "from-green-500 to-teal-500",
+      gradient: "from-blue-600 to-blue-600",
       rating: 4.7,
       students: "10,000+",
       duration: "8-12 Weeks",
@@ -214,7 +214,7 @@ const Coaching = () => {
       name: "GMAT Preparation",
       category: "competitive",
       icon: "💼",
-      gradient: "from-indigo-500 to-purple-500",
+      gradient: "from-blue-600 to-blue-600",
       rating: 4.8,
       students: "6,000+",
       duration: "10-14 Weeks",
@@ -293,7 +293,7 @@ const Coaching = () => {
       name: "French Language (A1-C1)",
       category: "language",
       icon: "🇫🇷",
-      gradient: "from-blue-600 to-indigo-600",
+      gradient: "from-blue-600 to-blue-700",
       rating: 4.7,
       students: "12,000+",
       duration: "Per Level: 8-12 Weeks",
@@ -370,19 +370,19 @@ const Coaching = () => {
       icon: <FiUsers className="text-4xl" />,
       title: "Classroom Training",
       description: "Face-to-face interactive sessions with expert trainers",
-      gradient: "from-blue-500 to-cyan-500",
+      gradient: "from-blue-500 to-blue-600",
     },
     {
       icon: <FiVideo className="text-4xl" />,
       title: "Live Online Classes",
       description: "Real-time virtual classes from anywhere in the world",
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-blue-600 to-pink-500",
     },
     {
       icon: <FiClock className="text-4xl" />,
       title: "Recorded Sessions",
       description: "Learn at your own pace with recorded lectures",
-      gradient: "from-green-500 to-teal-500",
+      gradient: "from-blue-600 to-blue-600",
     },
     {
       icon: <FiTarget className="text-4xl" />,
@@ -608,7 +608,7 @@ const Coaching = () => {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all ${
                   activeCategory === cat.id
-                    ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105"
+                    ? "bg-gradient-to-r from-blue-700 to-blue-700 text-white shadow-lg scale-105"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
@@ -681,7 +681,7 @@ const Coaching = () => {
 
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <div className="text-3xl font-extrabold text-indigo-600">
+                      <div className="text-3xl font-extrabold text-blue-700">
                         {course.price}
                       </div>
                       <div className="text-sm text-slate-500">
@@ -755,14 +755,14 @@ const Coaching = () => {
             {whyChooseUs.map((item, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 group hover:border-indigo-500"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 group hover:border-blue-600"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-all">
+                  <div className="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-all">
                     {item.icon}
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm font-bold text-indigo-600 mb-1">
+                    <div className="text-sm font-bold text-blue-700 mb-1">
                       {item.stat}
                     </div>
                     <h3 className="text-xl font-bold text-slate-900">
@@ -839,7 +839,7 @@ const Coaching = () => {
                   <h3 className="text-3xl md:text-4xl font-extrabold mb-4">
                     Book Your Free Demo Class Today!
                   </h3>
-                  <p className="text-lg text-indigo-100 mb-6 leading-relaxed">
+                  <p className="text-lg text-blue-100 mb-6 leading-relaxed">
                     Experience our teaching methodology firsthand. No cost, no
                     obligation.
                   </p>
@@ -851,7 +851,7 @@ const Coaching = () => {
                       "Personalized feedback",
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <FiCheckCircle className="text-green-300 flex-shrink-0" />
+                        <FiCheckCircle className="text-blue-300 flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -931,8 +931,8 @@ const Coaching = () => {
                     {selectedCourse.duration}
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center">
-                  <FiTarget className="text-3xl text-green-600 mx-auto mb-2" />
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
+                  <FiTarget className="text-3xl text-blue-700 mx-auto mb-2" />
                   <div className="text-sm text-slate-600 mb-1">
                     Target Score
                   </div>
@@ -940,8 +940,8 @@ const Coaching = () => {
                     {selectedCourse.targetScore}
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center">
-                  <div className="text-3xl text-purple-600 mx-auto mb-2">₹</div>
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
+                  <div className="text-3xl text-blue-700 mx-auto mb-2">₹</div>
                   <div className="text-sm text-slate-600 mb-1">Course Fee</div>
                   <div className="font-bold text-slate-900">
                     {selectedCourse.price}
@@ -960,7 +960,7 @@ const Coaching = () => {
                       key={index}
                       className="flex items-center gap-4 bg-slate-50 rounded-xl p-4"
                     >
-                      <div className="text-2xl text-indigo-600">
+                      <div className="text-2xl text-blue-700">
                         {module.icon}
                       </div>
                       <div className="flex-1">
@@ -985,9 +985,9 @@ const Coaching = () => {
                   {selectedCourse.features.map((feature, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-3 bg-green-50 rounded-lg p-3"
+                      className="flex items-start gap-3 bg-blue-50 rounded-lg p-3"
                     >
-                      <FiCheckCircle className="text-green-600 flex-shrink-0 mt-1" />
+                      <FiCheckCircle className="text-blue-700 flex-shrink-0 mt-1" />
                       <span className="text-slate-700">{feature}</span>
                     </div>
                   ))}
@@ -1003,9 +1003,9 @@ const Coaching = () => {
                   {selectedCourse.batchSchedule.map((batch, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-4 bg-indigo-50 rounded-xl p-4 border border-indigo-100"
+                      className="flex items-center gap-4 bg-blue-50 rounded-xl p-4 border border-blue-100"
                     >
-                      <FiCalendar className="text-2xl text-indigo-600" />
+                      <FiCalendar className="text-2xl text-blue-700" />
                       <div>
                         <div className="font-bold text-slate-900">
                           {batch.time}

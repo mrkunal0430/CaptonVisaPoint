@@ -169,7 +169,7 @@ const UniversityDetail = () => {
                       className={`p-4 rounded-xl text-center ${
                         isPreferred
                           ? "bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200"
-                          : "bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100"
+                          : "bg-gradient-to-br from-blue-50 to-blue-50 border border-blue-100"
                       }`}
                     >
                       <div
@@ -236,9 +236,9 @@ const UniversityDetail = () => {
                   ].map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-green-50 border border-green-100"
+                      className="flex items-center gap-3 p-4 rounded-xl bg-blue-50 border border-blue-100"
                     >
-                      <FiCheckCircle className="text-green-600 text-xl shrink-0" />
+                      <FiCheckCircle className="text-blue-700 text-xl shrink-0" />
                       <span className="text-slate-700">{item}</span>
                     </div>
                   ))}
@@ -250,10 +250,10 @@ const UniversityDetail = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100"
+                className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-pink-50 border border-blue-100"
               >
                 <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                  <FiUsers className="text-purple-600" /> Eligibility &
+                  <FiUsers className="text-blue-700" /> Eligibility &
                   Requirements
                 </h2>
                 <p className="text-lg text-slate-700 mb-6">
@@ -273,7 +273,7 @@ const UniversityDetail = () => {
                       key={i}
                       className="flex items-center gap-2 text-slate-600"
                     >
-                      <FiCheckCircle className="text-purple-500" /> {doc}
+                      <FiCheckCircle className="text-blue-600" /> {doc}
                     </div>
                   ))}
                 </div>
@@ -295,7 +295,7 @@ const UniversityDetail = () => {
                       className={`px-6 py-4 rounded-xl font-bold text-lg ${
                         isPreferred
                           ? "bg-gradient-to-r from-amber-400 to-orange-500 text-white"
-                          : "bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+                          : "bg-gradient-to-r from-blue-500 to-blue-700 text-white"
                       }`}
                     >
                       {intake}

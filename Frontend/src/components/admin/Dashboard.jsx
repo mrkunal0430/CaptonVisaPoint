@@ -92,9 +92,9 @@ const Dashboard = ({ token, setActiveTab }) => {
       case "MBBS_ABROAD":
         return <FiGlobe className="text-blue-500" />;
       case "STUDY_ABROAD":
-        return <FiBookOpen className="text-purple-500" />;
+        return <FiBookOpen className="text-blue-600" />;
       case "WORK_ABROAD":
-        return <FiBriefcase className="text-indigo-500" />;
+        return <FiBriefcase className="text-blue-600" />;
       default:
         return <FiClipboard className="text-slate-500" />;
     }
@@ -155,24 +155,24 @@ const Dashboard = ({ token, setActiveTab }) => {
           <div className="text-blue-100 text-sm">Total Leads</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-5 text-white shadow-lg shadow-green-500/20">
+        <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-5 text-white shadow-lg shadow-blue-600/20">
           <div className="flex items-center justify-between mb-3">
             <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
               <FiCalendar size={24} />
             </div>
           </div>
           <div className="text-3xl font-bold">{getTotalNew()}</div>
-          <div className="text-green-100 text-sm">New Leads</div>
+          <div className="text-blue-100 text-sm">New Leads</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-5 text-white shadow-lg shadow-purple-500/20">
+        <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-5 text-white shadow-lg shadow-blue-600/20">
           <div className="flex items-center justify-between mb-3">
             <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
               <FiAward size={24} />
             </div>
           </div>
           <div className="text-3xl font-bold">{getTotalConverted()}</div>
-          <div className="text-purple-100 text-sm">Converted</div>
+          <div className="text-blue-100 text-sm">Converted</div>
         </div>
 
         <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-5 text-white shadow-lg shadow-orange-500/20">
@@ -210,7 +210,7 @@ const Dashboard = ({ token, setActiveTab }) => {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-slate-500 text-sm">New</span>
-              <span className="font-semibold text-green-600">
+              <span className="font-semibold text-blue-700">
                 {stats.generalLeads?.new || 0}
               </span>
             </div>
@@ -222,7 +222,7 @@ const Dashboard = ({ token, setActiveTab }) => {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-slate-500 text-sm">Converted</span>
-              <span className="font-semibold text-purple-600">
+              <span className="font-semibold text-blue-700">
                 {stats.generalLeads?.converted || 0}
               </span>
             </div>
@@ -233,11 +233,11 @@ const Dashboard = ({ token, setActiveTab }) => {
         <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-slate-800 flex items-center gap-2">
-              <FiClipboard className="text-indigo-500" /> Service Leads
+              <FiClipboard className="text-blue-600" /> Service Leads
             </h3>
             <button
               onClick={() => setActiveTab("service-leads")}
-              className="text-sm text-indigo-500 hover:text-indigo-600 flex items-center gap-1"
+              className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
             >
               View All <FiArrowRight size={14} />
             </button>
@@ -264,11 +264,11 @@ const Dashboard = ({ token, setActiveTab }) => {
         <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-slate-800 flex items-center gap-2">
-              <FiAward className="text-green-500" /> Eligibility Checks
+              <FiAward className="text-blue-600" /> Eligibility Checks
             </h3>
             <button
               onClick={() => setActiveTab("eligibility")}
-              className="text-sm text-green-500 hover:text-green-600 flex items-center gap-1"
+              className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
             >
               View All <FiArrowRight size={14} />
             </button>
@@ -334,8 +334,8 @@ const Dashboard = ({ token, setActiveTab }) => {
                         : lead.serviceType === "MBBS_ABROAD"
                         ? "bg-blue-100 text-blue-700"
                         : lead.serviceType === "STUDY_ABROAD"
-                        ? "bg-purple-100 text-purple-700"
-                        : "bg-indigo-100 text-indigo-700"
+                        ? "bg-blue-100 text-blue-800"
+                        : "bg-blue-100 text-blue-800"
                     }`}
                   >
                     {formatServiceType(lead.serviceType)}

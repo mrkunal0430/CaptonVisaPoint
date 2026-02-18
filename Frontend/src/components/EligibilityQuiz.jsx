@@ -87,7 +87,7 @@ const getEligibilityMessage = (category) => {
 const getCategoryColor = (category) => {
   switch (category) {
     case "Highly Eligible":
-      return { bg: "bg-green-50", text: "text-green-600", border: "border-green-200", ring: "ring-green-500" };
+      return { bg: "bg-blue-50", text: "text-blue-700", border: "border-blue-200", ring: "ring-blue-600" };
     case "Eligible with Guidance":
       return { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", ring: "ring-blue-500" };
     case "Borderline":
@@ -208,12 +208,12 @@ const EligibilityQuiz = () => {
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-6 text-white">
         <div className="flex items-center gap-3 mb-2">
           <FaStethoscope className="text-2xl" />
           <h2 className="text-xl sm:text-2xl font-bold">MBBS Abroad Eligibility Check</h2>
         </div>
-        <p className="text-green-100 text-sm sm:text-base">
+        <p className="text-blue-100 text-sm sm:text-base">
           Answer 4 quick questions to check your eligibility score
         </p>
       </div>
@@ -223,11 +223,11 @@ const EligibilityQuiz = () => {
         <div className="px-6 pt-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-slate-500">Question {currentStep + 1} of 4</span>
-            <span className="text-sm font-semibold text-green-600">{Math.round(progress)}%</span>
+            <span className="text-sm font-semibold text-blue-600">{Math.round(progress)}%</span>
           </div>
           <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"
+              className="h-full bg-gradient-to-r from-blue-600 to-blue-700 rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -262,16 +262,16 @@ const EligibilityQuiz = () => {
                     onClick={() => handleOptionSelect(questions[currentStep].id, option)}
                     className={`w-full p-4 text-left rounded-xl border-2 transition-all flex items-center justify-between group ${
                       answers[questions[currentStep].id]?.value === option.value
-                        ? "border-green-500 bg-green-50"
-                        : "border-slate-200 hover:border-green-300 hover:bg-green-50/50"
+                        ? "border-blue-500 bg-blue-50"
+                        : "border-slate-200 hover:border-blue-300 hover:bg-blue-50/50"
                     }`}
                   >
                     <span className="text-slate-700 font-medium">{option.label}</span>
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
                         answers[questions[currentStep].id]?.value === option.value
-                          ? "border-green-500 bg-green-500"
-                          : "border-slate-300 group-hover:border-green-400"
+                          ? "border-blue-700 bg-blue-700"
+                          : "border-slate-300 group-hover:border-blue-400"
                       }`}
                     >
                       {answers[questions[currentStep].id]?.value === option.value && (
@@ -320,7 +320,7 @@ const EligibilityQuiz = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setShowForm(true)}
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold shadow-lg shadow-green-500/30 flex items-center justify-center gap-2 mx-auto"
+                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-xl font-semibold shadow-lg shadow-blue-700/30 flex items-center justify-center gap-2 mx-auto"
               >
                 <FaGraduationCap className="text-lg" />
                 Talk to MBBS Expert
@@ -363,7 +363,7 @@ const EligibilityQuiz = () => {
                 <div
                   className={`mb-4 p-3 rounded-lg flex items-center gap-2 ${
                     status.type === "success"
-                      ? "bg-green-50 text-green-700 border border-green-200"
+                      ? "bg-blue-50 text-blue-800 border border-blue-200"
                       : "bg-red-50 text-red-700 border border-red-200"
                   }`}
                 >
@@ -384,7 +384,7 @@ const EligibilityQuiz = () => {
                       onChange={handleFormChange}
                       required
                       placeholder="Your Name"
-                      className="inline-block w-40 sm:w-48 px-3 py-1.5 bg-white border-b-2 border-green-400 focus:border-green-600 outline-none text-green-700 font-medium rounded-t-md mx-1"
+                      className="inline-block w-40 sm:w-48 px-3 py-1.5 bg-white border-b-2 border-blue-500 focus:border-blue-600 outline-none text-blue-700 font-medium rounded-t-md mx-1"
                     />
                     , my WhatsApp number is{" "}
                     <input
@@ -394,7 +394,7 @@ const EligibilityQuiz = () => {
                       onChange={handleFormChange}
                       required
                       placeholder="+91 XXXXX XXXXX"
-                      className="inline-block w-40 sm:w-44 px-3 py-1.5 bg-white border-b-2 border-green-400 focus:border-green-600 outline-none text-green-700 font-medium rounded-t-md mx-1"
+                      className="inline-block w-40 sm:w-44 px-3 py-1.5 bg-white border-b-2 border-blue-500 focus:border-blue-600 outline-none text-blue-700 font-medium rounded-t-md mx-1"
                     />
                     , and my email id is{" "}
                     <input
@@ -404,26 +404,26 @@ const EligibilityQuiz = () => {
                       onChange={handleFormChange}
                       required
                       placeholder="your@email.com"
-                      className="inline-block w-44 sm:w-52 px-3 py-1.5 bg-white border-b-2 border-green-400 focus:border-green-600 outline-none text-green-700 font-medium rounded-t-md mx-1"
+                      className="inline-block w-44 sm:w-52 px-3 py-1.5 bg-white border-b-2 border-blue-500 focus:border-blue-600 outline-none text-blue-700 font-medium rounded-t-md mx-1"
                     />
                     .
                   </p>
 
                   <p className="text-slate-700 leading-relaxed mt-4 text-sm sm:text-base">
                     I scored{" "}
-                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-green-700 font-medium mx-1">
+                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-blue-700 font-medium mx-1">
                       {answers[1]?.value || "PCB Score"}
                     </span>
                     {" "}in Class 12, my NEET status is{" "}
-                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-green-700 font-medium mx-1">
+                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-blue-700 font-medium mx-1">
                       {answers[2]?.value || "NEET Status"}
                     </span>
                     , my annual budget for MBBS abroad is{" "}
-                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-green-700 font-medium mx-1">
+                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-blue-700 font-medium mx-1">
                       {answers[3]?.value || "Budget"}
                     </span>
                     , and I am{" "}
-                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-green-700 font-medium mx-1">
+                    <span className="inline-block px-3 py-1.5 bg-white border border-slate-200 rounded-md text-blue-700 font-medium mx-1">
                       {answers[4]?.value || "Readiness"}
                     </span>
                     {" "}to study abroad for 5–6 years.
@@ -442,8 +442,8 @@ const EligibilityQuiz = () => {
                     <div
                       className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
                         consent
-                          ? "bg-green-500 border-green-500"
-                          : "border-slate-300 group-hover:border-green-400"
+                          ? "bg-blue-600 border-blue-600"
+                          : "border-slate-300 group-hover:border-blue-400"
                       }`}
                     >
                       {consent && <FiCheck className="text-white text-sm" />}
@@ -460,7 +460,7 @@ const EligibilityQuiz = () => {
                   whileTap={{ scale: 0.99 }}
                   type="submit"
                   disabled={loading || !consent}
-                  className="w-full py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold shadow-lg shadow-green-500/30 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full py-4 bg-gradient-to-r from-blue-700 to-blue-700 text-white rounded-xl font-semibold shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <>
@@ -497,8 +497,8 @@ const EligibilityQuiz = () => {
               transition={{ duration: 0.3 }}
               className="text-center py-8"
             >
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FiCheck className="text-4xl text-green-600" />
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FiCheck className="text-4xl text-blue-700" />
               </div>
 
               <h3 className="text-2xl font-bold text-slate-800 mb-3">
@@ -516,7 +516,7 @@ const EligibilityQuiz = () => {
 
               <button
                 onClick={resetQuiz}
-                className="mt-8 text-green-600 hover:text-green-700 font-medium flex items-center gap-2 mx-auto"
+                className="mt-8 text-blue-700 hover:text-blue-800 font-medium flex items-center gap-2 mx-auto"
               >
                 <FiRefreshCw />
                 Check Another Profile

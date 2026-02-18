@@ -197,7 +197,7 @@ const GermanyHealthcare = () => {
               permanent residency.
             </p>
             <div className="flex flex-wrap gap-4">
-              <span className="px-4 py-2 bg-green-500/20 backdrop-blur-sm rounded-full text-sm border border-green-400/30 text-green-300">
+              <span className="px-4 py-2 bg-blue-600/20 backdrop-blur-sm rounded-full text-sm border border-blue-400/30 text-blue-300">
                 <FiCheckCircle className="inline mr-1" /> PR Pathway Available
               </span>
               <span className="px-4 py-2 bg-blue-500/20 backdrop-blur-sm rounded-full text-sm border border-blue-400/30 text-blue-300">
@@ -224,7 +224,7 @@ const GermanyHealthcare = () => {
                 transition={{ delay: index * 0.05 }}
                 className="text-center"
               >
-                <div className="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <div className="w-14 h-14 bg-blue-700 rounded-xl flex items-center justify-center mx-auto mb-3">
                   <benefit.icon size={24} />
                 </div>
                 <h3 className="font-bold text-sm mb-1">{benefit.title}</h3>
@@ -275,7 +275,7 @@ const GermanyHealthcare = () => {
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-bold ${
                       category.demand === "Very High"
-                        ? "bg-green-100 text-green-700"
+                        ? "bg-blue-100 text-blue-800"
                         : category.demand === "High"
                           ? "bg-blue-100 text-blue-700"
                           : "bg-yellow-100 text-yellow-700"
@@ -285,13 +285,13 @@ const GermanyHealthcare = () => {
                   </span>
                 </div>
 
-                <div className="bg-green-50 px-3 py-2 rounded-lg text-sm text-green-700 mb-4">
+                <div className="bg-blue-50 px-3 py-2 rounded-lg text-sm text-blue-800 mb-4">
                   💡 {category.highlight}
                 </div>
 
                 <div className="mb-4">
                   <span className="text-sm text-slate-500">Salary Range:</span>
-                  <p className="text-lg font-bold text-green-600">
+                  <p className="text-lg font-bold text-blue-700">
                     {category.salary}
                   </p>
                 </div>
@@ -364,12 +364,12 @@ const GermanyHealthcare = () => {
                 className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                  <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center text-xl font-bold">
                     {item.step}
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-800">{item.title}</h3>
-                    <span className="text-xs text-green-600 font-medium">
+                    <span className="text-xs text-blue-700 font-medium">
                       {item.duration}
                     </span>
                   </div>
@@ -399,8 +399,8 @@ const GermanyHealthcare = () => {
               <div className="space-y-4">
                 {requirements.map((req, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                      <FiCheckCircle className="text-green-600 text-sm" />
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                      <FiCheckCircle className="text-blue-700 text-sm" />
                     </div>
                     <span className="text-slate-700">{req}</span>
                   </div>
@@ -431,7 +431,7 @@ const GermanyHealthcare = () => {
                   "Receive full recognition certificate",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <FiCheckCircle className="text-green-400" />
+                    <FiCheckCircle className="text-blue-400" />
                     <span className="text-sm text-slate-300">{item}</span>
                   </div>
                 ))}
@@ -442,7 +442,7 @@ const GermanyHealthcare = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-green-600 text-white">
+      <section className="py-20 bg-blue-700 text-white">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -453,7 +453,7 @@ const GermanyHealthcare = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Start Your Germany Healthcare Journey
               </h2>
-              <p className="text-green-100 mb-8 leading-relaxed">
+              <p className="text-blue-100 mb-8 leading-relaxed">
                 Register with us for complete support - from German language
                 training to job placement. We guide you through every step of
                 the process.
@@ -468,7 +468,7 @@ const GermanyHealthcare = () => {
                 ].map((stat, index) => (
                   <div key={index}>
                     <div className="text-3xl font-bold">{stat.number}</div>
-                    <div className="text-green-200 text-sm">{stat.label}</div>
+                    <div className="text-blue-200 text-sm">{stat.label}</div>
                   </div>
                 ))}
               </div>

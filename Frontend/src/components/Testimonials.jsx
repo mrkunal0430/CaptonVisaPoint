@@ -20,7 +20,7 @@ const Testimonials = () => {
       text: "Thanks to Richa Mam, I didn't waste a year in Studienkolleg. She clearly explained how JEE Advanced helps in direct BTech admission in Germany and handled my case with complete professionalism.",
       flag: "🇩🇪",
       type: "BTech Germany",
-      gradient: "from-blue-500 to-cyan-400",
+      gradient: "from-blue-500 to-blue-400",
     },
     {
       name: "Rohan Gupta",
@@ -31,7 +31,7 @@ const Testimonials = () => {
       text: "Richa Mam treats every student like her own. From shortlisting universities to visa approval, she guided me step by step for direct BTech admission in Germany through JEE Advanced. Honest advice, no false promises.",
       flag: "🇩🇪",
       type: "BTech Germany",
-      gradient: "from-indigo-500 to-blue-400",
+      gradient: "from-blue-500 to-blue-400",
     },
     // MBA Germany
     {
@@ -43,7 +43,7 @@ const Testimonials = () => {
       text: "Richa Mam guided me personally for my MBA application and helped me secure admission at Technical University of Berlin. Her ROI-focused counseling was extremely helpful.",
       flag: "🇩🇪",
       type: "MBA Germany",
-      gradient: "from-purple-500 to-pink-400",
+      gradient: "from-blue-500 to-amber-400",
     },
     {
       name: "Vikram Singh",
@@ -54,7 +54,7 @@ const Testimonials = () => {
       text: "Richa Mam's counseling was extremely honest and practical. She guided me on the right MBA universities and explained ROI clearly. Capton Visa Point helped me secure admission with proper profile evaluation and SOP guidance.",
       flag: "🇩🇪",
       type: "MBA Germany",
-      gradient: "from-violet-500 to-purple-400",
+      gradient: "from-blue-500 to-blue-400",
     },
     // MBBS Reviews
     {
@@ -66,7 +66,7 @@ const Testimonials = () => {
       text: "Capton Visa Point guided me for MBBS at Ferghana Medical Institute of Public Health. They clearly explained academics, living conditions, and future exams. No false promises, only facts.",
       flag: "🇺🇿",
       type: "MBBS Abroad",
-      gradient: "from-green-500 to-emerald-400",
+      gradient: "from-blue-500 to-blue-400",
     },
     {
       name: "Sneha Patel",
@@ -77,7 +77,7 @@ const Testimonials = () => {
       text: "Richa Mam explained both positives and challenges very clearly while counseling for Kazan State Medical University. Weather, language adaptation, and exam reality were discussed honestly. This transparency built complete trust.",
       flag: "🇷🇺",
       type: "MBBS Abroad",
-      gradient: "from-red-500 to-orange-400",
+      gradient: "from-amber-500 to-amber-400",
     },
     {
       name: "Rahul Kumar",
@@ -88,7 +88,7 @@ const Testimonials = () => {
       text: "The team at Capton Visa Point helped me secure MBBS admission at Bukhara State Medical University. They focused on genuine information instead of showing rosy pictures. Very ethical consultancy.",
       flag: "🇺🇿",
       type: "MBBS Abroad",
-      gradient: "from-teal-500 to-cyan-400",
+      gradient: "from-blue-500 to-blue-400",
     },
     {
       name: "Divya Sharma",
@@ -99,7 +99,7 @@ const Testimonials = () => {
       text: "I received proper guidance for MBBS at Kyrgyz State Medical Academy. Admission process, hostel life, and study pattern were explained realistically. Good experience overall.",
       flag: "🇰🇬",
       type: "MBBS Abroad",
-      gradient: "from-orange-500 to-yellow-400",
+      gradient: "from-amber-500 to-amber-400",
     },
     {
       name: "Arjun Reddy",
@@ -110,7 +110,7 @@ const Testimonials = () => {
       text: "The counseling for MBBS in Georgia was very transparent. Richa Mam did not oversell anything and explained safety, academics, and long-term prospects honestly. Very trustworthy experience.",
       flag: "🇬🇪",
       type: "MBBS Abroad",
-      gradient: "from-rose-500 to-red-400",
+      gradient: "from-amber-500 to-amber-400",
     },
     // Healthcare & Nursing
     {
@@ -122,7 +122,7 @@ const Testimonials = () => {
       text: "Capton Visa Point helped me with documentation and employer coordination for nursing jobs in Germany. Richa Mam was very supportive and guided me patiently through the nursing visa and interview process.",
       flag: "🇩🇪",
       type: "Healthcare Jobs",
-      gradient: "from-pink-500 to-rose-400",
+      gradient: "from-amber-500 to-amber-400",
     },
     // Ausbildung
     {
@@ -134,7 +134,7 @@ const Testimonials = () => {
       text: "Highly recommended for Nursing Ausbildung. Capton Visa Point handled documentation, employer coordination, and visa process very smoothly. Everything moved on time without delays.",
       flag: "🇩🇪",
       type: "Ausbildung",
-      gradient: "from-yellow-500 to-amber-400",
+      gradient: "from-amber-500 to-amber-400",
     },
     {
       name: "Amit Patel",
@@ -145,7 +145,7 @@ const Testimonials = () => {
       text: "Capton Visa Point helped me secure an IT Ausbildung opportunity in Germany. Richa Mam personally evaluated my profile and explained language and technical expectations honestly. Smooth and transparent experience.",
       flag: "🇩🇪",
       type: "Ausbildung",
-      gradient: "from-blue-500 to-indigo-400",
+      gradient: "from-blue-500 to-blue-400",
     },
     // Study Abroad - Cyprus & Malta
     {
@@ -157,7 +157,7 @@ const Testimonials = () => {
       text: "Excellent support for Cyprus admissions. The team handled documentation and embassy process very professionally. Capton Visa Point made studying in Cyprus easy and affordable for me.",
       flag: "🇨🇾",
       type: "Study Abroad",
-      gradient: "from-cyan-500 to-blue-400",
+      gradient: "from-blue-600 to-blue-400",
     },
     {
       name: "Nikhil Sharma",
@@ -180,7 +180,7 @@ const Testimonials = () => {
       text: "Initially I was scared, but after learning German online, everything became clear. Online classes are very effective and well-structured. Highly recommended.",
       flag: "🇩🇪",
       type: "German Language",
-      gradient: "from-emerald-500 to-green-400",
+      gradient: "from-blue-600 to-blue-400",
     },
     // Opportunity Card
     {
@@ -284,13 +284,13 @@ const Testimonials = () => {
       icon: FiTrendingUp,
       value: "98%",
       label: "Success Rate",
-      color: "text-green-500",
+      color: "text-blue-600",
     },
     {
       icon: FiGlobe,
       value: "25+",
       label: "Countries",
-      color: "text-purple-500",
+      color: "text-blue-600",
     },
     {
       icon: FiStar,
@@ -307,8 +307,8 @@ const Testimonials = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent" />
 
       {/* Floating orbs */}
-      <div className="absolute top-20 left-[10%] w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-float-slow" />
-      <div className="absolute bottom-20 right-[10%] w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-float-slow-reverse" />
+      <div className="absolute top-20 left-[10%] w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-blue-400/20 to-blue-500/20 rounded-full blur-3xl animate-float-slow" />
+      <div className="absolute bottom-20 right-[10%] w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-blue-500/20 to-pink-400/20 rounded-full blur-3xl animate-float-slow-reverse" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl" />
 
       <div className="relative z-10">
@@ -334,7 +334,7 @@ const Testimonials = () => {
           {/* Title */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-4 sm:mb-6 leading-tight">
             Success Stories That
-            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x">
+            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-600 via-blue-700 to-pink-600 bg-clip-text text-transparent animate-gradient-x">
               Inspire Dreams
             </span>
           </h2>
@@ -394,11 +394,11 @@ const Testimonials = () => {
           <div className="max-w-5xl mx-auto">
             <div className="relative">
               {/* Background glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-blue-600/10 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-2xl" />
 
               <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 overflow-hidden">
                 {/* Decorative top border */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-blue-600 to-pink-500" />
 
                 <div className="p-6 sm:p-8 lg:p-10">
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
@@ -470,7 +470,7 @@ const Testimonials = () => {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-purple-500/25 hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-blue-600/25 hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base"
           >
             Start Your Journey
             <svg

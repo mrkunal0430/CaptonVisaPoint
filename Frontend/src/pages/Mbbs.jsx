@@ -30,13 +30,13 @@ const Mbbs = () => {
         "MBBS degrees recognized by WHO, NMC, and other international medical bodies",
     },
     {
-      icon: <FiTrendingUp className="text-3xl text-green-500" />,
+      icon: <FiTrendingUp className="text-3xl text-blue-600" />,
       title: "Excellent Career Prospects",
       description:
         " High demand for qualified doctors worldwide with lucrative career opportunities",
     },
     {
-      icon: <FiBook className="text-3xl text-purple-500" />,
+      icon: <FiBook className="text-3xl text-blue-600" />,
       title: "Quality Education",
       description:
         "World-class medical education with modern infrastructure and experienced faculty",
@@ -157,7 +157,7 @@ const Mbbs = () => {
               whileHover={{ y: -10 }}
               className="group bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 hover:border-blue-300 transition-all"
             >
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-8 text-white">
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 text-white">
                 <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
                   <FiGlobe className="text-4xl" />
                 </div>
@@ -170,7 +170,7 @@ const Mbbs = () => {
               <div className="p-8">
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         Affordable Tuition Fees
@@ -181,7 +181,7 @@ const Mbbs = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         NMC Approved Universities
@@ -192,7 +192,7 @@ const Mbbs = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         No Donation Required
@@ -203,7 +203,7 @@ const Mbbs = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         English Medium
@@ -242,7 +242,7 @@ const Mbbs = () => {
               <div className="p-8">
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         117,825 MBBS Seats
@@ -253,7 +253,7 @@ const Mbbs = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         NEET 2025 Based
@@ -264,7 +264,7 @@ const Mbbs = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         Government Colleges
@@ -275,7 +275,7 @@ const Mbbs = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                    <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-slate-800">
                         Study in Home Country
@@ -392,7 +392,7 @@ const Mbbs = () => {
                   </Link>
                   <a
                     href="https://wa.me/919876543210"
-                    className="bg-green-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-600 transition-colors inline-flex items-center gap-2"
+                    className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-colors inline-flex items-center gap-2"
                   >
                     WhatsApp Us
                   </a>

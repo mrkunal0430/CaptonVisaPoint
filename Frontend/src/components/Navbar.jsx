@@ -146,12 +146,12 @@ const MegaDropdown = ({ columns }) => (
     transition={{ duration: 0.15 }}
     className="absolute top-full left-1/2 -translate-x-1/2 w-[480px] bg-white rounded-xl shadow-2xl border border-slate-100 p-5 grid grid-cols-2 gap-6 z-50 overflow-hidden"
   >
-    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500" />
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 to-blue-900" />
     {columns.map((col, colIdx) => (
       <div key={colIdx}>
         <Link
           to={col.path}
-          className="flex items-center gap-2 mb-2 px-2 py-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg hover:from-blue-100 hover:to-purple-100 transition-all group/header border border-slate-100"
+          className="flex items-center gap-2 mb-2 px-2 py-2 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all group/header border border-slate-100"
         >
           <span className="text-sm font-bold text-slate-800 group-hover/header:text-blue-700">
             {col.title}
@@ -310,7 +310,7 @@ const Navbar = () => {
           <div className="hidden xl:flex items-center gap-3">
             <Link
               to="/contact"
-              className="bg-blue-500 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-500/25 hover:bg-blue-600 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+              className="bg-blue-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-700/25 hover:bg-blue-800 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
             >
               Contact Us <FiArrowRight aria-hidden="true" />
             </Link>
@@ -427,14 +427,14 @@ const Navbar = () => {
                   <Link
                     to="/eligibility-check"
                     onClick={closeMobileMenu}
-                    className="block w-full py-4 bg-green-500 text-white rounded-xl text-center font-bold shadow-lg shadow-green-500/25 hover:bg-green-600 transition-colors"
+                    className="block w-full py-4 bg-amber-500 text-white rounded-xl text-center font-bold shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors"
                   >
                     Free Eligibility Check
                   </Link>
                   <Link
                     to="/contact"
                     onClick={closeMobileMenu}
-                    className="block w-full py-4 bg-blue-500 text-white rounded-xl text-center font-bold shadow-lg shadow-blue-500/25 hover:bg-blue-600 transition-colors"
+                    className="block w-full py-4 bg-blue-700 text-white rounded-xl text-center font-bold shadow-lg shadow-blue-700/25 hover:bg-blue-800 transition-colors"
                   >
                     Book Free Consultation
                   </Link>
@@ -444,7 +444,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="WhatsApp"
-                      className="hover:text-green-500 transition-colors"
+                      className="hover:text-amber-500 transition-colors"
                     >
                       <FaWhatsapp className="text-2xl" />
                     </a>
@@ -458,7 +458,7 @@ const Navbar = () => {
                     <a
                       href="mailto:info@captonvisapoint.com"
                       aria-label="Email us"
-                      className="hover:text-red-500 transition-colors"
+                      className="hover:text-amber-500 transition-colors"
                     >
                       <FiMail className="text-2xl" />
                     </a>

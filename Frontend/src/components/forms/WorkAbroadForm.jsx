@@ -129,7 +129,7 @@ const WorkAbroadForm = ({
   };
 
   const inputClass =
-    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-slate-700";
+    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-slate-700";
   const labelClass = "block text-sm font-medium text-slate-700 mb-1.5";
 
   const countries = [
@@ -156,7 +156,7 @@ const WorkAbroadForm = ({
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                 step >= s
-                  ? "bg-indigo-600 text-white"
+                  ? "bg-blue-700 text-white"
                   : "bg-slate-100 text-slate-400"
               }`}
             >
@@ -165,7 +165,7 @@ const WorkAbroadForm = ({
             {s < 3 && (
               <div
                 className={`w-8 h-1 mx-1 rounded ${
-                  step > s ? "bg-indigo-600" : "bg-slate-200"
+                  step > s ? "bg-blue-700" : "bg-slate-200"
                 }`}
               />
             )}
@@ -178,7 +178,7 @@ const WorkAbroadForm = ({
         <div
           className={`mb-4 p-3 rounded-lg flex items-center gap-2 ${
             status.type === "success"
-              ? "bg-green-50 text-green-700 border border-green-200"
+              ? "bg-blue-50 text-blue-800 border border-blue-200"
               : "bg-red-50 text-red-700 border border-red-200"
           }`}
         >
@@ -195,7 +195,7 @@ const WorkAbroadForm = ({
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-2 text-indigo-600 font-semibold mb-4">
+            <div className="flex items-center gap-2 text-blue-700 font-semibold mb-4">
               <FiUser />
               <span>Basic Details</span>
             </div>
@@ -269,7 +269,7 @@ const WorkAbroadForm = ({
               type="button"
               onClick={() => validateStep(1) && setStep(2)}
               disabled={!validateStep(1)}
-              className="w-full py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-blue-700 text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next: Profile & Language
             </button>
@@ -283,7 +283,7 @@ const WorkAbroadForm = ({
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-2 text-indigo-600 font-semibold mb-4">
+            <div className="flex items-center gap-2 text-blue-700 font-semibold mb-4">
               <FiAward />
               <span>Profile & Language</span>
             </div>
@@ -370,7 +370,7 @@ const WorkAbroadForm = ({
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+                className="flex-1 py-3 bg-blue-700 text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors"
               >
                 Next: Job Preference
               </button>
@@ -385,7 +385,7 @@ const WorkAbroadForm = ({
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-2 text-indigo-600 font-semibold mb-4">
+            <div className="flex items-center gap-2 text-blue-700 font-semibold mb-4">
               <FiBriefcase />
               <span>Job Preference</span>
             </div>
@@ -419,7 +419,7 @@ const WorkAbroadForm = ({
                     onClick={() => handleCountryChange(country.name)}
                     className={`p-3 rounded-xl border-2 text-sm font-medium transition-all flex items-center justify-center gap-2 ${
                       formData.countryPreferenceWork.includes(country.name)
-                        ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                        ? "border-blue-600 bg-blue-50 text-blue-800"
                         : "border-slate-200 hover:border-slate-300 text-slate-600"
                     }`}
                   >
@@ -441,7 +441,7 @@ const WorkAbroadForm = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+                className="flex-1 py-3 bg-gradient-to-r from-blue-700 to-blue-700 text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

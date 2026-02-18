@@ -38,8 +38,8 @@ const MbbsIndia = () => {
 
   const stats = [
     { number: "117,825", label: "Total MBBS Seats", color: "text-blue-600" },
-    { number: "59,860", label: "Govt/Semi-Govt", color: "text-green-600" },
-    { number: "57,965", label: "Private/Deemed", color: "text-purple-600" },
+    { number: "59,860", label: "Govt/Semi-Govt", color: "text-blue-700" },
+    { number: "57,965", label: "Private/Deemed", color: "text-blue-700" },
   ];
 
   const eligibility = [
@@ -51,12 +51,12 @@ const MbbsIndia = () => {
     {
       category: "Reserved Category (SC/ST/OBC)",
       marks: "Minimum 40% in PCB",
-      icon: <FiUsers className="text-green-500" />,
+      icon: <FiUsers className="text-blue-600" />,
     },
     {
       category: "PwD (General)",
       marks: "Minimum 45% in PCB",
-      icon: <FiUsers className="text-purple-500" />,
+      icon: <FiUsers className="text-blue-600" />,
     },
   ];
 
@@ -189,12 +189,12 @@ const MbbsIndia = () => {
         keywords="MBBS in India, MBBS course in India, MBBS degree in India, MBBS education in India, study MBBS in India, MBBS admission, MBBS admission process, MBBS admission 2026, MBBS admission 2027, top MBBS colleges in India, best MBBS colleges in India, government MBBS colleges in India, private MBBS colleges in India, top government medical colleges, best private medical colleges, MBBS colleges with low fees, affordable MBBS colleges in India, AIIMS MBBS colleges, state quota MBBS colleges, low fees MBBS colleges, cheapest MBBS colleges in India, MBBS colleges under 10 lakhs, MBBS colleges under 15 lakhs, MBBS colleges under 20 lakhs, MBBS fees structure, MBBS tuition fees in India, MBBS admission in India, MBBS admission without donation, MBBS admission through NEET, NEET MBBS admission, MBBS counseling India, all India MBBS counseling, state MBBS counseling, MBBS seat allotment, NEET exam, NEET UG exam, NEET preparation, NEET exam syllabus, NEET cutoff for MBBS, NEET score for MBBS, NEET qualifying marks, NEET cutoff for government MBBS, NEET cutoff for private MBBS, private MBBS admission, management quota MBBS seats, MBBS without donation India, direct MBBS admission, NRI quota MBBS admission, MBBS in Punjab, MBBS in Haryana, MBBS in Karnataka, MBBS in Maharashtra, MBBS in Tamil Nadu, MBBS in Rajasthan, MBBS in Uttar Pradesh, MBBS in Delhi, MBBS in Gujarat, MBBS in Madhya Pradesh, MBBS in West Bengal, MBBS in Bihar, MBBS in Kerala, MBBS in Andhra Pradesh, MBBS in Telangana, MBBS colleges in Delhi, MBBS colleges in Mumbai, MBBS colleges in Bangalore, MBBS colleges in Chennai, MBBS colleges in Hyderabad, MBBS colleges in Pune, MBBS colleges in Jaipur, MBBS colleges in Lucknow, MBBS admission consultants, MBBS admission guidance, MBBS consultants in Delhi, MBBS consultants in Punjab, MBBS consultants in Haryana, MBBS consultants in Rajasthan, MBBS consultants near me"
       />
       {/* Hero Banner with Indian Theme */}
-      <section className="relative min-h-screen pt-24 pb-12 flex items-center justify-center bg-gradient-to-br from-orange-50 via-white to-purple-50 overflow-hidden">
+      <section className="relative min-h-screen pt-24 pb-12 flex items-center justify-center bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-10 left-10 w-20 sm:w-32 h-20 sm:h-32 bg-orange-500 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-24 sm:w-40 h-24 sm:h-40 bg-purple-500 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 sm:w-24 h-16 sm:h-24 bg-green-500 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-10 right-10 w-24 sm:w-40 h-24 sm:h-40 bg-blue-600 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 sm:w-24 h-16 sm:h-24 bg-blue-600 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6">
@@ -212,7 +212,7 @@ const MbbsIndia = () => {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-purple-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-blue-700">
                   MBBS Admission
                 </span>
                 <br />
@@ -291,7 +291,7 @@ const MbbsIndia = () => {
 
               {/* Floating decorative elements */}
               <div className="absolute top-10 -right-10 w-20 h-20 bg-orange-400 rounded-full opacity-20 blur-2xl animate-pulse"></div>
-              <div className="absolute bottom-10 -left-10 w-24 h-24 bg-purple-400 rounded-full opacity-20 blur-2xl animate-pulse delay-1000"></div>
+              <div className="absolute bottom-10 -left-10 w-24 h-24 bg-blue-500 rounded-full opacity-20 blur-2xl animate-pulse delay-1000"></div>
             </motion.div>
           </div>
         </div>
@@ -316,7 +316,7 @@ const MbbsIndia = () => {
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-blue-100">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-blue-100">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 sm:mb-6 text-center sm:text-left">
                 MBBS in India 2025-26 Overview
               </h2>
@@ -331,7 +331,7 @@ const MbbsIndia = () => {
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-                  <FiAward className="text-3xl sm:text-4xl text-green-600 mb-2 sm:mb-3" />
+                  <FiAward className="text-3xl sm:text-4xl text-blue-700 mb-2 sm:mb-3" />
                   <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">
                     NMC Recognized
                   </h3>
@@ -340,7 +340,7 @@ const MbbsIndia = () => {
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-                  <FiCalendar className="text-3xl sm:text-4xl text-purple-600 mb-2 sm:mb-3" />
+                  <FiCalendar className="text-3xl sm:text-4xl text-blue-700 mb-2 sm:mb-3" />
                   <h3 className="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">
                     Duration
                   </h3>
@@ -355,7 +355,7 @@ const MbbsIndia = () => {
       </section>
 
       {/* Indian Theme Decorative Strip */}
-      <section className="py-4 sm:py-6 lg:py-8 bg-gradient-to-r from-orange-500 via-white to-green-600 relative overflow-hidden">
+      <section className="py-4 sm:py-6 lg:py-8 bg-gradient-to-r from-orange-500 via-white to-blue-700 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="flex justify-around items-center h-full">
             <div className="text-4xl sm:text-6xl lg:text-8xl">🕉️</div>
@@ -373,7 +373,7 @@ const MbbsIndia = () => {
           <p className="text-base sm:text-xl lg:text-2xl font-bold text-slate-800 flex items-center justify-center gap-2 sm:gap-3">
             <span className="text-orange-600">●</span>
             <span>Empowering Future Doctors of India</span>
-            <span className="text-green-600">●</span>
+            <span className="text-blue-700">●</span>
           </p>
         </div>
       </section>
@@ -461,7 +461,7 @@ const MbbsIndia = () => {
           <div className="max-w-4xl mx-auto bg-white rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-xl">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[400px]">
-                <thead className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                <thead className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
                   <tr>
                     <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Category
@@ -515,10 +515,10 @@ const MbbsIndia = () => {
 
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {/* Government Colleges */}
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-green-200 shadow-xl">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-blue-200 shadow-xl">
               <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <FiAward className="text-xl sm:text-2xl text-green-600" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <FiAward className="text-xl sm:text-2xl text-blue-700" />
                 </div>
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">
                   Government Colleges
@@ -526,7 +526,7 @@ const MbbsIndia = () => {
               </div>
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-green-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       Low Fees
@@ -537,7 +537,7 @@ const MbbsIndia = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-green-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       Highly Competitive
@@ -548,7 +548,7 @@ const MbbsIndia = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-green-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       Better Infrastructure
@@ -559,7 +559,7 @@ const MbbsIndia = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-green-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       59,860 Seats Available
@@ -573,10 +573,10 @@ const MbbsIndia = () => {
             </div>
 
             {/* Private Colleges */}
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-purple-200 shadow-xl">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-blue-200 shadow-xl">
               <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                  <FiBook className="text-xl sm:text-2xl text-purple-600" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <FiBook className="text-xl sm:text-2xl text-blue-700" />
                 </div>
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">
                   Private Colleges
@@ -584,7 +584,7 @@ const MbbsIndia = () => {
               </div>
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-purple-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       Higher Fees
@@ -595,7 +595,7 @@ const MbbsIndia = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-purple-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       Relatively Easier
@@ -606,7 +606,7 @@ const MbbsIndia = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-purple-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       Management Quota
@@ -617,7 +617,7 @@ const MbbsIndia = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <FiCheckCircle className="text-purple-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                  <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
                       57,965 Seats Available
@@ -634,7 +634,7 @@ const MbbsIndia = () => {
       </section>
 
       {/* Medical Excellence Banner */}
-      <section className="py-10 sm:py-12 lg:py-16 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 relative overflow-hidden">
+      <section className="py-10 sm:py-12 lg:py-16 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-700 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 sm:gap-8 text-white text-3xl sm:text-4xl lg:text-6xl p-4 sm:p-8">
             <div>🩺</div>
@@ -716,7 +716,7 @@ const MbbsIndia = () => {
                     </div>
                     <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                       <span
-                        className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${college.type === "Government" ? "bg-green-100 text-green-700" : "bg-purple-100 text-purple-700"}`}
+                        className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${college.type === "Government" ? "bg-blue-100 text-blue-800" : "bg-blue-100 text-blue-800"}`}
                       >
                         {college.type}
                       </span>
@@ -772,10 +772,10 @@ const MbbsIndia = () => {
                       <td className="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-slate-900 text-xs sm:text-sm lg:text-base">
                         {item.state}
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-green-600 font-semibold text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-700 font-semibold text-xs sm:text-sm lg:text-base">
                         {item.govt}
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-purple-600 font-semibold text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-700 font-semibold text-xs sm:text-sm lg:text-base">
                         {item.private}
                       </td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-600 font-bold text-xs sm:text-sm lg:text-base">
@@ -808,7 +808,7 @@ const MbbsIndia = () => {
                   key={idx}
                   className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-slate-50 rounded-lg sm:rounded-xl border border-slate-200 hover:border-blue-300 transition-colors"
                 >
-                  <FiCheckCircle className="text-green-500 text-lg sm:text-xl flex-shrink-0" />
+                  <FiCheckCircle className="text-blue-600 text-lg sm:text-xl flex-shrink-0" />
                   <span className="text-slate-700 font-medium text-xs sm:text-sm lg:text-base">
                     {doc}
                   </span>
@@ -820,7 +820,7 @@ const MbbsIndia = () => {
       </section>
 
       {/* Admission Process */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-50 to-blue-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
@@ -888,9 +888,9 @@ const MbbsIndia = () => {
             </div>
 
             {/* Perks */}
-            <div className="bg-green-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-green-200">
+            <div className="bg-blue-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-blue-200">
               <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <FiTrendingUp className="text-2xl sm:text-3xl lg:text-4xl text-green-600" />
+                <FiTrendingUp className="text-2xl sm:text-3xl lg:text-4xl text-blue-700" />
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">
                   Perks
                 </h3>
@@ -898,7 +898,7 @@ const MbbsIndia = () => {
               <ul className="space-y-2 sm:space-y-3">
                 {perks.map((perk, idx) => (
                   <li key={idx} className="flex items-start gap-2 sm:gap-3">
-                    <FiCheckCircle className="text-green-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                    <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                     <span className="text-slate-700 text-sm sm:text-base">
                       {perk}
                     </span>
@@ -989,13 +989,13 @@ const MbbsIndia = () => {
                   icon: "👨‍👩‍👧‍👦",
                   title: "Children of NRIs",
                   desc: "Children of Indian citizens living abroad for business or employment",
-                  color: "from-purple-500 to-purple-600",
+                  color: "from-blue-600 to-blue-700",
                 },
                 {
                   icon: "🏛️",
                   title: "Government Employees",
                   desc: "Children of state/central govt employees on deputation abroad",
-                  color: "from-green-500 to-green-600",
+                  color: "from-blue-600 to-blue-700",
                 },
                 {
                   icon: "🛂",
@@ -1013,7 +1013,7 @@ const MbbsIndia = () => {
                   icon: "📚",
                   title: "Foreign Education",
                   desc: "Completed 10th and 12th from the residing country",
-                  color: "from-indigo-500 to-indigo-600",
+                  color: "from-blue-600 to-blue-700",
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -1044,7 +1044,7 @@ const MbbsIndia = () => {
           <div className="max-w-5xl mx-auto mb-8 sm:mb-12">
             <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-blue-200 shadow-xl">
               <div className="flex items-center gap-3 mb-6 sm:mb-8">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
                   <FiCheckCircle className="text-2xl sm:text-3xl text-white" />
                 </div>
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900">
@@ -1054,7 +1054,7 @@ const MbbsIndia = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-100">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-xl p-5 border border-blue-100">
                     <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2 text-base sm:text-lg">
                       <FiCalendar className="text-blue-600" />
                       Age Requirement
@@ -1068,21 +1068,21 @@ const MbbsIndia = () => {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-5 border border-green-100">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-xl p-5 border border-blue-100">
                     <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2 text-base sm:text-lg">
-                      <FiBook className="text-green-600" />
+                      <FiBook className="text-blue-700" />
                       Educational Qualification
                     </h4>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
-                        <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                        <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                         <span>Passed 10th & 12th from residing country</span>
                       </li>
                       <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
-                        <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                        <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                         <span>
                           Minimum{" "}
-                          <span className="font-bold text-green-600">
+                          <span className="font-bold text-blue-700">
                             60% marks
                           </span>{" "}
                           in PCB
@@ -1093,22 +1093,22 @@ const MbbsIndia = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-5 border border-purple-100">
+                  <div className="bg-gradient-to-br from-blue-50 to-pink-50 rounded-xl p-5 border border-blue-100">
                     <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2 text-base sm:text-lg">
-                      <FiFileText className="text-purple-600" />
+                      <FiFileText className="text-blue-700" />
                       Other Requirements
                     </h4>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
-                        <FiCheckCircle className="text-purple-500 mt-1 flex-shrink-0" />
+                        <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                         <span>Valid passport mandatory</span>
                       </li>
                       <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
-                        <FiCheckCircle className="text-purple-500 mt-1 flex-shrink-0" />
+                        <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                         <span>Bonafide NRI candidates only</span>
                       </li>
                       <li className="flex items-start gap-2 text-slate-700 text-sm sm:text-base">
-                        <FiCheckCircle className="text-purple-500 mt-1 flex-shrink-0" />
+                        <FiCheckCircle className="text-blue-600 mt-1 flex-shrink-0" />
                         <span>Real blood relation for sponsorship</span>
                       </li>
                     </ul>
@@ -1149,21 +1149,21 @@ const MbbsIndia = () => {
                   title: "Research Colleges",
                   desc: "Shortlist top colleges offering NRI quota seats",
                   icon: "🔍",
-                  color: "from-blue-500 to-cyan-500",
+                  color: "from-blue-500 to-blue-600",
                 },
                 {
                   step: "3",
                   title: "Prepare Documents",
                   desc: "Gather all required documents and certificates",
                   icon: "📄",
-                  color: "from-green-500 to-emerald-500",
+                  color: "from-blue-600 to-blue-600",
                 },
                 {
                   step: "4",
                   title: "NEET Counselling",
                   desc: "Participate in centralized counselling process",
                   icon: "💼",
-                  color: "from-purple-500 to-violet-500",
+                  color: "from-blue-600 to-blue-600",
                 },
                 {
                   step: "5",
@@ -1245,7 +1245,7 @@ const MbbsIndia = () => {
 
           {/* Benefits of NRI Quota */}
           <div className="max-w-6xl mx-auto">
-            <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl text-white">
+            <div className="bg-gradient-to-br from-blue-700 to-blue-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl text-white">
               <div className="text-center mb-6 sm:mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4 shadow-lg">
                   <FiTrendingUp className="text-3xl sm:text-4xl" />
@@ -1253,7 +1253,7 @@ const MbbsIndia = () => {
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">
                   Benefits of NRI Quota MBBS
                 </h3>
-                <p className="text-green-100 text-sm sm:text-base">
+                <p className="text-blue-100 text-sm sm:text-base">
                   Why choose NRI quota for medical education in India
                 </p>
               </div>
@@ -1304,7 +1304,7 @@ const MbbsIndia = () => {
                       <h4 className="font-bold text-lg sm:text-xl mb-1">
                         {benefit.title}
                       </h4>
-                      <p className="text-green-100 text-sm sm:text-base">
+                      <p className="text-blue-100 text-sm sm:text-base">
                         {benefit.desc}
                       </p>
                     </div>

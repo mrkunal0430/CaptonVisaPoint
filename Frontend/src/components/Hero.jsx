@@ -21,7 +21,7 @@ const services = [
     image: "/Home_Hero/1.webp",
     stats: { highlight: "WHO Approved", benefit: "Low Tuition Fees" },
     link: "/mbbs",
-    color: "from-blue-500 to-blue-600",
+    color: "from-blue-800 to-blue-900",
   },
   {
     name: "Study Work Settle",
@@ -30,7 +30,7 @@ const services = [
     image: "/Home_Hero/2.webp",
     stats: { highlight: "PR Pathway", benefit: "Work Permit" },
     link: "/study-abroad/germany",
-    color: "from-blue-500 to-blue-600",
+    color: "from-blue-800 to-blue-900",
   },
   {
     name: "Ausbildung",
@@ -38,7 +38,7 @@ const services = [
     image: "/Home_Hero/3.webp",
     stats: { highlight: "Earn & Learn", benefit: "German Training" },
     link: "/ausbildung",
-    color: "from-blue-500 to-blue-600",
+    color: "from-blue-800 to-blue-900",
   },
   {
     name: "Low Budget",
@@ -47,7 +47,7 @@ const services = [
     image: "/Home_Hero/4.webp",
     stats: { highlight: "Affordable", benefit: "Scholarship Support" },
     link: "/study-abroad",
-    color: "from-blue-500 to-blue-600",
+    color: "from-blue-800 to-blue-900",
   },
   {
     name: "Learn German",
@@ -56,7 +56,7 @@ const services = [
     image: "/Home_Hero/5.webp",
     stats: { highlight: "A1 to C1", benefit: "Expert Trainers" },
     link: "/coaching",
-    color: "from-blue-500 to-blue-600",
+    color: "from-blue-800 to-blue-900",
   },
   {
     name: "Healthcare Jobs",
@@ -64,7 +64,7 @@ const services = [
     image: "/Home_Hero/6.webp",
     stats: { highlight: "UAE | Germany", benefit: "Direct Placement" },
     link: "/healthcare",
-    color: "from-blue-500 to-blue-600",
+    color: "from-blue-800 to-blue-900",
   },
 ];
 
@@ -136,12 +136,12 @@ const ServiceCard = memo(({ service, index }) => {
 
                 {/* Stats - Only visible on hover */}
                 <div className="pt-2 border-t border-white/20 space-y-1">
-                  <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-cyan-300 font-medium">
-                    <FiAward className="text-yellow-400" size={12} />
+                  <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-blue-200 font-medium">
+                    <FiAward className="text-amber-400" size={12} />
                     <span>{service.stats.highlight}</span>
                   </div>
-                  <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-green-300 font-medium">
-                    <FiCheckCircle className="text-green-400" size={12} />
+                  <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-amber-200 font-medium">
+                    <FiCheckCircle className="text-amber-400" size={12} />
                     <span>{service.stats.benefit}</span>
                   </div>
                 </div>
@@ -222,7 +222,7 @@ const Hero = () => {
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 leading-[1.1] tracking-tight"
             >
               College Seats to <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900">
                 Global Career Success
               </span>{" "}
             </motion.h1>
@@ -246,21 +246,21 @@ const Hero = () => {
               className="grid grid-cols-1 min-[350px]:grid-cols-2 gap-2 sm:gap-3 w-full max-w-sm lg:max-w-md"
             >
               <Link to="/study-abroad" className="group">
-                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-500 rounded-lg hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full shadow-md hover:shadow-lg">
+                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-700 rounded-lg hover:bg-blue-800 text-white font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full shadow-md hover:shadow-lg">
                   <FiBookOpen className="text-lg sm:text-xl" />
                   Study
                 </button>
               </Link>
 
               <Link to="/pr-visa" className="group">
-                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-100 border border-blue-200 rounded-lg hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full">
+                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-100 border border-blue-200 rounded-lg hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-800 font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full">
                   <FiGlobe className="text-lg sm:text-xl" />
                   PR Visa
                 </button>
               </Link>
 
               <Link to="/work-visa" className="group">
-                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-100 border border-blue-200 rounded-lg hover:bg-blue-500 hover:text-white hover:border-blue-500 text-blue-700 font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full">
+                <button className="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-blue-100 border border-blue-200 rounded-lg hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-800 font-semibold text-xs sm:text-sm transition-all flex flex-col items-center justify-center gap-1 h-full">
                   <FiBriefcase className="text-lg sm:text-xl" />
                   Work
                 </button>
@@ -297,7 +297,7 @@ const Hero = () => {
             >
               <button
                 onClick={() => setShowInquiry(true)}
-                className="bg-blue-500 p-3 sm:p-4 rounded-2xl border border-blue-400 shadow-xl shadow-blue-500/20 flex items-center gap-3 hover:scale-105 hover:bg-blue-600 transition-all cursor-pointer group"
+                className="bg-blue-700 p-3 sm:p-4 rounded-2xl border border-blue-600 shadow-xl shadow-blue-700/20 flex items-center gap-3 hover:scale-105 hover:bg-blue-800 transition-all cursor-pointer group"
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition-colors">
                   <FiHelpCircle size={22} />
@@ -320,7 +320,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               onClick={() => setShowInquiry(true)}
-              className="sm:hidden fixed bottom-6 right-6 z-50 bg-blue-500 p-4 rounded-full shadow-xl shadow-blue-500/30 flex items-center justify-center text-white hover:scale-110 hover:bg-blue-600 transition-all"
+              className="sm:hidden fixed bottom-6 right-6 z-50 bg-blue-700 p-4 rounded-full shadow-xl shadow-blue-700/30 flex items-center justify-center text-white hover:scale-110 hover:bg-blue-800 transition-all"
             >
               <FiHelpCircle size={24} />
             </motion.button>

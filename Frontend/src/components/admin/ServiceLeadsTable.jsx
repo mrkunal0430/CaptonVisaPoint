@@ -145,11 +145,11 @@ const ServiceLeadsTable = ({ token }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case "New":
-        return "bg-green-100 text-green-700 border-green-200";
+        return "bg-blue-100 text-blue-800 border-blue-200";
       case "Contacted":
         return "bg-yellow-100 text-yellow-700 border-yellow-200";
       case "Converted":
-        return "bg-purple-100 text-purple-700 border-purple-200";
+        return "bg-blue-100 text-blue-800 border-blue-200";
       case "Not Interested":
         return "bg-red-100 text-red-700 border-red-200";
       case "Follow Up":
@@ -166,9 +166,9 @@ const ServiceLeadsTable = ({ token }) => {
       case "MBBS_ABROAD":
         return "bg-blue-100 text-blue-700";
       case "STUDY_ABROAD":
-        return "bg-purple-100 text-purple-700";
+        return "bg-blue-100 text-blue-800";
       case "WORK_ABROAD":
-        return "bg-indigo-100 text-indigo-700";
+        return "bg-blue-100 text-blue-800";
       default:
         return "bg-slate-100 text-slate-700";
     }
@@ -212,7 +212,7 @@ const ServiceLeadsTable = ({ token }) => {
             <div className="text-sm text-slate-500">Total Leads</div>
           </div>
           <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
-            <div className="text-2xl font-bold text-green-600">{stats.today}</div>
+            <div className="text-2xl font-bold text-blue-700">{stats.today}</div>
             <div className="text-sm text-slate-500">Today</div>
           </div>
           <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
@@ -220,7 +220,7 @@ const ServiceLeadsTable = ({ token }) => {
             <div className="text-sm text-slate-500">This Week</div>
           </div>
           <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
-            <div className="text-2xl font-bold text-purple-600">
+            <div className="text-2xl font-bold text-blue-700">
               {stats.byStatus?.find((s) => s._id === "Converted")?.count || 0}
             </div>
             <div className="text-sm text-slate-500">Converted</div>
@@ -241,7 +241,7 @@ const ServiceLeadsTable = ({ token }) => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-blue-700 text-white rounded-xl hover:bg-blue-800 transition-colors"
           >
             <FiDownload size={18} />
             <span className="hidden sm:inline">Export CSV</span>
@@ -487,7 +487,7 @@ const ServiceLeadsTable = ({ token }) => {
                             href={`https://wa.me/${lead.whatsapp || lead.phone}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-colors"
+                            className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                             title="WhatsApp"
                           >
                             <FiMessageCircle size={18} />
@@ -881,7 +881,7 @@ const ServiceLeadsTable = ({ token }) => {
                   href={`https://wa.me/${selectedLead.whatsapp || selectedLead.phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-blue-700 text-white rounded-xl font-medium hover:bg-blue-800"
                 >
                   <FiMessageCircle size={18} /> WhatsApp
                 </a>

@@ -271,8 +271,8 @@ const BlogDetail = () => {
                 </span>
 
                 <span className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                    <FiCalendar className="text-green-600" />
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <FiCalendar className="text-blue-700" />
                   </div>
                   <span>
                     <span className="text-slate-400 text-xs block">
@@ -289,8 +289,8 @@ const BlogDetail = () => {
                 </span>
 
                 <span className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                    <FiClock className="text-purple-600" />
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <FiClock className="text-blue-700" />
                   </div>
                   <span>
                     <span className="text-slate-400 text-xs block">

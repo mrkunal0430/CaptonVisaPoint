@@ -181,11 +181,11 @@ const EligibilityLeadsTable = ({ token }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case "new":
-        return "bg-green-100 text-green-700 border-green-200";
+        return "bg-blue-100 text-blue-800 border-blue-200";
       case "contacted":
         return "bg-yellow-100 text-yellow-700 border-yellow-200";
       case "converted":
-        return "bg-purple-100 text-purple-700 border-purple-200";
+        return "bg-blue-100 text-blue-800 border-blue-200";
       default:
         return "bg-slate-100 text-slate-700 border-slate-200";
     }
@@ -207,11 +207,11 @@ const EligibilityLeadsTable = ({ token }) => {
       case "ausbildung":
         return "bg-blue-100 text-blue-700 border-blue-300";
       case "mbbs-abroad":
-        return "bg-green-100 text-green-700 border-green-300";
+        return "bg-blue-100 text-blue-800 border-blue-300";
       case "mbbs-india":
-        return "bg-purple-100 text-purple-700 border-purple-300";
+        return "bg-blue-100 text-blue-800 border-blue-300";
       case "study-abroad":
-        return "bg-cyan-100 text-cyan-700 border-cyan-300";
+        return "bg-blue-100 text-blue-800 border-blue-300";
       case "jobs":
         return "bg-orange-100 text-orange-700 border-orange-300";
       default:
@@ -220,7 +220,7 @@ const EligibilityLeadsTable = ({ token }) => {
   };
 
   const getScoreColor = (score) => {
-    if (score >= 70) return "text-green-600 bg-green-50";
+    if (score >= 70) return "text-blue-700 bg-blue-50";
     if (score >= 50) return "text-yellow-600 bg-yellow-50";
     return "text-red-600 bg-red-50";
   };
@@ -309,7 +309,7 @@ const EligibilityLeadsTable = ({ token }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
-            <FiAward className="text-green-600" />
+            <FiAward className="text-blue-700" />
             Eligibility Check Leads
           </h2>
           <p className="text-sm text-slate-500 mt-1">
@@ -319,7 +319,7 @@ const EligibilityLeadsTable = ({ token }) => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-blue-700 text-white rounded-xl hover:bg-blue-800 transition-colors"
           >
             <FiDownload size={18} />
             <span className="hidden sm:inline">Export CSV</span>
@@ -328,7 +328,7 @@ const EligibilityLeadsTable = ({ token }) => {
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-colors ${
               showFilters || hasActiveFilters
-                ? "bg-emerald-600 text-white"
+                ? "bg-blue-700 text-white"
                 : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
             }`}
           >
@@ -360,9 +360,9 @@ const EligibilityLeadsTable = ({ token }) => {
             </div>
             <div className="text-sm text-slate-500">Total Checks</div>
           </div>
-          <div className="bg-green-50 rounded-xl p-4 border border-green-100">
-            <div className="text-2xl font-bold text-green-600">{stats.new}</div>
-            <div className="text-sm text-green-600">New Leads</div>
+          <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
+            <div className="text-2xl font-bold text-blue-700">{stats.new}</div>
+            <div className="text-sm text-blue-700">New Leads</div>
           </div>
           <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
             <div className="text-2xl font-bold text-blue-600">
@@ -370,11 +370,11 @@ const EligibilityLeadsTable = ({ token }) => {
             </div>
             <div className="text-sm text-blue-600">Avg Score</div>
           </div>
-          <div className="bg-purple-50 rounded-xl p-4 border border-purple-100">
-            <div className="text-2xl font-bold text-purple-600">
+          <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
+            <div className="text-2xl font-bold text-blue-700">
               {stats.converted}
             </div>
-            <div className="text-sm text-purple-600">Converted</div>
+            <div className="text-sm text-blue-700">Converted</div>
           </div>
         </div>
       )}
@@ -385,7 +385,7 @@ const EligibilityLeadsTable = ({ token }) => {
         <input
           type="text"
           placeholder="Search by name, email, or phone..."
-          className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-all bg-white"
+          className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all bg-white"
           value={filters.search}
           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
         />
@@ -399,7 +399,7 @@ const EligibilityLeadsTable = ({ token }) => {
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
-                className="text-sm text-green-600 hover:underline flex items-center gap-1"
+                className="text-sm text-blue-700 hover:underline flex items-center gap-1"
               >
                 <FiX size={14} /> Clear all
               </button>
@@ -412,7 +412,7 @@ const EligibilityLeadsTable = ({ token }) => {
                 Preference
               </label>
               <select
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 bg-white text-slate-700"
                 value={filters.preference}
                 onChange={(e) =>
                   setFilters({ ...filters, preference: e.target.value })
@@ -432,7 +432,7 @@ const EligibilityLeadsTable = ({ token }) => {
                 Status
               </label>
               <select
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 bg-white text-slate-700"
                 value={filters.status}
                 onChange={(e) =>
                   setFilters({ ...filters, status: e.target.value })
@@ -452,7 +452,7 @@ const EligibilityLeadsTable = ({ token }) => {
               </label>
               <input
                 type="date"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 bg-white text-slate-700"
                 value={filters.startDate}
                 onChange={(e) =>
                   setFilters({ ...filters, startDate: e.target.value })
@@ -466,7 +466,7 @@ const EligibilityLeadsTable = ({ token }) => {
               </label>
               <input
                 type="date"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-green-500 bg-white text-slate-700"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 bg-white text-slate-700"
                 value={filters.endDate}
                 onChange={(e) =>
                   setFilters({ ...filters, endDate: e.target.value })
@@ -484,7 +484,7 @@ const EligibilityLeadsTable = ({ token }) => {
           onClick={() => handleSort("createdAt")}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
             sortBy === "createdAt"
-              ? "bg-green-100 text-green-700"
+              ? "bg-blue-100 text-blue-800"
               : "bg-slate-100 text-slate-600 hover:bg-slate-200"
           }`}
         >
@@ -496,7 +496,7 @@ const EligibilityLeadsTable = ({ token }) => {
           onClick={() => handleSort("score")}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
             sortBy === "score"
-              ? "bg-green-100 text-green-700"
+              ? "bg-blue-100 text-blue-800"
               : "bg-slate-100 text-slate-600 hover:bg-slate-200"
           }`}
         >
@@ -509,7 +509,7 @@ const EligibilityLeadsTable = ({ token }) => {
       {/* Content Area */}
       {loading ? (
         <div className="bg-white rounded-xl p-12 text-center">
-          <div className="inline-block w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin mb-3"></div>
+          <div className="inline-block w-10 h-10 border-4 border-blue-700 border-t-transparent rounded-full animate-spin mb-3"></div>
           <p className="text-slate-500">Loading eligibility leads...</p>
         </div>
       ) : leads.length > 0 ? (
@@ -547,7 +547,7 @@ const EligibilityLeadsTable = ({ token }) => {
                           <div className="flex flex-col text-sm gap-1">
                             <a
                               href={`tel:${lead.phone}`}
-                              className="text-green-600 hover:text-green-700 flex items-center gap-1.5"
+                              className="text-blue-700 hover:text-blue-800 flex items-center gap-1.5"
                             >
                               <FiPhone size={14} /> {lead.phone}
                             </a>
@@ -600,7 +600,7 @@ const EligibilityLeadsTable = ({ token }) => {
                                 expandedLead === lead._id ? null : lead._id,
                               )
                             }
-                            className="p-2 text-slate-500 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                            className="p-2 text-slate-500 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
                           >
                             {expandedLead === lead._id ? (
                               <FiChevronUp size={18} />
@@ -615,7 +615,7 @@ const EligibilityLeadsTable = ({ token }) => {
                               href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-colors"
+                              className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                               title="WhatsApp"
                             >
                               <FiMessageCircle size={18} />
@@ -656,7 +656,7 @@ const EligibilityLeadsTable = ({ token }) => {
                                   {editingNotes === lead._id ? (
                                     <button
                                       onClick={() => handleNotesUpdate(lead._id)}
-                                      className="text-xs text-green-600 hover:text-green-700 flex items-center gap-1"
+                                      className="text-xs text-blue-700 hover:text-blue-800 flex items-center gap-1"
                                     >
                                       <FiSave size={12} /> Save
                                     </button>
@@ -673,7 +673,7 @@ const EligibilityLeadsTable = ({ token }) => {
                                   <textarea
                                     value={notesText}
                                     onChange={(e) => setNotesText(e.target.value)}
-                                    className="w-full p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-sm"
+                                    className="w-full p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 text-sm"
                                     rows={2}
                                     placeholder="Add notes..."
                                   />
@@ -751,7 +751,7 @@ const EligibilityLeadsTable = ({ token }) => {
                   <div className="flex flex-wrap gap-3">
                     <a
                       href={`tel:${lead.phone}`}
-                      className="flex items-center gap-2 px-3 py-2 bg-green-50 rounded-lg text-sm text-green-700 hover:bg-green-100 transition-colors"
+                      className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg text-sm text-blue-800 hover:bg-blue-100 transition-colors"
                     >
                       <FiPhone size={16} />
                       {lead.phone}
@@ -805,7 +805,7 @@ const EligibilityLeadsTable = ({ token }) => {
                           {editingNotes === lead._id ? (
                             <button
                               onClick={() => handleNotesUpdate(lead._id)}
-                              className="text-xs text-green-600 hover:text-green-700 flex items-center gap-1"
+                              className="text-xs text-blue-700 hover:text-blue-800 flex items-center gap-1"
                             >
                               <FiSave size={12} /> Save
                             </button>
@@ -822,7 +822,7 @@ const EligibilityLeadsTable = ({ token }) => {
                           <textarea
                             value={notesText}
                             onChange={(e) => setNotesText(e.target.value)}
-                            className="w-full p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-sm bg-white"
+                            className="w-full p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 text-sm bg-white"
                             rows={2}
                             placeholder="Add notes..."
                           />
@@ -842,7 +842,7 @@ const EligibilityLeadsTable = ({ token }) => {
                     href={`https://wa.me/${lead.phone?.replace(/\D/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors text-sm font-medium"
+                    className="flex items-center gap-2 px-4 py-2 text-blue-700 hover:bg-blue-50 rounded-lg transition-colors text-sm font-medium"
                   >
                     <FiMessageCircle size={16} /> WhatsApp
                   </a>
@@ -904,7 +904,7 @@ const EligibilityLeadsTable = ({ token }) => {
                           }
                           className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
                             pagination.page === pageNum
-                              ? "bg-green-600 text-white"
+                              ? "bg-blue-700 text-white"
                               : "hover:bg-slate-100 text-slate-600"
                           }`}
                         >
@@ -947,7 +947,7 @@ const EligibilityLeadsTable = ({ token }) => {
           {hasActiveFilters && (
             <button
               onClick={clearFilters}
-              className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              className="mt-4 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
             >
               Clear Filters
             </button>

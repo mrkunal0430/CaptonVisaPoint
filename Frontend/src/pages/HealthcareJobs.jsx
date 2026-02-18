@@ -192,7 +192,7 @@ const HealthcareJobs = () => {
                           key={idx}
                           className="flex items-center gap-1 text-sm text-gray-300"
                         >
-                          <FiCheckCircle className="text-green-400" /> {job}
+                          <FiCheckCircle className="text-blue-400" /> {job}
                         </span>
                       ))}
                     </div>
@@ -343,7 +343,7 @@ const HealthcareJobs = () => {
                   "Pre-departure orientation",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <FiCheckCircle className="text-green-400" />
+                    <FiCheckCircle className="text-blue-400" />
                     <span className="text-slate-300">{item}</span>
                   </div>
                 ))}

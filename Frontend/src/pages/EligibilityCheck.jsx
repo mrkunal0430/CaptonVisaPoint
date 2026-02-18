@@ -810,7 +810,7 @@ const EligibilityCheck = () => {
           <span
             className={`text-sm font-semibold ${
               score >= 70
-                ? "text-green-600"
+                ? "text-blue-700"
                 : score >= 50
                   ? "text-yellow-600"
                   : "text-red-600"
@@ -836,8 +836,8 @@ const EligibilityCheck = () => {
             : "Don't worry! Our team can guide you on improving your eligibility."}
       </p>
 
-      <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
-        <p className="text-green-700 font-medium">
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+        <p className="text-blue-800 font-medium">
           ✓ Our team will contact you within 24 hours at {formData.phone}
         </p>
       </div>
@@ -967,13 +967,13 @@ const EligibilityCheck = () => {
             </p>
             <div className="flex items-center justify-center gap-6 text-slate-400">
               <span className="flex items-center gap-1 text-xs">
-                <FiCheck className="text-green-500" /> 100% Free
+                <FiCheck className="text-blue-600" /> 100% Free
               </span>
               <span className="flex items-center gap-1 text-xs">
-                <FiCheck className="text-green-500" /> Instant Results
+                <FiCheck className="text-blue-600" /> Instant Results
               </span>
               <span className="flex items-center gap-1 text-xs">
-                <FiCheck className="text-green-500" /> Expert Review
+                <FiCheck className="text-blue-600" /> Expert Review
               </span>
             </div>
           </div>

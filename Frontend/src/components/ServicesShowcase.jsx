@@ -82,7 +82,7 @@ const ServicesShowcase = () => {
                       </h4>
                       <Link
                         to="/mbbs/abroad"
-                        className="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full font-medium hover:bg-green-200 transition-colors"
+                        className="text-xs bg-amber-100 text-amber-700 px-3 py-1 rounded-full font-medium hover:bg-amber-200 transition-colors"
                       >
                         Explore
                       </Link>
@@ -102,7 +102,7 @@ const ServicesShowcase = () => {
                         <Link
                           key={country}
                           to={`/mbbs/${country.toLowerCase()}`}
-                          className="px-3 py-2 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 hover:border-green-300 hover:bg-green-50 transition-all"
+                          className="px-3 py-2 bg-white rounded-lg text-sm text-slate-700 border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
                         >
                           {country}
                         </Link>
@@ -125,9 +125,9 @@ const ServicesShowcase = () => {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Title */}
-              <div className="lg:col-span-1 bg-gradient-to-br from-green-600 to-green-700 p-6 text-white flex flex-col justify-center">
+              <div className="lg:col-span-1 bg-gradient-to-br from-blue-700 to-blue-800 p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-2">Low Budget</h3>
-                <p className="text-green-100 text-sm">High ROI Countries</p>
+                <p className="text-blue-100 text-sm">High ROI Countries</p>
                 <img
                   src="/Home_Hero/4.webp"
                   alt="Low Budget Study Abroad"
@@ -149,13 +149,13 @@ const ServicesShowcase = () => {
                     <Link
                       key={country.name}
                       to={`/study-abroad/${country.name.toLowerCase()}`}
-                      className="flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-green-300 hover:bg-green-50 transition-all group"
+                      className="flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50 transition-all group"
                     >
                       <span className="text-2xl">{country.flag}</span>
-                      <span className="font-medium text-slate-700 group-hover:text-green-600">
+                      <span className="font-medium text-slate-700 group-hover:text-blue-700">
                         {country.name}
                       </span>
-                      <FiArrowRight className="ml-auto opacity-0 group-hover:opacity-100 text-green-500 transition-opacity" />
+                      <FiArrowRight className="ml-auto opacity-0 group-hover:opacity-100 text-blue-600 transition-opacity" />
                     </Link>
                   ))}
                 </div>
@@ -174,9 +174,9 @@ const ServicesShowcase = () => {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Title */}
-              <div className="lg:col-span-1 bg-gradient-to-br from-red-500 to-red-600 p-6 text-white flex flex-col justify-center">
+              <div className="lg:col-span-1 bg-gradient-to-br from-blue-800 to-blue-900 p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-2">Healthcare</h3>
-                <p className="text-red-100 text-sm">Jobs Abroad</p>
+                <p className="text-blue-100 text-sm">Jobs Abroad</p>
                 <img
                   src="/Home_Hero/6.webp"
                   alt="Healthcare Jobs"
@@ -258,9 +258,9 @@ const ServicesShowcase = () => {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Title */}
-              <div className="lg:col-span-1 bg-gradient-to-br from-yellow-500 to-amber-500 p-6 text-white flex flex-col justify-center">
+              <div className="lg:col-span-1 bg-gradient-to-br from-amber-500 to-amber-600 p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-1">Germany</h3>
-                <p className="text-yellow-100 text-sm">Study & Work</p>
+                <p className="text-amber-100 text-sm">Study & Work</p>
                 <img
                   src="/Home_Hero/2.webp"
                   alt="Study Work Settle in Germany"
@@ -297,7 +297,7 @@ const ServicesShowcase = () => {
                     <Link
                       key={item.name}
                       to={item.link}
-                      className="flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-yellow-300 hover:bg-yellow-50 transition-all group"
+                      className="flex items-center gap-3 px-4 py-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-amber-300 hover:bg-amber-50 transition-all group"
                     >
                       <span className="text-xl">{item.icon}</span>
                       <span className="font-medium text-slate-700 text-sm group-hover:text-amber-600">
@@ -320,9 +320,9 @@ const ServicesShowcase = () => {
             viewport={{ once: true }}
           >
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-full">
-              <div className="bg-gradient-to-br from-purple-600 to-purple-700 p-6 text-white">
+              <div className="bg-gradient-to-br from-blue-700 to-blue-800 p-6 text-white">
                 <h3 className="text-xl font-bold mb-2">Ausbildung</h3>
-                <p className="text-purple-100 text-sm">
+                <p className="text-blue-100 text-sm">
                   Vocational Training in Germany
                 </p>
               </div>
@@ -333,16 +333,16 @@ const ServicesShowcase = () => {
                   className="w-full h-32 object-cover rounded-lg mb-4"
                 />
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">
+                  <span className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
                     Eligibility
                   </span>
-                  <span className="px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">
+                  <span className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
                     Selection Process
                   </span>
                 </div>
                 <Link
                   to="/ausbildung"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-700 transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-700 text-white rounded-full font-medium hover:bg-blue-800 transition-colors"
                 >
                   Free Consultation <FiArrowRight />
                 </Link>
@@ -358,9 +358,9 @@ const ServicesShowcase = () => {
             transition={{ delay: 0.1 }}
           >
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-full">
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 text-white">
+              <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-6 text-white">
                 <h3 className="text-xl font-bold mb-2">German Language</h3>
-                <p className="text-orange-100 text-sm">School & Coaching</p>
+                <p className="text-amber-100 text-sm">School & Coaching</p>
               </div>
               <div className="p-6">
                 <img
@@ -371,26 +371,26 @@ const ServicesShowcase = () => {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <Link
                     to="/coaching"
-                    className="flex flex-col items-center gap-2 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-orange-300 hover:bg-orange-50 transition-all group"
+                    className="flex flex-col items-center gap-2 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-amber-300 hover:bg-amber-50 transition-all group"
                   >
-                    <FiBook className="text-2xl text-orange-500" />
-                    <span className="font-medium text-slate-700 group-hover:text-orange-600">
+                    <FiBook className="text-2xl text-amber-500" />
+                    <span className="font-medium text-slate-700 group-hover:text-amber-600">
                       Offline
                     </span>
                   </Link>
                   <Link
                     to="/coaching"
-                    className="flex flex-col items-center gap-2 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-orange-300 hover:bg-orange-50 transition-all group"
+                    className="flex flex-col items-center gap-2 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-amber-300 hover:bg-amber-50 transition-all group"
                   >
-                    <FiMonitor className="text-2xl text-orange-500" />
-                    <span className="font-medium text-slate-700 group-hover:text-orange-600">
+                    <FiMonitor className="text-2xl text-amber-500" />
+                    <span className="font-medium text-slate-700 group-hover:text-amber-600">
                       Online
                     </span>
                   </Link>
                 </div>
                 <Link
                   to="/coaching"
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-amber-500 text-white rounded-full font-medium hover:bg-amber-600 transition-colors"
                 >
                   Book Free Demo <FiArrowRight />
                 </Link>

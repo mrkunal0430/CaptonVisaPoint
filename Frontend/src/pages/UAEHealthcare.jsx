@@ -238,7 +238,7 @@ const UAEHealthcare = () => {
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-bold ${
                       category.demand === "Very High"
-                        ? "bg-green-100 text-green-700"
+                        ? "bg-blue-100 text-blue-800"
                         : category.demand === "High"
                           ? "bg-blue-100 text-blue-700"
                           : "bg-yellow-100 text-yellow-700"
@@ -250,7 +250,7 @@ const UAEHealthcare = () => {
 
                 <div className="mb-4">
                   <span className="text-sm text-slate-500">Salary Range:</span>
-                  <p className="text-lg font-bold text-green-600">
+                  <p className="text-lg font-bold text-blue-700">
                     {category.salary}
                   </p>
                 </div>
@@ -290,8 +290,8 @@ const UAEHealthcare = () => {
               <div className="space-y-4">
                 {requirements.map((req, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                      <FiCheckCircle className="text-green-600 text-sm" />
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                      <FiCheckCircle className="text-blue-700 text-sm" />
                     </div>
                     <span className="text-slate-700">{req}</span>
                   </div>

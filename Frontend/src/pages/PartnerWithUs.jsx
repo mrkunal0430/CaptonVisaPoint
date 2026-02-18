@@ -197,7 +197,7 @@ const PartnerWithUs = () => {
                       key={idx}
                       className="flex items-center gap-3 text-slate-600"
                     >
-                      <FiCheckCircle className="text-green-500 shrink-0" />
+                      <FiCheckCircle className="text-blue-600 shrink-0" />
                       {point}
                     </li>
                   ))}
@@ -263,8 +263,8 @@ const PartnerWithUs = () => {
                   "Regular webinars and updates",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                      <FiCheckCircle className="text-green-600 text-sm" />
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                      <FiCheckCircle className="text-blue-700 text-sm" />
                     </div>
                     <span className="text-slate-700">{item}</span>
                   </div>

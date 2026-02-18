@@ -147,7 +147,7 @@ const StudyAbroadCountry = () => {
                   key={i}
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-white text-sm font-medium"
                 >
-                  <FiCheckCircle className="text-green-400" /> {h}
+                  <FiCheckCircle className="text-blue-400" /> {h}
                 </span>
               ))}
             </div>
@@ -201,8 +201,8 @@ const StudyAbroadCountry = () => {
                       key={i}
                       className="flex items-center gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100"
                     >
-                      <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                        <FiCheckCircle className="text-green-600" />
+                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                        <FiCheckCircle className="text-blue-700" />
                       </div>
                       <span className="font-medium text-slate-800">
                         {highlight}
@@ -325,7 +325,7 @@ const StudyAbroadCountry = () => {
                 viewport={{ once: true }}
                 className="grid md:grid-cols-2 gap-8"
               >
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-50 border border-blue-100">
                   <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-2xl mb-6">
                     <FiFileText />
                   </div>
@@ -342,15 +342,15 @@ const StudyAbroadCountry = () => {
                       "CV/Resume",
                     ].map((doc, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <FiCheckCircle className="text-green-500 shrink-0" />{" "}
+                        <FiCheckCircle className="text-blue-600 shrink-0" />{" "}
                         {doc}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100">
-                  <div className="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center text-white text-2xl mb-6">
+                <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-pink-50 border border-blue-100">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl mb-6">
                     <FiClock />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-4">
@@ -366,7 +366,7 @@ const StudyAbroadCountry = () => {
                       "Visa processing (4-8 weeks)",
                     ].map((step, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-full bg-purple-200 text-purple-700 text-xs font-bold flex items-center justify-center shrink-0">
+                        <span className="w-6 h-6 rounded-full bg-blue-200 text-blue-800 text-xs font-bold flex items-center justify-center shrink-0">
                           {i + 1}
                         </span>
                         {step}
@@ -404,7 +404,7 @@ const StudyAbroadCountry = () => {
                       "Scholarship assistance",
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <FiCheckCircle className="text-green-400 shrink-0" />{" "}
+                        <FiCheckCircle className="text-blue-400 shrink-0" />{" "}
                         {item}
                       </li>
                     ))}

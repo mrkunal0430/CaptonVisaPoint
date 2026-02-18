@@ -113,7 +113,7 @@ const AppLayout = () => {
         href="https://wa.me/919914773125?text=Hello%20CaptonVisaPoint%2C%20I%20have%20a%20query%20regarding%20your%20services."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 hover:scale-110 transition-all"
+        className="fixed bottom-6 right-6 z-50 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 hover:scale-110 transition-all"
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
       >

@@ -8,7 +8,7 @@ const mbbsCountries = [
   {
     id: "russia",
     country: "Russia",
-    gradient: "from-blue-500 via-blue-600 to-blue-700",
+    gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
         src="/Home_Map/Russia.webp"
@@ -29,7 +29,7 @@ const mbbsCountries = [
   {
     id: "georgia",
     country: "Georgia",
-    gradient: "from-blue-500 via-blue-600 to-blue-700",
+    gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
         src="/Home_Map/Georgia.webp"
@@ -50,7 +50,7 @@ const mbbsCountries = [
   {
     id: "uzbekistan",
     country: "Uzbekisthan",
-    gradient: "from-blue-500 via-blue-600 to-blue-700",
+    gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
         src="/Home_Map/Uzbekisthan.webp"
@@ -71,7 +71,7 @@ const mbbsCountries = [
   {
     id: "kazakhstan",
     country: "Kazakhstan",
-    gradient: "from-blue-500 via-blue-600 to-blue-700",
+    gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
         src="/Home_Map/Kazakhstan.webp"
@@ -92,7 +92,7 @@ const mbbsCountries = [
   {
     id: "kyrgyzstan",
     country: "Kyrgyzstan",
-    gradient: "from-blue-500 via-blue-600 to-blue-700",
+    gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
         src="/Home_Map/Kyrgystan.webp"
@@ -113,7 +113,7 @@ const mbbsCountries = [
   {
     id: "tajikistan",
     country: "Tajikistan",
-    gradient: "from-blue-500 via-blue-600 to-blue-700",
+    gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
         src="/Home_Map/Tajikistan.webp"

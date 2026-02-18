@@ -185,7 +185,7 @@ const MbbsAbroadForm = ({
         <div
           className={`mb-4 p-3 rounded-lg flex items-center gap-2 ${
             status.type === "success"
-              ? "bg-green-50 text-green-700 border border-green-200"
+              ? "bg-blue-50 text-blue-800 border border-blue-200"
               : "bg-red-50 text-red-700 border border-red-200"
           }`}
         >
@@ -477,7 +477,7 @@ const MbbsAbroadForm = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+                className="flex-1 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

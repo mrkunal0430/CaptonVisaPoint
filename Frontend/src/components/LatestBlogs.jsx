@@ -32,7 +32,7 @@ const LatestBlogs = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-center py-12">
-            <div className="w-10 h-10 border-3 border-blue-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-10 h-10 border-3 border-blue-700 border-t-transparent rounded-full animate-spin" />
           </div>
         </div>
       </section>
@@ -116,7 +116,7 @@ const LatestBlogs = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <span className="absolute top-3 left-3 bg-blue-700 text-white text-xs font-bold px-3 py-1 rounded-full">
                       {blog.category}
                     </span>
                   </div>
@@ -168,7 +168,7 @@ const LatestBlogs = () => {
             {/* Header */}
             <div className="relative z-10 mb-6">
               <h3 className="text-white font-bold text-lg flex items-center gap-2">
-                <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
                 Trending Now
               </h3>
             </div>

@@ -87,14 +87,14 @@ const Home = () => {
                     <div className="absolute bottom-0 left-0 right-0 p-5">
                       <div className="bg-white/90 backdrop-blur-xl rounded-xl p-4 border border-slate-200 shadow-lg">
                         <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-lg">
+                          <div className="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-white font-bold text-lg">
                             RP
                           </div>
                           <div>
                             <h4 className="text-slate-800 font-bold text-lg">
                               Richa Pal
                             </h4>
-                            <p className="text-blue-500 text-sm">
+                            <p className="text-blue-700 text-sm">
                               Founder & Director
                             </p>
                           </div>
@@ -114,7 +114,7 @@ const Home = () => {
                   }}
                   className="absolute -right-16 top-8 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
                 >
-                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
                     <FiUsers size={18} />
                   </div>
                   <div>
@@ -278,7 +278,7 @@ const Home = () => {
                 },
               ].map((item, id) => (
                 <div key={id} className="flex gap-4">
-                  <div className="mt-1 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+                  <div className="mt-1 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 shrink-0">
                     <FiCheckCircle size={14} />
                   </div>
                   <div>

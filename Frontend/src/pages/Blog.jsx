@@ -107,7 +107,7 @@ const Blog = () => {
 
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -117,7 +117,7 @@ const Blog = () => {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Insights & Updates for
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
                 {" "}
                 Global Aspirants
               </span>

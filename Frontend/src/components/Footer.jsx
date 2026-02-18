@@ -38,11 +38,11 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               {[
-                { Icon: FiFacebook, link: "#", color: "hover:bg-blue-600" },
-                { Icon: FiInstagram, link: "#", color: "hover:bg-pink-600" },
-                { Icon: FiTwitter, link: "#", color: "hover:bg-sky-500" },
-                { Icon: FiLinkedin, link: "#", color: "hover:bg-blue-700" },
-                { Icon: FiYoutube, link: "#", color: "hover:bg-red-600" },
+                { Icon: FiFacebook, link: "#", color: "hover:bg-blue-700" },
+                { Icon: FiInstagram, link: "#", color: "hover:bg-amber-500" },
+                { Icon: FiTwitter, link: "#", color: "hover:bg-blue-600" },
+                { Icon: FiLinkedin, link: "#", color: "hover:bg-blue-800" },
+                { Icon: FiYoutube, link: "#", color: "hover:bg-amber-600" },
               ].map(({ Icon, link, color }, idx) => (
                 <a
                   key={idx}
@@ -60,7 +60,7 @@ const Footer = () => {
           {/* MBBS Abroad */}
           <div>
             <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-blue-500 rounded-full"></span>
+              <span className="w-1 h-5 bg-blue-600 rounded-full"></span>
               MBBS Abroad
             </h4>
             <ul className="space-y-3 text-sm">
@@ -88,7 +88,7 @@ const Footer = () => {
           {/* Study Abroad */}
           <div>
             <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-green-500 rounded-full"></span>
+              <span className="w-1 h-5 bg-blue-400 rounded-full"></span>
               Study Abroad
             </h4>
             <ul className="space-y-3 text-sm">
@@ -104,7 +104,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.link}
-                    className="text-slate-400 hover:text-green-400 transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-400 hover:text-blue-400 transition-colors hover:translate-x-1 inline-block"
                   >
                     {item.name}
                   </Link>
@@ -116,7 +116,7 @@ const Footer = () => {
           {/* Healthcare & Coaching */}
           <div>
             <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-purple-500 rounded-full"></span>
+              <span className="w-1 h-5 bg-amber-500 rounded-full"></span>
               Services
             </h4>
             <ul className="space-y-3 text-sm">
@@ -132,7 +132,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.link}
-                    className="text-slate-400 hover:text-purple-400 transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-400 hover:text-amber-400 transition-colors hover:translate-x-1 inline-block"
                   >
                     {item.name}
                   </Link>
@@ -144,7 +144,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-orange-500 rounded-full"></span>
+              <span className="w-1 h-5 bg-amber-400 rounded-full"></span>
               Contact Us
             </h4>
             <ul className="space-y-3 text-sm mb-6">
@@ -155,7 +155,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.link}
-                    className="text-slate-400 hover:text-orange-400 transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-400 hover:text-amber-400 transition-colors hover:translate-x-1 inline-block"
                   >
                     {item.name}
                   </Link>
@@ -171,7 +171,7 @@ const Footer = () => {
                 </span>
               </div>
               <div className="flex gap-3 items-center">
-                <FiPhone className="text-green-400 shrink-0" />
+                <FiPhone className="text-amber-400 shrink-0" />
                 <a
                   href="tel:+919876543210"
                   className="text-slate-400 hover:text-white transition-colors"
@@ -180,7 +180,7 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex gap-3 items-center">
-                <FiMail className="text-purple-400 shrink-0" />
+                <FiMail className="text-amber-400 shrink-0" />
                 <a
                   href="mailto:info@captonvisapoint.com"
                   className="text-slate-400 hover:text-white transition-colors"
