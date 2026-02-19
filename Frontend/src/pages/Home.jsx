@@ -57,7 +57,7 @@ const Home = () => {
         {/* Background Elements */}
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-16 items-center">
             {/* Left - Image Card */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -112,7 +112,7 @@ const Home = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute -right-16 top-8 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
+                  className="absolute -right-16 top-8 bg-white rounded-xl shadow-2xl p-3 hidden xl:flex items-center gap-2"
                 >
                   <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
                     <FiUsers size={18} />
@@ -131,7 +131,7 @@ const Home = () => {
                     ease: "easeInOut",
                     delay: 1,
                   }}
-                  className="absolute -left-16 bottom-32 bg-white rounded-xl shadow-2xl p-3 hidden sm:flex items-center gap-2"
+                  className="absolute -left-16 bottom-32 bg-white rounded-xl shadow-2xl p-3 hidden xl:flex items-center gap-2"
                 >
                   <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
                     <FiAward size={18} />
@@ -348,12 +348,12 @@ const Home = () => {
       {/* Lead Form Section */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="bg-brand-blue rounded-2xl sm:rounded-[3rem] p-6 sm:p-8 md:p-16 relative overflow-hidden">
+          <div className="bg-brand-blue rounded-2xl sm:rounded-[3rem] p-5 sm:p-8 md:p-10 lg:p-16 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-white/10 rounded-full blur-3xl -z-0 translate-x-1/2 -translate-y-1/2"></div>
 
             <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-center relative z-10">
               <div className="text-white space-y-4 sm:space-y-6 text-center lg:text-left">
-                <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
                   Ready to take the leap?
                 </h2>
                 <p className="text-blue-100 text-sm sm:text-lg max-w-md mx-auto lg:mx-0">

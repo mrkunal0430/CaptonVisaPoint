@@ -473,17 +473,17 @@ const Ausbildung = () => {
           <div className="absolute -bottom-24 left-1/3 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-yellow-400/30">
+              <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-md px-4 sm:px-6 py-2 rounded-full mb-6 border border-yellow-400/30">
                 <FiStar className="text-yellow-300" />
                 <span className="text-sm font-semibold text-yellow-100">
                   Germany's #1 Career Pathway for International Students
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
                 Ausbildung in{" "}
                 <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
                   Germany
@@ -565,9 +565,9 @@ const Ausbildung = () => {
 
       {/* What is Ausbildung */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">
               What is Ausbildung?
             </h2>
             <p className="text-xl text-slate-600 leading-relaxed">
@@ -608,9 +608,9 @@ const Ausbildung = () => {
 
       {/* Why Choose Ausbildung */}
       <section className="py-16 bg-gradient-to-br from-blue-50 to-blue-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
               Why Choose Ausbildung?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -644,9 +644,9 @@ const Ausbildung = () => {
 
       {/* Salary Progression */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-700 text-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
               Your Earning Journey
             </h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
@@ -684,9 +684,9 @@ const Ausbildung = () => {
 
       {/* Sectors */}
       <section id="sectors" className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
               Find Your Perfect Sector
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -759,9 +759,9 @@ const Ausbildung = () => {
 
       {/* Comparison Table */}
       <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
               Ausbildung vs University vs Direct Job
             </h2>
             <p className="text-xl text-slate-600">
@@ -775,17 +775,17 @@ const Ausbildung = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-                    <th className="px-6 py-4 text-left font-bold">Feature</th>
-                    <th className="px-6 py-4 text-left font-bold">
+                    <th className="px-4 sm:px-6 py-4 text-left font-bold">Feature</th>
+                    <th className="px-4 sm:px-6 py-4 text-left font-bold">
                       <div className="flex items-center gap-2">
                         <FiAward />
                         Ausbildung
                       </div>
                     </th>
-                    <th className="px-6 py-4 text-left font-bold">
+                    <th className="px-4 sm:px-6 py-4 text-left font-bold">
                       University
                     </th>
-                    <th className="px-6 py-4 text-left font-bold">
+                    <th className="px-4 sm:px-6 py-4 text-left font-bold">
                       Direct Job
                     </th>
                   </tr>
@@ -798,16 +798,16 @@ const Ausbildung = () => {
                         index % 2 === 0 ? "bg-slate-50" : "bg-white"
                       }`}
                     >
-                      <td className="px-6 py-4 font-bold text-slate-900">
+                      <td className="px-4 sm:px-6 py-4 font-bold text-slate-900">
                         {item.feature}
                       </td>
-                      <td className="px-6 py-4 text-blue-700 font-semibold">
+                      <td className="px-4 sm:px-6 py-4 text-blue-700 font-semibold">
                         {item.ausbildung}
                       </td>
-                      <td className="px-6 py-4 text-slate-600">
+                      <td className="px-4 sm:px-6 py-4 text-slate-600">
                         {item.university}
                       </td>
-                      <td className="px-6 py-4 text-slate-600">
+                      <td className="px-4 sm:px-6 py-4 text-slate-600">
                         {item.directJob}
                       </td>
                     </tr>
@@ -821,9 +821,9 @@ const Ausbildung = () => {
 
       {/* Eligibility & Requirements */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
               Eligibility & Requirements
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -871,9 +871,9 @@ const Ausbildung = () => {
 
       {/* Application Process */}
       <section className="py-16 bg-gradient-to-br from-blue-700 to-blue-800 text-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
               Step-by-Step Application Process
             </h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
@@ -882,7 +882,7 @@ const Ausbildung = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 max-w-7xl mx-auto">
             {applicationProcess.map((phase, index) => (
               <div
                 key={index}
@@ -923,9 +923,9 @@ const Ausbildung = () => {
 
       {/* FAQs */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -943,7 +943,7 @@ const Ausbildung = () => {
                   onClick={() =>
                     setActiveFaq(activeFaq === index ? null : index)
                   }
-                  className="w-full px-6 py-5 flex items-start justify-between gap-4 text-left hover:bg-white/50 transition-all"
+                  className="w-full px-4 sm:px-6 py-5 flex items-start justify-between gap-4 text-left hover:bg-white/50 transition-all"
                 >
                   <span className="font-bold text-slate-900 flex-1">
                     {faq.question}
@@ -969,7 +969,7 @@ const Ausbildung = () => {
                   </div>
                 </button>
                 {activeFaq === index && (
-                  <div className="px-6 pb-6 text-slate-600 leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">
+                  <div className="px-4 sm:px-6 pb-6 text-slate-600 leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">
                     {faq.answer}
                   </div>
                 )}
@@ -984,7 +984,7 @@ const Ausbildung = () => {
         id="apply-now"
         className="py-16 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
               <div className="grid md:grid-cols-2">

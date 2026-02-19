@@ -36,7 +36,7 @@ const StudyAbroadCountry = () => {
           </p>
           <Link
             to="/study-abroad"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-bold"
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 text-white rounded-full font-bold"
           >
             <FiArrowLeft /> Back to Study Abroad
           </Link>
@@ -99,7 +99,7 @@ const StudyAbroadCountry = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +132,7 @@ const StudyAbroadCountry = () => {
                 alt={`${countryData.name} flag`}
                 className="w-16 h-12 object-cover rounded-lg shadow-lg border-2 border-white/30"
               />
-              <h1 className="text-5xl md:text-6xl font-bold text-white">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white">
                 Study in {countryData.name}
               </h1>
             </div>
@@ -157,7 +157,7 @@ const StudyAbroadCountry = () => {
 
       {/* Quick Facts Bar */}
       <section className="bg-slate-900 py-6">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             {quickFacts.map((fact, i) => (
               <div key={i} className="flex items-center gap-3 text-white">
@@ -178,7 +178,7 @@ const StudyAbroadCountry = () => {
 
       {/* Main Content */}
       <section className="py-16">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Left Content */}
             <div className="lg:col-span-2 space-y-16">
@@ -418,7 +418,7 @@ const StudyAbroadCountry = () => {
                   </p>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-colors"
                   >
                     Talk to Expert <FiArrowRight />
                   </Link>
@@ -431,7 +431,7 @@ const StudyAbroadCountry = () => {
 
       {/* Back to Study Abroad */}
       <section className="py-8 bg-slate-50">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
           <Link
             to="/study-abroad"
             className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all"

@@ -452,7 +452,7 @@ const MbbsAbroad = () => {
 
       {/* Eligibility Quiz Section */}
       <section className="py-16 bg-gradient-to-br from-blue-50 to-blue-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -467,10 +467,10 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Why MBBS Abroad - Benefits */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Why Study MBBS Abroad?
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -503,10 +503,10 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Top Countries */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Top Countries for MBBS
             </h2>
             <p className="text-lg text-slate-600">
@@ -572,10 +572,10 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Top Universities */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Top Medical Universities
             </h2>
             <p className="text-lg text-slate-600">
@@ -618,8 +618,8 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Eligibility & Documents */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-slate-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
             {/* Eligibility */}
             <div>
@@ -665,10 +665,10 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Our Services */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               What We Offer
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -702,10 +702,10 @@ const MbbsAbroad = () => {
       </section>
 
       {/* Admission Process Timeline */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-blue-50 to-blue-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Admission Process
             </h2>
             <p className="text-lg text-slate-600">
@@ -753,11 +753,11 @@ const MbbsAbroad = () => {
       </section>
 
       {/* CTA with Form */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-slate-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-blue-50 via-white to-slate-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-800">
                 Start Your MBBS Abroad Journey Today
               </h2>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">

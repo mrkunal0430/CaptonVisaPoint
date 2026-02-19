@@ -90,9 +90,9 @@ const LatestBlogs = () => {
         </motion.div>
 
         {/* Main Layout: Cards Left + Ticker Right */}
-        <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
           {/* LEFT SIDE - Blog Cards (3/5 width) */}
-          <div className="lg:col-span-3 grid sm:grid-cols-2 gap-5">
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {cardBlogs.map((blog, index) => (
               <motion.div
                 key={blog._id}
@@ -106,7 +106,7 @@ const LatestBlogs = () => {
                   className="group block bg-slate-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all h-full"
                 >
                   {/* Image */}
-                  <div className="h-48 overflow-hidden relative">
+                  <div className="h-40 sm:h-48 overflow-hidden relative">
                     <img
                       src={getBlogImageUrl(
                         blog,
@@ -152,7 +152,7 @@ const LatestBlogs = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 bg-slate-900 rounded-2xl p-6 relative overflow-hidden"
+            className="lg:col-span-2 bg-slate-900 rounded-2xl p-4 sm:p-6 relative overflow-hidden"
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
@@ -174,7 +174,7 @@ const LatestBlogs = () => {
             </div>
 
             {/* Scrolling Ticker */}
-            <div className="relative z-10 h-64 overflow-hidden">
+            <div className="relative z-10 h-48 sm:h-64 overflow-hidden">
               <div className="ticker-scroll space-y-4">
                 {/* First set of items */}
                 {tickerBlogs.map((blog, index) => (

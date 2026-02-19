@@ -87,16 +87,16 @@ const Mbbs = () => {
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 text-center">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-blue-100 border border-blue-200 px-6 py-2 rounded-full text-sm font-bold text-blue-700 mb-6 uppercase tracking-wider">
+            <span className="inline-block bg-blue-100 border border-blue-200 px-4 sm:px-6 py-2 rounded-full text-sm font-bold text-blue-700 mb-6 uppercase tracking-wider">
               🩺 Medical Education
             </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-slate-800">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-slate-800">
               Study MBBS
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">
@@ -139,10 +139,10 @@ const Mbbs = () => {
       </section>
 
       {/* Two-Column Navigation Cards */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-slate-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Choose Your Path
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -300,10 +300,10 @@ const Mbbs = () => {
       </section>
 
       {/* Why Choose MBBS */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Why Choose MBBS?
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -335,11 +335,11 @@ const Mbbs = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-slate-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-lg text-slate-600">
@@ -359,7 +359,7 @@ const Mbbs = () => {
                       ▼
                     </span>
                   </summary>
-                  <div className="px-6 pb-6 text-slate-600 leading-relaxed">
+                  <div className="px-4 sm:px-6 pb-6 text-slate-600 leading-relaxed">
                     {faq.answer}
                   </div>
                 </details>
@@ -370,12 +370,12 @@ const Mbbs = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-slate-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-blue-50 via-white to-slate-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-800">
                   Ready to Start Your MBBS Journey?
                 </h2>
                 <p className="text-xl text-slate-600 mb-8 leading-relaxed">

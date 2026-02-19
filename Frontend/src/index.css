@@ -164,6 +164,8 @@ html,
 body {
   overflow-x: hidden;
   width: 100%;
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling on orientation change */
+  text-size-adjust: 100%;
 }
 
 body {
@@ -171,4 +173,51 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+}
+
+/* Global image responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Minimum touch target size for accessibility */
+button,
+a,
+[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Safe area insets for notched phones (iPhone X+) */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Prevent horizontal scroll from absolute-positioned elements */
+.overflow-x-clip {
+  overflow-x: clip;
+}
+
+/* Better tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fix for inputs on iOS to prevent zoom */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    font-size: 16px; /* Prevents iOS auto-zoom on focus */
+  }
+}
+
+/* Smoother scrolling on iOS */
+.scroll-smooth {
+  -webkit-overflow-scrolling: touch;
 }

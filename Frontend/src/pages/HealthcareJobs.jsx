@@ -92,7 +92,7 @@ const HealthcareJobs = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
         </div>
 
-        <div className="container mx-auto px-6 py-20 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 py-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ const HealthcareJobs = () => {
               <FiHeart className="text-red-400" /> Healthcare Opportunities
               Abroad
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:text-6xl font-bold mb-6">
               Healthcare Jobs <br />
               <span className="text-blue-400">Abroad</span>
             </h1>
@@ -115,13 +115,13 @@ const HealthcareJobs = () => {
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/healthcare/uae"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all"
+                className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all"
               >
                 🇦🇪 UAE Healthcare <FiArrowRight />
               </Link>
               <Link
                 to="/healthcare/germany"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-800 rounded-full font-bold hover:bg-gray-100 transition-all"
+                className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-white text-slate-800 rounded-full font-bold hover:bg-gray-100 transition-all"
               >
                 🇩🇪 Germany Healthcare <FiArrowRight />
               </Link>
@@ -132,7 +132,7 @@ const HealthcareJobs = () => {
 
       {/* Countries Section */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -199,7 +199,7 @@ const HealthcareJobs = () => {
 
                     <Link
                       to={`/healthcare/${country.id}`}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all w-fit"
+                      className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all w-fit"
                     >
                       Explore {country.name} Jobs <FiArrowRight />
                     </Link>
@@ -212,8 +212,8 @@ const HealthcareJobs = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -256,7 +256,7 @@ const HealthcareJobs = () => {
 
       {/* Process Section */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -317,8 +317,8 @@ const HealthcareJobs = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-slate-900 text-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-slate-900 text-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}

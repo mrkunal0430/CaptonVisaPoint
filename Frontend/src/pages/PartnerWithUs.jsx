@@ -95,7 +95,7 @@ const PartnerWithUs = () => {
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
         </div>
 
-        <div className="container mx-auto px-6 py-20 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 py-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ const PartnerWithUs = () => {
             <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-white/20">
               Join Our Partner Network
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:text-6xl font-bold mb-6">
               Partner With Us
             </h1>
             <p className="text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto">
@@ -119,7 +119,7 @@ const PartnerWithUs = () => {
 
       {/* Why Partner Section */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -161,8 +161,8 @@ const PartnerWithUs = () => {
       </section>
 
       {/* Partner Types Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -178,7 +178,7 @@ const PartnerWithUs = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {partnerTypes.map((type, index) => (
               <motion.div
                 key={index}
@@ -210,7 +210,7 @@ const PartnerWithUs = () => {
 
       {/* Stats Section */}
       <section className="py-16 bg-slate-900 text-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { number: "10,000+", label: "Students Placed" },
@@ -237,7 +237,7 @@ const PartnerWithUs = () => {
 
       {/* Form Section */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left Content */}
             <motion.div

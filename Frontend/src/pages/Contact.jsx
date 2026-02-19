@@ -10,13 +10,13 @@ const Contact = () => {
         description="Contact Capton Visa Point for free counselling on MBBS abroad, MBBS in India, study abroad, Ausbildung, and immigration. Book a free consultation — MBBS admission help, NEET counseling, visa guidance, and career planning."
         keywords="contact Capton Visa Point, free consultation, study abroad counselling, immigration consultants, MBBS admission help, MBBS admission enquiry, MBBS admission helpline, MBBS guidance center, MBBS abroad counseling experts, MBBS abroad admission India helpline, MBBS consultants near me, best medical education consultants, MBBS career guidance, medical admission experts, apply MBBS online, MBBS admission enquiry India"
       />
-      <div className="bg-gradient-to-br from-white via-blue-50 to-slate-50 py-20 text-center border-b border-slate-100">
-        <h1 className="text-4xl font-bold mb-4 text-slate-800">Contact Us</h1>
-        <p className="text-slate-600">We are here to help you.</p>
+      <div className="bg-gradient-to-br from-white via-blue-50 to-slate-50 py-14 sm:py-20 text-center border-b border-slate-100">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 text-slate-800">Contact Us</h1>
+        <p className="text-slate-600 px-4">We are here to help you.</p>
       </div>
 
-      <div className="container mx-auto px-6 py-20">
-        <div className="grid md:grid-cols-2 gap-16">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-20">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {/* Contact Info */}
           <div>
             <h2 className="text-2xl font-bold text-slate-900 mb-8">

@@ -32,13 +32,13 @@ const ServicesShowcase = () => {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Image/Title */}
-              <div className="lg:col-span-1 bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white flex flex-col justify-center">
-                <h3 className="text-2xl font-bold mb-2">MBBS</h3>
+              <div className="lg:col-span-1 bg-gradient-to-br from-blue-600 to-blue-700 p-4 sm:p-6 text-white flex flex-col justify-center">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">MBBS</h3>
                 <p className="text-blue-100 text-sm">Medical Education</p>
                 <img
                   src="/Home_Hero/1.webp"
                   alt="MBBS"
-                  className="mt-4 rounded-lg w-full h-32 object-cover opacity-80"
+                  className="mt-3 rounded-lg w-full h-24 sm:h-32 object-cover opacity-80 lg:block hidden"
                 />
               </div>
 
@@ -125,13 +125,13 @@ const ServicesShowcase = () => {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Title */}
-              <div className="lg:col-span-1 bg-gradient-to-br from-blue-700 to-blue-800 p-6 text-white flex flex-col justify-center">
+              <div className="lg:col-span-1 bg-gradient-to-br from-blue-700 to-blue-800 p-4 sm:p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-2">Low Budget</h3>
                 <p className="text-blue-100 text-sm">High ROI Countries</p>
                 <img
                   src="/Home_Hero/4.webp"
                   alt="Low Budget Study Abroad"
-                  className="mt-4 rounded-lg w-full h-32 object-cover opacity-80"
+                  className="mt-3 rounded-lg w-full h-24 sm:h-32 object-cover opacity-80 lg:block hidden"
                 />
               </div>
 
@@ -174,13 +174,13 @@ const ServicesShowcase = () => {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Title */}
-              <div className="lg:col-span-1 bg-gradient-to-br from-blue-800 to-blue-900 p-6 text-white flex flex-col justify-center">
+              <div className="lg:col-span-1 bg-gradient-to-br from-blue-800 to-blue-900 p-4 sm:p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-2">Healthcare</h3>
                 <p className="text-blue-100 text-sm">Jobs Abroad</p>
                 <img
                   src="/Home_Hero/6.webp"
                   alt="Healthcare Jobs"
-                  className="mt-4 rounded-lg w-full h-32 object-cover opacity-80"
+                  className="mt-3 rounded-lg w-full h-24 sm:h-32 object-cover opacity-80 lg:block hidden"
                 />
               </div>
 
@@ -258,13 +258,13 @@ const ServicesShowcase = () => {
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               {/* Left - Title */}
-              <div className="lg:col-span-1 bg-gradient-to-br from-amber-500 to-amber-600 p-6 text-white flex flex-col justify-center">
+              <div className="lg:col-span-1 bg-gradient-to-br from-amber-500 to-amber-600 p-4 sm:p-6 text-white flex flex-col justify-center">
                 <h3 className="text-xl font-bold mb-1">Germany</h3>
                 <p className="text-amber-100 text-sm">Study & Work</p>
                 <img
                   src="/Home_Hero/2.webp"
                   alt="Study Work Settle in Germany"
-                  className="mt-4 rounded-lg w-full h-32 object-cover opacity-80"
+                  className="mt-3 rounded-lg w-full h-24 sm:h-32 object-cover opacity-80 lg:block hidden"
                 />
               </div>
 
@@ -330,7 +330,7 @@ const ServicesShowcase = () => {
                 <img
                   src="/Ausbildung.webp"
                   alt="Ausbildung"
-                  className="w-full h-32 object-cover rounded-lg mb-4"
+                  className="w-full h-28 sm:h-32 object-cover rounded-lg mb-4"
                 />
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
@@ -366,7 +366,7 @@ const ServicesShowcase = () => {
                 <img
                   src="/German_Language.jpg"
                   alt="Learn German Language"
-                  className="w-full h-32 object-cover rounded-lg mb-4"
+                  className="w-full h-28 sm:h-32 object-cover rounded-lg mb-4"
                 />
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <Link

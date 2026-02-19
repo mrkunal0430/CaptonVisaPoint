@@ -716,7 +716,7 @@ const MbbsCountry = () => {
         />
         {/* Dark gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/50 to-slate-900/30" />
-        <div className="relative z-20 text-center px-6">
+        <div className="relative z-20 text-center px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -725,7 +725,7 @@ const MbbsCountry = () => {
             <span className="bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-1.5 rounded-full text-sm font-semibold text-white mb-4 inline-block uppercase tracking-wider">
               MBBS in {countryName}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-lg">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-lg">
               Study MBBS in {countryName}
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
@@ -737,8 +737,8 @@ const MbbsCountry = () => {
       </section>
 
       {/* Overview & Quick Stats */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 grid md:grid-cols-3 gap-12">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-12">
           <div className="md:col-span-2 space-y-10">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">

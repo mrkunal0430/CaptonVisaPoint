@@ -190,7 +190,7 @@ const StudyAbroad = () => {
           })}
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -202,28 +202,28 @@ const StudyAbroad = () => {
                 Your Gateway to Global Education
               </span>
 
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Study Abroad with{" "}
                 <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
                   Confidence
                 </span>
               </h1>
 
-              <p className="text-xl text-blue-100/80 max-w-2xl mx-auto mb-10">
+              <p className="text-base sm:text-xl text-blue-100/80 max-w-2xl mx-auto mb-7 sm:mb-10 px-2">
                 Transform your future with world-class education. We guide you
                 to the best universities across 13+ countries.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-bold text-lg shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:scale-105 transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-bold text-base sm:text-lg shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:scale-105 transition-all"
                 >
                   Start Your Journey <FiArrowRight />
                 </Link>
                 <a
                   href="#countries"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur border border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur border border-white/30 text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/20 transition-all"
                 >
                   Explore Destinations
                 </a>
@@ -244,9 +244,9 @@ const StudyAbroad = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-white relative -mt-1">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="py-10 sm:py-12 bg-white relative -mt-1">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
@@ -254,7 +254,7 @@ const StudyAbroad = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 border border-slate-100"
+                className="text-center p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 border border-slate-100"
               >
                 <div className="text-3xl text-blue-600 mb-2 flex justify-center">
                   {stat.icon}
@@ -274,28 +274,28 @@ const StudyAbroad = () => {
       {/* Premier Destinations - Highlighted */}
       <section
         id="countries"
-        className="py-24 bg-gradient-to-b from-white to-slate-50"
+        className="py-14 sm:py-24 bg-gradient-to-b from-white to-slate-50"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 text-amber-700 text-sm font-bold mb-4 border border-amber-200">
               <FiStar className="text-amber-500" /> Premier Study Destinations
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl md:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
               Top Recommended Countries
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
               Our top destinations where we provide exceptional guidance and
               support for your education journey
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
             {preferredCountries.map((country, i) => (
               <motion.div
                 key={country.id}
@@ -316,7 +316,7 @@ const StudyAbroad = () => {
                   </div>
 
                   {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-40 sm:h-48 overflow-hidden">
                     <img
                       src={country.bannerImage}
                       alt={country.name}
@@ -375,24 +375,24 @@ const StudyAbroad = () => {
       </section>
 
       {/* Other Countries */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-24 bg-slate-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl md:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
               Explore More Destinations
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
               Discover opportunities in these popular study destinations
               worldwide
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {otherCountries.map((country, i) => (
               <motion.div
                 key={country.id}
@@ -445,15 +445,15 @@ const StudyAbroad = () => {
       </section>
 
       {/* Why Study Abroad */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Why Study Abroad?
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -487,20 +487,20 @@ const StudyAbroad = () => {
       </section>
 
       {/* Process Timeline */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-950 relative overflow-hidden">
+      <section className="py-14 sm:py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-950 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               Your Journey to Abroad
             </h2>
             <p className="text-lg text-blue-200 max-w-2xl mx-auto">
@@ -534,8 +534,8 @@ const StudyAbroad = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -543,7 +543,7 @@ const StudyAbroad = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-lg text-slate-600">
@@ -563,7 +563,7 @@ const StudyAbroad = () => {
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left bg-slate-50 hover:bg-slate-100 transition-colors"
+                    className="w-full px-4 sm:px-6 py-5 flex items-center justify-between text-left bg-slate-50 hover:bg-slate-100 transition-colors"
                   >
                     <span className="font-bold text-slate-900 pr-4">
                       {faq.q}
@@ -573,7 +573,7 @@ const StudyAbroad = () => {
                     />
                   </button>
                   {openFaq === i && (
-                    <div className="px-6 py-5 bg-white border-t border-slate-100">
+                    <div className="px-4 sm:px-6 py-5 bg-white border-t border-slate-100">
                       <p className="text-slate-600 leading-relaxed">{faq.a}</p>
                     </div>
                   )}
@@ -585,8 +585,8 @@ const StudyAbroad = () => {
       </section>
 
       {/* CTA with Existing Form */}
-      <section className="py-24 bg-gradient-to-r from-blue-600 to-blue-800">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-24 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
             <div className="lg:w-1/2 p-8 lg:p-12 bg-gradient-to-br from-slate-900 to-blue-900 text-white flex flex-col justify-center">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">

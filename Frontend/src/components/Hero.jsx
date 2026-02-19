@@ -278,7 +278,7 @@ const Hero = () => {
           {/* 3. Right Interactive Section - Service Cards Visual */}
           <div className="flex-[1.2] w-full lg:h-[600px] relative flex md:items-center justify-center lg:justify-end">
             {/* Cards Grid - Masonry Layout */}
-            <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-[12px] sm:gap-[16px] md:gap-[20px]">
+            <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-[10px] min-[400px]:gap-[12px] sm:gap-[16px] md:gap-[20px]">
               {services.map((service, idx) => (
                 <div
                   key={idx}
@@ -293,7 +293,7 @@ const Hero = () => {
             <motion.div
               animate={{ x: [0, -15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[41%] -left-[5%] lg:-left-[10%] z-20 hidden sm:block"
+              className="absolute top-[41%] -left-[5%] lg:-left-[10%] z-20 hidden lg:block"
             >
               <button
                 onClick={() => setShowInquiry(true)}
@@ -320,7 +320,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               onClick={() => setShowInquiry(true)}
-              className="sm:hidden fixed bottom-6 right-6 z-50 bg-blue-700 p-4 rounded-full shadow-xl shadow-blue-700/30 flex items-center justify-center text-white hover:scale-110 hover:bg-blue-800 transition-all"
+              className="lg:hidden fixed bottom-6 right-6 z-50 bg-blue-700 p-4 rounded-full shadow-xl shadow-blue-700/30 flex items-center justify-center text-white hover:scale-110 hover:bg-blue-800 transition-all"
             >
               <FiHelpCircle size={24} />
             </motion.button>

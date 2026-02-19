@@ -15,7 +15,7 @@ const Footer = () => {
     <footer className="bg-slate-900 text-slate-300">
       {/* Main Footer */}
       <div className="container mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 mb-12 sm:mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 mb-10 sm:mb-16">
           {/* Brand Column */}
           <div className="col-span-2 sm:col-span-2 md:col-span-3 lg:col-span-1 space-y-6">
             <Link to="/" className="flex items-center gap-2 group">
@@ -63,7 +63,7 @@ const Footer = () => {
               <span className="w-1 h-5 bg-blue-600 rounded-full"></span>
               MBBS Abroad
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-2 sm:space-y-3 text-sm">
               {[
                 { name: "MBBS Abroad", link: "/mbbs/abroad" },
                 { name: "MBBS India", link: "/mbbs/india" },

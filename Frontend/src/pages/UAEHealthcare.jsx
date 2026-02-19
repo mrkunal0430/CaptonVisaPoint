@@ -138,7 +138,7 @@ const UAEHealthcare = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
         </div>
 
-        <div className="container mx-auto px-6 py-20 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 py-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -153,7 +153,7 @@ const UAEHealthcare = () => {
             </Link>
             <div className="flex items-center gap-4 mb-4">
               <span className="text-5xl">🇦🇪</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:text-6xl font-bold">
                 UAE Healthcare Jobs
               </h1>
             </div>
@@ -178,7 +178,7 @@ const UAEHealthcare = () => {
 
       {/* Benefits Section */}
       <section className="py-16 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
             Benefits of Working in UAE Healthcare
           </h2>
@@ -205,7 +205,7 @@ const UAEHealthcare = () => {
 
       {/* Job Categories */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -272,8 +272,8 @@ const UAEHealthcare = () => {
       </section>
 
       {/* Requirements Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -349,7 +349,7 @@ const UAEHealthcare = () => {
 
       {/* Top Employers */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -392,8 +392,8 @@ const UAEHealthcare = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-blue-600 text-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -440,13 +440,13 @@ const UAEHealthcare = () => {
 
       {/* Other Country Link */}
       <section className="py-12 bg-slate-100">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
           <p className="text-slate-600 mb-4">
             Also explore healthcare opportunities in
           </p>
           <Link
             to="/healthcare/germany"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-900 transition-all"
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-900 transition-all"
           >
             🇩🇪 Germany Healthcare Jobs <FiArrowRight />
           </Link>

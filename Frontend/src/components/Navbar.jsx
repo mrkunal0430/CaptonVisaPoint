@@ -144,7 +144,7 @@ const MegaDropdown = ({ columns }) => (
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: 10 }}
     transition={{ duration: 0.15 }}
-    className="absolute top-full left-1/2 -translate-x-1/2 w-[480px] bg-white rounded-xl shadow-2xl border border-slate-100 p-5 grid grid-cols-2 gap-6 z-50 overflow-hidden"
+    className="absolute top-full left-1/2 -translate-x-1/2 w-[90vw] max-w-[480px] bg-white rounded-xl shadow-2xl border border-slate-100 p-4 sm:p-5 grid grid-cols-2 gap-4 sm:gap-6 z-50 overflow-hidden"
   >
     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 to-blue-900" />
     {columns.map((col, colIdx) => (

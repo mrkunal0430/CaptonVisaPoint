@@ -188,7 +188,7 @@ const BlogDetail = () => {
   if (error || !blog) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center max-w-md mx-auto px-6">
+        <div className="text-center max-w-md mx-auto px-4 sm:px-6">
           <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <FiTag className="text-red-500 text-4xl" />
           </div>
@@ -198,7 +198,7 @@ const BlogDetail = () => {
           <p className="text-slate-500 mb-6">{error}</p>
           <button
             onClick={() => navigate("/blog")}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue text-white rounded-xl font-medium hover:bg-blue-600 transition-colors"
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-brand-blue text-white rounded-xl font-medium hover:bg-blue-600 transition-colors"
           >
             <FiArrowLeft /> Back to Blog
           </button>
@@ -246,7 +246,7 @@ const BlogDetail = () => {
 
       {/* Article Content */}
       <article className="relative -mt-20 z-10">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             {/* Article Header Card */}
             <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 mb-8">
@@ -378,7 +378,7 @@ const BlogDetail = () => {
                 <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
                   Related Articles
                 </h2>
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
                   {relatedBlogs.map((relatedBlog) => (
                     <Link
                       key={relatedBlog._id}
@@ -417,7 +417,7 @@ const BlogDetail = () => {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-brand-blue to-blue-700">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Ready to Start Your Journey?

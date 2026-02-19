@@ -39,7 +39,7 @@ const UniversityDetail = () => {
           </p>
           <Link
             to="/study-abroad"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-bold"
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 text-white rounded-full font-bold"
           >
             <FiArrowLeft /> Back to Study Abroad
           </Link>
@@ -66,7 +66,7 @@ const UniversityDetail = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 pb-12">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pb-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ const UniversityDetail = () => {
               </span>
             )}
 
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
               {universityData.name}
             </h1>
             <p className="text-xl text-blue-100/90 flex items-center gap-2">
@@ -113,7 +113,7 @@ const UniversityDetail = () => {
       <section
         className={`py-4 ${isPreferred ? "bg-gradient-to-r from-amber-500 to-orange-500" : "bg-blue-600"}`}
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-white">
             <div className="flex items-center gap-2">
               <FiCalendar />
@@ -139,7 +139,7 @@ const UniversityDetail = () => {
 
       {/* Main Content */}
       <section className="py-16">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Left Content */}
             <div className="lg:col-span-2 space-y-12">
@@ -292,7 +292,7 @@ const UniversityDetail = () => {
                   {universityData.intakes.map((intake, i) => (
                     <div
                       key={i}
-                      className={`px-6 py-4 rounded-xl font-bold text-lg ${
+                      className={`px-4 sm:px-6 py-4 rounded-xl font-bold text-lg ${
                         isPreferred
                           ? "bg-gradient-to-r from-amber-400 to-orange-500 text-white"
                           : "bg-gradient-to-r from-blue-500 to-blue-700 text-white"
@@ -353,7 +353,7 @@ const UniversityDetail = () => {
                   </p>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-900 rounded-full font-bold hover:bg-blue-50 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-white text-blue-900 rounded-full font-bold hover:bg-blue-50 transition-colors"
                   >
                     Talk to Expert <FiArrowRight />
                   </Link>
@@ -366,7 +366,7 @@ const UniversityDetail = () => {
 
       {/* Navigation */}
       <section className="py-8 bg-slate-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <Link
               to={`/study-abroad/${country}`}

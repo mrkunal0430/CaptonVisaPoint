@@ -172,7 +172,7 @@ const GermanyHealthcare = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
         </div>
 
-        <div className="container mx-auto px-6 py-20 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 py-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -187,7 +187,7 @@ const GermanyHealthcare = () => {
             </Link>
             <div className="flex items-center gap-4 mb-4">
               <span className="text-5xl">🇩🇪</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:text-6xl font-bold">
                 Germany Healthcare Jobs
               </h1>
             </div>
@@ -210,7 +210,7 @@ const GermanyHealthcare = () => {
 
       {/* Benefits Section */}
       <section className="py-16 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
             Why Choose Germany for Healthcare?
           </h2>
@@ -237,7 +237,7 @@ const GermanyHealthcare = () => {
 
       {/* Job Categories */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -314,7 +314,7 @@ const GermanyHealthcare = () => {
 
       {/* German Language Importance */}
       <section className="py-16 bg-yellow-50 border-y border-yellow-100">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <div className="text-5xl mb-4">🇩🇪</div>
             <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
@@ -327,7 +327,7 @@ const GermanyHealthcare = () => {
             </p>
             <Link
               to="/coaching"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-500 text-slate-900 rounded-full font-bold hover:bg-yellow-400 transition-all"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-yellow-500 text-slate-900 rounded-full font-bold hover:bg-yellow-400 transition-all"
             >
               Explore German Courses <FiArrowRight />
             </Link>
@@ -337,7 +337,7 @@ const GermanyHealthcare = () => {
 
       {/* Process Timeline */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -382,8 +382,8 @@ const GermanyHealthcare = () => {
       </section>
 
       {/* Requirements Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -442,8 +442,8 @@ const GermanyHealthcare = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-700 text-white">
-        <div className="container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-blue-700 text-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -490,13 +490,13 @@ const GermanyHealthcare = () => {
 
       {/* Other Country Link */}
       <section className="py-12 bg-slate-100">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
           <p className="text-slate-600 mb-4">
             Also explore healthcare opportunities in
           </p>
           <Link
             to="/healthcare/uae"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-900 transition-all"
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-900 transition-all"
           >
             🇦🇪 UAE Healthcare Jobs <FiArrowRight />
           </Link>

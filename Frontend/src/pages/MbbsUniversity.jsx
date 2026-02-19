@@ -1513,7 +1513,7 @@ const MbbsUniversity = () => {
           </p>
           <Link
             to={`/mbbs/${country || "abroad"}`}
-            className="inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors"
+            className="inline-flex items-center gap-2 bg-blue-500 text-white px-4 sm:px-6 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors"
           >
             <FiArrowLeft /> Back to Country Page
           </Link>
@@ -1566,7 +1566,7 @@ const MbbsUniversity = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-slate-900/30" />
-        <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-20 text-center px-4 sm:px-6 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1579,7 +1579,7 @@ const MbbsUniversity = () => {
               <FiArrowLeft className="text-xs" /> Back to MBBS in{" "}
               {uniData.country}
             </Link>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">
               {uniData.name}
             </h1>
             <div className="flex flex-wrap items-center justify-center gap-4 text-white/80 text-sm">
@@ -1599,7 +1599,7 @@ const MbbsUniversity = () => {
 
       {/* Quick Stats Bar */}
       <section className="bg-white border-b border-slate-100">
-        <div className="container mx-auto px-6 py-6">
+        <div className="container mx-auto px-4 sm:px-6 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
               <p className="text-xs text-slate-400 uppercase font-semibold tracking-wider">
@@ -1639,7 +1639,7 @@ const MbbsUniversity = () => {
 
       {/* Main Content */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-6 grid lg:grid-cols-3 gap-12">
+        <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-3 gap-12">
           {/* Left Content */}
           <div className="lg:col-span-2 space-y-12">
             {/* About */}

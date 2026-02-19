@@ -501,16 +501,16 @@ const Coaching = () => {
           <div className="absolute -bottom-24 left-1/3 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 px-6 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 px-4 sm:px-6 py-2 rounded-full mb-6">
               <FiAward className="text-amber-500" />
               <span className="text-sm font-semibold text-blue-700">
                 India's #1 Test Preparation Institute
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-slate-800">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-slate-800">
               Master Your{" "}
               <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
                 Dream Test
@@ -587,7 +587,7 @@ const Coaching = () => {
         id="courses"
         className="sticky top-20 z-30 bg-white shadow-md border-b border-slate-200"
       >
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex flex-wrap justify-center gap-3">
             {[
               { id: "all", label: "All Courses", icon: <FiBook /> },
@@ -606,7 +606,7 @@ const Coaching = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all ${
+                className={`flex items-center gap-2 px-4 sm:px-6 py-3 rounded-full font-bold transition-all ${
                   activeCategory === cat.id
                     ? "bg-gradient-to-r from-blue-700 to-blue-700 text-white shadow-lg scale-105"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -622,8 +622,8 @@ const Coaching = () => {
 
       {/* Courses Grid */}
       <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {filteredCourses.map((course) => (
               <div
                 key={course.id}
@@ -705,9 +705,9 @@ const Coaching = () => {
 
       {/* Learning Modes */}
       <section className="py-16 bg-gradient-to-br from-slate-100 to-blue-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
               Multiple Ways to Learn
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
@@ -715,7 +715,7 @@ const Coaching = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {learningModes.map((mode, index) => (
               <div
                 key={index}
@@ -740,9 +740,9 @@ const Coaching = () => {
 
       {/* Why Choose Us */}
       <section className="py-16">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
               Why Choose Capton Visa Point?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -751,7 +751,7 @@ const Coaching = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {whyChooseUs.map((item, index) => (
               <div
                 key={index}
@@ -781,9 +781,9 @@ const Coaching = () => {
 
       {/* Success Stories */}
       <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-slate-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-slate-800">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-slate-800">
               Success Stories
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
@@ -791,7 +791,7 @@ const Coaching = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {successStories.map((story, index) => (
               <div
                 key={index}
@@ -831,7 +831,7 @@ const Coaching = () => {
         id="trial-class"
         className="py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-white"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
               <div className="grid md:grid-cols-2">
@@ -923,7 +923,7 @@ const Coaching = () => {
 
             {/* Modal Body */}
             <div className="p-8 max-h-[70vh] overflow-y-auto">
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 mb-8">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
                   <FiClock className="text-3xl text-blue-600 mx-auto mb-2" />
                   <div className="text-sm text-slate-600 mb-1">Duration</div>

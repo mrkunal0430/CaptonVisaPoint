@@ -211,7 +211,7 @@ const MbbsIndia = () => {
                 <span>Medical Education in India</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-blue-700">
                   MBBS Admission
                 </span>
@@ -248,7 +248,7 @@ const MbbsIndia = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <a
                   href="#eligibility"
-                  className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 text-sm sm:text-base"
+                  className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 sm:px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
                   Check Eligibility
                   <svg
@@ -267,7 +267,7 @@ const MbbsIndia = () => {
                 </a>
                 <a
                   href="#colleges"
-                  className="bg-white text-orange-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold border-2 border-orange-600 hover:bg-orange-50 transition-all text-center text-sm sm:text-base"
+                  className="bg-white text-orange-600 px-4 sm:px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold border-2 border-orange-600 hover:bg-orange-50 transition-all text-center text-sm sm:text-base"
                 >
                   View Colleges
                 </a>
@@ -463,13 +463,13 @@ const MbbsIndia = () => {
               <table className="w-full min-w-[400px]">
                 <thead className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
                   <tr>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                    <th className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Category
                     </th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                    <th className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Percentile
                     </th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                    <th className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Score Range
                     </th>
                   </tr>
@@ -480,13 +480,13 @@ const MbbsIndia = () => {
                       key={idx}
                       className={`border-b border-slate-100 ${idx % 2 === 0 ? "bg-slate-50" : "bg-white"} hover:bg-blue-50 transition-colors`}
                     >
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-slate-900 text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 font-semibold text-slate-900 text-xs sm:text-sm lg:text-base">
                         {item.category}
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-slate-700 text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-slate-700 text-xs sm:text-sm lg:text-base">
                         {item.percentile}
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-600 font-bold text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-blue-600 font-bold text-xs sm:text-sm lg:text-base">
                         {item.score}
                       </td>
                     </tr>
@@ -749,16 +749,16 @@ const MbbsIndia = () => {
               <table className="w-full min-w-[450px]">
                 <thead className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
                   <tr>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                    <th className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       State
                     </th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                    <th className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Govt
                     </th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                    <th className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Private
                     </th>
-                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
+                    <th className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-xs sm:text-sm lg:text-base">
                       Total
                     </th>
                   </tr>
@@ -769,16 +769,16 @@ const MbbsIndia = () => {
                       key={idx}
                       className={`border-b border-slate-100 ${idx % 2 === 0 ? "bg-slate-50" : "bg-white"} hover:bg-orange-50 transition-colors`}
                     >
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-slate-900 text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 font-semibold text-slate-900 text-xs sm:text-sm lg:text-base">
                         {item.state}
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-700 font-semibold text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-blue-700 font-semibold text-xs sm:text-sm lg:text-base">
                         {item.govt}
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-700 font-semibold text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-blue-700 font-semibold text-xs sm:text-sm lg:text-base">
                         {item.private}
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-blue-600 font-bold text-xs sm:text-sm lg:text-base">
+                      <td className="px-3 sm:px-4 sm:px-6 py-3 sm:py-4 text-blue-600 font-bold text-xs sm:text-sm lg:text-base">
                         {item.total}
                       </td>
                     </tr>
