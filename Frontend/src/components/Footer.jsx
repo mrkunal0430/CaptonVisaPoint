@@ -8,62 +8,89 @@ import {
   FiMapPin,
   FiPhone,
   FiMail,
+  FiArrowRight,
 } from "react-icons/fi";
 
 const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-300">
       {/* Main Footer */}
-      <div className="container mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 mb-10 sm:mb-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-8">
+        {/*
+          Grid layout strategy:
+          xs  (< 640px)  : 2 cols — brand spans full row, 4 sections in 2×2 pairs (no ladder!)
+          sm  (640-1023px): 2 cols — same with more padding
+          lg  (1024px+)  : 5 cols — all 5 columns side by side
+        */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-8 sm:gap-x-8 lg:gap-x-12 mb-10 sm:mb-16">
           {/* Brand Column */}
-          <div className="col-span-2 sm:col-span-2 md:col-span-3 lg:col-span-1 space-y-6">
-            <Link to="/" className="flex items-center gap-2 group">
+          <div className="col-span-2 lg:col-span-1 space-y-4 sm:space-y-5">
+            <Link to="/" className="flex items-center gap-2.5 group w-fit">
               <img
                 src="/logo.png"
                 alt="Capton Visa Point Logo"
-                className="w-10 h-10 object-contain"
-                style={{
-                  filter: "drop-shadow(0 0 0 transparent)",
-                  mixBlendMode: "screen",
-                }}
+                className="w-10 h-10 object-contain shrink-0"
               />
-              <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <span className="text-xl sm:text-2xl font-bold text-white tracking-tight whitespace-nowrap">
                 Capton<span className="text-blue-400">VisaPoint</span>
               </span>
             </Link>
-            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
               India's leading immigration and education consultancy. Your
               trusted partner for global opportunities.
             </p>
-            <div className="flex gap-3">
+
+            {/* Social icons — each 44×44px for proper touch targets */}
+            <div className="flex flex-wrap gap-2">
               {[
-                { Icon: FiFacebook, link: "#", color: "hover:bg-blue-700" },
-                { Icon: FiInstagram, link: "#", color: "hover:bg-amber-500" },
-                { Icon: FiTwitter, link: "#", color: "hover:bg-blue-600" },
-                { Icon: FiLinkedin, link: "#", color: "hover:bg-blue-800" },
-                { Icon: FiYoutube, link: "#", color: "hover:bg-amber-600" },
-              ].map(({ Icon, link, color }, idx) => (
+                {
+                  Icon: FiFacebook,
+                  link: "#",
+                  label: "Facebook",
+                  color: "hover:bg-blue-700",
+                },
+                {
+                  Icon: FiInstagram,
+                  link: "#",
+                  label: "Instagram",
+                  color: "hover:bg-amber-500",
+                },
+
+                {
+                  Icon: FiLinkedin,
+                  link: "#",
+                  label: "LinkedIn",
+                  color: "hover:bg-blue-800",
+                },
+                {
+                  Icon: FiYoutube,
+                  link: "#",
+                  label: "YouTube",
+                  color: "hover:bg-amber-600",
+                },
+              ].map(({ Icon, link, label, color }) => (
                 <a
-                  key={idx}
+                  key={label}
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 ${color} hover:text-white transition-all hover:scale-110`}
+                  aria-label={label}
+                  className={`w-11 h-11 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 ${color} hover:text-white transition-all hover:scale-105 active:scale-95`}
                 >
-                  <Icon size={16} />
+                  <Icon size={17} />
                 </a>
               ))}
             </div>
           </div>
 
           {/* MBBS Abroad */}
-          <div>
-            <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-blue-600 rounded-full"></span>
+          <div className="min-w-0">
+            <h4 className="text-white font-bold mb-3 sm:mb-4 flex items-center gap-2 text-xs sm:text-sm lg:text-base">
+              <span className="w-1 h-4 bg-blue-600 rounded-full shrink-0"></span>
               MBBS Abroad
             </h4>
-            <ul className="space-y-2 sm:space-y-3 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2">
               {[
                 { name: "MBBS Abroad", link: "/mbbs/abroad" },
                 { name: "MBBS India", link: "/mbbs/india" },
@@ -76,7 +103,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.link}
-                    className="text-slate-400 hover:text-blue-400 transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-400 hover:text-blue-400 sm:hover:translate-x-1 transition-all inline-block text-xs leading-snug"
                   >
                     {item.name}
                   </Link>
@@ -86,12 +113,12 @@ const Footer = () => {
           </div>
 
           {/* Study Abroad */}
-          <div>
-            <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-blue-400 rounded-full"></span>
+          <div className="min-w-0">
+            <h4 className="text-white font-bold mb-3 sm:mb-4 flex items-center gap-2 text-xs sm:text-sm lg:text-base">
+              <span className="w-1 h-4 bg-blue-400 rounded-full shrink-0"></span>
               Study Abroad
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2">
               {[
                 { name: "Study Abroad", link: "/study-abroad" },
                 { name: "Study in Germany", link: "/study-abroad/germany" },
@@ -104,7 +131,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.link}
-                    className="text-slate-400 hover:text-blue-400 transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-400 hover:text-blue-400 sm:hover:translate-x-1 transition-all inline-block text-xs leading-snug"
                   >
                     {item.name}
                   </Link>
@@ -113,13 +140,13 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Healthcare & Coaching */}
-          <div>
-            <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-amber-500 rounded-full"></span>
+          {/* Services */}
+          <div className="min-w-0">
+            <h4 className="text-white font-bold mb-3 sm:mb-4 flex items-center gap-2 text-xs sm:text-sm lg:text-base">
+              <span className="w-1 h-4 bg-amber-500 rounded-full shrink-0"></span>
               Services
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2">
               {[
                 { name: "Healthcare Jobs", link: "/healthcare" },
                 { name: "UAE Healthcare", link: "/healthcare/uae" },
@@ -132,7 +159,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.link}
-                    className="text-slate-400 hover:text-amber-400 transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-400 hover:text-amber-400 sm:hover:translate-x-1 transition-all inline-block text-xs leading-snug"
                   >
                     {item.name}
                   </Link>
@@ -142,12 +169,14 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="text-white font-bold mb-6 flex items-center gap-2">
-              <span className="w-1 h-5 bg-amber-400 rounded-full"></span>
+          <div className="min-w-0">
+            <h4 className="text-white font-bold mb-3 sm:mb-4 flex items-center gap-2 text-xs sm:text-sm lg:text-base">
+              <span className="w-1 h-4 bg-amber-400 rounded-full shrink-0"></span>
               Contact Us
             </h4>
-            <ul className="space-y-3 text-sm mb-6">
+
+            {/* Quick nav links */}
+            <ul className="space-y-1.5 sm:space-y-2 mb-4">
               {[
                 { name: "Contact", link: "/contact" },
                 { name: "Services", link: "/services" },
@@ -155,35 +184,42 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.link}
-                    className="text-slate-400 hover:text-amber-400 transition-colors hover:translate-x-1 inline-block"
+                    className="text-slate-400 hover:text-amber-400 sm:hover:translate-x-1 transition-all inline-flex items-center gap-1 text-xs leading-snug"
                   >
                     {item.name}
+                    <FiArrowRight size={10} />
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <div className="space-y-3 text-sm pt-4 border-t border-slate-700">
-              <div className="flex gap-3 items-start">
-                <FiMapPin className="text-blue-400 mt-1 shrink-0" />
-                <span className="text-slate-400">
-                  B-15 , Ram Dutt Enclave, Uttam Nagar , New Delhi - 110059
+            {/* Contact details */}
+            <div className="space-y-2.5 sm:space-y-3 pt-3 border-t border-slate-700/60">
+              {/* Address */}
+              <div className="flex gap-2.5 items-start">
+                <FiMapPin className="text-blue-400 mt-0.5 shrink-0" size={14} />
+                <span className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                  B-15, Ram Dutt Enclave, Uttam Nagar, New Delhi – 110059
                 </span>
               </div>
-              <div className="flex gap-3 items-center">
-                <FiPhone className="text-amber-400 shrink-0" />
+
+              {/* Phone — href and display text must match */}
+              <div className="flex gap-2.5 items-center">
+                <FiPhone className="text-amber-400 shrink-0" size={14} />
                 <a
-                  href="tel:+919876543210"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  href="tel:+919914773125"
+                  className="text-slate-400 hover:text-white text-xs sm:text-sm transition-colors"
                 >
                   +91 99147 73125
                 </a>
               </div>
-              <div className="flex gap-3 items-center">
-                <FiMail className="text-amber-400 shrink-0" />
+
+              {/* Email */}
+              <div className="flex gap-2.5 items-center min-w-0">
+                <FiMail className="text-amber-400 shrink-0" size={14} />
                 <a
                   href="mailto:info@captonvisapoint.com"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-white text-xs sm:text-sm transition-colors truncate"
                 >
                   info@captonvisapoint.com
                 </a>
@@ -193,22 +229,22 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-            <p>
+        <div className="border-t border-slate-700/60 pt-6 sm:pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p className="text-slate-500 text-xs sm:text-sm text-center sm:text-left">
               &copy; {new Date().getFullYear()} Capton Visa Point. All rights
               reserved.
             </p>
-            <div className="flex flex-wrap gap-6 justify-center">
+            <div className="flex flex-wrap gap-4 sm:gap-6 justify-center">
               <Link
                 to="/contact"
-                className="hover:text-white transition-colors"
+                className="text-slate-500 hover:text-white transition-colors text-xs sm:text-sm"
               >
                 Privacy Policy
               </Link>
               <Link
                 to="/contact"
-                className="hover:text-white transition-colors"
+                className="text-slate-500 hover:text-white transition-colors text-xs sm:text-sm"
               >
                 Terms of Service
               </Link>

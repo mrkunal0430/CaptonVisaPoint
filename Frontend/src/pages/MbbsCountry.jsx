@@ -28,6 +28,8 @@ const countryData = {
     currency: "Russian Ruble (1 Ruble ≈ 1 INR)",
     costOfLiving: "$100–120 / month",
     feePayment: "Online bank transfer or USD cash payment after arrival",
+    whyChoose:
+      "Russia is one of the most popular and trusted destinations for Indian students seeking affordable, world-class MBBS education abroad. With over 50 NMC-recognized and WHO-listed medical universities, Russia has a proven track record of training competent doctors from around the globe. Tuition fees in Russia are among the lowest — the total 6-year MBBS cost ranges from just ₹18–35 Lakhs including tuition, hostel, and living. Most universities offer fully English-medium programs, and there are no donation or capitation fees. Russian medical universities feature modern laboratories, simulation centers, and extensive clinical training at multi-specialty hospitals. Indian students benefit from the availability of Indian food in hostel messes, a growing Indian community, safe campus environments, and dedicated FMGE/NEXT coaching at many institutions.",
     partnerUniversities: [
       {
         name: "Kazan State Medical University",
@@ -142,6 +144,8 @@ const countryData = {
     currency: "Georgian Lari (GEL)",
     costOfLiving: "$150–200 / month",
     feePayment: "Direct bank transfer or USD payment",
+    whyChoose:
+      "Georgia has emerged as one of Europe's most sought-after destinations for Indian medical students, offering European-standard MBBS education at highly affordable fees. Georgian medical universities are recognized by WHO, NMC, ECFMG, and FAIMER, ensuring global degree validity. Annual tuition fees range from just $3,000–$6,000, and the total 6-year cost is approximately ₹25–40 Lakhs — a fraction of what Indian private medical colleges charge. Admissions are merit-based with no donation or capitation fees, and all programs are taught entirely in English. Georgia is known for its exceptionally safe and welcoming environment, low crime rate, and multicultural atmosphere. Universities feature modern infrastructure, simulation labs, and strong clinical hospital training. Many Georgian medical graduates achieve excellent FMGE/NEXT pass rates, and some universities offer integrated preparation within their curriculum.",
     partnerUniversities: [
       {
         name: "SEU University",
@@ -213,6 +217,8 @@ const countryData = {
     currency: "Uzbek Som (UZS)",
     costOfLiving: "$80–120 / month",
     feePayment: "USD payment – online transfer or cash",
+    whyChoose:
+      "Uzbekistan is rapidly becoming one of the top choices for Indian students seeking an extremely affordable yet high-quality MBBS education. With annual tuition fees as low as $2,800–$3,800 and a total 6-year course cost of just ₹15–30 Lakhs, Uzbekistan offers some of the most budget-friendly medical programs in the world. Multiple universities are NMC-approved and WHO-listed (WDOMS), and all programs are taught in English medium. The country has a transparent, merit-based admission process with no donation or capitation fees. Uzbek medical institutes feature experienced faculty, modern infrastructure, well-equipped laboratories, and affiliated hospitals for practical clinical training. The cost of living is remarkably low ($80–120/month), and Indian students enjoy a safe, student-friendly environment with Indian food messes available at most universities. Uzbekistan's growing reputation as a medical education hub makes it an excellent value-for-money option.",
     partnerUniversities: [
       {
         name: "Tashkent State Medical Institute",
@@ -298,6 +304,8 @@ const countryData = {
     currency: "Kazakhstani Tenge (KZT)",
     costOfLiving: "$120–180 / month",
     feePayment: "USD payment – bank transfer or cash",
+    whyChoose:
+      "Kazakhstan offers Indian students a unique combination of affordable, high-quality medical education with globally recognized degrees in a modern, multicultural Central Asian setting. Several Kazakh medical universities are NMC-approved and WHO-listed, with annual tuition fees ranging from $3,500–$5,500 and total course costs between ₹20–35 Lakhs. Most programs are offered in English medium, and admissions are straightforward — based on NEET qualification with no donation or capitation fees. Kazakhstan's medical universities feature modern laboratories, advanced teaching facilities, and comprehensive clinical training at multi-specialty hospitals. The country is known for its safe environment, welcoming attitude toward international students, and relatively affordable cost of living. Students benefit from multicultural campus life, Indian food availability, and excellent connectivity to India.",
     partnerUniversities: [
       {
         name: "Caspian International School of Medicine",
@@ -350,6 +358,8 @@ const countryData = {
     currency: "Kyrgyzstani Som (KGS)",
     costOfLiving: "$80–120 / month",
     feePayment: "USD payment – online transfer or cash",
+    whyChoose:
+      "Kyrgyzstan is a highly popular and budget-friendly destination for Indian students pursuing MBBS abroad, known for its NMC-recognized universities, English-medium programs, and one of the lowest costs of medical education globally. The total 6-year MBBS cost ranges from just ₹15–30 Lakhs, with annual tuition fees between $3,500–$4,500. Multiple universities — including Kyrgyz State Medical Academy, International School of Medicine, and others — are NMC-approved and WHO-listed, ensuring graduates can practice in India after clearing FMGE/NEXT. The admission process is simple, requiring only NEET qualification with no entrance exams or capitation fees. Kyrgyzstan's universities provide quality practical training with clinical exposure at affiliated hospitals, and many offer dedicated FMGE coaching by Indian professors. Students enjoy a safe, peaceful study environment with comfortable hostels, Indian food messes, and a vibrant Indian student community.",
     partnerUniversities: [
       {
         name: "Kyrgyz State Medical Academy",
@@ -420,6 +430,8 @@ const countryData = {
     currency: "Tajikistani Somoni (TJS)",
     costOfLiving: "$70–100 / month",
     feePayment: "USD payment – bank transfer or cash",
+    whyChoose:
+      "Tajikistan is an emerging and cost-effective destination for Indian students seeking MBBS abroad, particularly known for the prestigious Avicenna Tajik State Medical University — the oldest and most renowned medical institution in the country. With annual tuition fees of $3,000–$4,800 and a total course cost of approximately ₹18–28 Lakhs, Tajikistan offers one of the most affordable MBBS programs globally. Medical universities here are recognized by NMC, WHO, FAIMER, and ECFMG, ensuring graduates are eligible to practice in India after clearing FMGE/NEXT. Programs are taught in English medium, and admission is straightforward — based on NEET qualification with no donation required. Students benefit from quality clinical exposure, experienced faculty, safe and friendly campus environments, and very low cost of living ($70–100/month). Tajikistan is an ideal choice for students looking for a genuine, affordable medical education without compromising on quality and recognition.",
     partnerUniversities: [
       {
         name: "Avicenna Tajik State Medical University",
@@ -450,21 +462,38 @@ const countryData = {
     name: "Germany",
     bannerImage:
       "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years 3 Months (incl. 1 year internship)",
+    medium: "German (B2/C1 required); some English-track programs",
+    recognition: "WHO, NMC (FMGE/NEXT required), FAIMER",
+    currency: "Euro (€)",
+    costOfLiving: "€850–1,200 / month",
+    feePayment: "Semester contribution to university – online transfer in EUR",
+    whyChoose:
+      "Germany is a global leader in medical education and research with public universities offering virtually tuition-free MBBS (Medizin) programs. German medical degrees are recognized worldwide. The country boasts cutting-edge research facilities, university hospitals ranked among the best in Europe, and strong clinical training. Students benefit from a structured Studienkolleg pathway, a 6-year rigorous curriculum, and the opportunity to practice in one of the world's best healthcare systems.",
     partnerUniversities: [
       {
         name: "University of Heidelberg",
         location: "Heidelberg",
         fees: "€1,500 / semester",
+        slug: "university-of-heidelberg",
       },
       {
-        name: "Ludwig Maximilian University",
+        name: "Ludwig Maximilian University (LMU)",
         location: "Munich",
         fees: "€258 / semester",
+        slug: "ludwig-maximilian-university",
       },
       {
-        name: "Charité - Universitätsmedizin Berlin",
+        name: "Charité – Universitätsmedizin Berlin",
         location: "Berlin",
         fees: "€315 / semester",
+        slug: "charite-universitaetsmedizin-berlin",
+      },
+      {
+        name: "Technical University of Munich (TUM)",
+        location: "Munich",
+        fees: "€258 / semester",
+        slug: "technical-university-of-munich",
       },
     ],
     otherUniversities: [
@@ -488,32 +517,54 @@ const countryData = {
         location: "Göttingen",
         fees: "€381 / semester",
       },
+      {
+        name: "Goethe University Frankfurt",
+        location: "Frankfurt",
+        fees: "€390 / semester",
+      },
+      {
+        name: "University of Hamburg",
+        location: "Hamburg",
+        fees: "€335 / semester",
+      },
     ],
   },
   nepal: {
     name: "Nepal",
     bannerImage:
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "5.5 Years (4.5 years study + 1 year internship)",
+    medium: "English",
+    recognition: "WHO, NMC (India), FAIMER",
+    currency: "Nepalese Rupee (NPR)",
+    costOfLiving: "₹10,000–15,000 / month",
+    feePayment: "INR or USD payment – bank transfer",
+    whyChoose:
+      "Nepal is one of the most convenient destinations for Indian students to study MBBS due to its geographical proximity, similar culture, and no visa requirement for Indian citizens. The medical curriculum in Nepal closely follows the Indian pattern. Universities are NMC & WHO recognized, fees are affordable compared to Indian private colleges, and degrees are valid for FMGE/NEXT licensing in India. Students enjoy a familiar environment, easy travel to and from India, and quality clinical training.",
     partnerUniversities: [
       {
         name: "Kathmandu Medical College",
         location: "Kathmandu",
         fees: "$6,500 / year",
+        slug: "kathmandu-medical-college",
       },
       {
         name: "Manipal College of Medical Sciences",
         location: "Pokhara",
         fees: "$7,000 / year",
+        slug: "manipal-college-of-medical-sciences",
       },
       {
         name: "Nepal Medical College",
         location: "Kathmandu",
         fees: "$6,800 / year",
+        slug: "nepal-medical-college",
       },
       {
         name: "KIST Medical College",
         location: "Lalitpur",
         fees: "$6,200 / year",
+        slug: "kist-medical-college",
       },
     ],
     otherUniversities: [
@@ -537,54 +588,95 @@ const countryData = {
         location: "Chitwan",
         fees: "$6,000 / year",
       },
+      {
+        name: "Nobel Medical College",
+        location: "Biratnagar",
+        fees: "$6,200 / year",
+      },
+      {
+        name: "Universal College of Medical Sciences",
+        location: "Bhairahawa",
+        fees: "$5,800 / year",
+      },
+      {
+        name: "Lumbini Medical College",
+        location: "Palpa",
+        fees: "$5,500 / year",
+      },
+      {
+        name: "College of Medical Sciences",
+        location: "Bharatpur",
+        fees: "$6,000 / year",
+      },
     ],
   },
   italy: {
     name: "Italy",
     bannerImage:
       "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years (integrated MD program)",
+    medium: "English (IMAT entrance exam required)",
+    recognition: "WHO, NMC (FMGE/NEXT required), FAIMER",
+    currency: "Euro (€)",
+    costOfLiving: "€700–1,000 / month",
+    feePayment: "Income-based (ISEE certificate) – EUR bank transfer",
+    whyChoose:
+      "Italy offers one of the most affordable and prestigious MBBS (Medicina e Chirurgia) programs in Europe. Public universities charge income-based fees starting from as low as €500/year. Many top universities – including Sapienza, University of Bologna, and University of Padua – offer English-taught MD programs through the IMAT entrance exam. Italy's medical degrees are globally recognized by WHO and NMC. Students benefit from a rich cultural experience, world-class hospital training in renowned Italian healthcare institutions, and access to DSU scholarships that can cover tuition, housing, and living expenses.",
     partnerUniversities: [
       {
         name: "University of Bologna",
         location: "Bologna",
-        fees: "€2,000 / year",
+        fees: "€500–4,500 / year (income-based)",
+        slug: "university-of-bologna",
       },
       {
         name: "Sapienza University of Rome",
         location: "Rome",
-        fees: "€2,800 / year",
+        fees: "€1,000–2,900 / year (income-based)",
+        slug: "sapienza-university-of-rome",
       },
       {
         name: "University of Padua",
         location: "Padua",
-        fees: "€2,500 / year",
+        fees: "€500–2,700 / year (income-based)",
+        slug: "university-of-padua",
       },
     ],
     otherUniversities: [
       {
         name: "University of Milan",
         location: "Milan",
-        fees: "€3,000 / year",
+        fees: "€500–4,100 / year",
       },
       {
         name: "University of Pavia",
         location: "Pavia",
-        fees: "€2,200 / year",
+        fees: "€500–3,500 / year",
       },
       {
         name: "University of Turin",
         location: "Turin",
-        fees: "€2,600 / year",
+        fees: "€500–2,800 / year",
       },
       {
         name: "University of Naples Federico II",
         location: "Naples",
-        fees: "€2,000 / year",
+        fees: "€500–2,500 / year",
       },
       {
         name: "University of Pisa",
         location: "Pisa",
-        fees: "€2,400 / year",
+        fees: "€500–3,000 / year",
+      },
+      {
+        name: "University of Milan-Bicocca",
+        location: "Milan",
+        fees: "€500–4,900 / year",
+      },
+      {
+        name: "University of Bari Aldo Moro",
+        location: "Bari",
+        fees: "€500–2,500 / year",
       },
     ],
   },
@@ -592,26 +684,38 @@ const countryData = {
     name: "Bangladesh",
     bannerImage:
       "https://images.unsplash.com/photo-1562979314-bee7453e911c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "5+1 Years (5 years study + 1 year internship)",
+    medium: "English",
+    recognition: "WHO, NMC (India), BMDC",
+    currency: "Bangladeshi Taka (BDT)",
+    costOfLiving: "₹6,000–10,000 / month",
+    feePayment: "USD or BDT payment – bank transfer or demand draft",
+    whyChoose:
+      "Bangladesh is a popular and cost-effective destination for Indian students seeking MBBS education. The medical curriculum closely mirrors the Indian system, making it easier for students to prepare for FMGE/NEXT. With NMC & WHO recognized universities, affordable fees (total ₹37–44 Lakhs for the full course), English-medium instruction, and a similar cultural environment, Bangladesh offers a comfortable transition. 25–40% of MBBS seats are reserved for international students, and the geographic proximity ensures easy travel.",
     partnerUniversities: [
       {
         name: "Dhaka Medical College",
         location: "Dhaka",
         fees: "$8,000 / year",
+        slug: "dhaka-medical-college",
       },
       {
         name: "Chittagong Medical College",
         location: "Chittagong",
         fees: "$7,500 / year",
+        slug: "chittagong-medical-college",
       },
       {
         name: "Sylhet MAG Osmani Medical College",
         location: "Sylhet",
         fees: "$7,200 / year",
+        slug: "sylhet-mag-osmani-medical-college",
       },
       {
         name: "Rajshahi Medical College",
         location: "Rajshahi",
         fees: "$7,000 / year",
+        slug: "rajshahi-medical-college",
       },
     ],
     otherUniversities: [
@@ -635,22 +739,42 @@ const countryData = {
         location: "Comilla",
         fees: "$7,000 / year",
       },
+      {
+        name: "Dhaka National Medical College",
+        location: "Dhaka",
+        fees: "$9,600 / year",
+      },
+      {
+        name: "Bangladesh Medical College",
+        location: "Dhaka",
+        fees: "$9,800 / year",
+      },
     ],
   },
   barbados: {
     name: "Barbados",
     bannerImage:
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "5–6 Years (including clinical rotations)",
+    medium: "English",
+    recognition: "WHO, NMC (India), ECFMG, WDOMS",
+    currency: "Barbadian Dollar (BBD) / USD accepted",
+    costOfLiving: "$400–800 / month",
+    feePayment: "USD payment – bank transfer or online",
+    whyChoose:
+      "Barbados offers a unique opportunity for Indian students to pursue MBBS with a US-based curriculum in a Caribbean island setting. Medical universities in Barbados are recognized by NMC, WHO, ECFMG, and WDOMS, ensuring global degree validity. The instruction is entirely in English, no IELTS/TOEFL is required, and graduates are prepared for international licensing exams (USMLE, FMGE/NEXT). With affordable tuition (total ₹32–36 Lakhs), clinical rotation opportunities in the US/UK, and a safe, English-speaking environment, Barbados is an emerging medical education hub.",
     partnerUniversities: [
       {
         name: "American University of Barbados",
         location: "Wildey, St. Michael",
         fees: "$16,500 / year",
+        slug: "american-university-of-barbados",
       },
       {
-        name: "Ross University School of Medicine",
+        name: "Victoria University of Barbados",
         location: "Bridgetown",
-        fees: "$18,000 / year",
+        fees: "$7,000 / year",
+        slug: "victoria-university-of-barbados",
       },
     ],
     otherUniversities: [
@@ -660,9 +784,14 @@ const countryData = {
         fees: "$15,000 / year",
       },
       {
-        name: "Texila American University",
-        location: "Wildey",
-        fees: "$14,500 / year",
+        name: "Bridgetown International University",
+        location: "Bridgetown",
+        fees: "$12,000 / year",
+      },
+      {
+        name: "International University of Barbados",
+        location: "Bridgetown",
+        fees: "$10,000 / year",
       },
     ],
   },
@@ -745,12 +874,8 @@ const MbbsCountry = () => {
                 Why choose {countryName}?
               </h2>
               <p className="text-slate-600 leading-relaxed text-lg">
-                Studying MBBS in {countryName} is an excellent choice for Indian
-                students. {countryName} is known for its high standard of
-                medical education, affordable tuition fees, and world-class
-                infrastructure. Most medical universities in {countryName} are
-                recognized by WHO, FAIMER, and the National Medical Commission
-                (NMC) of India.
+                {data.whyChoose ||
+                  `Studying MBBS in ${countryName} is an excellent choice for Indian students. ${countryName} is known for its high standard of medical education, affordable tuition fees, and world-class infrastructure. Most medical universities in ${countryName} are recognized by WHO, FAIMER, and the National Medical Commission (NMC) of India.`}
               </p>
             </div>
 
@@ -818,7 +943,7 @@ const MbbsCountry = () => {
               </div>
             )}
 
-            {/* Top Universities Section */}
+            {/* Top Universities Table Section */}
             {data.partnerUniversities &&
               data.partnerUniversities.length > 0 && (
                 <div>
@@ -839,12 +964,96 @@ const MbbsCountry = () => {
 
                   <p className="text-slate-600 text-sm mb-6 pl-1">
                     Explore the best medical universities in {countryName}{" "}
-                    handpicked by our expert counsellors. These institutes offer
-                    quality MBBS education at affordable fees with full
-                    admission support from Capton Visa Point.
+                    handpicked by our expert counsellors. Universities marked
+                    with ⭐ are clickable — click to view detailed info, fees,
+                    hostel, and admission process.
                   </p>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  {/* Desktop Table */}
+                  <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                          <th className="text-left py-4 px-5 font-semibold rounded-tl-2xl">
+                            #
+                          </th>
+                          <th className="text-left py-4 px-5 font-semibold">
+                            University Name
+                          </th>
+                          <th className="text-left py-4 px-5 font-semibold">
+                            Location
+                          </th>
+                          <th className="text-left py-4 px-5 font-semibold">
+                            Tuition Fee
+                          </th>
+                          <th className="text-center py-4 px-5 font-semibold rounded-tr-2xl">
+                            Details
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.partnerUniversities.map((uni, idx) => {
+                          const row = (
+                            <>
+                              <td className="py-4 px-5 font-bold text-blue-600">
+                                {String(idx + 1).padStart(2, "0")}
+                              </td>
+                              <td className="py-4 px-5">
+                                <div className="flex items-center gap-2">
+                                  {uni.slug && (
+                                    <span className="text-amber-500">⭐</span>
+                                  )}
+                                  <span className="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                    {uni.name}
+                                  </span>
+                                </div>
+                              </td>
+                              <td className="py-4 px-5 text-slate-500">
+                                <span className="flex items-center gap-1">
+                                  <FiMapPin className="text-xs" />{" "}
+                                  {uni.location}
+                                </span>
+                              </td>
+                              <td className="py-4 px-5 font-bold text-blue-600">
+                                {uni.fees}
+                              </td>
+                              <td className="py-4 px-5 text-center">
+                                {uni.slug ? (
+                                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                    View{" "}
+                                    <FiArrowRight className="text-[10px]" />
+                                  </span>
+                                ) : (
+                                  <span className="inline-flex items-center gap-1 text-xs text-slate-400 bg-slate-50 px-3 py-1.5 rounded-full">
+                                    <FiCheck className="text-[10px]" /> Listed
+                                  </span>
+                                )}
+                              </td>
+                            </>
+                          );
+                          return uni.slug ? (
+                            <Link
+                              key={idx}
+                              to={`/mbbs/${countryKey}/${uni.slug}`}
+                              className="group table-row hover:bg-blue-50/60 transition-colors cursor-pointer border-b border-slate-100 last:border-b-0"
+                            >
+                              {row}
+                            </Link>
+                          ) : (
+                            <tr
+                              key={idx}
+                              className="group hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0"
+                            >
+                              {row}
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Mobile Cards */}
+                  <div className="md:hidden space-y-3">
                     {data.partnerUniversities.map((uni, idx) => {
                       const CardWrapper = uni.slug ? Link : "div";
                       const cardProps = uni.slug
@@ -854,47 +1063,35 @@ const MbbsCountry = () => {
                         <CardWrapper
                           key={idx}
                           {...cardProps}
-                          className="group relative bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
+                          className="group block bg-white rounded-xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all p-4"
                         >
-                          {/* Top accent bar */}
-                          <div className="h-1.5 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-600" />
-
-                          <div className="p-5">
-                            {/* University number badge */}
-                            <div className="flex items-start justify-between mb-3">
-                              <span className="inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-lg text-sm font-bold">
-                                {String(idx + 1).padStart(2, "0")}
+                          <div className="flex items-start justify-between mb-2">
+                            <span className="inline-flex items-center justify-center w-7 h-7 bg-blue-100 text-blue-600 rounded-lg text-xs font-bold">
+                              {String(idx + 1).padStart(2, "0")}
+                            </span>
+                            {uni.slug && (
+                              <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-500 bg-blue-50 px-2 py-1 rounded-full">
+                                View <FiArrowRight className="text-[10px]" />
                               </span>
-                              {uni.slug && (
-                                <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-500 bg-blue-50 px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                  View Details{" "}
-                                  <FiArrowRight className="text-[10px]" />
-                                </span>
-                              )}
-                            </div>
-
-                            <h4 className="font-bold text-lg text-slate-900 group-hover:text-blue-600 transition-colors mb-2 leading-snug">
-                              {uni.name}
-                            </h4>
-
-                            <div className="flex items-center gap-1.5 text-slate-500 text-sm mb-4">
-                              <FiMapPin className="text-xs flex-shrink-0" />
-                              <span>{uni.location}</span>
-                            </div>
-
-                            <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                              <div>
-                                <p className="text-[10px] text-slate-400 uppercase font-semibold tracking-wider">
-                                  Tuition Fee
-                                </p>
-                                <p className="text-blue-600 font-bold text-lg">
-                                  {uni.fees}
-                                </p>
-                              </div>
-                              <span className="inline-flex items-center gap-1 text-xs bg-blue-50 text-blue-800 px-2.5 py-1 rounded-full font-medium border border-blue-100">
-                                <FiCheck className="text-[10px]" /> Recommended
-                              </span>
-                            </div>
+                            )}
+                          </div>
+                          <h4 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
+                            {uni.slug && (
+                              <span className="text-amber-500 mr-1">⭐</span>
+                            )}
+                            {uni.name}
+                          </h4>
+                          <div className="flex items-center gap-1.5 text-slate-500 text-xs mb-2">
+                            <FiMapPin className="text-[10px]" /> {uni.location}
+                          </div>
+                          <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                            <span className="text-blue-600 font-bold text-sm">
+                              {uni.fees}
+                            </span>
+                            <span className="text-[10px] bg-blue-50 text-blue-800 px-2 py-0.5 rounded-full font-medium border border-blue-100">
+                              <FiCheck className="inline text-[8px] mr-0.5" />{" "}
+                              Recommended
+                            </span>
                           </div>
                         </CardWrapper>
                       );
@@ -903,27 +1100,74 @@ const MbbsCountry = () => {
                 </div>
               )}
 
-            {/* More Universities Section */}
+            {/* More Universities Table Section */}
             {data.otherUniversities && data.otherUniversities.length > 0 && (
               <div>
                 <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
                   <FiBookOpen className="text-slate-400" /> More Universities in{" "}
                   {countryName}
                 </h2>
-                <div className="grid sm:grid-cols-2 gap-4">
+
+                {/* Desktop Table */}
+                <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-slate-100 text-slate-700">
+                        <th className="text-left py-3 px-5 font-semibold rounded-tl-2xl">
+                          #
+                        </th>
+                        <th className="text-left py-3 px-5 font-semibold">
+                          University Name
+                        </th>
+                        <th className="text-left py-3 px-5 font-semibold">
+                          Location
+                        </th>
+                        <th className="text-left py-3 px-5 font-semibold rounded-tr-2xl">
+                          Tuition Fee
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.otherUniversities.map((uni, idx) => (
+                        <tr
+                          key={idx}
+                          className="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0"
+                        >
+                          <td className="py-3 px-5 font-bold text-slate-400">
+                            {String(idx + 1).padStart(2, "0")}
+                          </td>
+                          <td className="py-3 px-5 font-semibold text-slate-800">
+                            {uni.name}
+                          </td>
+                          <td className="py-3 px-5 text-slate-500">
+                            <span className="flex items-center gap-1">
+                              <FiMapPin className="text-xs" /> {uni.location}
+                            </span>
+                          </td>
+                          <td className="py-3 px-5 font-semibold text-blue-600">
+                            {uni.fees}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile Cards */}
+                <div className="md:hidden space-y-2">
                   {data.otherUniversities.map((uni, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all bg-white group"
+                      className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all bg-white"
                     >
-                      <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-500 font-bold text-sm flex-shrink-0 group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
+                      <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center text-slate-500 font-bold text-xs flex-shrink-0">
                         {String(idx + 1).padStart(2, "0")}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-slate-900 text-sm group-hover:text-blue-600 transition-colors truncate">
+                        <h4 className="font-semibold text-slate-900 text-sm truncate">
                           {uni.name}
                         </h4>
-                        <div className="flex items-center gap-3 mt-1">
+                        <div className="flex items-center gap-3 mt-0.5">
                           <span className="text-xs text-slate-400 flex items-center gap-1">
                             <FiMapPin className="text-[10px]" /> {uni.location}
                           </span>
@@ -989,8 +1233,7 @@ const MbbsCountry = () => {
                     assistance
                   </li>
                   <li className="flex items-center gap-2">
-                    <FiCheck className="text-blue-600" /> Pre-departure
-                    guidance
+                    <FiCheck className="text-blue-600" /> Pre-departure guidance
                   </li>
                 </ul>
               </div>

@@ -484,7 +484,7 @@ const ServiceLeadsTable = ({ token }) => {
                             <FiEye size={18} />
                           </button>
                           <a
-                            href={`https://wa.me/${lead.whatsapp || lead.phone}`}
+                            href={`https://wa.me/${(lead.whatsapp || lead.phone)?.replace(/\D/g, '')}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
@@ -878,7 +878,7 @@ const ServiceLeadsTable = ({ token }) => {
                   <FiPhone size={18} /> Call
                 </a>
                 <a
-                  href={`https://wa.me/${selectedLead.whatsapp || selectedLead.phone}`}
+                  href={`https://wa.me/${(selectedLead.whatsapp || selectedLead.phone)?.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-3 bg-blue-700 text-white rounded-xl font-medium hover:bg-blue-800"

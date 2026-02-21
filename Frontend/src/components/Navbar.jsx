@@ -99,7 +99,7 @@ const NAV_LINKS = [
   { name: "Coaching", path: "/coaching" },
   { name: "Ausbildung", path: "/ausbildung" },
   {
-    name: "Healthcare",
+    name: "Job Abroad",
     path: "/healthcare",
     type: "mega",
     columns: [
@@ -231,7 +231,21 @@ const Navbar = () => {
     <header className="fixed w-full z-50 font-sans">
       {/* SEO: Hidden description for search engine crawlers */}
       <p className="sr-only">
-        At Capton Visa Point, we don't just offer consultancy—we offer responsible guidance that families can truly rely on. We understand the emotional and financial weight a parent carries while planning a child's education abroad, which is why our advice is always ethical, realistic, and student-centric. Every recommendation is based on facts, eligibility, budget clarity, and future career stability, not sales targets. Whether it's MBBS abroad, Study in Germany, B.Tech in Germany, or Ausbildung (German vocational training), we map the right path with complete transparency. Our in-house German language training (A1–C1) and IELTS coaching ensure students are academically and linguistically ready before departure. From university shortlisting, APS, documentation, visa filing, and interview preparation to pre-departure guidance, we support families end-to-end. With coverage across Germany, USA, UK, Canada, and Australia, Capton Visa Point stands as a trusted partner that protects both your child's future and your hard-earned money.
+        At Capton Visa Point, we don't just offer consultancy—we offer
+        responsible guidance that families can truly rely on. We understand the
+        emotional and financial weight a parent carries while planning a child's
+        education abroad, which is why our advice is always ethical, realistic,
+        and student-centric. Every recommendation is based on facts,
+        eligibility, budget clarity, and future career stability, not sales
+        targets. Whether it's MBBS abroad, Study in Germany, B.Tech in Germany,
+        or Ausbildung (German vocational training), we map the right path with
+        complete transparency. Our in-house German language training (A1–C1) and
+        IELTS coaching ensure students are academically and linguistically ready
+        before departure. From university shortlisting, APS, documentation, visa
+        filing, and interview preparation to pre-departure guidance, we support
+        families end-to-end. With coverage across Germany, USA, UK, Canada, and
+        Australia, Capton Visa Point stands as a trusted partner that protects
+        both your child's future and your hard-earned money.
       </p>
       <nav
         className={navClassName}
@@ -239,28 +253,28 @@ const Navbar = () => {
         aria-label="Main navigation"
       >
         <div className="container mx-auto px-3 sm:px-4 lg:px-8 flex justify-between items-center text-slate-800">
-          {/* Branding */}
+          {/* Branding — shrink-0 prevents logo from being squeezed by nav items */}
           <Link
             to="/"
-            className="flex items-center gap-2 sm:gap-3 group relative z-50"
+            className="flex items-center gap-2 sm:gap-3 group relative z-50 shrink-0"
             aria-label="Capton Visa Point - Home"
           >
             <img
               src="/logo.png"
               alt="Capton Visa Point Logo"
-              className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+              className="h-9 w-9 sm:h-11 sm:w-11 object-contain shrink-0"
             />
-            <div className="flex flex-col leading-none">
-              <span className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-slate-900">
+            <div className="flex flex-col leading-none min-w-0">
+              <span className="text-base sm:text-xl lg:text-2xl font-extrabold tracking-tight text-slate-900 whitespace-nowrap">
                 CAPTON<span className="text-blue-600">VISAPOINT</span>
               </span>
-              <span className="hidden sm:block text-[10px] font-bold text-black tracking-[0.2em] uppercase mt-0.5">
+              <span className="hidden sm:block text-[9px] lg:text-[10px] font-bold text-slate-500 tracking-[0.15em] lg:tracking-[0.2em] uppercase mt-0.5 whitespace-nowrap">
                 College Seats to Global Career Success
               </span>
             </div>
           </Link>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu — shows at xl (1280px+) */}
           <ul className="hidden xl:flex items-center gap-1" role="menubar">
             {NAV_LINKS.map((link) => (
               <li
@@ -316,15 +330,15 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle — 44×44px touch target */}
           <button
-            className="xl:hidden text-3xl text-slate-800 p-2 -mr-2 relative z-50"
+            className="xl:hidden flex items-center justify-center w-11 h-11 rounded-xl text-slate-700 hover:bg-slate-100 active:bg-slate-200 transition-colors relative z-50 -mr-1"
             onClick={openMobileMenu}
             aria-label="Open menu"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
-            <FiMenu aria-hidden="true" />
+            <FiMenu className="text-2xl" aria-hidden="true" />
           </button>
         </div>
       </nav>
@@ -333,136 +347,206 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <>
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={closeMobileMenu}
               className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
               aria-hidden="true"
             />
+
+            {/* Drawer Panel */}
             <motion.div
               id="mobile-menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl z-[60] overflow-y-auto"
+              transition={{ type: "spring", damping: 28, stiffness: 220 }}
+              className="fixed top-0 right-0 h-full w-[88%] max-w-[380px] bg-white shadow-2xl z-[60] flex flex-col"
+              style={{ overscrollBehavior: "contain" }}
               role="dialog"
               aria-modal="true"
               aria-label="Navigation menu"
             >
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-8 border-b border-slate-100 pb-6">
-                  <span className="text-xl font-bold text-slate-900">Menu</span>
-                  <button
-                    onClick={closeMobileMenu}
-                    className="bg-slate-100 p-2 rounded-full text-slate-500 hover:bg-slate-200 transition-colors"
-                    aria-label="Close menu"
-                  >
-                    <FiX aria-hidden="true" />
-                  </button>
+              {/* Drawer Header */}
+              <div className="flex justify-between items-center px-5 py-4 border-b border-slate-100 shrink-0">
+                <div className="flex items-center gap-2">
+                  <img
+                    src="/logo.png"
+                    alt="Capton Visa Point"
+                    className="h-8 w-8 object-contain"
+                  />
+                  <span className="text-base font-extrabold text-slate-900">
+                    CAPTON<span className="text-blue-600">VISAPOINT</span>
+                  </span>
                 </div>
+                {/* Close button — explicit 44×44px touch target */}
+                <button
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-center w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-600 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <FiX className="text-xl" aria-hidden="true" />
+                </button>
+              </div>
 
-                <ul className="space-y-2">
+              {/* Scrollable Nav List */}
+              <div className="flex-1 overflow-y-auto overscroll-contain">
+                <ul className="px-4 py-3 space-y-1">
                   {NAV_LINKS.map((link) => (
                     <li
                       key={link.name}
-                      className="border-b border-slate-50 last:border-0 pb-2"
+                      className="border-b border-slate-50 last:border-0"
                     >
                       {link.type === "mega" ? (
                         <details className="group">
-                          <summary className="flex justify-between items-center py-3 text-slate-800 font-bold text-lg list-none cursor-pointer">
+                          <summary className="flex justify-between items-center py-3.5 text-slate-800 font-bold text-base list-none cursor-pointer select-none">
                             {link.name}
                             <FiChevronDown
-                              className="group-open:rotate-180 transition-transform text-slate-400"
+                              className="group-open:rotate-180 transition-transform duration-200 text-slate-400 shrink-0"
                               aria-hidden="true"
                             />
                           </summary>
-                          <div className="pl-4 pb-4 bg-slate-50/50 rounded-xl space-y-1 mt-1">
-                            {link.columns.map((col, colIdx) =>
-                              col.items && col.items.length > 0 ? (
-                                col.items.map((item, itemIdx) => (
-                                  <Link
-                                    key={`${colIdx}-${itemIdx}`}
-                                    to={item.path}
-                                    onClick={closeMobileMenu}
-                                    className="flex items-center gap-3 py-2 px-2 text-slate-600 font-medium hover:bg-blue-50 rounded-lg transition-colors"
-                                  >
-                                    {item.flag && (
-                                      <span className="text-xl">
-                                        {item.flag}
-                                      </span>
-                                    )}
-                                    {item.name}
-                                  </Link>
-                                ))
-                              ) : (
+
+                          {/* Grouped mega menu columns */}
+                          <div className="pb-4 space-y-4">
+                            {link.columns.map((col, colIdx) => (
+                              <div key={colIdx}>
+                                {/* Column section header */}
                                 <Link
-                                  key={colIdx}
                                   to={col.path}
                                   onClick={closeMobileMenu}
-                                  className="flex items-center gap-3 py-2 px-2 text-slate-600 font-medium hover:bg-blue-50 rounded-lg transition-colors"
+                                  className="flex items-center gap-1.5 text-[11px] font-black text-blue-700 uppercase tracking-wider px-2 mb-1.5"
                                 >
                                   {col.title}
+                                  <FiArrowRight size={10} />
                                 </Link>
-                              ),
-                            )}
+
+                                {/* Column items */}
+                                {col.items && col.items.length > 0 ? (
+                                  <div className="space-y-0.5 pl-1">
+                                    {col.items.map((item, itemIdx) => {
+                                      const Component = item.path.includes("#")
+                                        ? HashLink
+                                        : Link;
+                                      const props = item.path.includes("#")
+                                        ? { smooth: true, to: item.path }
+                                        : { to: item.path };
+                                      return (
+                                        <Component
+                                          key={itemIdx}
+                                          {...props}
+                                          onClick={closeMobileMenu}
+                                          className="flex items-center gap-3 py-2 px-3 text-sm text-slate-600 font-medium hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                                        >
+                                          {item.flag && (
+                                            <span className="text-base leading-none shrink-0">
+                                              {item.flag}
+                                            </span>
+                                          )}
+                                          <span>{item.name}</span>
+                                        </Component>
+                                      );
+                                    })}
+                                  </div>
+                                ) : (
+                                  /* Column with no items — just a link */
+                                  <Link
+                                    to={col.path}
+                                    onClick={closeMobileMenu}
+                                    className="flex items-center gap-3 py-2.5 px-3 text-sm text-slate-700 font-semibold hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                                  >
+                                    {col.title}
+                                    <FiArrowRight
+                                      size={12}
+                                      className="text-slate-400"
+                                    />
+                                  </Link>
+                                )}
+
+                                {/* Separator between columns */}
+                                {colIdx < link.columns.length - 1 && (
+                                  <div className="mt-3 border-t border-slate-100" />
+                                )}
+                              </div>
+                            ))}
                           </div>
                         </details>
                       ) : (
                         <Link
                           to={link.path}
                           onClick={closeMobileMenu}
-                          className="block py-3 text-slate-800 font-bold text-lg hover:text-blue-600 transition-colors"
+                          className="flex items-center justify-between py-3.5 text-slate-800 font-bold text-base hover:text-blue-600 transition-colors"
                         >
                           {link.name}
+                          <FiArrowRight
+                            className="text-slate-300 text-sm"
+                            aria-hidden="true"
+                          />
                         </Link>
                       )}
                     </li>
                   ))}
                 </ul>
+              </div>
 
-                <div className="mt-8 space-y-3">
-                  <Link
-                    to="/eligibility-check"
-                    onClick={closeMobileMenu}
-                    className="block w-full py-4 bg-amber-500 text-white rounded-xl text-center font-bold shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors"
+              {/* Drawer Footer — CTA + contact */}
+              <div
+                className="shrink-0 px-4 pt-4 pb-5 border-t border-slate-100 space-y-3"
+                style={{
+                  paddingBottom: "max(20px, env(safe-area-inset-bottom))",
+                }}
+              >
+                <Link
+                  to="/eligibility-check"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-center w-full py-3.5 bg-amber-500 text-white rounded-xl text-center font-bold shadow-lg shadow-amber-500/20 hover:bg-amber-600 active:bg-amber-700 transition-colors"
+                >
+                  Free Eligibility Check
+                </Link>
+                <Link
+                  to="/contact"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-center w-full py-3.5 bg-blue-700 text-white rounded-xl text-center font-bold shadow-lg shadow-blue-700/20 hover:bg-blue-800 active:bg-blue-900 transition-colors"
+                >
+                  Book Free Consultation
+                </Link>
+
+                {/* Contact links — explicit 44×44px touch targets */}
+                <div className="flex items-center justify-center gap-2 pt-1">
+                  <a
+                    href="https://wa.me/919914773125"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    className="flex items-center justify-center w-11 h-11 rounded-xl bg-slate-100 hover:bg-amber-50 text-slate-500 hover:text-amber-600 transition-colors"
                   >
-                    Free Eligibility Check
-                  </Link>
-                  <Link
-                    to="/contact"
-                    onClick={closeMobileMenu}
-                    className="block w-full py-4 bg-blue-700 text-white rounded-xl text-center font-bold shadow-lg shadow-blue-700/25 hover:bg-blue-800 transition-colors"
+                    <FaWhatsapp className="text-xl" />
+                  </a>
+                  <a
+                    href="tel:+919914773125"
+                    aria-label="Call us"
+                    className="flex items-center justify-center w-11 h-11 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-500 hover:text-blue-600 transition-colors"
                   >
-                    Book Free Consultation
-                  </Link>
-                  <div className="flex justify-center gap-6 text-slate-400 pt-4">
-                    <a
-                      href="https://wa.me/919876543210"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="WhatsApp"
-                      className="hover:text-amber-500 transition-colors"
-                    >
-                      <FaWhatsapp className="text-2xl" />
-                    </a>
-                    <a
-                      href="tel:+919876543210"
-                      aria-label="Call us"
-                      className="hover:text-blue-500 transition-colors"
-                    >
-                      <FiPhone className="text-2xl" />
-                    </a>
-                    <a
-                      href="mailto:info@captonvisapoint.com"
-                      aria-label="Email us"
-                      className="hover:text-amber-500 transition-colors"
-                    >
-                      <FiMail className="text-2xl" />
-                    </a>
-                  </div>
+                    <FiPhone className="text-xl" />
+                  </a>
+                  <a
+                    href="mailto:info@captonvisapoint.com"
+                    aria-label="Email us"
+                    className="flex items-center justify-center w-11 h-11 rounded-xl bg-slate-100 hover:bg-amber-50 text-slate-500 hover:text-amber-600 transition-colors"
+                  >
+                    <FiMail className="text-xl" />
+                  </a>
+                  <a
+                    href="tel:+919914773125"
+                    className="flex-1 flex items-center justify-center gap-1.5 h-11 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-600 font-semibold text-sm transition-colors"
+                  >
+                    <FiPhone size={14} />
+                    +91 99147 73125
+                  </a>
                 </div>
               </div>
             </motion.div>

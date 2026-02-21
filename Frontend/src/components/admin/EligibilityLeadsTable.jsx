@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   FiSearch,
@@ -532,9 +532,8 @@ const EligibilityLeadsTable = ({ token }) => {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {leads.map((lead) => (
-                    <>
+                    <React.Fragment key={lead._id}>
                       <tr
-                        key={lead._id}
                         className="hover:bg-slate-50 transition-colors"
                       >
                         <td className="p-4 text-slate-500 whitespace-nowrap text-sm">
@@ -631,7 +630,7 @@ const EligibilityLeadsTable = ({ token }) => {
                         </td>
                       </tr>
                       {expandedLead === lead._id && (
-                        <tr className="bg-slate-50">
+                        <tr key={`${lead._id}-expanded`} className="bg-slate-50">
                           <td colSpan={8} className="p-4">
                             <div className="space-y-4">
                               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -687,7 +686,7 @@ const EligibilityLeadsTable = ({ token }) => {
                           </td>
                         </tr>
                       )}
-                    </>
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>
