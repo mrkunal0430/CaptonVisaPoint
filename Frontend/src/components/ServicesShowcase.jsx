@@ -52,110 +52,142 @@ const ServicesShowcase = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="xl:col-span-2 group relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-950 rounded-3xl overflow-hidden shadow-xl"
+            className="xl:col-span-2 relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-950 rounded-3xl overflow-hidden shadow-xl"
           >
-            <div className="absolute -top-10 -right-10 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-1/3 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl" />
+            <div className="absolute -top-10 -right-10 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-1/3 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
 
-            <div className="relative z-10 p-6 sm:p-8">
-              <div className="flex items-start justify-between mb-6">
+            <div className="relative z-10 p-5 sm:p-7">
+              {/* Card Header */}
+              <div className="flex items-center justify-between mb-5">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-white/80 text-xs font-semibold mb-3">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-white/80 text-xs font-semibold mb-2">
                     🩺 Medical Education
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
                     MBBS
-                    <span className="block text-blue-300 text-xl sm:text-2xl font-semibold mt-1">
+                    <span className="ml-2 text-blue-300 text-lg sm:text-xl font-semibold">
                       India &amp; Abroad
                     </span>
                   </h3>
                 </div>
-                <div className="hidden sm:flex w-16 h-16 bg-white/10 backdrop-blur rounded-2xl items-center justify-center text-4xl">
+                <div className="hidden sm:flex w-14 h-14 bg-white/10 backdrop-blur rounded-2xl items-center justify-center text-3xl shrink-0">
                   🏥
                 </div>
               </div>
 
+              {/* Two sub-cards — each is a self-contained block, no nesting */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {/* MBBS India */}
-                <Link
-                  to="/mbbs/india"
-                  className="group/card bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/30 backdrop-blur rounded-2xl p-4 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-white font-bold text-base sm:text-lg">
+                {/* MBBS India sub-card */}
+                <div className="bg-white/10 border border-white/15 backdrop-blur rounded-2xl p-4 flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white font-bold text-sm sm:text-base">
                       🇮🇳 MBBS India
                     </span>
-                    <span className="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-medium">
+                    <span className="text-[10px] sm:text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-semibold shrink-0">
                       NEET 2026
                     </span>
                   </div>
-                  <div className="space-y-1.5 mb-4">
+
+                  {/* Clickable section links */}
+                  <div className="grid grid-cols-2 gap-1.5">
                     {[
-                      "NEET Counselling",
-                      "NRI MBBS Seats",
-                      "Top Govt Colleges",
-                      "Management Quota",
+                      {
+                        label: "NEET Counselling",
+                        path: "/mbbs/india#eligibility",
+                        icon: "📋",
+                      },
+                      {
+                        label: "NRI MBBS Seats",
+                        path: "/mbbs/india#nri-quota",
+                        icon: "🌍",
+                      },
+                      {
+                        label: "Top Govt Colleges",
+                        path: "/mbbs/india#colleges",
+                        icon: "🏫",
+                      },
+                      {
+                        label: "Management Quota",
+                        path: "/mbbs/india#govt-private",
+                        icon: "🏛️",
+                      },
                     ].map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-center gap-2 text-blue-200 text-xs sm:text-sm"
+                      <Link
+                        key={item.label}
+                        to={item.path}
+                        className="flex items-center gap-1.5 bg-white/8 hover:bg-white/20 border border-white/10 hover:border-white/25 rounded-xl px-2.5 py-2 text-blue-100 hover:text-white text-[11px] sm:text-xs font-medium transition-all"
                       >
-                        <div className="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0" />
-                        {item}
-                      </div>
+                        <span className="text-sm leading-none shrink-0">
+                          {item.icon}
+                        </span>
+                        <span className="leading-tight">{item.label}</span>
+                      </Link>
                     ))}
                   </div>
-                  <span className="inline-flex items-center gap-1 text-amber-400 text-xs font-semibold group-hover/card:gap-2 transition-all">
-                    Full Info <FiArrowRight size={12} />
-                  </span>
-                </Link>
 
-                {/* MBBS Abroad */}
-                <Link
-                  to="/mbbs/abroad"
-                  className="group/card bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/30 backdrop-blur rounded-2xl p-4 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-white font-bold text-base sm:text-lg">
+                  <Link
+                    to="/mbbs/india"
+                    className="mt-auto inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-xs font-bold transition-colors"
+                  >
+                    View Full Details <FiArrowRight size={12} />
+                  </Link>
+                </div>
+
+                {/* MBBS Abroad sub-card */}
+                <div className="bg-white/10 border border-white/15 backdrop-blur rounded-2xl p-4 flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white font-bold text-sm sm:text-base">
                       🌏 MBBS Abroad
                     </span>
-                    <span className="text-xs bg-blue-500/30 text-blue-200 px-2 py-0.5 rounded-full font-medium">
+                    <span className="text-[10px] sm:text-xs bg-blue-500/30 text-blue-200 px-2 py-0.5 rounded-full font-semibold shrink-0">
                       10+ Countries
                     </span>
                   </div>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
+
+                  {/* Clickable country tags */}
+                  <div className="flex flex-wrap gap-1.5">
                     {[
-                      "🇷🇺 Russia",
-                      "🇬🇪 Georgia",
-                      "🇺🇿 Uzbekistan",
-                      "🇰🇿 Kazakhstan",
-                      "🇩🇪 Germany",
-                      "🇳🇵 Nepal",
+                      { name: "Russia", path: "/mbbs/russia" },
+                      { name: "Georgia", path: "/mbbs/georgia" },
+                      { name: "Uzbekistan", path: "/mbbs/uzbekistan" },
+                      { name: "Kazakhstan", path: "/mbbs/kazakhstan" },
+                      { name: "Germany", path: "/mbbs/germany" },
+                      { name: "Nepal", path: "/mbbs/nepal" },
+                      { name: "Kyrgyzstan", path: "/mbbs/kyrgyzstan" },
+                      { name: "Tajikistan", path: "/mbbs/tajikistan" },
                     ].map((c) => (
-                      <span
-                        key={c}
-                        className="text-[11px] sm:text-xs bg-white/10 text-blue-100 px-2 py-0.5 rounded-full border border-white/10"
+                      <Link
+                        key={c.name}
+                        to={c.path}
+                        className="text-[10px] sm:text-xs bg-white/10 hover:bg-amber-500/20 text-blue-100 hover:text-amber-200 px-2 py-1 rounded-lg border border-white/10 hover:border-amber-400/30 font-medium transition-all"
                       >
-                        {c}
-                      </span>
+                        {c.name}
+                      </Link>
                     ))}
                   </div>
-                  <span className="inline-flex items-center gap-1 text-amber-400 text-xs font-semibold group-hover/card:gap-2 transition-all">
-                    Explore <FiArrowRight size={12} />
-                  </span>
-                </Link>
+
+                  <Link
+                    to="/mbbs/abroad"
+                    className="mt-auto inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-xs font-bold transition-colors"
+                  >
+                    Explore All Countries <FiArrowRight size={12} />
+                  </Link>
+                </div>
               </div>
 
               {/* Stat strip */}
-              <div className="flex flex-wrap gap-4 sm:gap-8 mt-5 pt-5 border-t border-white/10">
+              <div className="flex flex-wrap gap-4 sm:gap-8 mt-5 pt-4 border-t border-white/10">
                 {[
                   ["70+", "Universities"],
                   ["4000+", "Students"],
                   ["98%", "Success Rate"],
                 ].map(([n, l]) => (
                   <div key={l}>
-                    <p className="text-white font-bold text-lg sm:text-xl">{n}</p>
-                    <p className="text-blue-300 text-xs">{l}</p>
+                    <p className="text-white font-bold text-base sm:text-lg">
+                      {n}
+                    </p>
+                    <p className="text-blue-300 text-[11px]">{l}</p>
                   </div>
                 ))}
               </div>
@@ -189,7 +221,6 @@ const ServicesShowcase = () => {
                   to="/healthcare/uae"
                   className="flex items-center gap-3 p-3 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-xl transition-all group/item"
                 >
-                  <span className="text-2xl flex-shrink-0">🇦🇪</span>
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-slate-800 text-sm">
                       UAE Healthcare
@@ -207,7 +238,6 @@ const ServicesShowcase = () => {
                   to="/healthcare/germany"
                   className="flex items-center gap-3 p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-200 rounded-xl transition-all group/item"
                 >
-                  <span className="text-2xl flex-shrink-0">🇩🇪</span>
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-slate-800 text-sm">
                       Germany Healthcare
@@ -243,12 +273,13 @@ const ServicesShowcase = () => {
 
             <div className="relative z-10 p-5 sm:p-6">
               <div className="flex items-center gap-3 mb-5">
-                <span className="text-4xl">🇩🇪</span>
                 <div>
                   <h3 className="font-extrabold text-white text-xl leading-tight">
                     Germany
                   </h3>
-                  <p className="text-blue-200 text-xs">Study, Work &amp; Settle</p>
+                  <p className="text-blue-200 text-xs">
+                    Study, Work &amp; Settle
+                  </p>
                 </div>
               </div>
 
@@ -324,22 +355,14 @@ const ServicesShowcase = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-2">
-                {[
-                  { name: "Cyprus", flag: "🇨🇾" },
-                  { name: "Malta", flag: "🇲🇹" },
-                  { name: "Poland", flag: "🇵🇱" },
-                  { name: "Mauritius", flag: "🇲🇺" },
-                  { name: "Singapore", flag: "🇸🇬" },
-                  { name: "Hungary", flag: "🇭🇺" },
-                ].map((c) => (
+                {["Cyprus", "Mauritius", "Singapore"].map((name) => (
                   <Link
-                    key={c.name}
-                    to={`/study-abroad/${c.name.toLowerCase()}`}
+                    key={name}
+                    to={`/study-abroad/${name.toLowerCase()}`}
                     className="flex items-center gap-2 p-2.5 bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-200 rounded-xl transition-all group/item"
                   >
-                    <span className="text-xl">{c.flag}</span>
                     <span className="text-slate-700 text-sm font-semibold group-hover/item:text-blue-700 transition-colors">
-                      {c.name}
+                      {name}
                     </span>
                   </Link>
                 ))}
@@ -370,16 +393,19 @@ const ServicesShowcase = () => {
               </div>
               <div className="p-4 sm:p-5">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {["Earn & Learn", "Paid Training", "PR Pathway", "German Visa"].map(
-                    (tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full font-medium"
-                      >
-                        {tag}
-                      </span>
-                    )
-                  )}
+                  {[
+                    "Earn & Learn",
+                    "Paid Training",
+                    "PR Pathway",
+                    "German Visa",
+                  ].map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
                 <Link
                   to="/ausbildung"
@@ -397,7 +423,9 @@ const ServicesShowcase = () => {
                   <h3 className="font-extrabold text-white text-lg">
                     German Language
                   </h3>
-                  <p className="text-amber-100 text-xs">School &amp; Coaching</p>
+                  <p className="text-amber-100 text-xs">
+                    School &amp; Coaching
+                  </p>
                 </div>
                 <span className="text-3xl">📚</span>
               </div>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
   FiArrowLeft,
@@ -20,6 +21,135 @@ import {
   getUniversityById,
   preferredCountries,
 } from "../data/studyAbroadData";
+
+// University Minimal Slider — Sleek, modern horizontal slider
+const UniversityMinimalSlider = ({ universities, countryId }) => {
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setShowLeftArrow(scrollLeft > 20);
+    setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 20);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => el.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 350;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div className="relative group/slider">
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => scroll("left")}
+        className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showLeftArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowLeft />
+      </button>
+
+      <button
+        onClick={() => scroll("right")}
+        className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showRightArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowRight />
+      </button>
+
+      {/* Gradient Fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+
+      {/* Scrollable Container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 no-scrollbar scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {universities.map((uni, idx) => (
+          <motion.div
+            key={uni.id}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className="flex-shrink-0"
+          >
+            <Link
+              to={`/study-abroad/${countryId}/${uni.id}`}
+              className="block w-64 sm:w-72 group/card relative"
+            >
+              <div className="relative p-5 rounded-3xl bg-white border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] group-hover/card:shadow-[0_20px_40px_-12px_rgba(59,130,246,0.15)] group-hover/card:border-blue-100 group-hover/card:-translate-y-2 transition-all duration-500 overflow-hidden">
+                {/* Visual Accent */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-8 -mt-8 group-hover/card:bg-blue-600 transition-colors duration-500 opacity-20 group-hover/card:opacity-10" />
+
+                <div className="relative z-10">
+                  <div className="relative aspect-video rounded-2xl overflow-hidden mb-4 shadow-sm">
+                    <img
+                      src={uni.image}
+                      alt={uni.name}
+                      className="w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-60" />
+                  </div>
+
+                  <h4 className="font-bold text-slate-900 text-sm leading-tight mb-2 group-hover/card:text-blue-600 transition-colors line-clamp-2 min-h-[2.5rem]">
+                    {uni.name}
+                  </h4>
+
+                  <div className="flex items-center gap-2 text-slate-500 text-[10px] mb-4">
+                    <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center">
+                      <FiMapPin className="text-[10px]" />
+                    </div>
+                    <span>{uni.location}</span>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-50">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
+                      Explore University{" "}
+                      <FiArrowRight className="text-[10px]" />
+                    </span>
+                    <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center group-hover/card:bg-blue-600 group-hover/card:text-white group-hover/card:border-blue-600 transition-all duration-300">
+                      <FiArrowRight />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </div>
+  );
+};
 
 const UniversityDetail = () => {
   const { country, university } = useParams();
@@ -51,9 +181,9 @@ const UniversityDetail = () => {
   return (
     <div className="bg-white">
       <SEO
-        title={university?.name || "University Details"}
-        description={`Explore ${university?.name || "this university"} — courses, fees, eligibility, campus life, and admission process. Apply with expert guidance from Capton Visa Point.`}
-        keywords={`${university?.name || "university"}, study abroad university, admission, courses, fees`}
+        title={universityData?.name || "University Details"}
+        description={`Explore ${universityData?.name || "this university"} — courses, fees, eligibility, campus life, and admission process. Apply with expert guidance from Capton Visa Point.`}
+        keywords={`${universityData?.name || "university"}, study abroad university, admission, courses, fees`}
       />
       {/* Hero Banner */}
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
@@ -321,28 +451,6 @@ const UniversityDetail = () => {
                   />
                 </div>
 
-                {/* Country Info Card */}
-                <Link
-                  to={`/study-abroad/${country}`}
-                  className="block p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all group"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-4xl">{countryData.flag}</span>
-                    <div>
-                      <h4 className="font-bold text-slate-900 group-hover:text-blue-600">
-                        More Universities in {countryData.name}
-                      </h4>
-                      <p className="text-sm text-slate-500">
-                        {countryData.universities.length} universities available
-                      </p>
-                    </div>
-                  </div>
-                  <span className="inline-flex items-center gap-1 text-blue-600 font-bold text-sm">
-                    View All{" "}
-                    <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-
                 {/* Quick Contact */}
                 <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-blue-900 text-white text-center">
                   <h4 className="text-lg font-bold mb-2">
@@ -361,6 +469,30 @@ const UniversityDetail = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Explore More Universities */}
+      <section className="py-16 bg-slate-50 border-t border-slate-100">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
+              <FiAward className="text-blue-600" /> Explore More Universities
+            </h2>
+            <Link
+              to={`/study-abroad/${country}`}
+              className="text-blue-600 font-bold text-sm hover:underline"
+            >
+              View All {countryData.name} Universities
+            </Link>
+          </div>
+
+          <UniversityMinimalSlider
+            universities={countryData.universities.filter(
+              (u) => u.id !== university,
+            )}
+            countryId={country}
+          />
         </div>
       </section>
 

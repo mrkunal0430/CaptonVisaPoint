@@ -1,225 +1,167 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
   FiDollarSign,
   FiGlobe,
   FiCheckCircle,
-  FiAward,
   FiBook,
   FiArrowRight,
-  FiMapPin,
-  FiClock,
   FiFileText,
-  FiUsers,
+  FiArrowLeft,
+  FiStar,
+  FiMapPin,
 } from "react-icons/fi";
 import SEO from "../components/SEO";
 import { MbbsAbroadForm } from "../components/forms";
 import EligibilityQuiz from "../components/EligibilityQuiz";
+import {
+  countries,
+  topUniversities,
+  benefits,
+  eligibility,
+  documents,
+  services,
+  processSteps,
+} from "../data/mbbsAbroadData";
+import { useRef, useState, useEffect } from "react";
+
+// University Minimal Slider — Sleek, modern horizontal slider
+const UniversityMinimalSlider = ({ universities }) => {
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setShowLeftArrow(scrollLeft > 20);
+    setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 20);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => el.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 350;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div className="relative group/slider">
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => scroll("left")}
+        className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showLeftArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowLeft />
+      </button>
+
+      <button
+        onClick={() => scroll("right")}
+        className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showRightArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowRight />
+      </button>
+
+      {/* Gradient Fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+
+      {/* Scrollable Container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 no-scrollbar scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {universities.map((uni, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className="flex-shrink-0"
+          >
+            <div className="block w-64 sm:w-72 group/card relative">
+              <div className="relative p-5 rounded-3xl bg-white border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] group-hover/card:shadow-[0_20px_40px_-12px_rgba(59,130,246,0.15)] group-hover/card:border-blue-100 group-hover/card:-translate-y-2 transition-all duration-500 overflow-hidden">
+                {/* Visual Accent */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-8 -mt-8 group-hover/card:bg-blue-600 transition-colors duration-500 opacity-20 group-hover/card:opacity-10" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider">
+                      {uni.ranking}
+                    </div>
+                    <FiStar className="text-amber-400 text-sm" />
+                  </div>
+
+                  <h4 className="font-bold text-slate-900 text-sm leading-tight mb-2 group-hover/card:text-blue-600 transition-colors line-clamp-2 min-h-[2.5rem]">
+                    {uni.name}
+                  </h4>
+
+                  <div className="flex items-center gap-2 text-slate-500 text-[10px] mb-4">
+                    <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center">
+                      <FiMapPin className="text-[10px]" />
+                    </div>
+                    <span>{uni.location}</span>
+                  </div>
+
+                  <div className="flex items-end justify-between pt-3 border-t border-slate-50">
+                    <div>
+                      <p className="text-[8px] uppercase text-slate-400 font-bold tracking-wider mb-0.5">
+                        Tuition Fees
+                      </p>
+                      <p className="text-lg font-black text-slate-900 group-hover/card:text-blue-600 transition-colors">
+                        {uni.fees}
+                        <span className="text-[10px] font-medium text-slate-400 ml-1">
+                          /yr
+                        </span>
+                      </p>
+                    </div>
+                    <Link
+                      to="/contact"
+                      className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center group-hover/card:bg-blue-600 group-hover/card:text-white group-hover/card:border-blue-600 transition-all duration-300"
+                    >
+                      <FiArrowRight />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </div>
+  );
+};
 
 const MbbsAbroad = () => {
-  const countries = [
-    {
-      name: "Russia",
-      flag: "🇷🇺",
-      avgFees: "$3,500 - $6,000/year",
-      universities: "30+",
-      benefit: "WHO & NMC Approved",
-      path: "/mbbs/russia",
-      hasPartners: true,
-      partnerCount: 6,
-    },
-    {
-      name: "Georgia",
-      flag: "🇬🇪",
-      avgFees: "$4,000 - $7,000/year",
-      universities: "20+",
-      benefit: "European Education",
-      path: "/mbbs/georgia",
-      hasPartners: true,
-      partnerCount: 6,
-    },
-    {
-      name: "Uzbekistan",
-      flag: "🇺🇿",
-      avgFees: "$2,500 - $4,000/year",
-      universities: "15+",
-      benefit: "Most Affordable",
-      path: "/mbbs/uzbekistan",
-      hasPartners: true,
-      partnerCount: 8,
-    },
-    {
-      name: "Kazakhstan",
-      flag: "🇰🇿",
-      avgFees: "$3,500 - $5,000/year",
-      universities: "12+",
-      benefit: "Quality Infrastructure",
-      path: "/mbbs/kazakhstan",
-      hasPartners: true,
-      partnerCount: 2,
-    },
-    {
-      name: "Kyrgyzstan",
-      flag: "🇰🇬",
-      avgFees: "$3,000 - $4,500/year",
-      universities: "10+",
-      benefit: "English Medium",
-      path: "/mbbs/kyrgyzstan",
-      hasPartners: true,
-      partnerCount: 7,
-    },
-    {
-      name: "Tajikistan",
-      flag: "🇹🇯",
-      avgFees: "$2,500 - $3,500/year",
-      universities: "5+",
-      benefit: "Economical Option",
-      path: "/mbbs/tajikistan",
-      hasPartners: true,
-      partnerCount: 1,
-    },
-  ];
-
-  const topUniversities = [
-    {
-      name: "Crimea Federal University",
-      location: "Simferopol, Russia",
-      fees: "$3,500/year",
-      ranking: "WHO Listed",
-    },
-    {
-      name: "Tbilisi State Medical University",
-      location: "Tbilisi, Georgia",
-      fees: "$6,000/year",
-      ranking: "NMC Approved",
-    },
-    {
-      name: "Tashkent Medical Academy",
-      location: "Tashkent, Uzbekistan",
-      fees: "$3,200/year",
-      ranking: "FAIMER Listed",
-    },
-    {
-      name: "Al-Farabi Kazakh National University",
-      location: "Almaty, Kazakhstan",
-      fees: "$4,000/year",
-      ranking: "Top 500 Global",
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: <FiDollarSign className="text-4xl text-blue-600" />,
-      title: "Affordable Fees",
-      description:
-        "Government-funded universities with low tuition fees. No donation or capitation fees required. Total cost much lower than private Indian colleges.",
-    },
-    {
-      icon: <FiAward className="text-4xl text-blue-500" />,
-      title: "Globally-Recognized Degrees",
-      description:
-        "Degrees recognized by WHO, NMC, UNESCO, FAIMER. Eligible to appear for FMGE/NEXT, USMLE, PLAB exams. Practice anywhere in the world.",
-    },
-    {
-      icon: <FiBook className="text-4xl text-blue-600" />,
-      title: "No IELTS/TOEFL Needed",
-      description:
-        "Complete MBBS program taught in English. No language proficiency tests required. Qualified international faculty with modern teaching methods.",
-    },
-    {
-      icon: <FiCheckCircle className="text-4xl text-orange-500" />,
-      title: "Low NEET Cutoff",
-      description:
-        "Just 130 marks for General category, 108 for SC/ST/OBC. Much lower than requirements for Indian colleges. Better chances of admission.",
-    },
-  ];
-
-  const eligibility = [
-    "NEET qualification mandatory for Indian students",
-    "Minimum 50% in Physics, Chemistry, Biology (PCB) for General",
-    "Minimum 40% in PCB for SC/ST/OBC candidates",
-    "Completed 17 years of age as of December 31st of admission year",
-    "Valid passport required",
-  ];
-
-  const documents = [
-    "10th & 12th Marksheets and Certificates",
-    "NEET Score Card & Admit Card",
-    "Valid Passport (minimum 18 months validity)",
-    "Passport size photographs (white background)",
-    "HIV Test Report (negative)",
-    "Birth Certificate",
-    "Medical Fitness Certificate",
-    "Migration Certificate (if applicable)",
-  ];
-
-  const services = [
-    {
-      icon: <FiUsers />,
-      title: "Counselling",
-      desc: "Expert guidance from medical professionals with MBBS abroad experience",
-    },
-    {
-      icon: <FiFileText />,
-      title: "Admission",
-      desc: "Complete documentation and seat confirmation in top universities",
-    },
-    {
-      icon: <FiCheckCircle />,
-      title: "Documentation",
-      desc: "Verification and apostille services for all documents",
-    },
-    {
-      icon: <FiGlobe />,
-      title: "Travel Arrangement",
-      desc: "Air ticketing, visa, forex, airport pickup - all arranged",
-    },
-    {
-      icon: <FiMapPin />,
-      title: "Accommodation",
-      desc: "Comfortable hostel accommodation with 24x7 assistance",
-    },
-    {
-      icon: <FiBook />,
-      title: "FMGE Coaching",
-      desc: "Comprehensive coaching to clear FMGE/NEXT exam for India practice",
-    },
-  ];
-
-  const processSteps = [
-    {
-      step: "1",
-      title: "Counselling",
-      desc: "Choose the right university based on budget and preferences",
-    },
-    {
-      step: "2",
-      title: "Documentation",
-      desc: "Prepare and verify all required documents",
-    },
-    {
-      step: "3",
-      title: "Admission",
-      desc: "Apply and receive admission confirmation letter",
-    },
-    {
-      step: "4",
-      title: "Visa Processing",
-      desc: "Student visa application and approval",
-    },
-    {
-      step: "5",
-      title: "Travel",
-      desc: "Flight booking, forex, and airport pickup arrangement",
-    },
-    {
-      step: "6",
-      title: "Enrollment",
-      desc: "University enrollment and accommodation setup",
-    },
-  ];
-
   return (
     <div>
       <SEO
@@ -489,7 +431,9 @@ const MbbsAbroad = () => {
                 transition={{ delay: idx * 0.1 }}
                 className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-blue-200 hover:shadow-xl transition-all"
               >
-                <div className="mb-4">{benefit.icon}</div>
+                <div className="mb-4">
+                  <benefit.icon className={benefit.iconClass} />
+                </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">
                   {benefit.title}
                 </h3>
@@ -536,7 +480,6 @@ const MbbsAbroad = () => {
                 )}
 
                 <div className="flex items-center gap-4 mb-4 mt-2">
-                  <div className="text-5xl">{country.flag}</div>
                   <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                     {country.name}
                   </h3>
@@ -583,36 +526,8 @@ const MbbsAbroad = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {topUniversities.map((uni, idx) => (
-              <div
-                key={idx}
-                className="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">
-                      {uni.name}
-                    </h3>
-                    <div className="flex items-center gap-2 text-slate-600 text-sm mb-2">
-                      <FiMapPin className="text-blue-500" />
-                      {uni.location}
-                    </div>
-                    <div className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                      {uni.ranking}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-slate-500 uppercase">
-                      Tuition
-                    </div>
-                    <div className="text-xl font-bold text-blue-600">
-                      {uni.fees}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-6xl mx-auto">
+            <UniversityMinimalSlider universities={topUniversities} />
           </div>
         </div>
       </section>
@@ -687,7 +602,7 @@ const MbbsAbroad = () => {
                 className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all"
               >
                 <div className="text-3xl text-blue-600 mb-4">
-                  {service.icon}
+                  <service.icon size={24} />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">
                   {service.title}
@@ -768,7 +683,9 @@ const MbbsAbroad = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <FiCheckCircle className="text-2xl text-blue-500" />
-                  <span className="text-lg text-slate-700">Free counseling session</span>
+                  <span className="text-lg text-slate-700">
+                    Free counseling session
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <FiCheckCircle className="text-2xl text-blue-500" />
@@ -778,7 +695,9 @@ const MbbsAbroad = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <FiCheckCircle className="text-2xl text-blue-500" />
-                  <span className="text-lg text-slate-700">FMGE coaching included</span>
+                  <span className="text-lg text-slate-700">
+                    FMGE coaching included
+                  </span>
                 </div>
               </div>
             </div>

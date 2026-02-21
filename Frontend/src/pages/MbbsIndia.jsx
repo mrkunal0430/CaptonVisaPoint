@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
   FiCheckCircle,
@@ -12,9 +13,151 @@ import {
   FiTrendingUp,
   FiUsers,
   FiCalendar,
+  FiArrowLeft,
+  FiArrowRight,
 } from "react-icons/fi";
 import SEO from "../components/SEO";
 import { MbbsIndiaForm } from "../components/forms";
+
+// University Minimal Slider — Sleek, modern horizontal slider
+const UniversityMinimalSlider = ({ universities }) => {
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setShowLeftArrow(scrollLeft > 20);
+    setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 20);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => el.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 350;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const gradientColors = [
+    "from-blue-600 to-indigo-700",
+    "from-orange-500 to-orange-700",
+    "from-teal-500 to-emerald-700",
+    "from-purple-600 to-indigo-800",
+    "from-amber-500 to-amber-700",
+  ];
+
+  return (
+    <div className="relative group/slider">
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => scroll("left")}
+        className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showLeftArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowLeft />
+      </button>
+
+      <button
+        onClick={() => scroll("right")}
+        className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showRightArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowRight />
+      </button>
+
+      {/* Gradient Fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+
+      {/* Scrollable Container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 no-scrollbar scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {universities.map((uni, idx) => {
+          const bannerColors = gradientColors[idx % gradientColors.length];
+          return (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex-shrink-0"
+            >
+              <div className="block w-64 sm:w-72 group/card relative">
+                <div className="relative p-0 rounded-3xl bg-white border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] group-hover/card:shadow-[0_20px_40px_-12px_rgba(59,130,246,0.15)] group-hover/card:border-blue-100 group-hover/card:-translate-y-2 transition-all duration-500 overflow-hidden">
+                  {/* Visual Banner */}
+                  <div
+                    className={`h-24 bg-gradient-to-br ${bannerColors} relative`}
+                  >
+                    <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+                    <div className="absolute top-3 left-3 flex gap-2">
+                      <div className="px-2 py-0.5 rounded-lg bg-white/90 backdrop-blur-sm text-[10px] font-bold text-slate-800">
+                        {uni.ranking}
+                      </div>
+                      <div
+                        className={`px-2 py-0.5 rounded-lg bg-white/90 backdrop-blur-sm text-[10px] font-bold ${uni.type === "Government" ? "text-blue-600" : "text-amber-600"}`}
+                      >
+                        {uni.type}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-5 pt-0 relative">
+                    <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-blue-600 text-xl mx-auto -mt-7 mb-4 border border-slate-50 group-hover/card:scale-110 transition-transform duration-500">
+                      <FiAward />
+                    </div>
+
+                    <h4 className="font-bold text-slate-900 text-sm leading-tight mb-2 group-hover/card:text-blue-600 transition-colors text-center line-clamp-2 min-h-[2.5rem]">
+                      {uni.name}
+                    </h4>
+
+                    <div className="flex items-center justify-center gap-2 text-slate-500 text-[10px] mb-4">
+                      <FiMapPin className="text-[10px] text-blue-500" />
+                      <span>{uni.location}</span>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-50">
+                      <button className="w-full py-2.5 rounded-xl bg-slate-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-all duration-300">
+                        Enquire Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </div>
+  );
+};
 
 const MbbsIndia = () => {
   const location = useLocation();
@@ -37,9 +180,9 @@ const MbbsIndia = () => {
   }, [location]);
 
   const stats = [
-    { number: "117,825", label: "Total MBBS Seats", color: "text-blue-600" },
-    { number: "59,860", label: "Govt/Semi-Govt", color: "text-blue-700" },
-    { number: "57,965", label: "Private/Deemed", color: "text-blue-700" },
+    { number: "1,28,875", label: "Total MBBS Seats", color: "text-blue-600" },
+    { number: "65,193", label: "Govt/Semi-Govt", color: "text-blue-700" },
+    { number: "63,682", label: "Private/Deemed", color: "text-blue-700" },
   ];
 
   const eligibility = [
@@ -109,12 +252,51 @@ const MbbsIndia = () => {
   ];
 
   const stateWiseSeats = [
-    { state: "Uttar Pradesh", govt: "4,640", private: "4,690", total: "9,330" },
-    { state: "Karnataka", govt: "3,640", private: "7,140", total: "10,780" },
-    { state: "Maharashtra", govt: "4,480", private: "5,520", total: "10,000" },
-    { state: "Tamil Nadu", govt: "3,550", private: "3,800", total: "7,350" },
-    { state: "Rajasthan", govt: "2,310", private: "2,950", total: "5,260" },
-    { state: "Delhi", govt: "1,028", private: "850", total: "1,878" },
+    {
+      state: "Uttar Pradesh",
+      govt: "5,925",
+      private: "7,500",
+      total: "13,425",
+    },
+    { state: "Karnataka", govt: "4,249", private: "9,695", total: "13,944" },
+    { state: "Tamil Nadu", govt: "5,250", private: "7,800", total: "13,050" },
+    { state: "Maharashtra", govt: "6,075", private: "6,749", total: "12,824" },
+    { state: "Telangana", govt: "4,390", private: "5,150", total: "9,540" },
+    { state: "Gujarat", govt: "4,325", private: "3,200", total: "7,525" },
+    { state: "Rajasthan", govt: "4,630", private: "2,700", total: "7,330" },
+    {
+      state: "Andhra Pradesh",
+      govt: "3,415",
+      private: "3,800",
+      total: "7,215",
+    },
+    { state: "West Bengal", govt: "4,129", private: "2,250", total: "6,379" },
+    {
+      state: "Madhya Pradesh",
+      govt: "3,025",
+      private: "2,700",
+      total: "5,725",
+    },
+    { state: "Kerala", govt: "1,855", private: "3,549", total: "5,404" },
+    { state: "Bihar", govt: "1,645", private: "1,900", total: "3,545" },
+    { state: "Odisha", govt: "1,925", private: "1,100", total: "3,025" },
+    { state: "Haryana", govt: "1,060", private: "1,650", total: "2,710" },
+    { state: "Chhattisgarh", govt: "1,555", private: "900", total: "2,455" },
+    { state: "Assam", govt: "1,975", private: "—", total: "1,975" },
+    { state: "Punjab", govt: "999", private: "900", total: "1,899" },
+    { state: "Puducherry", govt: "423", private: "1,450", total: "1,873" },
+    { state: "Jammu & Kashmir", govt: "1,525", private: "200", total: "1,725" },
+    { state: "Uttarakhand", govt: "750", private: "700", total: "1,450" },
+    { state: "Delhi", govt: "1,296", private: "100", total: "1,396" },
+    { state: "Jharkhand", govt: "855", private: "400", total: "1,255" },
+    { state: "Himachal Pradesh", govt: "820", private: "150", total: "970" },
+    { state: "Manipur", govt: "375", private: "150", total: "525" },
+    { state: "Tripura", govt: "150", private: "250", total: "400" },
+    { state: "Meghalaya", govt: "100", private: "100", total: "200" },
+    { state: "Goa", govt: "156", private: "—", total: "156" },
+    { state: "Sikkim", govt: "—", private: "34", total: "34" },
+    { state: "Andaman & Nicobar", govt: "13", private: "—", total: "13" },
+    { state: "Mizoram", govt: "10", private: "—", total: "10" },
   ];
 
   const documents = [
@@ -220,7 +402,7 @@ const MbbsIndia = () => {
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 mb-6 sm:mb-8 leading-relaxed">
-                NEET Based • 117,825 Seats • Government & Private Colleges
+                NEET Based • 1,28,875 Seats • Government & Private Colleges
               </p>
 
               {/* Quick Stats */}
@@ -327,7 +509,7 @@ const MbbsIndia = () => {
                     Total Seats
                   </h3>
                   <p className="text-slate-600 text-xs sm:text-sm">
-                    117,825 MBBS seats across India
+                    1,28,875+ MBBS seats across India
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
@@ -562,7 +744,7 @@ const MbbsIndia = () => {
                   <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
-                      59,860 Seats Available
+                      65,193 Seats Available
                     </p>
                     <p className="text-xs sm:text-sm text-slate-600">
                       Govt & Semi-Govt institutions
@@ -620,7 +802,7 @@ const MbbsIndia = () => {
                   <FiCheckCircle className="text-blue-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
                   <div>
                     <p className="font-semibold text-slate-900 text-sm sm:text-base">
-                      57,965 Seats Available
+                      63,682 Seats Available
                     </p>
                     <p className="text-xs sm:text-sm text-slate-600">
                       Private & Deemed universities
@@ -695,39 +877,8 @@ const MbbsIndia = () => {
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            {topColleges.map((college, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="bg-slate-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all"
-              >
-                <div className="flex items-start justify-between mb-3 sm:mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 mb-1 sm:mb-2 leading-tight">
-                      {college.name}
-                    </h3>
-                    <div className="flex items-center gap-1.5 sm:gap-2 text-slate-600 text-xs sm:text-sm mb-2">
-                      <FiMapPin className="text-blue-500 flex-shrink-0" />
-                      {college.location}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                      <span
-                        className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${college.type === "Government" ? "bg-blue-100 text-blue-800" : "bg-blue-100 text-blue-800"}`}
-                      >
-                        {college.type}
-                      </span>
-                      <span className="inline-block bg-blue-100 text-blue-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold">
-                        {college.ranking}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+          <div className="max-w-6xl mx-auto">
+            <UniversityMinimalSlider universities={topColleges} />
           </div>
         </div>
       </section>

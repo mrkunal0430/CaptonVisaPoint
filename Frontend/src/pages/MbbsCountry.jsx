@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -351,7 +351,7 @@ const countryData = {
   kyrgyzstan: {
     name: "Kyrgyzstan",
     bannerImage:
-      "https://images.unsplash.com/photo-1571940747783-5d5db2ac5ce5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+      "https://tse1.mm.bing.net/th/id/OIP.j-6VMIkb0CckCZfe1-ku5wHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
     duration: "5+1 Years (5 years study + 1 year internship)",
     medium: "English",
     recognition: "WHO, NMC (India), FAIMER",
@@ -816,6 +816,73 @@ const defaultCountryData = {
   ],
 };
 
+// Infinite Marquee Slider Component
+const InfiniteMarqueeSlider = ({ items, renderCard, speed = 35 }) => {
+  const trackRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [cardWidth, setCardWidth] = useState(320);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (window.innerWidth < 640) setCardWidth(280);
+      else if (window.innerWidth < 1024) setCardWidth(300);
+      else setCardWidth(320);
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  // We need at least enough items to fill the screen + extra for seamless loop
+  const repeatedItems = [...items, ...items, ...items, ...items];
+  const gap = 20;
+  const singleSetWidth = items.length * (cardWidth + gap);
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      {/* Gradient fades on edges */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to right, white, transparent)" }}
+      />
+      <div
+        className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to left, white, transparent)" }}
+      />
+
+      <div
+        ref={trackRef}
+        className="flex py-6"
+        style={{
+          gap: `${gap}px`,
+          animation: `marquee-scroll ${speed}s linear infinite`,
+          animationPlayState: isPaused ? "paused" : "running",
+          width: `${repeatedItems.length * (cardWidth + gap)}px`,
+        }}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {repeatedItems.map((item, idx) => (
+          <div
+            key={`${item.slug || item.id}-${idx}`}
+            style={{ minWidth: cardWidth, maxWidth: cardWidth }}
+            className="flex-shrink-0"
+          >
+            {renderCard(item, idx)}
+          </div>
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes marquee-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${singleSetWidth}px); }
+        }
+      `}</style>
+    </div>
+  );
+};
+
 const MbbsCountry = () => {
   const { country } = useParams();
   const countryKey = country?.toLowerCase() || "russia";
@@ -828,6 +895,17 @@ const MbbsCountry = () => {
   const countryName =
     data.name ||
     (country ? country.charAt(0).toUpperCase() + country.slice(1) : "Russia");
+
+  // Get other countries for "Explore Other Countries" section
+  const otherCountries = Object.entries(countryData)
+    .filter(([key]) => key !== countryKey)
+    .map(([key, cData]) => ({ slug: key, ...cData }));
+
+  // Merge partnerUniversities + otherUniversities into a single list
+  const allUniversities = [
+    ...(data.partnerUniversities || []),
+    ...(data.otherUniversities || []),
+  ];
 
   return (
     <div>
@@ -943,241 +1021,162 @@ const MbbsCountry = () => {
               </div>
             )}
 
-            {/* Top Universities Table Section */}
-            {data.partnerUniversities &&
-              data.partnerUniversities.length > 0 && (
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl">
-                      <FiGlobe className="text-2xl text-white" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold text-slate-900">
-                        Top Medical Universities in {countryName}
-                      </h2>
-                      <p className="text-sm text-slate-500">
-                        Recommended universities for Indian students – Session
-                        2026-27
-                      </p>
-                    </div>
+            {/* All Universities Table Section (Merged) */}
+            {allUniversities.length > 0 && (
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl">
+                    <FiGlobe className="text-2xl text-white" />
                   </div>
-
-                  <p className="text-slate-600 text-sm mb-6 pl-1">
-                    Explore the best medical universities in {countryName}{" "}
-                    handpicked by our expert counsellors. Universities marked
-                    with ⭐ are clickable — click to view detailed info, fees,
-                    hostel, and admission process.
-                  </p>
-
-                  {/* Desktop Table */}
-                  <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-                          <th className="text-left py-4 px-5 font-semibold rounded-tl-2xl">
-                            #
-                          </th>
-                          <th className="text-left py-4 px-5 font-semibold">
-                            University Name
-                          </th>
-                          <th className="text-left py-4 px-5 font-semibold">
-                            Location
-                          </th>
-                          <th className="text-left py-4 px-5 font-semibold">
-                            Tuition Fee
-                          </th>
-                          <th className="text-center py-4 px-5 font-semibold rounded-tr-2xl">
-                            Details
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.partnerUniversities.map((uni, idx) => {
-                          const row = (
-                            <>
-                              <td className="py-4 px-5 font-bold text-blue-600">
-                                {String(idx + 1).padStart(2, "0")}
-                              </td>
-                              <td className="py-4 px-5">
-                                <div className="flex items-center gap-2">
-                                  {uni.slug && (
-                                    <span className="text-amber-500">⭐</span>
-                                  )}
-                                  <span className="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
-                                    {uni.name}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="py-4 px-5 text-slate-500">
-                                <span className="flex items-center gap-1">
-                                  <FiMapPin className="text-xs" />{" "}
-                                  {uni.location}
-                                </span>
-                              </td>
-                              <td className="py-4 px-5 font-bold text-blue-600">
-                                {uni.fees}
-                              </td>
-                              <td className="py-4 px-5 text-center">
-                                {uni.slug ? (
-                                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                                    View{" "}
-                                    <FiArrowRight className="text-[10px]" />
-                                  </span>
-                                ) : (
-                                  <span className="inline-flex items-center gap-1 text-xs text-slate-400 bg-slate-50 px-3 py-1.5 rounded-full">
-                                    <FiCheck className="text-[10px]" /> Listed
-                                  </span>
-                                )}
-                              </td>
-                            </>
-                          );
-                          return uni.slug ? (
-                            <Link
-                              key={idx}
-                              to={`/mbbs/${countryKey}/${uni.slug}`}
-                              className="group table-row hover:bg-blue-50/60 transition-colors cursor-pointer border-b border-slate-100 last:border-b-0"
-                            >
-                              {row}
-                            </Link>
-                          ) : (
-                            <tr
-                              key={idx}
-                              className="group hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0"
-                            >
-                              {row}
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Mobile Cards */}
-                  <div className="md:hidden space-y-3">
-                    {data.partnerUniversities.map((uni, idx) => {
-                      const CardWrapper = uni.slug ? Link : "div";
-                      const cardProps = uni.slug
-                        ? { to: `/mbbs/${countryKey}/${uni.slug}` }
-                        : {};
-                      return (
-                        <CardWrapper
-                          key={idx}
-                          {...cardProps}
-                          className="group block bg-white rounded-xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all p-4"
-                        >
-                          <div className="flex items-start justify-between mb-2">
-                            <span className="inline-flex items-center justify-center w-7 h-7 bg-blue-100 text-blue-600 rounded-lg text-xs font-bold">
-                              {String(idx + 1).padStart(2, "0")}
-                            </span>
-                            {uni.slug && (
-                              <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-500 bg-blue-50 px-2 py-1 rounded-full">
-                                View <FiArrowRight className="text-[10px]" />
-                              </span>
-                            )}
-                          </div>
-                          <h4 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
-                            {uni.slug && (
-                              <span className="text-amber-500 mr-1">⭐</span>
-                            )}
-                            {uni.name}
-                          </h4>
-                          <div className="flex items-center gap-1.5 text-slate-500 text-xs mb-2">
-                            <FiMapPin className="text-[10px]" /> {uni.location}
-                          </div>
-                          <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                            <span className="text-blue-600 font-bold text-sm">
-                              {uni.fees}
-                            </span>
-                            <span className="text-[10px] bg-blue-50 text-blue-800 px-2 py-0.5 rounded-full font-medium border border-blue-100">
-                              <FiCheck className="inline text-[8px] mr-0.5" />{" "}
-                              Recommended
-                            </span>
-                          </div>
-                        </CardWrapper>
-                      );
-                    })}
+                  <div>
+                    <h2 className="text-2xl font-bold text-slate-900">
+                      Medical Universities in {countryName}
+                    </h2>
+                    <p className="text-sm text-slate-500">
+                      All universities for Indian students – Session 2026-27
+                    </p>
                   </div>
                 </div>
-              )}
 
-            {/* More Universities Table Section */}
-            {data.otherUniversities && data.otherUniversities.length > 0 && (
-              <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                  <FiBookOpen className="text-slate-400" /> More Universities in{" "}
-                  {countryName}
-                </h2>
+                <p className="text-slate-600 text-sm mb-6 pl-1">
+                  Explore the best medical universities in {countryName}{" "}
+                  handpicked by our expert counsellors. Universities marked with
+                  ⭐ are clickable — click to view detailed info, fees, hostel,
+                  and admission process.
+                </p>
 
                 {/* Desktop Table */}
                 <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-slate-100 text-slate-700">
-                        <th className="text-left py-3 px-5 font-semibold rounded-tl-2xl">
+                      <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                        <th className="text-left py-4 px-5 font-semibold rounded-tl-2xl">
                           #
                         </th>
-                        <th className="text-left py-3 px-5 font-semibold">
+                        <th className="text-left py-4 px-5 font-semibold">
                           University Name
                         </th>
-                        <th className="text-left py-3 px-5 font-semibold">
+                        <th className="text-left py-4 px-5 font-semibold">
                           Location
                         </th>
-                        <th className="text-left py-3 px-5 font-semibold rounded-tr-2xl">
+                        <th className="text-left py-4 px-5 font-semibold">
                           Tuition Fee
+                        </th>
+                        <th className="text-center py-4 px-5 font-semibold rounded-tr-2xl">
+                          Details
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {data.otherUniversities.map((uni, idx) => (
-                        <tr
-                          key={idx}
-                          className="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0"
-                        >
-                          <td className="py-3 px-5 font-bold text-slate-400">
-                            {String(idx + 1).padStart(2, "0")}
-                          </td>
-                          <td className="py-3 px-5 font-semibold text-slate-800">
-                            {uni.name}
-                          </td>
-                          <td className="py-3 px-5 text-slate-500">
-                            <span className="flex items-center gap-1">
-                              <FiMapPin className="text-xs" /> {uni.location}
-                            </span>
-                          </td>
-                          <td className="py-3 px-5 font-semibold text-blue-600">
-                            {uni.fees}
-                          </td>
-                        </tr>
-                      ))}
+                      {allUniversities.map((uni, idx) => {
+                        const row = (
+                          <>
+                            <td className="py-4 px-5 font-bold text-blue-600">
+                              {String(idx + 1).padStart(2, "0")}
+                            </td>
+                            <td className="py-4 px-5">
+                              <div className="flex items-center gap-2">
+                                {uni.slug && (
+                                  <span className="text-amber-500">⭐</span>
+                                )}
+                                <span className="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                  {uni.name}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="py-4 px-5 text-slate-500">
+                              <span className="flex items-center gap-1">
+                                <FiMapPin className="text-xs" /> {uni.location}
+                              </span>
+                            </td>
+                            <td className="py-4 px-5 font-bold text-blue-600">
+                              {uni.fees}
+                            </td>
+                            <td className="py-4 px-5 text-center">
+                              {uni.slug ? (
+                                <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                  View <FiArrowRight className="text-[10px]" />
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1 text-xs text-slate-400 bg-slate-50 px-3 py-1.5 rounded-full">
+                                  <FiCheck className="text-[10px]" /> Listed
+                                </span>
+                              )}
+                            </td>
+                          </>
+                        );
+                        return uni.slug ? (
+                          <Link
+                            key={idx}
+                            to={`/mbbs/${countryKey}/${uni.slug}`}
+                            className="group table-row hover:bg-blue-50/60 transition-colors cursor-pointer border-b border-slate-100 last:border-b-0"
+                          >
+                            {row}
+                          </Link>
+                        ) : (
+                          <tr
+                            key={idx}
+                            className="group hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-b-0"
+                          >
+                            {row}
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
 
                 {/* Mobile Cards */}
-                <div className="md:hidden space-y-2">
-                  {data.otherUniversities.map((uni, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all bg-white"
-                    >
-                      <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center text-slate-500 font-bold text-xs flex-shrink-0">
-                        {String(idx + 1).padStart(2, "0")}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-slate-900 text-sm truncate">
+                <div className="md:hidden space-y-3">
+                  {allUniversities.map((uni, idx) => {
+                    const CardWrapper = uni.slug ? Link : "div";
+                    const cardProps = uni.slug
+                      ? { to: `/mbbs/${countryKey}/${uni.slug}` }
+                      : {};
+                    return (
+                      <CardWrapper
+                        key={idx}
+                        {...cardProps}
+                        className="group block bg-white rounded-xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all p-4"
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <span className="inline-flex items-center justify-center w-7 h-7 bg-blue-100 text-blue-600 rounded-lg text-xs font-bold">
+                            {String(idx + 1).padStart(2, "0")}
+                          </span>
+                          {uni.slug && (
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-500 bg-blue-50 px-2 py-1 rounded-full">
+                              View <FiArrowRight className="text-[10px]" />
+                            </span>
+                          )}
+                        </div>
+                        <h4 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
+                          {uni.slug && (
+                            <span className="text-amber-500 mr-1">⭐</span>
+                          )}
                           {uni.name}
                         </h4>
-                        <div className="flex items-center gap-3 mt-0.5">
-                          <span className="text-xs text-slate-400 flex items-center gap-1">
-                            <FiMapPin className="text-[10px]" /> {uni.location}
-                          </span>
-                          <span className="text-xs font-semibold text-blue-600">
+                        <div className="flex items-center gap-1.5 text-slate-500 text-xs mb-2">
+                          <FiMapPin className="text-[10px]" /> {uni.location}
+                        </div>
+                        <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                          <span className="text-blue-600 font-bold text-sm">
                             {uni.fees}
                           </span>
+                          {uni.slug ? (
+                            <span className="text-[10px] bg-blue-50 text-blue-800 px-2 py-0.5 rounded-full font-medium border border-blue-100">
+                              <FiCheck className="inline text-[8px] mr-0.5" />{" "}
+                              Recommended
+                            </span>
+                          ) : (
+                            <span className="text-[10px] bg-slate-50 text-slate-500 px-2 py-0.5 rounded-full font-medium border border-slate-200">
+                              <FiCheck className="inline text-[8px] mr-0.5" />{" "}
+                              Listed
+                            </span>
+                          )}
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                      </CardWrapper>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -1261,6 +1260,99 @@ const MbbsCountry = () => {
           </div>
         </div>
       </section>
+
+      {/* Explore Other Countries - Infinite Marquee Slider */}
+      {otherCountries.length > 0 && (
+        <section className="py-16 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 flex items-center justify-center gap-3">
+                <FiGlobe className="text-blue-500" /> Explore Other Countries
+              </h2>
+              <p className="text-slate-500 max-w-2xl mx-auto">
+                Discover MBBS opportunities in other top destinations
+              </p>
+            </motion.div>
+          </div>
+
+          <InfiniteMarqueeSlider
+            items={otherCountries}
+            speed={otherCountries.length * 5}
+            renderCard={(c) => (
+              <Link
+                to={`/mbbs/${c.slug}`}
+                className="group block rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-blue-400 shadow-lg hover:shadow-2xl transition-all duration-500 h-full"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Country Image with parallax-like overlay */}
+                <div className="relative h-40 overflow-hidden">
+                  <img
+                    src={c.bannerImage}
+                    alt={`MBBS in ${c.name}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+                  {/* Animated shimmer overlay on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                    style={{ animation: "shimmer 2s ease-in-out infinite" }}
+                  />
+                  <h3 className="absolute bottom-3 left-4 text-white font-bold text-lg drop-shadow-lg group-hover:translate-x-1 transition-transform duration-300">
+                    {c.name}
+                  </h3>
+                  {/* Floating badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-[10px] font-bold">
+                      <FiGlobe className="text-[10px]" /> MBBS
+                    </span>
+                  </div>
+                </div>
+
+                {/* Country Info */}
+                <div className="p-4">
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                      <FiClock className="text-blue-500 flex-shrink-0" />
+                      <span>{c.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                      <FiBookOpen className="text-blue-500 flex-shrink-0" />
+                      <span>{c.medium}</span>
+                    </div>
+                    {c.costOfLiving && (
+                      <div className="flex items-center gap-2 text-xs text-slate-500">
+                        <FiDollarSign className="text-green-500 flex-shrink-0" />
+                        <span>Living: {c.costOfLiving}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+                    <span className="text-[10px] font-semibold bg-green-50 text-green-700 px-2 py-0.5 rounded-full border border-green-200">
+                      {c.recognition?.split(",")[0]} Recognized
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-500 group-hover:text-blue-700 transition-colors">
+                      Explore{" "}
+                      <FiArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            )}
+          />
+
+          <style>{`
+            @keyframes shimmer {
+              0%, 100% { transform: translateX(-100%); }
+              50% { transform: translateX(100%); }
+            }
+          `}</style>
+        </section>
+      )}
     </div>
   );
 };

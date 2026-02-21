@@ -2,122 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import {
-  FiArrowRight,
-  FiCheckCircle,
-  FiDollarSign,
-  FiHome,
-  FiHeart,
-  FiShield,
-  FiStar,
-  FiUsers,
-  FiMapPin,
-  FiClock,
-} from "react-icons/fi";
+import { FiArrowRight, FiCheckCircle, FiHeart, FiMapPin } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
-
-const jobCategories = [
-  {
-    title: "Nursing Jobs",
-    positions: [
-      "Staff Nurse",
-      "ICU Nurse",
-      "OR Nurse",
-      "Pediatric Nurse",
-      "Emergency Nurse",
-      "Oncology Nurse",
-    ],
-    salary: "AED 6,000 - 15,000/month",
-    demand: "Very High",
-  },
-  {
-    title: "Doctor Positions",
-    positions: [
-      "General Practitioner",
-      "Specialist Doctors",
-      "Consultant",
-      "Resident Doctor",
-      "Medical Officer",
-    ],
-    salary: "AED 20,000 - 80,000/month",
-    demand: "High",
-  },
-  {
-    title: "Allied Health",
-    positions: [
-      "Lab Technician",
-      "Radiographer",
-      "Physiotherapist",
-      "Pharmacist",
-      "Dietitian",
-      "Respiratory Therapist",
-    ],
-    salary: "AED 8,000 - 20,000/month",
-    demand: "High",
-  },
-  {
-    title: "Support Staff",
-    positions: [
-      "Medical Assistant",
-      "Healthcare Administrator",
-      "Patient Care Coordinator",
-      "Medical Coder",
-    ],
-    salary: "AED 4,000 - 10,000/month",
-    demand: "Moderate",
-  },
-];
-
-const benefits = [
-  {
-    icon: FiDollarSign,
-    title: "Tax-Free Salary",
-    desc: "100% of your salary is yours - no income tax in UAE",
-  },
-  {
-    icon: FiHome,
-    title: "Free Accommodation",
-    desc: "Most employers provide free housing or housing allowance",
-  },
-  {
-    icon: FiShield,
-    title: "Health Insurance",
-    desc: "Comprehensive medical coverage for you and family",
-  },
-  {
-    icon: FiUsers,
-    title: "Family Visa",
-    desc: "Sponsor your spouse and children under your visa",
-  },
-  {
-    icon: FiStar,
-    title: "Annual Bonus",
-    desc: "Performance bonuses and annual air tickets home",
-  },
-  {
-    icon: FiClock,
-    title: "Paid Leave",
-    desc: "30 days annual leave + public holidays",
-  },
-];
-
-const cities = [
-  "Dubai",
-  "Abu Dhabi",
-  "Sharjah",
-  "Ajman",
-  "Ras Al Khaimah",
-  "Fujairah",
-];
-
-const requirements = [
-  "Valid nursing/medical degree from recognized institution",
-  "Minimum 2 years of clinical experience",
-  "Dataflow verification of credentials",
-  "DHA/DOH/MOH licensing exam clearance",
-  "Good communication skills in English",
-  "Valid passport with 6+ months validity",
-];
+import { jobCategories, benefits, cities, requirements } from "../data/uaeHealthcareData";
 
 const UAEHealthcare = () => {
   return (
@@ -152,7 +39,6 @@ const UAEHealthcare = () => {
               ← Back to Healthcare Jobs
             </Link>
             <div className="flex items-center gap-4 mb-4">
-              <span className="text-5xl">🇦🇪</span>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:text-6xl font-bold">
                 UAE Healthcare Jobs
               </h1>
@@ -448,7 +334,7 @@ const UAEHealthcare = () => {
             to="/healthcare/germany"
             className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-900 transition-all"
           >
-            🇩🇪 Germany Healthcare Jobs <FiArrowRight />
+            Germany Healthcare Jobs <FiArrowRight />
           </Link>
         </div>
       </section>

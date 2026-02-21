@@ -6,7 +6,6 @@ export const preferredCountries = [
   {
     id: "germany",
     name: "Germany",
-    flag: "🇩🇪",
     tagline: "World-Class Education, Zero Tuition",
     bannerImage: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1600",
     description: "Germany offers tuition-free education at public universities, world-renowned engineering and technology programs, and excellent post-study work opportunities.",
@@ -59,7 +58,6 @@ export const preferredCountries = [
   {
     id: "cyprus",
     name: "Cyprus",
-    flag: "🇨🇾",
     tagline: "European Education in the Mediterranean",
     bannerImage: "https://images.unsplash.com/photo-1580227974546-fbd48825d991?w=1600",
     description: "Cyprus offers quality European education with affordable living costs, English-taught programs, and an excellent Mediterranean climate.",
@@ -102,7 +100,6 @@ export const preferredCountries = [
   {
     id: "france",
     name: "France",
-    flag: "🇫🇷",
     tagline: "Excellence in Arts, Sciences & Innovation",
     bannerImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600",
     description: "France is home to world-class universities, prestigious grandes écoles, and offers affordable education with rich cultural experiences.",
@@ -145,7 +142,6 @@ export const preferredCountries = [
   {
     id: "uae",
     name: "United Arab Emirates",
-    flag: "🇦🇪",
     tagline: "Global Education Hub of the Middle East",
     bannerImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600",
     description: "UAE offers world-class education with international branch campuses, modern infrastructure, and excellent career opportunities.",
@@ -188,7 +184,6 @@ export const preferredCountries = [
   {
     id: "mauritius",
     name: "Mauritius",
-    flag: "🇲🇺",
     tagline: "Island Paradise Education Hub",
     bannerImage: "https://images.unsplash.com/photo-1589979481223-deb893043163?w=1600",
     description: "Mauritius offers affordable education in a multicultural environment with beautiful surroundings and growing international university presence.",
@@ -221,7 +216,6 @@ export const preferredCountries = [
   {
     id: "singapore",
     name: "Singapore",
-    flag: "🇸🇬",
     tagline: "Asia's Premier Education Destination",
     bannerImage: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1600",
     description: "Singapore offers world-class education with globally ranked universities, excellent infrastructure, and strong ties to industry and innovation.",
@@ -267,7 +261,6 @@ export const otherCountries = [
   {
     id: "uk",
     name: "United Kingdom",
-    flag: "🇬🇧",
     tagline: "Historic Excellence & Global Recognition",
     bannerImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600",
     description: "The UK is home to some of the world's oldest and most prestigious universities, offering globally recognized degrees and excellent research opportunities.",
@@ -320,7 +313,6 @@ export const otherCountries = [
   {
     id: "usa",
     name: "United States",
-    flag: "🇺🇸",
     tagline: "Land of Opportunity & Innovation",
     bannerImage: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=1600",
     description: "The USA offers diverse educational opportunities, cutting-edge research facilities, and globally recognized degrees across thousands of institutions.",
@@ -363,7 +355,6 @@ export const otherCountries = [
   {
     id: "canada",
     name: "Canada",
-    flag: "🇨🇦",
     tagline: "Quality Education with Immigration Pathways",
     bannerImage: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1600",
     description: "Canada offers high-quality education, multicultural environment, and excellent post-graduation work permit and immigration opportunities.",
@@ -406,7 +397,6 @@ export const otherCountries = [
   {
     id: "australia",
     name: "Australia",
-    flag: "🇦🇺",
     tagline: "World-Class Education Down Under",
     bannerImage: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1600",
     description: "Australia offers internationally recognized qualifications, excellent quality of life, and post-study work opportunities in a diverse environment.",
@@ -449,7 +439,6 @@ export const otherCountries = [
   {
     id: "new-zealand",
     name: "New Zealand",
-    flag: "🇳🇿",
     tagline: "Adventure Meets Academic Excellence",
     bannerImage: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1600",
     description: "New Zealand offers quality education in a safe, beautiful environment with excellent post-study work opportunities and pathways to residency.",
@@ -482,7 +471,6 @@ export const otherCountries = [
   {
     id: "denmark",
     name: "Denmark",
-    flag: "🇩🇰",
     tagline: "Happy Nation, Innovative Education",
     bannerImage: "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=1600",
     description: "Denmark offers excellent education with a focus on innovation, sustainability, and work-life balance in one of the world's happiest countries.",
@@ -515,7 +503,6 @@ export const otherCountries = [
   {
     id: "finland",
     name: "Finland",
-    flag: "🇫🇮",
     tagline: "World's Best Education System",
     bannerImage: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1600",
     description: "Finland is renowned for its excellent education system, innovative teaching methods, and high quality of life with abundant natural beauty.",

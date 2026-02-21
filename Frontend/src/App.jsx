@@ -35,6 +35,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogDetail = lazy(() => import("./pages/BlogDetail"));
 const EligibilityCheck = lazy(() => import("./pages/EligibilityCheck"));
 const PartnerWithUs = lazy(() => import("./pages/PartnerWithUs"));
+const About = lazy(() => import("./pages/About"));
 
 // Healthcare Routes
 const HealthcareJobs = lazy(() => import("./pages/HealthcareJobs"));
@@ -98,6 +99,7 @@ const AppLayout = () => {
 
             <Route path="/eligibility-check" element={<EligibilityCheck />} />
             <Route path="/partner" element={<PartnerWithUs />} />
+            <Route path="/about" element={<About />} />
 
             {/* Healthcare Routes */}
             <Route path="/healthcare" element={<HealthcareJobs />} />

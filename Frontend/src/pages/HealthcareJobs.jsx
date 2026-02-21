@@ -2,76 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import {
-  FiArrowRight,
-  FiCheckCircle,
-  FiGlobe,
-  FiDollarSign,
-  FiBriefcase,
-  FiUsers,
-  FiAward,
-  FiHeart,
-} from "react-icons/fi";
+import { FiArrowRight, FiCheckCircle, FiAward, FiHeart } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
-
-const countries = [
-  {
-    id: "uae",
-    name: "UAE",
-    flag: "🇦🇪",
-    image: "/Home_Hero/3.webp",
-    description: "Premier healthcare destination with world-class facilities",
-    highlights: [
-      "Tax-free salary",
-      "Modern hospitals",
-      "International exposure",
-    ],
-    jobs: [
-      "Nurses",
-      "Doctors",
-      "Lab Technicians",
-      "Pharmacists",
-      "Physiotherapists",
-    ],
-  },
-  {
-    id: "germany",
-    name: "Germany",
-    flag: "🇩🇪",
-    image: "/Home_Hero/4.webp",
-    description:
-      "Europe's largest healthcare job market with excellent benefits",
-    highlights: ["High salary", "PR pathway", "Social security benefits"],
-    jobs: ["Nursing", "Caregiving", "Medical Assistants", "Healthcare Aides"],
-  },
-];
-
-const benefits = [
-  {
-    icon: FiDollarSign,
-    title: "Competitive Salary",
-    description:
-      "Earn significantly higher than domestic salaries with additional benefits",
-  },
-  {
-    icon: FiGlobe,
-    title: "International Exposure",
-    description:
-      "Work in world-class hospitals with cutting-edge medical technology",
-  },
-  {
-    icon: FiBriefcase,
-    title: "Career Growth",
-    description:
-      "Fast-track your career with international certifications and experience",
-  },
-  {
-    icon: FiUsers,
-    title: "Family Benefits",
-    description:
-      "Most positions offer family visa sponsorship and housing allowances",
-  },
-];
+import { countries, benefits } from "../data/healthcareJobsData";
 
 const HealthcareJobs = () => {
   return (
@@ -117,13 +50,13 @@ const HealthcareJobs = () => {
                 to="/healthcare/uae"
                 className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all"
               >
-                🇦🇪 UAE Healthcare <FiArrowRight />
+                UAE Healthcare <FiArrowRight />
               </Link>
               <Link
                 to="/healthcare/germany"
                 className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-white text-slate-800 rounded-full font-bold hover:bg-gray-100 transition-all"
               >
-                🇩🇪 Germany Healthcare <FiArrowRight />
+                Germany Healthcare <FiArrowRight />
               </Link>
             </div>
           </motion.div>
@@ -168,7 +101,6 @@ const HealthcareJobs = () => {
 
                   <div className="absolute inset-0 p-8 flex flex-col justify-end">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-4xl">{country.flag}</span>
                       <h3 className="text-3xl font-bold text-white">
                         {country.name}
                       </h3>

@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
   FiArrowLeft,
+  FiArrowRight,
   FiMapPin,
   FiCheck,
   FiBookOpen,
   FiDollarSign,
   FiClock,
+  FiCalendar,
   FiAward,
   FiUsers,
   FiGlobe,
   FiHome,
   FiFileText,
   FiShield,
+  FiStar,
 } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
 import SEO from "../components/SEO";
@@ -30,6 +33,50 @@ const universityData = {
     established: "1814",
     fees: "$5,500 / year",
     totalFees: "~₹28–32 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$5,500",
+        hostel: "$800",
+        food: "$1,200",
+        total: "$7,500",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$5,500",
+        hostel: "$800",
+        food: "$1,200",
+        total: "$7,500",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$5,500",
+        hostel: "$800",
+        food: "$1,200",
+        total: "$7,500",
+      },
+      {
+        year: "4th Year",
+        tuition: "$5,500",
+        hostel: "$800",
+        food: "$1,200",
+        total: "$7,500",
+      },
+      {
+        year: "5th Year",
+        tuition: "$5,500",
+        hostel: "$800",
+        food: "$1,200",
+        total: "$7,500",
+      },
+      {
+        year: "6th Year",
+        tuition: "$5,500",
+        hostel: "$800",
+        food: "$1,200",
+        total: "$7,500",
+      },
+    ],
     duration: "6 Years (including internship)",
     medium: "English",
     recognition: "WHO, NMC, FAIMER, MCI Listed",
@@ -78,6 +125,50 @@ const universityData = {
     established: "1918",
     fees: "$3,500 / year",
     totalFees: "~₹20–24 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$3,500",
+        hostel: "$600",
+        food: "$1,000",
+        total: "$5,100",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$3,500",
+        hostel: "$600",
+        food: "$1,000",
+        total: "$5,100",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$3,500",
+        hostel: "$600",
+        food: "$1,000",
+        total: "$5,100",
+      },
+      {
+        year: "4th Year",
+        tuition: "$3,500",
+        hostel: "$600",
+        food: "$1,000",
+        total: "$5,100",
+      },
+      {
+        year: "5th Year",
+        tuition: "$3,500",
+        hostel: "$600",
+        food: "$1,000",
+        total: "$5,100",
+      },
+      {
+        year: "6th Year",
+        tuition: "$3,500",
+        hostel: "$600",
+        food: "$1,000",
+        total: "$5,100",
+      },
+    ],
     duration: "6 Years (including internship)",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -124,6 +215,50 @@ const universityData = {
     established: "1933",
     fees: "$4,500 / year",
     totalFees: "~₹25–28 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$4,500",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$6,200",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$4,500",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$6,200",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$4,500",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$6,200",
+      },
+      {
+        year: "4th Year",
+        tuition: "$4,500",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$6,200",
+      },
+      {
+        year: "5th Year",
+        tuition: "$4,500",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$6,200",
+      },
+      {
+        year: "6th Year",
+        tuition: "$4,500",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$6,200",
+      },
+    ],
     duration: "6 Years (including internship)",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -171,6 +306,50 @@ const universityData = {
     established: "2001",
     fees: "$5,200 / year",
     totalFees: "~₹28–32 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$5,200",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$7,700",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$5,200",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$7,700",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$5,200",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$7,700",
+      },
+      {
+        year: "4th Year",
+        tuition: "$5,200",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$7,700",
+      },
+      {
+        year: "5th Year",
+        tuition: "$5,200",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$7,700",
+      },
+      {
+        year: "6th Year",
+        tuition: "$5,200",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$7,700",
+      },
+    ],
     duration: "6 Years (including internship)",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -219,6 +398,50 @@ const universityData = {
     established: "2012",
     fees: "$5,500 / year",
     totalFees: "~₹30–35 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$5,500",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$8,000",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$5,500",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$8,000",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$5,500",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$8,000",
+      },
+      {
+        year: "4th Year",
+        tuition: "$5,500",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$8,000",
+      },
+      {
+        year: "5th Year",
+        tuition: "$5,500",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$8,000",
+      },
+      {
+        year: "6th Year",
+        tuition: "$5,500",
+        hostel: "$1,000",
+        food: "$1,500",
+        total: "$8,000",
+      },
+    ],
     duration: "6 Years (including internship)",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -268,6 +491,50 @@ const universityData = {
     established: "1919",
     fees: "$3,800 / year",
     totalFees: "~₹18–22 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$3,800",
+        hostel: "$500",
+        food: "$800",
+        total: "$5,100",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$3,800",
+        hostel: "$500",
+        food: "$800",
+        total: "$5,100",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$3,800",
+        hostel: "$500",
+        food: "$800",
+        total: "$5,100",
+      },
+      {
+        year: "4th Year",
+        tuition: "$3,800",
+        hostel: "$500",
+        food: "$800",
+        total: "$5,100",
+      },
+      {
+        year: "5th Year",
+        tuition: "$3,800",
+        hostel: "$500",
+        food: "$800",
+        total: "$5,100",
+      },
+      {
+        year: "6th Year (Internship)",
+        tuition: "$1,500",
+        hostel: "$500",
+        food: "$800",
+        total: "$2,800",
+      },
+    ],
     duration: "5+1 Years",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -314,6 +581,50 @@ const universityData = {
     established: "1930",
     fees: "$3,300 / year",
     totalFees: "~₹16–20 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$3,300",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,400",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$3,300",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,400",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$3,300",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,400",
+      },
+      {
+        year: "4th Year",
+        tuition: "$3,300",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,400",
+      },
+      {
+        year: "5th Year",
+        tuition: "$3,300",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,400",
+      },
+      {
+        year: "6th Year (Internship)",
+        tuition: "$1,200",
+        hostel: "$400",
+        food: "$700",
+        total: "$2,300",
+      },
+    ],
     duration: "5+1 Years",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -361,6 +672,50 @@ const universityData = {
     established: "1992",
     fees: "$4,200 / year",
     totalFees: "~₹22–26 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$4,200",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$5,900",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$4,200",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$5,900",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$4,200",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$5,900",
+      },
+      {
+        year: "4th Year",
+        tuition: "$4,200",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$5,900",
+      },
+      {
+        year: "5th Year",
+        tuition: "$4,200",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$5,900",
+      },
+      {
+        year: "6th Year (Internship)",
+        tuition: "$2,000",
+        hostel: "$700",
+        food: "$1,000",
+        total: "$3,700",
+      },
+    ],
     duration: "5+1 Years",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -409,6 +764,50 @@ const universityData = {
     established: "1939",
     fees: "$4,000 / year",
     totalFees: "~₹20–25 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$4,000",
+        hostel: "$600",
+        food: "$900",
+        total: "$5,500",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$4,000",
+        hostel: "$600",
+        food: "$900",
+        total: "$5,500",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$4,000",
+        hostel: "$600",
+        food: "$900",
+        total: "$5,500",
+      },
+      {
+        year: "4th Year",
+        tuition: "$4,000",
+        hostel: "$600",
+        food: "$900",
+        total: "$5,500",
+      },
+      {
+        year: "5th Year",
+        tuition: "$4,000",
+        hostel: "$600",
+        food: "$900",
+        total: "$5,500",
+      },
+      {
+        year: "6th Year (Internship)",
+        tuition: "$2,000",
+        hostel: "$600",
+        food: "$900",
+        total: "$3,500",
+      },
+    ],
     duration: "5+1 Years",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -455,6 +854,50 @@ const universityData = {
     established: "2003",
     fees: "$4,500 / year",
     totalFees: "~₹23–27 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$4,500",
+        hostel: "$600",
+        food: "$900",
+        total: "$6,000",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$4,500",
+        hostel: "$600",
+        food: "$900",
+        total: "$6,000",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$4,500",
+        hostel: "$600",
+        food: "$900",
+        total: "$6,000",
+      },
+      {
+        year: "4th Year",
+        tuition: "$4,500",
+        hostel: "$600",
+        food: "$900",
+        total: "$6,000",
+      },
+      {
+        year: "5th Year",
+        tuition: "$4,500",
+        hostel: "$600",
+        food: "$900",
+        total: "$6,000",
+      },
+      {
+        year: "6th Year (Internship)",
+        tuition: "$2,000",
+        hostel: "$600",
+        food: "$900",
+        total: "$3,500",
+      },
+    ],
     duration: "5+1 Years",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -503,6 +946,50 @@ const universityData = {
     established: "1939",
     fees: "$3,500 / year",
     totalFees: "~₹18–22 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$3,500",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,600",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$3,500",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,600",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$3,500",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,600",
+      },
+      {
+        year: "4th Year",
+        tuition: "$3,500",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,600",
+      },
+      {
+        year: "5th Year",
+        tuition: "$3,500",
+        hostel: "$400",
+        food: "$700",
+        total: "$4,600",
+      },
+      {
+        year: "6th Year (Internship)",
+        tuition: "$1,500",
+        hostel: "$400",
+        food: "$700",
+        total: "$2,600",
+      },
+    ],
     duration: "5+1 Years",
     medium: "English",
     recognition: "WHO, NMC, FAIMER",
@@ -2382,6 +2869,236 @@ const universityData = {
   },
 };
 
+// Auto-generate fee structure from existing fee and duration data
+const generateFeeStructure = (uniData) => {
+  if (uniData.feeStructure) return uniData.feeStructure;
+
+  const feeStr = uniData.fees || "";
+  const durationStr = uniData.duration || "";
+
+  // Parse tuition amount
+  let tuitionNum = 0;
+  let currency = "$";
+  const feeMatch = feeStr.match(/([€$])([\d,]+(?:\.\d+)?)/);
+  if (feeMatch) {
+    currency = feeMatch[1];
+    tuitionNum = parseFloat(feeMatch[2].replace(/,/g, ""));
+  }
+  // Handle income-based / range fees (e.g. "€500–4,500")
+  const rangeMatch = feeStr.match(/([€$])([\d,]+).*?([\d,]+)/);
+  if (!feeMatch && rangeMatch) {
+    currency = rangeMatch[1];
+    tuitionNum = parseFloat(rangeMatch[3].replace(/,/g, ""));
+  }
+
+  // Determine number of years
+  let years = 6;
+  if (
+    durationStr.includes("5+1") ||
+    durationStr.includes("5.5") ||
+    durationStr.includes("5 Years")
+  )
+    years = 6;
+  else if (durationStr.includes("6 Years 3")) years = 6;
+  else if (durationStr.includes("6 Years")) years = 6;
+
+  // Estimate hostel & food based on country
+  const countryName = (uniData.country || "").toLowerCase();
+  let hostel = 600,
+    food = 1000;
+  if (["uzbekistan", "tajikistan", "kyrgyzstan"].includes(countryName)) {
+    hostel = 400;
+    food = 700;
+  } else if (countryName === "russia") {
+    hostel = 700;
+    food = 1000;
+  } else if (countryName === "georgia") {
+    hostel = 900;
+    food = 1300;
+  } else if (countryName === "kazakhstan") {
+    hostel = 600;
+    food = 900;
+  } else if (countryName === "germany") {
+    hostel = 3600;
+    food = 3000;
+    currency = "€";
+  } else if (countryName === "italy") {
+    hostel = 3000;
+    food = 3600;
+    currency = "€";
+  } else if (countryName === "nepal") {
+    hostel = 600;
+    food = 800;
+  } else if (countryName === "bangladesh") {
+    hostel = 500;
+    food = 700;
+  } else if (countryName === "barbados") {
+    hostel = 2400;
+    food = 2400;
+  }
+
+  const rows = [];
+  for (let i = 1; i <= years; i++) {
+    const isInternship = i === years;
+    const yearTuition = isInternship
+      ? Math.round(tuitionNum * 0.5)
+      : tuitionNum;
+    const yearHostel = hostel;
+    const yearFood = food;
+    const total = yearTuition + yearHostel + yearFood;
+    rows.push({
+      year: isInternship ? `Year ${i} (Internship)` : `Year ${i}`,
+      tuition: `${currency}${yearTuition.toLocaleString()}`,
+      hostel: `${currency}${yearHostel.toLocaleString()}`,
+      food: `${currency}${yearFood.toLocaleString()}`,
+      total: `${currency}${total.toLocaleString()}`,
+    });
+  }
+  return rows;
+};
+
+// University Minimal Slider — Sleek, modern horizontal slider
+const UniversityMinimalSlider = ({ universities }) => {
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setShowLeftArrow(scrollLeft > 20);
+    setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 20);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => el.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 350;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div className="relative group/slider">
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => scroll("left")}
+        className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showLeftArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowLeft />
+      </button>
+
+      <button
+        onClick={() => scroll("right")}
+        className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showRightArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowRight />
+      </button>
+
+      {/* Gradient Fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+
+      {/* Scrollable Container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 no-scrollbar scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {universities.map((uni, idx) => (
+          <motion.div
+            key={uni.slug}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className="flex-shrink-0"
+          >
+            <Link
+              to={`/mbbs/${uni.countrySlug}/${uni.slug}`}
+              className="block w-72 sm:w-80 group/card relative"
+            >
+              <div className="relative p-6 rounded-3xl bg-white border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] group-hover/card:shadow-[0_20px_40px_-12px_rgba(59,130,246,0.15)] group-hover/card:border-blue-100 group-hover/card:-translate-y-2 transition-all duration-500 overflow-hidden">
+                {/* Visual Accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-12 -mt-12 group-hover/card:bg-blue-600 transition-colors duration-500 opacity-20 group-hover/card:opacity-10" />
+
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-blue-200 group-hover/card:scale-110 transition-transform duration-500">
+                      {uni.name.charAt(0)}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold block mb-1">
+                        Session 2026-27
+                      </span>
+                      <div className="flex items-center gap-1 justify-end text-amber-500">
+                        <FiStar className="fill-current text-[10px]" />
+                        <span className="text-[10px] font-bold">Top Rated</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h4 className="font-bold text-slate-900 text-lg leading-tight mb-2 group-hover/card:text-blue-600 transition-colors line-clamp-2 min-h-[3.5rem]">
+                    {uni.name}
+                  </h4>
+
+                  <div className="flex items-center gap-2 text-slate-500 text-sm mb-6">
+                    <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center">
+                      <FiMapPin className="text-[10px]" />
+                    </div>
+                    <span>{uni.location}</span>
+                  </div>
+
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <p className="text-[10px] uppercase text-slate-400 font-bold tracking-wider mb-1">
+                        Tuition Fees
+                      </p>
+                      <p className="text-xl font-black text-slate-900 group-hover/card:text-blue-600 transition-colors">
+                        {uni.fees}
+                        <span className="text-xs font-medium text-slate-400 ml-1">
+                          /yr
+                        </span>
+                      </p>
+                    </div>
+                    <div className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center group-hover/card:bg-blue-600 group-hover/card:text-white group-hover/card:border-blue-600 transition-all duration-300">
+                      <FiArrowRight />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </div>
+  );
+};
+
 const MbbsUniversity = () => {
   const { country, university } = useParams();
   const uniData = universityData[university];
@@ -2406,6 +3123,18 @@ const MbbsUniversity = () => {
       </div>
     );
   }
+
+  // Generate fee structure
+  const feeStructure = generateFeeStructure(uniData);
+
+  // Get other universities from same country for "Explore Other Universities"
+  const otherUniversities = Object.entries(universityData)
+    .filter(
+      ([slug, data]) =>
+        data.countrySlug === uniData.countrySlug && slug !== university,
+    )
+    .slice(0, 6)
+    .map(([slug, data]) => ({ slug, ...data }));
 
   const admissionSteps = [
     {
@@ -2639,9 +3368,152 @@ const MbbsUniversity = () => {
                 ))}
               </div>
             </motion.div>
+
+            {/* Year-Wise Fee Structure */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+                <FiDollarSign className="text-green-600" /> Year-Wise Fee
+                Structure
+              </h2>
+              <p className="text-slate-500 text-sm mb-6">
+                Estimated annual costs including tuition, hostel, and living
+                expenses (approx.)
+              </p>
+
+              {/* Desktop Table */}
+              <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                      <th className="text-left py-4 px-5 font-semibold rounded-tl-2xl">
+                        Year
+                      </th>
+                      <th className="text-left py-4 px-5 font-semibold">
+                        Tuition Fee
+                      </th>
+                      <th className="text-left py-4 px-5 font-semibold">
+                        Hostel
+                      </th>
+                      <th className="text-left py-4 px-5 font-semibold">
+                        Food & Living
+                      </th>
+                      <th className="text-left py-4 px-5 font-semibold rounded-tr-2xl">
+                        Total (Approx.)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {feeStructure.map((row, idx) => (
+                      <tr
+                        key={idx}
+                        className={`border-b border-slate-100 last:border-b-0 ${
+                          idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"
+                        } hover:bg-blue-50/40 transition-colors`}
+                      >
+                        <td className="py-3.5 px-5 font-semibold text-slate-900">
+                          {row.year}
+                        </td>
+                        <td className="py-3.5 px-5 text-blue-600 font-bold">
+                          {row.tuition}
+                        </td>
+                        <td className="py-3.5 px-5 text-slate-600">
+                          {row.hostel}
+                        </td>
+                        <td className="py-3.5 px-5 text-slate-600">
+                          {row.food}
+                        </td>
+                        <td className="py-3.5 px-5 font-bold text-green-700">
+                          {row.total}
+                        </td>
+                      </tr>
+                    ))}
+                    {/* Total Row */}
+                    <tr className="bg-gradient-to-r from-blue-50 to-blue-100 border-t-2 border-blue-200">
+                      <td className="py-4 px-5 font-bold text-slate-900 rounded-bl-2xl">
+                        Total Course
+                      </td>
+                      <td
+                        colSpan={3}
+                        className="py-4 px-5 text-slate-600 font-semibold"
+                      >
+                        {uniData.totalFees}
+                      </td>
+                      <td className="py-4 px-5 font-bold text-green-800 text-lg rounded-br-2xl">
+                        {uniData.totalFees}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Cards */}
+              <div className="md:hidden space-y-3">
+                {feeStructure.map((row, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="font-bold text-slate-900 text-base">
+                        {row.year}
+                      </span>
+                      <span className="text-green-700 font-bold bg-green-50 px-3 py-1 rounded-full text-sm border border-green-200">
+                        {row.total}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div className="bg-blue-50 rounded-lg p-2">
+                        <p className="text-[10px] text-slate-400 uppercase font-semibold">
+                          Tuition
+                        </p>
+                        <p className="text-sm font-bold text-blue-600">
+                          {row.tuition}
+                        </p>
+                      </div>
+                      <div className="bg-slate-50 rounded-lg p-2">
+                        <p className="text-[10px] text-slate-400 uppercase font-semibold">
+                          Hostel
+                        </p>
+                        <p className="text-sm font-bold text-slate-700">
+                          {row.hostel}
+                        </p>
+                      </div>
+                      <div className="bg-slate-50 rounded-lg p-2">
+                        <p className="text-[10px] text-slate-400 uppercase font-semibold">
+                          Food
+                        </p>
+                        <p className="text-sm font-bold text-slate-700">
+                          {row.food}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div className="p-4 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-slate-900">
+                      Total Course Cost
+                    </span>
+                    <span className="text-green-800 font-bold text-lg">
+                      {uniData.totalFees}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fee disclaimer */}
+              <p className="text-xs text-slate-400 mt-4 italic">
+                * Fees are approximate and may vary. Hostel and food costs are
+                estimated averages. Contact us for the latest fee details.
+              </p>
+            </motion.div>
           </div>
 
-          {/* Sidebar */}
+          {/* Sidebar — Enhanced */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
               <InquiryForm
@@ -2649,7 +3521,63 @@ const MbbsUniversity = () => {
                 subtitle="Get free admission assessment"
               />
 
-              <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl border border-blue-100">
+              {/* University Quick Facts */}
+              <div className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm">
+                <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-5">
+                  <h4 className="font-bold text-lg flex items-center gap-2">
+                    <FiGlobe /> Quick Facts
+                  </h4>
+                </div>
+                <div className="p-5 space-y-0">
+                  {[
+                    {
+                      icon: <FiMapPin className="text-blue-400" />,
+                      label: "Location",
+                      value: uniData.location || uniData.country,
+                    },
+                    {
+                      icon: <FiCalendar className="text-blue-400" />,
+                      label: "Established",
+                      value: uniData.established || "—",
+                    },
+                    {
+                      icon: <FiBookOpen className="text-blue-400" />,
+                      label: "Medium",
+                      value: uniData.medium || "English",
+                    },
+                    {
+                      icon: <FiShield className="text-blue-400" />,
+                      label: "Recognition",
+                      value: uniData.recognition || "WHO, NMC",
+                    },
+                    {
+                      icon: <FiDollarSign className="text-blue-400" />,
+                      label: "Fee / Year",
+                      value: uniData.fees || "—",
+                    },
+                    {
+                      icon: <FiClock className="text-blue-400" />,
+                      label: "Duration",
+                      value: uniData.duration || "6 Years",
+                    },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between py-2.5 border-b border-slate-100 last:border-b-0"
+                    >
+                      <span className="text-slate-500 text-sm flex items-center gap-2">
+                        {item.icon} {item.label}
+                      </span>
+                      <span className="font-bold text-slate-800 text-sm text-right max-w-[55%] truncate">
+                        {item.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why Apply Through Us */}
+              <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl border border-blue-100">
                 <h4 className="font-bold text-blue-700 mb-3 flex items-center gap-2">
                   <FiShield className="text-blue-500" /> Why Apply Through
                   Capton Visa Point?
@@ -2677,10 +3605,110 @@ const MbbsUniversity = () => {
                   </li>
                 </ul>
               </div>
+
+              {/* Admission Steps Timeline */}
+              <div className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm">
+                <div className="bg-gradient-to-r from-slate-800 to-slate-900 text-white p-5">
+                  <h4 className="font-bold text-lg flex items-center gap-2">
+                    <FiFileText /> Admission Steps
+                  </h4>
+                </div>
+                <div className="p-5">
+                  {[
+                    {
+                      step: "1",
+                      label: "Apply Online",
+                      desc: "Fill form & submit documents",
+                    },
+                    {
+                      step: "2",
+                      label: "Get Offer Letter",
+                      desc: "University confirmation",
+                    },
+                    {
+                      step: "3",
+                      label: "Pay Fee",
+                      desc: "Complete first year fee",
+                    },
+                    {
+                      step: "4",
+                      label: "Visa Processing",
+                      desc: "Apply with invitation letter",
+                    },
+                    {
+                      step: "5",
+                      label: "Fly & Join",
+                      desc: "Start your MBBS journey!",
+                    },
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-3 mb-4 last:mb-0">
+                      <div className="flex flex-col items-center">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                          {item.step}
+                        </div>
+                        {i < 4 && (
+                          <div className="w-0.5 h-6 bg-blue-200 mt-1" />
+                        )}
+                      </div>
+                      <div className="pt-1">
+                        <p className="font-bold text-slate-900 text-sm">
+                          {item.label}
+                        </p>
+                        <p className="text-slate-500 text-xs">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Need Help CTA */}
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200">
+                <div className="text-center">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center mx-auto mb-3 shadow-lg shadow-amber-200/50">
+                    <FiStar className="text-white text-xl" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 mb-1">
+                    Need Guidance?
+                  </h4>
+                  <p className="text-slate-600 text-xs mb-4">
+                    Our experts can help you choose the right university.
+                  </p>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-orange-200/50 transition-all"
+                  >
+                    Talk to Expert <FiArrowRight />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Explore Other Universities — Full-Width Premium Section */}
+      {otherUniversities.length > 0 && (
+        <section className="py-16 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+          <div className="container mx-auto px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 flex items-center justify-center gap-3">
+                <FiGlobe className="text-blue-500" /> Explore Other Universities
+                in {uniData.country}
+              </h2>
+              <p className="text-slate-500 text-sm max-w-xl mx-auto">
+                Compare and explore more MBBS options in {uniData.country}
+              </p>
+            </motion.div>
+
+            <UniversityMinimalSlider universities={otherUniversities} />
+          </div>
+        </section>
+      )}
     </div>
   );
 };

@@ -14,16 +14,16 @@ const mbbsCountries = [
         src="/Home_Map/Russia.webp"
         alt="Russia map"
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     ),
-    visaTypes: [
-      "PR Visa",
-      "Work Visa",
-      "Student Visa",
-      "FMGE Support",
-      "Express Entry",
-      "Business Visa",
+    colleges: [
+      "Kazan State Medical University",
+      "Crimea Federal University",
+      "Omsk State Medical University",
+      "Novosibirsk State University",
+      "Bashkir State Medical University",
+      "First Moscow State Medical University",
     ],
   },
   {
@@ -35,16 +35,16 @@ const mbbsCountries = [
         src="/Home_Map/Georgia.webp"
         alt="Georgia map"
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     ),
-    visaTypes: [
-      "PR Visa",
-      "Work Visa",
-      "Student Visa",
-      "Blue Card",
-      "Freelancer Visa",
-      "Visit Visa",
+    colleges: [
+      "SEU University",
+      "BAU International University",
+      "East European University",
+      "Georgian American University",
+      "Alte University",
+      "Tbilisi State Medical University",
     ],
   },
   {
@@ -56,16 +56,16 @@ const mbbsCountries = [
         src="/Home_Map/Uzbekisthan.webp"
         alt="Uzbekistan map"
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     ),
-    visaTypes: [
-      "PR Visa",
-      "Work Visa",
-      "Student Visa",
-      "Investor Visa",
-      "Business Visa",
-      "Visit Visa",
+    colleges: [
+      "Tashkent State Medical Institute",
+      "Samarkand State Medical University",
+      "Bukhara State Medical Institute",
+      "Fergana Medical Institute",
+      "Gulistan State University",
+      "Andijan State Medical Institute",
     ],
   },
   {
@@ -77,16 +77,16 @@ const mbbsCountries = [
         src="/Home_Map/Kazakhstan.webp"
         alt="Kazakhstan map"
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     ),
-    visaTypes: [
-      "PR Visa",
-      "Work Visa",
-      "Student Visa",
-      "Investor Visa",
-      "Business Visa",
-      "Visit Visa",
+    colleges: [
+      "Caspian International School of Medicine",
+      "Kazakh Russian Medical University",
+      "Al-Farabi Kazakh National University",
+      "Asfendiyarov Kazakh National Medical University",
+      "Karaganda State Medical University",
+      "Semey State Medical University",
     ],
   },
   {
@@ -98,16 +98,16 @@ const mbbsCountries = [
         src="/Home_Map/Kyrgystan.webp"
         alt="Kyrgyzstan map"
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     ),
-    visaTypes: [
-      "PR Visa",
-      "Work Visa",
-      "Student Visa",
-      "Investor Visa",
-      "Business Visa",
-      "Visit Visa",
+    colleges: [
+      "Kyrgyz State Medical Academy",
+      "International School of Medicine (ISM)",
+      "International Medical University (IMU)",
+      "Osh State University",
+      "Jalalabad State University",
+      "Asian Medical Institute",
     ],
   },
   {
@@ -119,16 +119,13 @@ const mbbsCountries = [
         src="/Home_Map/Tajikistan.webp"
         alt="Tajikistan map"
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     ),
-    visaTypes: [
-      "PR Visa",
-      "Work Visa",
-      "Student Visa",
-      "Investor Visa",
-      "Business Visa",
-      "Visit Visa",
+    colleges: [
+      "Avicenna Tajik State Medical University",
+      "Tajik National University",
+      "Khorog State University",
     ],
   },
 ];
@@ -180,8 +177,8 @@ const FlipCard = memo(({ data, index }) => {
             WebkitBackfaceVisibility: "hidden",
           }}
         >
-          {/* Country Map - Background (Full display, no overlay) */}
-          <div className="absolute inset-0">
+          {/* Country Map - Background (Slightly inset for clarity) */}
+          <div className="absolute inset-0 p-8 flex items-center justify-center">
             <div className="w-full h-full">{data.mapSvg}</div>
           </div>
 
@@ -191,7 +188,7 @@ const FlipCard = memo(({ data, index }) => {
           />
 
           {/* Country Name with background for readability */}
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-2 right-4 z-10">
             <h3 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">
               {data.country}
             </h3>
@@ -199,11 +196,11 @@ const FlipCard = memo(({ data, index }) => {
 
           {/* Bottom text hint with background */}
           <div className="absolute bottom-4 left-4 right-4 z-10">
-            <div className="bg-black backdrop-blur-sm px-3 py-2 rounded-lg">
-              <p className="text-white text-xs sm:text-sm font-medium">
+            <div className=" backdrop-blur-sm px-3  rounded-lg">
+              <p className="text-black text-xs sm:text-sm font-medium">
                 {isMobile
-                  ? "Tap to view visa types →"
-                  : "Hover to view visa types →"}
+                  ? "Tap to view Universities →"
+                  : "Hover to view Universities →"}
               </p>
             </div>
           </div>
@@ -211,7 +208,7 @@ const FlipCard = memo(({ data, index }) => {
 
         {/* BACK SIDE */}
         <div
-          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${data.gradient} overflow-hidden shadow-xl p-5 cursor-pointer`}
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${data.gradient} overflow-hidden shadow-xl p-4 cursor-pointer`}
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -230,15 +227,15 @@ const FlipCard = memo(({ data, index }) => {
               <div className="h-0.5 w-12 bg-white/70 rounded-full" />
             </div>
 
-            {/* Visa Types List */}
-            <div className="flex-1 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
-              {data.visaTypes.map((visa, idx) => (
-                <div key={idx} className="flex items-center gap-2 group">
-                  <div className="flex-shrink-0 w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
+            {/* University List */}
+            <div className="flex-1 overflow-y-auto space-y-2.5 pr-1 custom-scrollbar">
+              {data.colleges.map((college, idx) => (
+                <div key={idx} className="flex items-start gap-2 group">
+                  <div className="flex-shrink-0 w-4 h-4 rounded-full bg-white/20 flex items-center justify-center mt-0.5">
                     <FiCheckCircle className="text-white w-2.5 h-2.5" />
                   </div>
-                  <span className="text-white font-medium text-xs sm:text-sm">
-                    {visa}
+                  <span className="text-white font-medium text-xs sm:text-[13px] leading-tight group-hover:text-amber-300 transition-colors">
+                    {college}
                   </span>
                 </div>
               ))}
@@ -247,7 +244,7 @@ const FlipCard = memo(({ data, index }) => {
             {/* Explore Link */}
             <Link
               to={`/mbbs/${data.id}`}
-              className="mt-3 flex items-center gap-1 text-white/90 hover:text-white text-xs sm:text-sm font-semibold"
+              className=" flex items-center gap-1 text-white/90 hover:text-white text-xs sm:text-sm font-semibold"
               onClick={(e) => e.stopPropagation()}
             >
               Explore MBBS <FiArrowRight className="text-sm" />

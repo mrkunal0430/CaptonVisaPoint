@@ -140,13 +140,13 @@ const MbbsAbroadForm = ({
   const labelClass = "block text-sm font-medium text-slate-700 mb-1.5";
 
   const countries = [
-    { name: "Russia", flag: "🇷🇺" },
-    { name: "Uzbekistan", flag: "🇺🇿" },
-    { name: "Kazakhstan", flag: "🇰🇿" },
-    { name: "Georgia", flag: "🇬🇪" },
-    { name: "Philippines", flag: "🇵🇭" },
-    { name: "Egypt", flag: "🇪🇬" },
-    { name: "Other", flag: "🌍" },
+    { name: "Russia" },
+    { name: "Uzbekistan" },
+    { name: "Kazakhstan" },
+    { name: "Georgia" },
+    { name: "Philippines" },
+    { name: "Egypt" },
+    { name: "Other" },
   ];
 
   return (
@@ -429,7 +429,6 @@ const MbbsAbroadForm = ({
                         : "border-slate-200 hover:border-slate-300 text-slate-600"
                     }`}
                   >
-                    <span>{country.flag}</span>
                     <span className="text-xs">{country.name}</span>
                   </button>
                 ))}

@@ -135,13 +135,13 @@ const StudyAbroadForm = ({
   const labelClass = "block text-sm font-medium text-slate-700 mb-1.5";
 
   const countries = [
-    { name: "UK", flag: "🇬🇧" },
-    { name: "USA", flag: "🇺🇸" },
-    { name: "Canada", flag: "🇨🇦" },
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "Australia", flag: "🇦🇺" },
-    { name: "Europe", flag: "🇪🇺" },
-    { name: "Other", flag: "🌍" },
+    { name: "United Kingdom" },
+    { name: "United States" },
+    { name: "Canada" },
+    { name: "Germany" },
+    { name: "Australia" },
+    { name: "Europe" },
+    { name: "Other" },
   ];
 
   return (
@@ -415,7 +415,6 @@ const StudyAbroadForm = ({
                         : "border-slate-200 hover:border-slate-300 text-slate-600"
                     }`}
                   >
-                    <span>{country.flag}</span>
                     <span className="text-xs">{country.name}</span>
                   </button>
                 ))}

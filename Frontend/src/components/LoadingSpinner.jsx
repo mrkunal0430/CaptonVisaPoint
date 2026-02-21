@@ -10,9 +10,11 @@ const LoadingSpinner = () => {
         transition={{ duration: 0.3 }}
         className="mb-8"
       >
-        <div className="w-16 h-16 bg-gradient-to-tr from-blue-600 to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-lg shadow-blue-500/30">
-          C
-        </div>
+        <img
+          src="/logo.png"
+          alt="Capton Visa Point"
+          className="w-16 h-16 object-contain"
+        />
       </motion.div>
 
       {/* Spinner */}

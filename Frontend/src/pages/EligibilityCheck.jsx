@@ -73,11 +73,11 @@ const EligibilityCheck = () => {
     "Tajikistan",
     "Germany",
     "France",
-    "UK",
-    "USA",
+    "United Kingdom",
+    "United States",
     "Canada",
     "Australia",
-    "UAE",
+    "United Arab Emirates",
     "Cyprus",
   ];
 

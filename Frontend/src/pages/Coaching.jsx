@@ -4,19 +4,22 @@ import {
   FiAward,
   FiTarget,
   FiUsers,
-  FiClock,
   FiCheckCircle,
   FiStar,
   FiTrendingUp,
-  FiVideo,
-  FiHeadphones,
-  FiEdit3,
-  FiMessageSquare,
   FiCalendar,
   FiGlobe,
+  FiArrowRight,
+  FiMessageSquare,
 } from "react-icons/fi";
 import SEO from "../components/SEO";
 import InquiryForm from "../components/forms/InquiryForm";
+import {
+  courses,
+  learningModes,
+  whyChooseUs,
+  successStories,
+} from "../data/coachingData";
 
 const Coaching = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -63,423 +66,6 @@ const Coaching = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const courses = [
-    {
-      id: "ielts",
-      name: "IELTS Coaching",
-      category: "english",
-      icon: "🎓",
-      gradient: "from-blue-500 to-blue-600",
-      rating: 4.9,
-      students: "25,000+",
-      duration: "8-12 Weeks",
-      price: "₹15,000",
-      targetScore: "7.5+ Band",
-      description:
-        "Master the world's most popular English proficiency test with our comprehensive IELTS coaching program.",
-      modules: [
-        { name: "Listening", icon: <FiHeadphones />, duration: "30 hours" },
-        { name: "Reading", icon: <FiBook />, duration: "30 hours" },
-        { name: "Writing", icon: <FiEdit3 />, duration: "30 hours" },
-        { name: "Speaking", icon: <FiMessageSquare />, duration: "20 hours" },
-      ],
-      features: [
-        "Live Interactive Classes",
-        "Daily Practice Sessions",
-        "20+ Mock Tests",
-        "One-on-One Speaking Practice",
-        "Band Score Prediction",
-        "Study Material by British Council",
-        "Doubt Clearing Sessions",
-        "Flexible Batch Timings",
-      ],
-      batchSchedule: [
-        { time: "6:00 AM - 7:30 AM", type: "Morning Batch" },
-        { time: "10:00 AM - 12:00 PM", type: "Day Batch" },
-        { time: "6:00 PM - 8:00 PM", type: "Evening Batch" },
-        { time: "8:00 PM - 10:00 PM", type: "Night Batch" },
-      ],
-    },
-    {
-      id: "pte",
-      name: "PTE Academic",
-      category: "english",
-      icon: "📝",
-      gradient: "from-blue-600 to-pink-500",
-      rating: 4.8,
-      students: "15,000+",
-      duration: "6-10 Weeks",
-      price: "₹18,000",
-      targetScore: "79+ Score",
-      description:
-        "Ace the PTE Academic exam with AI-powered practice and expert guidance for maximum scores.",
-      modules: [
-        {
-          name: "Speaking & Writing",
-          icon: <FiMessageSquare />,
-          duration: "35 hours",
-        },
-        { name: "Reading", icon: <FiBook />, duration: "25 hours" },
-        { name: "Listening", icon: <FiHeadphones />, duration: "25 hours" },
-        { name: "AI Mock Tests", icon: <FiTarget />, duration: "15 hours" },
-      ],
-      features: [
-        "AI-Powered Mock Tests",
-        "Real-Time Scoring",
-        "Computer-Based Practice",
-        "Unlimited Practice Sessions",
-        "Template Strategies",
-        "Pearson Official Material",
-        "24/7 Online Portal Access",
-        "Score Enhancement Techniques",
-      ],
-      batchSchedule: [
-        { time: "7:00 AM - 9:00 AM", type: "Morning Batch" },
-        { time: "2:00 PM - 4:00 PM", type: "Afternoon Batch" },
-        { time: "7:00 PM - 9:00 PM", type: "Evening Batch" },
-      ],
-    },
-    {
-      id: "toefl",
-      name: "TOEFL iBT",
-      category: "english",
-      icon: "🌐",
-      gradient: "from-blue-600 to-blue-600",
-      rating: 4.7,
-      students: "10,000+",
-      duration: "8-12 Weeks",
-      price: "₹16,000",
-      targetScore: "100+ Score",
-      description:
-        "Prepare for TOEFL iBT with comprehensive training focused on American English and academic contexts.",
-      modules: [
-        { name: "Reading", icon: <FiBook />, duration: "25 hours" },
-        { name: "Listening", icon: <FiHeadphones />, duration: "25 hours" },
-        { name: "Speaking", icon: <FiMessageSquare />, duration: "25 hours" },
-        { name: "Writing", icon: <FiEdit3 />, duration: "25 hours" },
-      ],
-      features: [
-        "ETS Official Preparation Material",
-        "TPO Practice Tests",
-        "Note-Taking Strategies",
-        "Academic Vocabulary Building",
-        "Integrated Task Practice",
-        "Independent Task Training",
-        "Score Reporting Guidance",
-        "University Application Support",
-      ],
-      batchSchedule: [
-        { time: "8:00 AM - 10:00 AM", type: "Morning Batch" },
-        { time: "4:00 PM - 6:00 PM", type: "Evening Batch" },
-        { time: "8:00 PM - 10:00 PM", type: "Night Batch" },
-      ],
-    },
-    {
-      id: "gre",
-      name: "GRE Preparation",
-      category: "competitive",
-      icon: "🎯",
-      gradient: "from-orange-500 to-red-500",
-      rating: 4.9,
-      students: "8,000+",
-      duration: "10-14 Weeks",
-      price: "₹25,000",
-      targetScore: "320+ Score",
-      description:
-        "Comprehensive GRE preparation for graduate school admissions with focus on Verbal, Quant, and AWA.",
-      modules: [
-        { name: "Quantitative", icon: <FiTrendingUp />, duration: "40 hours" },
-        { name: "Verbal", icon: <FiBook />, duration: "40 hours" },
-        { name: "Analytical Writing", icon: <FiEdit3 />, duration: "20 hours" },
-        { name: "Mock Tests", icon: <FiTarget />, duration: "20 hours" },
-      ],
-      features: [
-        "Adaptive Test Strategies",
-        "Advanced Math Concepts",
-        "Vocabulary Enhancement (3000+ words)",
-        "Reading Comprehension Techniques",
-        "Argument & Issue Essay Training",
-        "Official ETS Material",
-        "15+ Full-Length Mock Tests",
-        "University Shortlisting Assistance",
-      ],
-      batchSchedule: [
-        { time: "6:00 AM - 8:00 AM", type: "Weekday Morning" },
-        { time: "10:00 AM - 2:00 PM", type: "Weekend Batch" },
-        { time: "6:00 PM - 8:00 PM", type: "Weekday Evening" },
-      ],
-    },
-    {
-      id: "gmat",
-      name: "GMAT Preparation",
-      category: "competitive",
-      icon: "💼",
-      gradient: "from-blue-600 to-blue-600",
-      rating: 4.8,
-      students: "6,000+",
-      duration: "10-14 Weeks",
-      price: "₹28,000",
-      targetScore: "700+ Score",
-      description:
-        "Excel in GMAT for top MBA programs with intensive training in Quant, Verbal, and Integrated Reasoning.",
-      modules: [
-        { name: "Quantitative", icon: <FiTrendingUp />, duration: "35 hours" },
-        { name: "Verbal", icon: <FiBook />, duration: "35 hours" },
-        {
-          name: "Integrated Reasoning",
-          icon: <FiTarget />,
-          duration: "20 hours",
-        },
-        { name: "AWA", icon: <FiEdit3 />, duration: "10 hours" },
-      ],
-      features: [
-        "Official GMAT Prep Material",
-        "Data Sufficiency Mastery",
-        "Critical Reasoning Techniques",
-        "Sentence Correction Strategies",
-        "IR Data Analysis Training",
-        "12+ Adaptive Mock Tests",
-        "B-School Application Guidance",
-        "Interview Preparation",
-      ],
-      batchSchedule: [
-        { time: "7:00 AM - 9:00 AM", type: "Weekday Morning" },
-        { time: "9:00 AM - 1:00 PM", type: "Weekend Intensive" },
-        { time: "7:00 PM - 9:00 PM", type: "Weekday Evening" },
-      ],
-    },
-    {
-      id: "german",
-      name: "German Language (A1-C1)",
-      category: "language",
-      icon: "🇩🇪",
-      gradient: "from-yellow-500 to-amber-600",
-      rating: 4.9,
-      students: "20,000+",
-      duration: "Per Level: 8-12 Weeks",
-      price: "₹12,000 per level",
-      targetScore: "Goethe Certified",
-      description:
-        "Learn German from native speakers and certified trainers for study, work, or migration to German-speaking countries.",
-      modules: [
-        { name: "Grammar", icon: <FiBook />, duration: "30 hours" },
-        { name: "Vocabulary", icon: <FiEdit3 />, duration: "25 hours" },
-        {
-          name: "Conversation",
-          icon: <FiMessageSquare />,
-          duration: "30 hours",
-        },
-        { name: "Culture", icon: <FiGlobe />, duration: "15 hours" },
-      ],
-      features: [
-        "Native German Trainers",
-        "Goethe Exam Preparation",
-        "Interactive Conversation Practice",
-        "Cultural Immersion Activities",
-        "All Levels: A1, A2, B1, B2, C1",
-        "Small Batch Size (Max 12)",
-        "German Job Market Insights",
-        "Study Material Included",
-      ],
-      batchSchedule: [
-        { time: "6:00 AM - 8:00 AM", type: "Morning Batch" },
-        { time: "10:00 AM - 12:00 PM", type: "Day Batch" },
-        { time: "6:00 PM - 8:00 PM", type: "Evening Batch" },
-        { time: "Sat-Sun 10 AM - 2 PM", type: "Weekend Intensive" },
-      ],
-    },
-    {
-      id: "french",
-      name: "French Language (A1-C1)",
-      category: "language",
-      icon: "🇫🇷",
-      gradient: "from-blue-600 to-blue-700",
-      rating: 4.7,
-      students: "12,000+",
-      duration: "Per Level: 8-12 Weeks",
-      price: "₹11,000 per level",
-      targetScore: "DELF/DALF Certified",
-      description:
-        "Master French language with expert trainers for study in France, Canada, or French-speaking regions.",
-      modules: [
-        { name: "Grammar", icon: <FiBook />, duration: "30 hours" },
-        { name: "Comprehension", icon: <FiHeadphones />, duration: "25 hours" },
-        { name: "Speaking", icon: <FiMessageSquare />, duration: "30 hours" },
-        { name: "Writing", icon: <FiEdit3 />, duration: "15 hours" },
-      ],
-      features: [
-        "Native French Trainers",
-        "DELF/DALF Exam Prep",
-        "TEF Canada Training",
-        "Interactive Audio-Visual Materials",
-        "All Levels: A1, A2, B1, B2, C1",
-        "French Culture & Etiquette",
-        "Canada Immigration Focus",
-        "Certificate of Completion",
-      ],
-      batchSchedule: [
-        { time: "7:00 AM - 9:00 AM", type: "Morning Batch" },
-        { time: "2:00 PM - 4:00 PM", type: "Afternoon Batch" },
-        { time: "7:00 PM - 9:00 PM", type: "Evening Batch" },
-        { time: "Sat-Sun 11 AM - 3 PM", type: "Weekend Batch" },
-      ],
-    },
-    {
-      id: "spanish",
-      name: "Spanish Language (A1-B2)",
-      category: "language",
-      icon: "🇪🇸",
-      gradient: "from-red-500 to-yellow-500",
-      rating: 4.6,
-      students: "8,000+",
-      duration: "Per Level: 8 Weeks",
-      price: "₹10,000 per level",
-      targetScore: "DELE Certified",
-      description:
-        "Learn Spanish for career opportunities in Spain, Latin America, or enhance your global communication skills.",
-      modules: [
-        { name: "Grammar & Syntax", icon: <FiBook />, duration: "25 hours" },
-        { name: "Listening", icon: <FiHeadphones />, duration: "20 hours" },
-        {
-          name: "Conversation",
-          icon: <FiMessageSquare />,
-          duration: "30 hours",
-        },
-        { name: "Writing", icon: <FiEdit3 />, duration: "15 hours" },
-      ],
-      features: [
-        "Certified Spanish Trainers",
-        "DELE Exam Preparation",
-        "Latin American & European Spanish",
-        "Interactive Group Activities",
-        "Levels: A1, A2, B1, B2",
-        "Cultural Context Learning",
-        "Business Spanish Module",
-        "Study Abroad Guidance",
-      ],
-      batchSchedule: [
-        { time: "8:00 AM - 10:00 AM", type: "Morning Batch" },
-        { time: "4:00 PM - 6:00 PM", type: "Evening Batch" },
-        { time: "Sat-Sun 10 AM - 2 PM", type: "Weekend Batch" },
-      ],
-    },
-  ];
-
-  const learningModes = [
-    {
-      icon: <FiUsers className="text-4xl" />,
-      title: "Classroom Training",
-      description: "Face-to-face interactive sessions with expert trainers",
-      gradient: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: <FiVideo className="text-4xl" />,
-      title: "Live Online Classes",
-      description: "Real-time virtual classes from anywhere in the world",
-      gradient: "from-blue-600 to-pink-500",
-    },
-    {
-      icon: <FiClock className="text-4xl" />,
-      title: "Recorded Sessions",
-      description: "Learn at your own pace with recorded lectures",
-      gradient: "from-blue-600 to-blue-600",
-    },
-    {
-      icon: <FiTarget className="text-4xl" />,
-      title: "One-on-One Coaching",
-      description: "Personalized attention with private tutoring",
-      gradient: "from-orange-500 to-red-500",
-    },
-  ];
-
-  const whyChooseUs = [
-    {
-      icon: <FiAward />,
-      title: "Certified Expert Trainers",
-      description:
-        "All our trainers are certified professionals with 10+ years of teaching experience and proven track records.",
-      stat: "150+ Trainers",
-    },
-    {
-      icon: <FiBook />,
-      title: "Premium Study Material",
-      description:
-        "World-class study resources from British Council, Pearson, ETS, and other globally recognized organizations.",
-      stat: "Official Partners",
-    },
-    {
-      icon: <FiTarget />,
-      title: "Guaranteed Score Improvement",
-      description:
-        "Average score improvement of 1.5 bands in IELTS and 15+ points in PTE with our proven methodology.",
-      stat: "98% Success",
-    },
-    {
-      icon: <FiUsers />,
-      title: "Small Batch Size",
-      description:
-        "Maximum 15 students per batch ensuring personalized attention and better learning outcomes.",
-      stat: "1:15 Ratio",
-    },
-    {
-      icon: <FiCheckCircle />,
-      title: "Unlimited Mock Tests",
-      description:
-        "Access to unlimited practice tests with detailed performance analysis and score predictions.",
-      stat: "20+ Tests",
-    },
-    {
-      icon: <FiClock />,
-      title: "Flexible Learning",
-      description:
-        "Multiple batch timings, weekend classes, and online options to fit your schedule perfectly.",
-      stat: "24/7 Access",
-    },
-  ];
-
-  const successStories = [
-    {
-      name: "Priya Sharma",
-      course: "IELTS",
-      score: "8.5 Band",
-      image: "👩‍🎓",
-      country: "Canada PR",
-      testimonial:
-        "The personalized attention and regular mock tests helped me achieve my target score. Highly recommended!",
-      rating: 5,
-    },
-    {
-      name: "Rahul Verma",
-      course: "GRE",
-      score: "328/340",
-      image: "👨‍🎓",
-      country: "USA - Stanford",
-      testimonial:
-        "Excellent coaching! The quant and verbal strategies were game-changers for my preparation.",
-      rating: 5,
-    },
-    {
-      name: "Sarah Johnson",
-      course: "German B2",
-      score: "Goethe Certified",
-      image: "👩‍💼",
-      country: "Germany - Job",
-      testimonial:
-        "Native German trainers made learning so easy. Got my dream job in Munich!",
-      rating: 5,
-    },
-    {
-      name: "Amit Patel",
-      course: "PTE Academic",
-      score: "85/90",
-      image: "👨‍💻",
-      country: "Australia PR",
-      testimonial:
-        "AI-powered mock tests and expert feedback helped me score 85 in my first attempt!",
-      rating: 5,
-    },
-  ];
-
   const filteredCourses =
     activeCategory === "all"
       ? courses
@@ -493,89 +79,240 @@ const Coaching = () => {
         keywords="German language course, IELTS coaching, learn German A1 C1, German language training India, IELTS preparation, language coaching, NEET preparation, MBBS entrance exam, FMGE coaching after MBBS abroad, NEXT exam coaching, IELTS PTE coaching, medical entrance exams India, German language for MBBS, German language for Ausbildung, English medium MBBS abroad, MBBS medium of instruction"
       />
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-slate-50 py-24">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/2 right-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute -bottom-24 left-1/3 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        </div>
+      <section className="relative min-h-[92vh] flex items-center bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 overflow-hidden">
+        {/* Background dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+            backgroundSize: "28px 28px",
+          }}
+        />
+        {/* Glow orbs */}
+        <div className="absolute top-16 right-12 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-12 left-8 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-700/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 px-4 sm:px-6 py-2 rounded-full mb-6">
-              <FiAward className="text-amber-500" />
-              <span className="text-sm font-semibold text-blue-700">
-                India's #1 Test Preparation Institute
-              </span>
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 py-16 sm:py-20">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* ── Left: Text Content ── */}
+            <div>
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-400/30 px-4 py-1.5 rounded-full mb-5">
+                <FiAward className="text-amber-400" size={14} />
+                <span className="text-amber-300 text-xs font-bold uppercase tracking-wide">
+                  Trusted Language &amp; Test Prep Institute
+                </span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold text-white leading-tight mb-5">
+                Language &amp; Test
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-300">
+                  Coaching That Works
+                </span>
+              </h1>
+
+              <p className="text-blue-100 text-base sm:text-lg leading-relaxed mb-7 max-w-xl">
+                Expert-led coaching for{" "}
+                <strong className="text-white">German (A1–C1)</strong>,{" "}
+                <strong className="text-white">IELTS</strong>, PTE, TOEFL, GRE
+                &amp; GMAT. Small batches, certified trainers, and guaranteed
+                score improvement.
+              </p>
+
+              {/* Course chips */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {[
+                  { label: "🗣️ German A1–C1", highlight: true },
+                  { label: "🎓 IELTS", highlight: true },
+                  { label: "📝 PTE Academic" },
+                  { label: "🌐 TOEFL iBT" },
+                  { label: "🎯 GRE" },
+                  { label: "💼 GMAT" },
+                  { label: "🇫🇷 French" },
+                ].map((chip) => (
+                  <span
+                    key={chip.label}
+                    className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+                      chip.highlight
+                        ? "bg-amber-500/20 text-amber-300 border-amber-400/40"
+                        : "bg-white/10 text-blue-200 border-white/15"
+                    }`}
+                  >
+                    {chip.label}
+                  </span>
+                ))}
+              </div>
+
+              {/* CTA buttons */}
+              <div className="flex flex-wrap gap-3 mb-10">
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("courses")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="bg-amber-500 hover:bg-amber-600 text-blue-900 font-bold px-7 py-3.5 rounded-xl transition-all hover:shadow-xl hover:shadow-amber-500/30 flex items-center gap-2"
+                >
+                  Explore Courses <FiArrowRight />
+                </button>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("trial-class")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-7 py-3.5 rounded-xl border border-white/20 transition-all flex items-center gap-2"
+                >
+                  Book Free Demo Class
+                </button>
+              </div>
+
+              {/* Trust badges */}
+              <div className="flex flex-wrap gap-2.5">
+                {[
+                  "Goethe Certified",
+                  "IELTS Official Material",
+                  "Max 15 Per Batch",
+                  "Online & Offline",
+                ].map((badge) => (
+                  <span
+                    key={badge}
+                    className="flex items-center gap-1.5 bg-white/10 text-blue-100 text-xs font-semibold px-3 py-1.5 rounded-full border border-white/10"
+                  >
+                    <FiCheckCircle className="text-amber-400" size={11} />
+                    {badge}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-slate-800">
-              Master Your{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-                Dream Test
-              </span>
-            </h1>
+            {/* ── Right: Stats + Highlights ── */}
+            <div className="flex flex-col gap-4">
+              {/* Stats 2×2 grid */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {[
+                  {
+                    icon: <FiUsers className="text-2xl" />,
+                    number: `${stats.students.toLocaleString()}+`,
+                    label: "Students Trained",
+                    accent: "text-amber-400",
+                  },
+                  {
+                    icon: <FiTrendingUp className="text-2xl" />,
+                    number: `${stats.successRate}%`,
+                    label: "Success Rate",
+                    accent: "text-blue-300",
+                  },
+                  {
+                    icon: <FiStar className="text-2xl" />,
+                    number: `${stats.avgScore}+`,
+                    label: "Avg IELTS Band",
+                    accent: "text-amber-400",
+                  },
+                  {
+                    icon: <FiAward className="text-2xl" />,
+                    number: `${stats.trainers}+`,
+                    label: "Expert Trainers",
+                    accent: "text-blue-300",
+                  },
+                ].map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 text-center hover:bg-white/15 transition-all"
+                  >
+                    <div className={`${stat.accent} mb-2 flex justify-center`}>
+                      {stat.icon}
+                    </div>
+                    <div className="text-2xl sm:text-3xl font-extrabold text-white mb-0.5">
+                      {stat.number}
+                    </div>
+                    <div className="text-blue-200 text-xs sm:text-sm">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-            <p className="text-xl md:text-2xl text-slate-600 mb-8 leading-relaxed">
-              Expert-led coaching for IELTS, PTE, TOEFL, GRE, GMAT, German,
-              French & more. Join 50,000+ successful students worldwide.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("courses")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="bg-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/25 hover:scale-105"
-              >
-                Explore Courses
-              </button>
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("trial-class")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="bg-white border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all hover:scale-105"
-              >
-                Book Free Demo
-              </button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                <div className="text-4xl font-extrabold text-blue-500">
-                  {stats.students.toLocaleString()}+
-                </div>
-                <div className="text-slate-500 text-sm mt-2">
-                  Students Trained
+              {/* Featured courses highlight */}
+              <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-6">
+                <p className="text-blue-300 text-xs font-bold uppercase tracking-wider mb-3">
+                  Our Top Programmes
+                </p>
+                <div className="space-y-2.5">
+                  {[
+                    {
+                      icon: "🗣️",
+                      name: "German Language",
+                      detail: "A1 → C1 · Goethe Exam Prep",
+                      badge: "Most Popular",
+                    },
+                    {
+                      icon: "🎓",
+                      name: "IELTS Coaching",
+                      detail: "7.5+ Band · 8–12 Weeks",
+                      badge: "High Demand",
+                    },
+                    {
+                      icon: "📝",
+                      name: "PTE Academic",
+                      detail: "79+ Score · AI Mock Tests",
+                      badge: null,
+                    },
+                    {
+                      icon: "🎯",
+                      name: "GRE / GMAT",
+                      detail: "320+ · 700+ · Expert Faculty",
+                      badge: null,
+                    },
+                  ].map((prog) => (
+                    <div
+                      key={prog.name}
+                      className="flex items-center gap-3 bg-white/8 hover:bg-white/15 border border-white/10 rounded-xl px-3 py-2.5 transition-all cursor-default"
+                    >
+                      <span className="text-xl shrink-0">{prog.icon}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white font-semibold text-sm leading-tight">
+                          {prog.name}
+                        </p>
+                        <p className="text-blue-300 text-[11px]">
+                          {prog.detail}
+                        </p>
+                      </div>
+                      {prog.badge && (
+                        <span className="shrink-0 text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-full">
+                          {prog.badge}
+                        </span>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                <div className="text-4xl font-extrabold text-blue-500">
-                  {stats.successRate}%
+
+              {/* Quick contact */}
+              <div className="bg-amber-500/15 border border-amber-400/25 rounded-2xl p-4 flex items-center gap-4">
+                <div className="w-11 h-11 bg-amber-500 rounded-xl flex items-center justify-center shrink-0">
+                  <FiCalendar className="text-blue-900 text-lg" />
                 </div>
-                <div className="text-slate-500 text-sm mt-2">Success Rate</div>
-              </div>
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                <div className="text-4xl font-extrabold text-blue-500">
-                  {stats.avgScore}+
+                <div className="flex-1 min-w-0">
+                  <p className="text-amber-300 text-xs font-semibold">
+                    Next Batch Starting Soon
+                  </p>
+                  <p className="text-white font-bold text-sm">
+                    German A1 · IELTS Morning Batch
+                  </p>
                 </div>
-                <div className="text-slate-500 text-sm mt-2">
-                  Avg IELTS Score
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                <div className="text-4xl font-extrabold text-blue-500">
-                  {stats.trainers}+
-                </div>
-                <div className="text-slate-500 text-sm mt-2">
-                  Expert Trainers
-                </div>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("trial-class")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="shrink-0 bg-amber-500 hover:bg-amber-600 text-blue-900 font-bold text-xs px-4 py-2 rounded-lg transition-colors"
+                >
+                  Register
+                </button>
               </div>
             </div>
           </div>
@@ -724,7 +461,7 @@ const Coaching = () => {
                 <div
                   className={`bg-gradient-to-r ${mode.gradient} w-20 h-20 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-all`}
                 >
-                  {mode.icon}
+                  <mode.icon className="text-4xl" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">
                   {mode.title}
@@ -759,7 +496,7 @@ const Coaching = () => {
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-all">
-                    {item.icon}
+                    <item.icon size={22} />
                   </div>
                   <div className="flex-1">
                     <div className="text-sm font-bold text-blue-700 mb-1">
@@ -811,10 +548,7 @@ const Coaching = () => {
                 </div>
                 <div className="flex justify-center gap-1 mb-3">
                   {[...Array(story.rating)].map((_, i) => (
-                    <FiStar
-                      key={i}
-                      className="fill-amber-400 text-amber-400"
-                    />
+                    <FiStar key={i} className="fill-amber-400 text-amber-400" />
                   ))}
                 </div>
                 <p className="text-slate-600 text-sm text-center italic leading-relaxed">
@@ -961,7 +695,7 @@ const Coaching = () => {
                       className="flex items-center gap-4 bg-slate-50 rounded-xl p-4"
                     >
                       <div className="text-2xl text-blue-700">
-                        {module.icon}
+                        <module.icon size={22} />
                       </div>
                       <div className="flex-1">
                         <div className="font-bold text-slate-900">

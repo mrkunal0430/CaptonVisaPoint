@@ -133,13 +133,13 @@ const WorkAbroadForm = ({
   const labelClass = "block text-sm font-medium text-slate-700 mb-1.5";
 
   const countries = [
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "UK", flag: "🇬🇧" },
-    { name: "Gulf", flag: "🇦🇪" },
-    { name: "Australia", flag: "🇦🇺" },
-    { name: "Canada", flag: "🇨🇦" },
-    { name: "USA", flag: "🇺🇸" },
-    { name: "Other", flag: "🌍" },
+    { name: "Germany" },
+    { name: "United Kingdom" },
+    { name: "Gulf" },
+    { name: "Australia" },
+    { name: "Canada" },
+    { name: "United States" },
+    { name: "Other" },
   ];
 
   return (
@@ -423,7 +423,6 @@ const WorkAbroadForm = ({
                         : "border-slate-200 hover:border-slate-300 text-slate-600"
                     }`}
                   >
-                    <span>{country.flag}</span>
                     <span className="text-xs">{country.name}</span>
                   </button>
                 ))}

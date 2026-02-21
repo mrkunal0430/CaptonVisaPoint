@@ -56,6 +56,11 @@ const NAV_LINKS = [
             path: "/mbbs/india#state-seats",
             flag: "📊",
           },
+          {
+            name: "NRI MBBS Seats",
+            path: "/mbbs/india#nri-quota",
+            flag: "🌍",
+          },
         ],
       },
     ],
@@ -69,29 +74,25 @@ const NAV_LINKS = [
         title: "Premier Destinations",
         path: "/study-abroad",
         items: [
-          { name: "Germany", path: "/study-abroad/germany", flag: "🇩🇪" },
-          { name: "Cyprus", path: "/study-abroad/cyprus", flag: "🇨🇾" },
-          { name: "France", path: "/study-abroad/france", flag: "🇫🇷" },
-          { name: "UAE", path: "/study-abroad/uae", flag: "🇦🇪" },
-          { name: "Mauritius", path: "/study-abroad/mauritius", flag: "🇲🇺" },
-          { name: "Singapore", path: "/study-abroad/singapore", flag: "🇸🇬" },
+          { name: "Germany", path: "/study-abroad/germany" },
+          { name: "Cyprus", path: "/study-abroad/cyprus" },
+          { name: "France", path: "/study-abroad/france" },
+          { name: "United Arab Emirates", path: "/study-abroad/uae" },
+          { name: "Mauritius", path: "/study-abroad/mauritius" },
+          { name: "Singapore", path: "/study-abroad/singapore" },
         ],
       },
       {
         title: "More Countries",
         path: "/study-abroad",
         items: [
-          { name: "United Kingdom", path: "/study-abroad/uk", flag: "🇬🇧" },
-          { name: "USA", path: "/study-abroad/usa", flag: "🇺🇸" },
-          { name: "Canada", path: "/study-abroad/canada", flag: "🇨🇦" },
-          { name: "Australia", path: "/study-abroad/australia", flag: "🇦🇺" },
-          {
-            name: "New Zealand",
-            path: "/study-abroad/new-zealand",
-            flag: "🇳🇿",
-          },
-          { name: "Denmark", path: "/study-abroad/denmark", flag: "🇩🇰" },
-          { name: "Finland", path: "/study-abroad/finland", flag: "🇫🇮" },
+          { name: "United Kingdom", path: "/study-abroad/uk" },
+          { name: "United States", path: "/study-abroad/usa" },
+          { name: "Canada", path: "/study-abroad/canada" },
+          { name: "Australia", path: "/study-abroad/australia" },
+          { name: "New Zealand", path: "/study-abroad/new-zealand" },
+          { name: "Denmark", path: "/study-abroad/denmark" },
+          { name: "Finland", path: "/study-abroad/finland" },
         ],
       },
     ],
@@ -113,7 +114,7 @@ const NAV_LINKS = [
       },
     ],
   },
-  { name: "Partner", path: "/partner" },
+  { name: "About", path: "/about" },
 ];
 
 // Dropdown item component to reduce duplication
@@ -140,26 +141,26 @@ const DropdownItem = ({ item, onClick }) => {
 // Mega dropdown component
 const MegaDropdown = ({ columns }) => (
   <motion.div
-    initial={{ opacity: 0, y: 10 }}
+    initial={{ opacity: 0, y: 8 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: 10 }}
+    exit={{ opacity: 0, y: 8 }}
     transition={{ duration: 0.15 }}
-    className="absolute top-full left-1/2 -translate-x-1/2 w-[90vw] max-w-[480px] bg-white rounded-xl shadow-2xl border border-slate-100 p-4 sm:p-5 grid grid-cols-2 gap-4 sm:gap-6 z-50 overflow-hidden"
+    className="absolute top-full left-1/2 -translate-x-1/2 w-[90vw] max-w-[440px] bg-white rounded-xl shadow-2xl border border-slate-100 pt-3 pb-3 px-4 grid grid-cols-2 gap-4 z-50 overflow-hidden"
   >
-    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 to-blue-900" />
+    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-800 to-blue-900" />
     {columns.map((col, colIdx) => (
-      <div key={colIdx}>
+      <div key={colIdx} className="flex flex-col min-h-0">
         <Link
           to={col.path}
-          className="flex items-center gap-2 mb-2 px-2 py-2 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all group/header border border-slate-100"
+          className="flex items-center gap-1.5 mb-1.5 px-2 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all group/header border border-slate-100 shrink-0"
         >
-          <span className="text-sm font-bold text-slate-800 group-hover/header:text-blue-700">
+          <span className="text-xs font-bold text-slate-800 group-hover/header:text-blue-700">
             {col.title}
           </span>
           <FiArrowRight className="text-xs text-blue-500 opacity-0 group-hover/header:opacity-100 transition-opacity" />
         </Link>
         {col.items && col.items.length > 0 && (
-          <ul className="space-y-0.5 pl-3 border-l-2 border-slate-100 ml-2">
+          <ul className="space-y-0.5 pl-2 border-l-2 border-slate-100 ml-1 max-h-44 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent pr-1">
             {col.items.map((item, itemIdx) => (
               <li key={itemIdx}>
                 <DropdownItem item={item} />

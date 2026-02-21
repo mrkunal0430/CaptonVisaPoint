@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
   FiArrowRight,
@@ -17,12 +18,218 @@ import {
 } from "react-icons/fi";
 import SEO from "../components/SEO";
 import { StudyAbroadForm } from "../components/forms";
-import { getCountryById, preferredCountries } from "../data/studyAbroadData";
+import {
+  getCountryById,
+  preferredCountries,
+  getAllCountries,
+} from "../data/studyAbroadData";
+
+// Infinite Marquee Slider Component
+const InfiniteMarqueeSlider = ({ items, renderCard, speed = 35 }) => {
+  const trackRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [cardWidth, setCardWidth] = useState(320);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (window.innerWidth < 640) setCardWidth(280);
+      else if (window.innerWidth < 1024) setCardWidth(300);
+      else setCardWidth(320);
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const repeatedItems = [...items, ...items, ...items, ...items];
+  const gap = 20;
+  const singleSetWidth = items.length * (cardWidth + gap);
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      <div
+        className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to right, white, transparent)" }}
+      />
+      <div
+        className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to left, white, transparent)" }}
+      />
+
+      <div
+        ref={trackRef}
+        className="flex py-6"
+        style={{
+          gap: `${gap}px`,
+          animation: `study-marquee-scroll ${speed}s linear infinite`,
+          animationPlayState: isPaused ? "paused" : "running",
+          width: `${repeatedItems.length * (cardWidth + gap)}px`,
+        }}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {repeatedItems.map((item, idx) => (
+          <div
+            key={`${item.id}-${idx}`}
+            style={{ minWidth: cardWidth, maxWidth: cardWidth }}
+            className="flex-shrink-0"
+          >
+            {renderCard(item, idx)}
+          </div>
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes study-marquee-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${singleSetWidth}px); }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+// University Minimal Slider — Sleek, modern horizontal slider
+const UniversityMinimalSlider = ({ universities, countryId }) => {
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setShowLeftArrow(scrollLeft > 20);
+    setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 20);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => el.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 350;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div className="relative group/slider">
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => scroll("left")}
+        className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showLeftArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowLeft />
+      </button>
+
+      <button
+        onClick={() => scroll("right")}
+        className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 ${
+          showRightArrow
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        } hidden md:flex`}
+      >
+        <FiArrowRight />
+      </button>
+
+      {/* Gradient Fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+
+      {/* Scrollable Container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 no-scrollbar scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {universities.map((uni, idx) => (
+          <motion.div
+            key={uni.id}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className="flex-shrink-0"
+          >
+            <Link
+              to={`/study-abroad/${countryId}/${uni.id}`}
+              className="block w-64 sm:w-72 group/card relative"
+            >
+              <div className="relative p-5 rounded-3xl bg-white border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] group-hover/card:shadow-[0_20px_40px_-12px_rgba(59,130,246,0.15)] group-hover/card:border-blue-100 group-hover/card:-translate-y-2 transition-all duration-500 overflow-hidden">
+                {/* Visual Accent */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-8 -mt-8 group-hover/card:bg-blue-600 transition-colors duration-500 opacity-20 group-hover/card:opacity-10" />
+
+                <div className="relative z-10">
+                  <div className="relative aspect-video rounded-2xl overflow-hidden mb-4 shadow-sm">
+                    <img
+                      src={uni.image}
+                      alt={uni.name}
+                      className="w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-60" />
+                  </div>
+
+                  <h4 className="font-bold text-slate-900 text-sm leading-tight mb-2 group-hover/card:text-blue-600 transition-colors line-clamp-2 min-h-[2.5rem]">
+                    {uni.name}
+                  </h4>
+
+                  <div className="flex items-center gap-2 text-slate-500 text-[10px] mb-4">
+                    <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center">
+                      <FiMapPin className="text-[10px]" />
+                    </div>
+                    <span>{uni.location}</span>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-50">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
+                      Explore University{" "}
+                      <FiArrowRight className="text-[10px]" />
+                    </span>
+                    <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center group-hover/card:bg-blue-600 group-hover/card:text-white group-hover/card:border-blue-600 transition-all duration-300">
+                      <FiArrowRight />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </div>
+  );
+};
 
 const StudyAbroadCountry = () => {
   const { country } = useParams();
   const countryData = getCountryById(country);
   const isPreferred = preferredCountries.some((c) => c.id === country);
+
+  // Get other countries for "Explore Other Countries" section
+  const otherStudyCountries = getAllCountries()
+    .filter((c) => c.id !== country)
+    .map((c) => ({
+      ...c,
+      isPreferred: preferredCountries.some((p) => p.id === c.id),
+    }));
 
   if (!countryData) {
     return (
@@ -106,19 +313,6 @@ const StudyAbroadCountry = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-white/70 text-sm mb-6">
-              <Link to="/" className="hover:text-white">
-                Home
-              </Link>
-              <span>/</span>
-              <Link to="/study-abroad" className="hover:text-white">
-                Study Abroad
-              </Link>
-              <span>/</span>
-              <span className="text-white">{countryData.name}</span>
-            </div>
-
             {isPreferred && (
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white text-sm font-bold mb-4">
                 <FiStar className="text-yellow-200" /> Premier Destination
@@ -217,105 +411,17 @@ const StudyAbroadCountry = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                className="mb-16"
               >
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-3xl font-bold text-slate-900">
-                    Top Universities in {countryData.name}
-                  </h2>
-                  <span className="text-sm text-slate-500">
-                    {countryData.universities.length} Universities
-                  </span>
-                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                  <FiBookOpen className="text-blue-600" /> Top Universities in{" "}
+                  {countryData.name}
+                </h2>
 
-                <div className="grid gap-6">
-                  {countryData.universities.map((uni, i) => (
-                    <motion.div
-                      key={uni.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                    >
-                      <Link
-                        to={`/study-abroad/${country}/${uni.id}`}
-                        className={`group block rounded-2xl overflow-hidden border-2 transition-all duration-300 hover:shadow-xl ${
-                          isPreferred
-                            ? "border-amber-200 hover:border-amber-400 bg-gradient-to-r from-amber-50/50 to-white"
-                            : "border-slate-200 hover:border-blue-300 bg-white"
-                        }`}
-                      >
-                        <div className="flex flex-col md:flex-row">
-                          {/* Image */}
-                          <div className="md:w-64 h-48 md:h-auto shrink-0 relative overflow-hidden">
-                            <img
-                              src={uni.image}
-                              alt={uni.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                            {isPreferred && (
-                              <div className="absolute top-3 left-3">
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-bold">
-                                  <FiStar className="text-yellow-200" />{" "}
-                                  Recommended
-                                </span>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Content */}
-                          <div className="flex-1 p-6">
-                            <div className="flex items-start justify-between mb-3">
-                              <div>
-                                <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
-                                  {uni.name}
-                                </h3>
-                                <p className="text-slate-500 flex items-center gap-1 text-sm">
-                                  <FiMapPin /> {uni.location}
-                                </p>
-                              </div>
-                              <FiArrowRight className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity mt-1" />
-                            </div>
-
-                            {/* Highlights */}
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {uni.highlights.map((h, idx) => (
-                                <span
-                                  key={idx}
-                                  className={`px-2.5 py-1 rounded-full text-xs font-medium ${
-                                    isPreferred
-                                      ? "bg-amber-100 text-amber-700"
-                                      : "bg-blue-50 text-blue-700"
-                                  }`}
-                                >
-                                  {h}
-                                </span>
-                              ))}
-                            </div>
-
-                            {/* Courses Preview */}
-                            <div className="mb-4">
-                              <span className="text-xs text-slate-500 uppercase font-semibold">
-                                Popular Courses:
-                              </span>
-                              <p className="text-slate-700 text-sm mt-1">
-                                {uni.courses.slice(0, 4).join(" • ")}
-                                {uni.courses.length > 4 && " • ..."}
-                              </p>
-                            </div>
-
-                            {/* Quick Info */}
-                            <div className="flex flex-wrap gap-4 pt-4 border-t border-slate-100 text-sm">
-                              <span className="flex items-center gap-1 text-slate-600">
-                                <FiCalendar className="text-blue-500" /> Intake:{" "}
-                                {uni.intakes.join(", ")}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
+                <UniversityMinimalSlider
+                  universities={countryData.universities}
+                  countryId={country}
+                />
               </motion.div>
 
               {/* Admission Info */}
@@ -428,18 +534,148 @@ const StudyAbroadCountry = () => {
           </div>
         </div>
       </section>
+      {/* Explore Other Countries - Infinite Marquee Slider */}
+      {otherStudyCountries.length > 0 && (
+        <section className="py-16 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
+          <div className="container mx-auto px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 flex items-center justify-center gap-3">
+                <FiGlobe className="text-blue-500" /> Explore Other Countries
+              </h2>
+              <p className="text-slate-500 max-w-2xl mx-auto">
+                Discover study abroad opportunities in other top destinations
+              </p>
+            </motion.div>
+          </div>
 
-      {/* Back to Study Abroad */}
-      <section className="py-8 bg-slate-50">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <Link
-            to="/study-abroad"
-            className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all"
-          >
-            <FiArrowLeft /> Explore Other Countries
-          </Link>
-        </div>
-      </section>
+          <InfiniteMarqueeSlider
+            items={otherStudyCountries}
+            speed={otherStudyCountries.length * 4}
+            renderCard={(c) => (
+              <Link
+                to={`/study-abroad/${c.id}`}
+                className={`group block rounded-2xl overflow-hidden bg-white border shadow-lg hover:shadow-2xl transition-all duration-500 h-full ${
+                  c.isPreferred
+                    ? "border-amber-200 hover:border-amber-400"
+                    : "border-slate-200 hover:border-blue-400"
+                }`}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Country Image */}
+                <div className="relative h-40 overflow-hidden">
+                  <img
+                    src={c.bannerImage}
+                    alt={`Study in ${c.name}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+                  {/* Shimmer overlay on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                    style={{
+                      animation: "study-shimmer 2s ease-in-out infinite",
+                    }}
+                  />
+                  {c.isPreferred && (
+                    <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] font-bold">
+                      <FiStar className="text-yellow-200" /> Premier
+                    </span>
+                  )}
+                  <div className="absolute bottom-3 left-4">
+                    <img
+                      src={`https://flagcdn.com/w40/${
+                        {
+                          germany: "de",
+                          cyprus: "cy",
+                          france: "fr",
+                          uae: "ae",
+                          mauritius: "mu",
+                          singapore: "sg",
+                          uk: "gb",
+                          usa: "us",
+                          canada: "ca",
+                          australia: "au",
+                          "new-zealand": "nz",
+                          denmark: "dk",
+                          finland: "fi",
+                        }[c.id] || "un"
+                      }.png`}
+                      alt={`${c.name} flag`}
+                      className="w-8 h-6 object-cover rounded shadow border border-white/30 inline-block mr-2 align-middle"
+                    />
+                    <span className="text-white font-bold text-lg drop-shadow-lg align-middle group-hover:translate-x-1 transition-transform duration-300 inline-block">
+                      {c.name}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Country Info */}
+                <div className="p-4">
+                  <p className="text-xs text-slate-500 mb-3 line-clamp-2 leading-relaxed">
+                    {c.tagline}
+                  </p>
+                  <div className="space-y-1.5 mb-4">
+                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                      <FiGlobe className="text-blue-500 flex-shrink-0" />
+                      <span>{c.language}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                      <FiCalendar className="text-blue-500 flex-shrink-0" />
+                      <span>Intakes: {c.intakes.join(", ")}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                      <FiBookOpen className="text-blue-500 flex-shrink-0" />
+                      <span>{c.universities.length} Universities</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {c.highlights.slice(0, 2).map((h, i) => (
+                      <span
+                        key={i}
+                        className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                          c.isPreferred
+                            ? "bg-amber-50 text-amber-700 border border-amber-200"
+                            : "bg-blue-50 text-blue-700 border border-blue-200"
+                        }`}
+                      >
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-end">
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-500 group-hover:text-blue-700 transition-colors">
+                      Explore{" "}
+                      <FiArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            )}
+          />
+
+          {/* Back to Study Abroad */}
+          <div className="text-center mt-8">
+            <Link
+              to="/study-abroad"
+              className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all"
+            >
+              <FiArrowLeft /> Back to All Study Abroad Programs
+            </Link>
+          </div>
+
+          <style>{`
+            @keyframes study-shimmer {
+              0%, 100% { transform: translateX(-100%); }
+              50% { transform: translateX(100%); }
+            }
+          `}</style>
+        </section>
+      )}
     </div>
   );
 };
