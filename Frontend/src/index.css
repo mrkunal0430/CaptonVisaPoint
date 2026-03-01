@@ -39,6 +39,10 @@
   --color-error-soft: #fef2f2; /* Red 50 */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
   .text-shadow {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -85,9 +89,29 @@
   animation-play-state: paused;
 }
 
+/* Hero section infinite marquee */
+@keyframes hero-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+.hero-marquee-track {
+  animation: hero-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.hero-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 /* Floating animation for background orbs */
 @keyframes float-slow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateX(0);
   }
   25% {
@@ -102,7 +126,8 @@
 }
 
 @keyframes float-slow-reverse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateX(0);
   }
   25% {
@@ -126,7 +151,8 @@
 
 /* Animated gradient text */
 @keyframes gradient-x {
-  0%, 100% {
+  0%,
+  100% {
     background-size: 200% 200%;
     background-position: left center;
   }
@@ -142,7 +168,8 @@
 
 /* Gradient border shift animation */
 @keyframes gradient-shift {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {

@@ -134,11 +134,11 @@ const WorkAbroadForm = ({
 
   const countries = [
     { name: "Germany" },
-    { name: "United Kingdom" },
+    { name: "UK" },
     { name: "Gulf" },
     { name: "Australia" },
     { name: "Canada" },
-    { name: "United States" },
+    { name: "USA" },
     { name: "Other" },
   ];
 

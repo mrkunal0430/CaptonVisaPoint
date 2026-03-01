@@ -386,32 +386,67 @@ const ServicesShowcase = () => {
                     Ausbildung
                   </h3>
                   <p className="text-blue-200 text-xs">
-                    Vocational Training Germany
+                    Earn & Learn in Germany
                   </p>
                 </div>
-                <span className="text-3xl">🎓</span>
+                <span className="text-3xl">🔧</span>
               </div>
               <div className="p-4 sm:p-5">
-                <div className="flex flex-wrap gap-2 mb-4">
+                {/* Key stats */}
+                <div className="grid grid-cols-3 gap-1.5 mb-3">
                   {[
-                    "Earn & Learn",
-                    "Paid Training",
-                    "PR Pathway",
-                    "German Visa",
-                  ].map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full font-medium"
+                    { val: "€1,300", label: "/month" },
+                    { val: "85%", label: "Placement" },
+                    { val: "Zero", label: "Tuition" },
+                  ].map((s) => (
+                    <div
+                      key={s.label}
+                      className="bg-blue-50 rounded-lg px-2 py-1.5 text-center"
                     >
-                      {tag}
-                    </span>
+                      <p className="text-blue-800 font-bold text-xs">{s.val}</p>
+                      <p className="text-blue-500 text-[9px]">{s.label}</p>
+                    </div>
                   ))}
                 </div>
+
+                {/* Job Sectors */}
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                  Top Sectors
+                </p>
+                <div className="grid grid-cols-2 gap-1.5 mb-3">
+                  {[
+                    { icon: "🏥", name: "Healthcare", sub: "€3.2-4.5K" },
+                    { icon: "💻", name: "IT & Software", sub: "€3.5-5K" },
+                    { icon: "⚙️", name: "Engineering", sub: "€3-4.2K" },
+                    { icon: "🏨", name: "Hospitality", sub: "€2.5-3.5K" },
+                    { icon: "🚚", name: "Logistics", sub: "€2.8-3.8K" },
+                    { icon: "💼", name: "Business", sub: "€2.8-4K" },
+                  ].map((sector) => (
+                    <Link
+                      key={sector.name}
+                      to="/ausbildung"
+                      className="flex items-center gap-1.5 p-1.5 bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-200 rounded-lg transition-all group/item"
+                    >
+                      <span className="text-sm leading-none shrink-0">
+                        {sector.icon}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-slate-700 text-[11px] font-semibold leading-tight group-hover/item:text-blue-700 transition-colors truncate">
+                          {sector.name}
+                        </p>
+                        <p className="text-slate-400 text-[9px]">
+                          {sector.sub}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
                 <Link
                   to="/ausbildung"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-full text-sm font-bold hover:bg-blue-800 transition-colors"
+                  className="inline-flex items-center gap-2 w-full justify-center px-4 py-2 bg-blue-700 text-white rounded-full text-sm font-bold hover:bg-blue-800 transition-colors"
                 >
-                  Free Consultation <FiArrowRight size={14} />
+                  Explore Ausbildung <FiArrowRight size={14} />
                 </Link>
               </div>
             </div>

@@ -8,6 +8,13 @@ const serviceLeadSchema = new mongoose.Schema({
     enum: ['MBBS_INDIA', 'MBBS_ABROAD', 'STUDY_ABROAD', 'WORK_ABROAD'],
   },
 
+  // Job sub-type for WORK_ABROAD leads
+  jobSubType: {
+    type: String,
+    enum: ['HEALTHCARE_JOBS', 'JOBS_AFTER_12TH', 'TECHNICAL_JOBS', 'HOSPITALITY_JOBS', ''],
+    default: ''
+  },
+
   // Basic Details
   fullName: {
     type: String,
@@ -99,7 +106,7 @@ const serviceLeadSchema = new mongoose.Schema({
   },
   planToGo: {
     type: String,
-    enum: ['This year', 'Next year', 'Exploring', '']
+    enum: ['ASAP', 'Within 3 months', 'Within 6 months', 'This year', 'Next year', 'Exploring', '']
   },
 
   // ===== STUDY ABROAD SPECIFIC FIELDS =====
@@ -137,9 +144,21 @@ const serviceLeadSchema = new mongoose.Schema({
   // Profile
   qualification: {
     type: String,
-    enum: ['MBBS', 'BSc Nursing', 'GNM', 'Hotel Management', 'IT/Engineering', 'Other', '']
+    enum: ['MBBS', 'BSc Nursing', 'GNM', 'Hotel Management', 'IT/Engineering',
+           '10th Pass', '12th Pass', 'ITI', 'Diploma', 'B.Tech/BE', 'BCA/MCA',
+           'Allied Health', 'Other', '']
   },
+  specialization: String,
   yearsOfExperience: String,
+  keySkills: String,
+  drivingLicense: {
+    type: String,
+    enum: ['Yes', 'No', '']
+  },
+  age: {
+    type: String,
+    enum: ['18-25', '25-35', '35+', '']
+  },
 
   // Language (Work Abroad)
   englishLevel: {
@@ -148,17 +167,20 @@ const serviceLeadSchema = new mongoose.Schema({
   },
   languageCertification: {
     type: String,
-    enum: ['IELTS', 'OET', 'German A1', 'German A2', 'German B1', 'German B2', 'None', '']
+    enum: ['IELTS', 'OET', 'German A1', 'German A2', 'German B1', 'German B2', 'DHA/MOH/Prometric', 'None', '']
   },
 
   // Job Preference
   jobField: {
     type: String,
-    enum: ['Healthcare', 'Hospitality', 'IT', 'Skilled Worker', 'Other', '']
+    enum: ['Healthcare', 'Hospitality', 'Retail & Sales', 'Warehouse & Logistics',
+           'Driver & Delivery', 'Construction', 'Catering', 'IT', 'Mechanical',
+           'Electrical', 'Civil', 'Automotive & Welding', 'Oil & Gas', 'Skilled Worker', 'Other', '']
   },
   countryPreferenceWork: [{
     type: String,
-    enum: ['Germany', 'UK', 'Gulf', 'Australia', 'Canada', 'USA', 'Other']
+    enum: ['Germany', 'UK', 'Gulf', 'UAE', 'Saudi Arabia', 'Qatar', 'Kuwait', 'Oman',
+           'Bahrain', 'Australia', 'Canada', 'USA', 'Europe', 'Other']
   }],
 
   // ===== MARKETING & TRACKING =====

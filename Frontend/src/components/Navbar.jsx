@@ -28,8 +28,12 @@ const NAV_LINKS = [
           { name: "Uzbekistan", path: "/mbbs/uzbekistan" },
           { name: "Kazakhstan", path: "/mbbs/kazakhstan" },
           { name: "Germany", path: "/mbbs/germany" },
-          { name: "Nepal", path: "/mbbs/nepal" },
+          { name: "Romania", path: "/mbbs/romania" },
+          { name: "Bulgaria", path: "/mbbs/bulgaria" },
+          { name: "Serbia", path: "/mbbs/serbia" },
+          { name: "Bosnia", path: "/mbbs/bosnia" },
           { name: "Italy", path: "/mbbs/italy" },
+          { name: "Nepal", path: "/mbbs/nepal" },
           { name: "Bangladesh", path: "/mbbs/bangladesh" },
           { name: "Barbados", path: "/mbbs/barbados" },
           { name: "Kyrgyzstan", path: "/mbbs/kyrgyzstan" },
@@ -100,21 +104,29 @@ const NAV_LINKS = [
   { name: "Coaching", path: "/coaching" },
   { name: "Ausbildung", path: "/ausbildung" },
   {
-    name: "Job Abroad",
-    path: "/healthcare",
+    name: "Jobs Abroad",
+    path: "/jobs-abroad/after-12th",
     type: "mega",
     columns: [
       {
-        title: "UAE Healthcare",
-        path: "/healthcare/uae",
+        title: "Jobs After 12th",
+        path: "/jobs-abroad/after-12th",
       },
       {
-        title: "Germany Healthcare",
-        path: "/healthcare/germany",
+        title: "Healthcare Jobs",
+        path: "/jobs-abroad/healthcare",
+      },
+      {
+        title: "Technical Jobs",
+        path: "/jobs-abroad/technical",
+      },
+      {
+        title: "Hospitality Jobs",
+        path: "/jobs-abroad/hospitality",
       },
     ],
   },
-  { name: "About", path: "/about" },
+  { name: "Blog", path: "/blog" },
 ];
 
 // Dropdown item component to reduce duplication
@@ -145,7 +157,13 @@ const MegaDropdown = ({ columns }) => (
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: 8 }}
     transition={{ duration: 0.15 }}
-    className="absolute top-full left-1/2 -translate-x-1/2 w-[90vw] max-w-[440px] bg-white rounded-xl shadow-2xl border border-slate-100 pt-3 pb-3 px-4 grid grid-cols-2 gap-4 z-50 overflow-hidden"
+    className={`absolute top-full left-1/2 -translate-x-1/2 w-[90vw] bg-white rounded-xl shadow-2xl border border-slate-100 pt-3 pb-3 px-4 grid gap-3 z-50 overflow-hidden ${
+      columns.length >= 4
+        ? "max-w-[300px] grid-cols-2"
+        : columns.length >= 3
+        ? "max-w-[580px] grid-cols-3"
+        : "max-w-[380px] grid-cols-2"
+    }`}
   >
     <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-800 to-blue-900" />
     {columns.map((col, colIdx) => (

@@ -795,6 +795,213 @@ const countryData = {
       },
     ],
   },
+  romania: {
+    name: "Romania",
+    bannerImage:
+      "https://images.unsplash.com/photo-1592850033717-bca77a0be38a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years (integrated MD program)",
+    medium: "English",
+    recognition: "WHO, NMC (FMGE/NEXT required), EU Directive 2005/36/EC",
+    currency: "Romanian Leu (RON) / Euro accepted",
+    costOfLiving: "€250–400 / month",
+    feePayment: "EUR payment – bank transfer per semester",
+    whyChoose:
+      "Romania is one of the most popular European destinations for studying MBBS (Medicine & Surgery), offering EU-recognized medical degrees at affordable tuition fees. Romanian medical universities have a long tradition of training international students — many programs have been running in English for over 20 years. Annual tuition fees range from €5,000–€8,000, and the total 6-year cost is approximately ₹35–55 Lakhs. As an EU and Schengen member, a Romanian medical degree is automatically recognized across all 27 EU countries under Directive 2005/36/EC. Universities feature modern simulation centers, hospital affiliations, and strong clinical training. Romania is known for its safe environment, vibrant student life, low cost of living, and excellent healthcare infrastructure. Graduates can practice across Europe without additional licensing exams, and in India after clearing FMGE/NEXT.",
+    partnerUniversities: [
+      {
+        name: "Carol Davila University of Medicine and Pharmacy",
+        location: "Bucharest",
+        fees: "€7,500 / year",
+        slug: "carol-davila-university",
+      },
+      {
+        name: "Grigore T. Popa University of Medicine and Pharmacy",
+        location: "Iași",
+        fees: "€6,000 / year",
+        slug: "grigore-t-popa-university",
+      },
+      {
+        name: "Iuliu Hațieganu University of Medicine and Pharmacy",
+        location: "Cluj-Napoca",
+        fees: "€7,000 / year",
+        slug: "iuliu-hatieganu-university",
+      },
+      {
+        name: "University of Medicine and Pharmacy Craiova",
+        location: "Craiova",
+        fees: "€5,500 / year",
+        slug: "university-of-medicine-craiova",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "Victor Babeș University of Medicine and Pharmacy",
+        location: "Timișoara",
+        fees: "€6,500 / year",
+      },
+      {
+        name: "University of Oradea – Faculty of Medicine",
+        location: "Oradea",
+        fees: "€5,000 / year",
+      },
+      {
+        name: "Lucian Blaga University of Sibiu",
+        location: "Sibiu",
+        fees: "€5,500 / year",
+      },
+      {
+        name: "Transilvania University of Brașov",
+        location: "Brașov",
+        fees: "€5,000 / year",
+      },
+      {
+        name: "Vasile Goldiș Western University of Arad",
+        location: "Arad",
+        fees: "€5,500 / year",
+      },
+    ],
+  },
+  bulgaria: {
+    name: "Bulgaria",
+    bannerImage:
+      "https://images.unsplash.com/photo-1591804774246-e8e50e53a8f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years (integrated MD program)",
+    medium: "English",
+    recognition: "WHO, NMC (FMGE/NEXT required), EU Directive 2005/36/EC",
+    currency: "Bulgarian Lev (BGN)",
+    costOfLiving: "€200–350 / month",
+    feePayment: "EUR payment – bank transfer per semester",
+    whyChoose:
+      "Bulgaria is a top-tier EU destination for Indian students seeking an affordable, internationally recognized MBBS degree. As an EU and Schengen member, Bulgarian medical degrees are automatically valid across all EU countries. Annual tuition fees range from €6,000–€8,000, making it one of the most affordable options in Western and Central Europe, with a total 6-year cost of approximately ₹35–50 Lakhs. Bulgarian universities like Medical University of Sofia, Plovdiv, and Varna have decades of experience teaching international students in English. Clinical training takes place in well-equipped university hospitals. Bulgaria offers very low cost of living, a safe student-friendly environment, and strong cultural appeal. Graduates can work across Europe or return to India to practice after clearing FMGE/NEXT.",
+    partnerUniversities: [
+      {
+        name: "Medical University of Sofia",
+        location: "Sofia",
+        fees: "€8,000 / year",
+        slug: "medical-university-of-sofia",
+      },
+      {
+        name: "Medical University of Plovdiv",
+        location: "Plovdiv",
+        fees: "€7,000 / year",
+        slug: "medical-university-of-plovdiv",
+      },
+      {
+        name: "Medical University of Varna",
+        location: "Varna",
+        fees: "€7,500 / year",
+        slug: "medical-university-of-varna",
+      },
+      {
+        name: "Medical University of Pleven",
+        location: "Pleven",
+        fees: "€6,500 / year",
+        slug: "medical-university-of-pleven",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "Trakia University – Medical Faculty",
+        location: "Stara Zagora",
+        fees: "€6,000 / year",
+      },
+      {
+        name: "Sofia University – Medical Faculty",
+        location: "Sofia",
+        fees: "€7,000 / year",
+      },
+    ],
+  },
+  serbia: {
+    name: "Serbia",
+    bannerImage:
+      "https://images.unsplash.com/photo-1584279879874-ef8eb93eb6a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years (integrated MD program)",
+    medium: "English",
+    recognition: "WHO, NMC (FMGE/NEXT required), FAIMER",
+    currency: "Serbian Dinar (RSD) / Euro accepted",
+    costOfLiving: "€200–350 / month",
+    feePayment: "EUR payment – bank transfer per semester",
+    whyChoose:
+      "Serbia is an emerging and highly affordable European destination for studying MBBS, gaining popularity among Indian students for its quality medical education at budget-friendly costs. Serbian medical universities are recognized by WHO, NMC, and FAIMER, offering fully English-taught programs. Annual tuition fees range from €4,500–€6,500, with a total 6-year cost of approximately ₹30–45 Lakhs — among the lowest in Europe. Serbia is an EU candidate country with strong healthcare infrastructure and modern university hospitals. Students benefit from experienced faculty, small class sizes, excellent clinical exposure, and a safe, multicultural environment. The cost of living in Serbia is very low compared to Western Europe. Belgrade, the capital, is a vibrant and student-friendly city with rich history and culture.",
+    partnerUniversities: [
+      {
+        name: "University of Belgrade – Faculty of Medicine",
+        location: "Belgrade",
+        fees: "€6,000 / year",
+        slug: "university-of-belgrade-medicine",
+      },
+      {
+        name: "University of Novi Sad – Faculty of Medicine",
+        location: "Novi Sad",
+        fees: "€5,500 / year",
+        slug: "university-of-novi-sad-medicine",
+      },
+      {
+        name: "University of Niš – Faculty of Medicine",
+        location: "Niš",
+        fees: "€4,500 / year",
+        slug: "university-of-nis-medicine",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "University of Kragujevac – Faculty of Medical Sciences",
+        location: "Kragujevac",
+        fees: "€5,000 / year",
+      },
+      {
+        name: "Singidunum University",
+        location: "Belgrade",
+        fees: "€5,500 / year",
+      },
+    ],
+  },
+  bosnia: {
+    name: "Bosnia & Herzegovina",
+    bannerImage:
+      "https://images.unsplash.com/photo-1555990793-da11153b2473?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    duration: "6 Years (integrated MD program)",
+    medium: "English",
+    recognition: "WHO, NMC (FMGE/NEXT required), FAIMER",
+    currency: "Convertible Mark (BAM) / Euro accepted",
+    costOfLiving: "€200–300 / month",
+    feePayment: "EUR payment – bank transfer per semester",
+    whyChoose:
+      "Bosnia & Herzegovina is rapidly becoming one of the most affordable European destinations for Indian students to study MBBS. With annual tuition fees as low as €3,500–€5,500 and a total 6-year cost of just ₹25–40 Lakhs, Bosnia offers some of the lowest medical education costs in Europe. Medical universities in Bosnia are recognized by WHO, NMC, and FAIMER, and offer fully English-taught MD (MBBS equivalent) programs. The country features a European healthcare model with well-equipped teaching hospitals and hands-on clinical training. Bosnia's universities have small class sizes ensuring personalized attention, experienced professors (many trained in Western Europe), and a supportive environment for international students. The cost of living is among the lowest in Europe, making this an excellent value-for-money destination. Graduates can pursue licensing across Europe, the US, or India (via FMGE/NEXT).",
+    partnerUniversities: [
+      {
+        name: "University of Sarajevo – Faculty of Medicine",
+        location: "Sarajevo",
+        fees: "€5,000 / year",
+        slug: "university-of-sarajevo-medicine",
+      },
+      {
+        name: "University of Tuzla – Faculty of Medicine",
+        location: "Tuzla",
+        fees: "€4,000 / year",
+        slug: "university-of-tuzla-medicine",
+      },
+      {
+        name: "University of Mostar – Faculty of Medicine",
+        location: "Mostar",
+        fees: "€3,800 / year",
+        slug: "university-of-mostar-medicine",
+      },
+    ],
+    otherUniversities: [
+      {
+        name: "University of Banja Luka – Faculty of Medicine",
+        location: "Banja Luka",
+        fees: "€4,500 / year",
+      },
+      {
+        name: "University of Zenica – Faculty of Medicine",
+        location: "Zenica",
+        fees: "€3,500 / year",
+      },
+    ],
+  },
 };
 
 // Default country data for countries not in the list

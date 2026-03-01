@@ -95,7 +95,7 @@ const mbbsCountries = [
     gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
-        src="/Home_Map/kyrgystan.webp"
+        src="/Home_Map/Kyrgystan.webp"
         alt="Kyrgyzstan map"
         loading="lazy"
         className="w-full h-full object-contain"

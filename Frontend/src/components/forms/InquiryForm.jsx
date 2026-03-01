@@ -6,6 +6,7 @@ import {
   FiPhone,
   FiMail,
   FiMapPin,
+  FiBookOpen,
   FiMessageSquare,
   FiCheck,
   FiX,
@@ -25,6 +26,7 @@ const InquiryForm = ({
     email: "",
     phone: "",
     city: "",
+    education: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
@@ -52,6 +54,7 @@ const InquiryForm = ({
           email: "",
           phone: "",
           city: "",
+          education: "",
           message: "",
         });
         if (onSuccess) {
@@ -167,6 +170,25 @@ const InquiryForm = ({
               className={inputBaseClass}
               onChange={handleChange}
             />
+          </div>
+
+          <div className="relative group">
+            <FiBookOpen className="absolute top-3.5 left-3 text-slate-400 group-focus-within:text-brand-blue transition-colors" />
+            <select
+              name="education"
+              value={formData.education}
+              onChange={handleChange}
+              className={inputBaseClass}
+            >
+              <option value="">Highest Education</option>
+              <option value="10th / Matriculation">10th / Matriculation</option>
+              <option value="12th / Intermediate">12th / Intermediate</option>
+              <option value="Diploma / ITI">Diploma / ITI</option>
+              <option value="Bachelor's Degree">Bachelor's Degree</option>
+              <option value="Master's Degree">Master's Degree</option>
+              <option value="PhD / Doctorate">PhD / Doctorate</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
 
           <div className="relative group">

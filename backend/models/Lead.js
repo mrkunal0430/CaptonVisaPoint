@@ -27,6 +27,11 @@ const leadSchema = new mongoose.Schema({
     enum: ['MBBS Abroad', 'Study Abroad', 'Ausbildung', 'Language Coaching', 'Visa Service', 'General Inquiry'],
     default: 'General Inquiry'
   },
+  education: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   message: {
     type: String,
     trim: true,

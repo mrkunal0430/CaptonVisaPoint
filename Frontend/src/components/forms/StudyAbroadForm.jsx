@@ -135,8 +135,8 @@ const StudyAbroadForm = ({
   const labelClass = "block text-sm font-medium text-slate-700 mb-1.5";
 
   const countries = [
-    { name: "United Kingdom" },
-    { name: "United States" },
+    { name: "UK" },
+    { name: "USA" },
     { name: "Canada" },
     { name: "Germany" },
     { name: "Australia" },

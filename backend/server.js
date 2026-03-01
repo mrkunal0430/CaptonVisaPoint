@@ -35,7 +35,7 @@ const generalLimiter = rateLimit({
 // Stricter rate limit for form submissions
 const formLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 10, // Limit each IP to 10 form submissions per hour
+  max: 20, // Limit each IP to 20 form submissions per hour
   message: { message: "Too many submissions, please try again later" },
   standardHeaders: true,
   legacyHeaders: false,

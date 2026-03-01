@@ -215,12 +215,12 @@ const StudyAbroad = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
-                <Link
-                  to="/contact"
+                <a
+                  href="#consultation-form"
                   className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-bold text-base sm:text-lg shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:scale-105 transition-all"
                 >
                   Start Your Journey <FiArrowRight />
-                </Link>
+                </a>
                 <a
                   href="#countries"
                   className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur border border-white/30 text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/20 transition-all"
@@ -585,7 +585,7 @@ const StudyAbroad = () => {
       </section>
 
       {/* CTA with Existing Form */}
-      <section className="py-14 sm:py-24 bg-gradient-to-r from-blue-600 to-blue-800">
+      <section id="consultation-form" className="py-14 sm:py-24 bg-gradient-to-r from-blue-600 to-blue-800">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
             <div className="lg:w-1/2 p-8 lg:p-12 bg-gradient-to-br from-slate-900 to-blue-900 text-white flex flex-col justify-center">

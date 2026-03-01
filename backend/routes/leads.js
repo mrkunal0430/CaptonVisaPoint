@@ -9,7 +9,7 @@ const router = express.Router();
 // @access  Public
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone, city, service, message } = req.body;
+    const { name, email, phone, city, service, education, message } = req.body;
 
     // Validate required fields
     if (!name || !email || !phone) {
@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
       phone,
       city: city || '',
       service: service || 'General Inquiry',
+      education: education || '',
       message: message || ''
     });
 

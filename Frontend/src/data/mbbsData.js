@@ -25,7 +25,11 @@ export const topCountries = [
   { name: "Uzbekistan", fees: "$3,000/yr", seats: "15+", rank: "Lowest Cost",  link: "/mbbs/uzbekistan" },
   { name: "Kazakhstan", fees: "$3,200/yr", seats: "10+", rank: "Top Rated",    link: "/mbbs/kazakhstan" },
   { name: "Kyrgyzstan", fees: "$2,800/yr", seats: "8+",  rank: "Budget Pick",  link: "/mbbs/kyrgyzstan" },
-  { name: "Germany",    fees: "€500/yr",   seats: "5+",  rank: "Free Education", link: "/mbbs/abroad" },
+  { name: "Romania",    fees: "€5,000/yr", seats: "10+", rank: "EU Degree",    link: "/mbbs/romania" },
+  { name: "Bulgaria",   fees: "€6,000/yr", seats: "10+", rank: "EU & Schengen", link: "/mbbs/bulgaria" },
+  { name: "Serbia",     fees: "€4,500/yr", seats: "8+",  rank: "Affordable EU", link: "/mbbs/serbia" },
+  { name: "Bosnia",     fees: "€3,500/yr", seats: "5+",  rank: "Most Affordable", link: "/mbbs/bosnia" },
+  { name: "Germany",    fees: "€500/yr",   seats: "5+",  rank: "Free Education", link: "/mbbs/germany" },
 ];
 
 export const processSteps = [

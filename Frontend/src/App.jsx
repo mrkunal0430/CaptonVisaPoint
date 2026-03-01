@@ -12,7 +12,6 @@ import LoadingSpinner from "./components/LoadingSpinner";
 
 // Lazy load all pages for better performance (code splitting)
 const Home = lazy(() => import("./pages/Home"));
-const Services = lazy(() => import("./pages/Services"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Admin = lazy(() => import("./pages/Admin"));
 
@@ -37,10 +36,14 @@ const EligibilityCheck = lazy(() => import("./pages/EligibilityCheck"));
 const PartnerWithUs = lazy(() => import("./pages/PartnerWithUs"));
 const About = lazy(() => import("./pages/About"));
 
-// Healthcare Routes
-const HealthcareJobs = lazy(() => import("./pages/HealthcareJobs"));
-const UAEHealthcare = lazy(() => import("./pages/UAEHealthcare"));
-const GermanyHealthcare = lazy(() => import("./pages/GermanyHealthcare"));
+// 404
+import NotFound from "./pages/NotFound";
+
+// Jobs Abroad Routes
+const JobsAfter12th = lazy(() => import("./pages/JobsAfter12th"));
+const HealthcareJobsAbroad = lazy(() => import("./pages/HealthcareJobsAbroad"));
+const TechnicalJobsAbroad = lazy(() => import("./pages/TechnicalJobsAbroad"));
+const HospitalityJobsAbroad = lazy(() => import("./pages/HospitalityJobsAbroad"));
 
 // Layout wrapper that conditionally renders Navbar/Footer
 const AppLayout = () => {
@@ -62,13 +65,13 @@ const AppLayout = () => {
   return (
     <div className="bg-white min-h-screen font-sans text-slate-800">
       <Navbar />
-      {/* Spacer to account for fixed navbar height (utility bar + main nav) */}
-      <div className="h-[88px] sm:h-[80px]" />
+      {/* Spacer to account for fixed navbar height */}
+      <div className="h-[68px] xl:h-[76px]" />
       <main>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
+          
             <Route path="/contact" element={<Contact />} />
 
             {/* MBBS Routes */}
@@ -101,10 +104,23 @@ const AppLayout = () => {
             <Route path="/partner" element={<PartnerWithUs />} />
             <Route path="/about" element={<About />} />
 
-            {/* Healthcare Routes */}
-            <Route path="/healthcare" element={<HealthcareJobs />} />
-            <Route path="/healthcare/uae" element={<UAEHealthcare />} />
-            <Route path="/healthcare/germany" element={<GermanyHealthcare />} />
+            {/* Jobs Abroad Routes */}
+            <Route path="/jobs-abroad/after-12th" element={<JobsAfter12th />} />
+            <Route
+              path="/jobs-abroad/healthcare"
+              element={<HealthcareJobsAbroad />}
+            />
+            <Route
+              path="/jobs-abroad/technical"
+              element={<TechnicalJobsAbroad />}
+            />
+            <Route
+              path="/jobs-abroad/hospitality"
+              element={<HospitalityJobsAbroad />}
+            />
+
+            {/* 404 catch-all */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>

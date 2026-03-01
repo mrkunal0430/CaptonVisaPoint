@@ -12,6 +12,8 @@ import {
   FiArrowLeft,
   FiStar,
   FiMapPin,
+  FiAward,
+  FiUsers,
 } from "react-icons/fi";
 import SEO from "../components/SEO";
 import { MbbsAbroadForm } from "../components/forms";

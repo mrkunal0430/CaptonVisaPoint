@@ -4,6 +4,30 @@ const { protect } = require('../middleware/auth');
 
 const router = express.Router();
 
+// ─── Shared helper ────────────────────────────────────────────────────────────
+/**
+ * Normalise a Mongoose ValidationError into a human-readable message.
+ * Returns null when the error is NOT a ValidationError so callers can
+ * decide whether to bubble up a generic 500.
+ */
+function handleLeadError(error, res, context) {
+  console.error(`${context} Error:`, error);
+
+  if (error.name === 'ValidationError') {
+    // Return the first meaningful validation message
+    const messages = Object.values(error.errors).map((e) => e.message);
+    return res.status(400).json({
+      success: false,
+      message: messages[0] || 'Invalid data submitted. Please check your inputs.',
+    });
+  }
+
+  return res.status(500).json({
+    success: false,
+    message: 'Failed to submit form. Please try again.',
+  });
+}
+
 // ============ PUBLIC ROUTES (Form Submissions) ============
 
 // @route   POST /api/service-leads/mbbs-india
@@ -11,24 +35,14 @@ const router = express.Router();
 // @access  Public
 router.post('/mbbs-india', async (req, res) => {
   try {
-    const leadData = {
-      serviceType: 'MBBS_INDIA',
-      ...req.body
-    };
-
-    const lead = await ServiceLead.create(leadData);
-
+    const lead = await ServiceLead.create({ serviceType: 'MBBS_INDIA', ...req.body });
     res.status(201).json({
       success: true,
       message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id
+      leadId: lead._id,
     });
   } catch (error) {
-    console.error('MBBS India Lead Error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to submit form. Please try again.'
-    });
+    handleLeadError(error, res, 'MBBS India Lead');
   }
 });
 
@@ -37,24 +51,14 @@ router.post('/mbbs-india', async (req, res) => {
 // @access  Public
 router.post('/mbbs-abroad', async (req, res) => {
   try {
-    const leadData = {
-      serviceType: 'MBBS_ABROAD',
-      ...req.body
-    };
-
-    const lead = await ServiceLead.create(leadData);
-
+    const lead = await ServiceLead.create({ serviceType: 'MBBS_ABROAD', ...req.body });
     res.status(201).json({
       success: true,
       message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id
+      leadId: lead._id,
     });
   } catch (error) {
-    console.error('MBBS Abroad Lead Error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to submit form. Please try again.'
-    });
+    handleLeadError(error, res, 'MBBS Abroad Lead');
   }
 });
 
@@ -63,24 +67,14 @@ router.post('/mbbs-abroad', async (req, res) => {
 // @access  Public
 router.post('/study-abroad', async (req, res) => {
   try {
-    const leadData = {
-      serviceType: 'STUDY_ABROAD',
-      ...req.body
-    };
-
-    const lead = await ServiceLead.create(leadData);
-
+    const lead = await ServiceLead.create({ serviceType: 'STUDY_ABROAD', ...req.body });
     res.status(201).json({
       success: true,
       message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id
+      leadId: lead._id,
     });
   } catch (error) {
-    console.error('Study Abroad Lead Error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to submit form. Please try again.'
-    });
+    handleLeadError(error, res, 'Study Abroad Lead');
   }
 });
 
@@ -89,27 +83,97 @@ router.post('/study-abroad', async (req, res) => {
 // @access  Public
 router.post('/work-abroad', async (req, res) => {
   try {
-    const leadData = {
-      serviceType: 'WORK_ABROAD',
-      ...req.body
-    };
-
-    const lead = await ServiceLead.create(leadData);
-
+    const lead = await ServiceLead.create({ serviceType: 'WORK_ABROAD', ...req.body });
     res.status(201).json({
       success: true,
       message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id
+      leadId: lead._id,
     });
   } catch (error) {
-    console.error('Work Abroad Lead Error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to submit form. Please try again.'
-    });
+    handleLeadError(error, res, 'Work Abroad Lead');
   }
 });
 
+// @route   POST /api/service-leads/healthcare-jobs
+// @desc    Submit Healthcare Jobs Abroad inquiry
+// @access  Public
+router.post('/healthcare-jobs', async (req, res) => {
+  try {
+    const lead = await ServiceLead.create({
+      serviceType: 'WORK_ABROAD',
+      jobSubType: 'HEALTHCARE_JOBS',
+      ...req.body,
+    });
+    res.status(201).json({
+      success: true,
+      message: 'Thank you! Our healthcare recruitment consultant will contact you within 24 hours.',
+      leadId: lead._id,
+    });
+  } catch (error) {
+    handleLeadError(error, res, 'Healthcare Jobs Lead');
+  }
+});
+
+// @route   POST /api/service-leads/jobs-after-12th
+// @desc    Submit Jobs After 12th inquiry
+// @access  Public
+router.post('/jobs-after-12th', async (req, res) => {
+  try {
+    const lead = await ServiceLead.create({
+      serviceType: 'WORK_ABROAD',
+      jobSubType: 'JOBS_AFTER_12TH',
+      ...req.body,
+    });
+    res.status(201).json({
+      success: true,
+      message: 'Thank you! Our placement consultant will contact you within 24 hours.',
+      leadId: lead._id,
+    });
+  } catch (error) {
+    handleLeadError(error, res, 'Jobs After 12th Lead');
+  }
+});
+
+// @route   POST /api/service-leads/technical-jobs
+// @desc    Submit Technical Jobs Abroad inquiry
+// @access  Public
+router.post('/technical-jobs', async (req, res) => {
+  try {
+    const lead = await ServiceLead.create({
+      serviceType: 'WORK_ABROAD',
+      jobSubType: 'TECHNICAL_JOBS',
+      ...req.body,
+    });
+    res.status(201).json({
+      success: true,
+      message: 'Thank you! Our technical recruitment consultant will contact you within 24 hours.',
+      leadId: lead._id,
+    });
+  } catch (error) {
+    handleLeadError(error, res, 'Technical Jobs Lead');
+  }
+});
+
+
+// @route   POST /api/service-leads/hospitality-jobs
+// @desc    Submit Hospitality Jobs Abroad inquiry
+// @access  Public
+router.post('/hospitality-jobs', async (req, res) => {
+  try {
+    const lead = await ServiceLead.create({
+      serviceType: 'WORK_ABROAD',
+      jobSubType: 'HOSPITALITY_JOBS',
+      ...req.body,
+    });
+    res.status(201).json({
+      success: true,
+      message: 'Thank you! Our hospitality recruitment consultant will contact you within 24 hours.',
+      leadId: lead._id,
+    });
+  } catch (error) {
+    handleLeadError(error, res, 'Hospitality Jobs Lead');
+  }
+});
 
 // ============ ADMIN ROUTES (Protected) ============
 
@@ -120,6 +184,7 @@ router.get('/', protect, async (req, res) => {
   try {
     const {
       serviceType,
+      jobSubType,
       status,
       source,
       budget,
@@ -135,6 +200,10 @@ router.get('/', protect, async (req, res) => {
 
     if (serviceType && serviceType !== 'all') {
       filter.serviceType = serviceType;
+    }
+
+    if (jobSubType && jobSubType !== 'all') {
+      filter.jobSubType = jobSubType;
     }
 
     if (status && status !== 'all') {
@@ -274,7 +343,7 @@ router.get('/export', protect, async (req, res) => {
 
     // Build CSV
     const headers = [
-      'Date', 'Service Type', 'Full Name', 'Email', 'Phone', 'City', 'WhatsApp',
+      'Date', 'Service Type', 'Job Sub Type', 'Full Name', 'Email', 'Phone', 'City', 'WhatsApp',
       'Status', 'Source', 'NEET Score', 'Budget', 'Country Preference', 'Notes'
     ];
 
@@ -284,6 +353,7 @@ router.get('/export', protect, async (req, res) => {
       const row = [
         new Date(lead.createdAt).toLocaleDateString(),
         lead.serviceType,
+        lead.jobSubType || '',
         `"${lead.fullName || ''}"`,
         lead.email || '',
         lead.phone || '',

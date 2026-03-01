@@ -15,10 +15,10 @@ import {
   FiEye,
   FiMapPin,
   FiGlobe,
-  FiDollarSign,
   FiBook,
   FiUser,
   FiMessageCircle,
+  FiAlertCircle,
 } from "react-icons/fi";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -30,6 +30,7 @@ const ServiceLeadsTable = ({ token }) => {
   const [selectedLead, setSelectedLead] = useState(null);
   const [filters, setFilters] = useState({
     serviceType: "all",
+    jobSubType: "all",
     status: "all",
     source: "all",
     search: "",
@@ -43,9 +44,11 @@ const ServiceLeadsTable = ({ token }) => {
     pages: 0,
   });
   const [stats, setStats] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
 
   const fetchLeads = async () => {
     setLoading(true);
+    setFetchError(null);
     try {
       const params = {
         page: pagination.page,
@@ -59,9 +62,17 @@ const ServiceLeadsTable = ({ token }) => {
       });
 
       setLeads(res.data.leads);
-      setPagination(res.data.pagination);
+      // Preserve local `limit` so page-navigation spreads always have it
+      setPagination((prev) => ({ ...prev, ...res.data.pagination }));
     } catch (error) {
       console.error("Error fetching leads:", error);
+      if (!error.response) {
+        setFetchError("Cannot connect to server. Make sure the backend is running.");
+      } else if (error.response.status === 401) {
+        setFetchError("Session expired. Please log in again.");
+      } else {
+        setFetchError(error.response?.data?.message || "Failed to fetch leads. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -84,6 +95,7 @@ const ServiceLeadsTable = ({ token }) => {
   }, [
     pagination.page,
     filters.serviceType,
+    filters.jobSubType,
     filters.status,
     filters.source,
     filters.startDate,
@@ -174,6 +186,16 @@ const ServiceLeadsTable = ({ token }) => {
     }
   };
 
+  const getJobSubTypeColor = (subType) => {
+    switch (subType) {
+      case "HEALTHCARE_JOBS": return "bg-red-100 text-red-700";
+      case "JOBS_AFTER_12TH": return "bg-amber-100 text-amber-700";
+      case "TECHNICAL_JOBS": return "bg-blue-100 text-blue-700";
+      case "HOSPITALITY_JOBS": return "bg-orange-100 text-orange-700";
+      default: return "";
+    }
+  };
+
   const formatServiceType = (type) => {
     const names = {
       MBBS_INDIA: "MBBS India",
@@ -184,9 +206,20 @@ const ServiceLeadsTable = ({ token }) => {
     return names[type] || type;
   };
 
+  const formatJobSubType = (subType) => {
+    const names = {
+      HEALTHCARE_JOBS: "Healthcare Jobs",
+      JOBS_AFTER_12TH: "Jobs After 12th",
+      TECHNICAL_JOBS: "Technical Jobs",
+      HOSPITALITY_JOBS: "Hospitality Jobs",
+    };
+    return names[subType] || null;
+  };
+
   const clearFilters = () => {
     setFilters({
       serviceType: "all",
+      jobSubType: "all",
       status: "all",
       source: "all",
       search: "",
@@ -197,6 +230,7 @@ const ServiceLeadsTable = ({ token }) => {
 
   const hasActiveFilters =
     filters.serviceType !== "all" ||
+    filters.jobSubType !== "all" ||
     filters.status !== "all" ||
     filters.source !== "all" ||
     filters.startDate ||
@@ -296,7 +330,7 @@ const ServiceLeadsTable = ({ token }) => {
             )}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-600">
                 Service Type
@@ -313,6 +347,25 @@ const ServiceLeadsTable = ({ token }) => {
                 <option value="MBBS_ABROAD">MBBS Abroad</option>
                 <option value="STUDY_ABROAD">Study Abroad</option>
                 <option value="WORK_ABROAD">Work Abroad</option>
+              </select>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-slate-600">
+                Job Type
+              </label>
+              <select
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue bg-white text-slate-700"
+                value={filters.jobSubType}
+                onChange={(e) =>
+                  setFilters({ ...filters, jobSubType: e.target.value })
+                }
+              >
+                <option value="all">All Job Types</option>
+                <option value="HEALTHCARE_JOBS">Healthcare Jobs</option>
+                <option value="JOBS_AFTER_12TH">Jobs After 12th</option>
+                <option value="TECHNICAL_JOBS">Technical Jobs</option>
+                <option value="HOSPITALITY_JOBS">Hospitality Jobs</option>
               </select>
             </div>
 
@@ -393,6 +446,20 @@ const ServiceLeadsTable = ({ token }) => {
           <div className="inline-block w-10 h-10 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mb-3"></div>
           <p className="text-slate-500">Loading leads...</p>
         </div>
+      ) : fetchError ? (
+        <div className="bg-white rounded-xl p-12 text-center">
+          <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <FiAlertCircle className="text-red-400 text-2xl" />
+          </div>
+          <h3 className="text-lg font-semibold text-slate-800 mb-2">Could Not Load Leads</h3>
+          <p className="text-slate-500 mb-5 max-w-sm mx-auto">{fetchError}</p>
+          <button
+            onClick={() => { fetchLeads(); fetchStats(); }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-700 text-white rounded-xl font-medium hover:bg-blue-800 transition-colors"
+          >
+            <FiRefreshCw size={16} /> Retry
+          </button>
+        </div>
       ) : leads.length > 0 ? (
         <>
           {/* Desktop Table */}
@@ -446,13 +513,20 @@ const ServiceLeadsTable = ({ token }) => {
                         </div>
                       </td>
                       <td className="p-4">
-                        <span
-                          className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getServiceColor(
-                            lead.serviceType
-                          )}`}
-                        >
-                          {formatServiceType(lead.serviceType)}
-                        </span>
+                        <div className="flex flex-col gap-1">
+                          <span
+                            className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getServiceColor(
+                              lead.serviceType
+                            )}`}
+                          >
+                            {formatServiceType(lead.serviceType)}
+                          </span>
+                          {lead.jobSubType && formatJobSubType(lead.jobSubType) && (
+                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getJobSubTypeColor(lead.jobSubType)}`}>
+                              {formatJobSubType(lead.jobSubType)}
+                            </span>
+                          )}
+                        </div>
                       </td>
                       <td className="p-4 text-sm text-slate-600">
                         {lead.source || "-"}
@@ -557,6 +631,11 @@ const ServiceLeadsTable = ({ token }) => {
                   >
                     {formatServiceType(lead.serviceType)}
                   </span>
+                  {lead.jobSubType && formatJobSubType(lead.jobSubType) && (
+                    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getJobSubTypeColor(lead.jobSubType)}`}>
+                      {formatJobSubType(lead.jobSubType)}
+                    </span>
+                  )}
                   {lead.source && (
                     <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
                       {lead.source}
@@ -809,31 +888,62 @@ const ServiceLeadsTable = ({ token }) => {
               {selectedLead.serviceType === "WORK_ABROAD" && (
                 <div>
                   <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-2">
-                    <FiGlobe size={14} /> Work Abroad Details
+                    <FiGlobe size={14} />
+                    {formatJobSubType(selectedLead.jobSubType) || "Work Abroad"} Details
                   </h4>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-slate-400">Qualification</label>
                       <p className="font-medium text-slate-800">{selectedLead.qualification || "-"}</p>
                     </div>
+                    {selectedLead.jobSubType === "HEALTHCARE_JOBS" && (
+                      <div>
+                        <label className="text-xs text-slate-400">Specialization</label>
+                        <p className="font-medium text-slate-800">{selectedLead.specialization || "-"}</p>
+                      </div>
+                    )}
+                    {selectedLead.jobSubType !== "JOBS_AFTER_12TH" && (
+                      <div>
+                        <label className="text-xs text-slate-400">Experience</label>
+                        <p className="font-medium text-slate-800">{selectedLead.yearsOfExperience || "-"}</p>
+                      </div>
+                    )}
+                    {selectedLead.jobSubType === "JOBS_AFTER_12TH" && (
+                      <>
+                        <div>
+                          <label className="text-xs text-slate-400">Age Group</label>
+                          <p className="font-medium text-slate-800">{selectedLead.age || "-"}</p>
+                        </div>
+                        <div>
+                          <label className="text-xs text-slate-400">Driving License</label>
+                          <p className="font-medium text-slate-800">{selectedLead.drivingLicense || "-"}</p>
+                        </div>
+                      </>
+                    )}
+                    {selectedLead.jobSubType === "TECHNICAL_JOBS" && (
+                      <div>
+                        <label className="text-xs text-slate-400">Key Skills</label>
+                        <p className="font-medium text-slate-800">{selectedLead.keySkills || "-"}</p>
+                      </div>
+                    )}
                     <div>
-                      <label className="text-xs text-slate-400">Experience</label>
-                      <p className="font-medium text-slate-800">{selectedLead.yearsOfExperience || "-"}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs text-slate-400">English Level</label>
-                      <p className="font-medium text-slate-800">{selectedLead.englishLevel || "-"}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs text-slate-400">Certification</label>
-                      <p className="font-medium text-slate-800">{selectedLead.languageCertification || "-"}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs text-slate-400">Job Field</label>
+                      <label className="text-xs text-slate-400">Job Category</label>
                       <p className="font-medium text-slate-800">{selectedLead.jobField || "-"}</p>
                     </div>
                     <div>
-                      <label className="text-xs text-slate-400">Countries</label>
+                      <label className="text-xs text-slate-400">Language / Certification</label>
+                      <p className="font-medium text-slate-800">{selectedLead.languageCertification || "-"}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-400">Passport</label>
+                      <p className="font-medium text-slate-800">{selectedLead.passportAvailable || "-"}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-400">Timeline</label>
+                      <p className="font-medium text-slate-800">{selectedLead.planToGo || "-"}</p>
+                    </div>
+                    <div className="col-span-2">
+                      <label className="text-xs text-slate-400">Preferred Countries</label>
                       <p className="font-medium text-slate-800">
                         {selectedLead.countryPreferenceWork?.join(", ") || "-"}
                       </p>

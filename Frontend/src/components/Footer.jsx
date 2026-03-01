@@ -154,7 +154,7 @@ const Footer = () => {
                 { name: "Language Coaching", link: "/coaching" },
                 { name: "Eligibility Check", link: "/eligibility-check" },
                 { name: "Partner With Us", link: "/partner" },
-                { name: "Blog & News", link: "/blog" },
+                { name: "About Us", link: "/about" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -177,10 +177,7 @@ const Footer = () => {
 
             {/* Quick nav links */}
             <ul className="space-y-1.5 sm:space-y-2 mb-4">
-              {[
-                { name: "Contact", link: "/contact" },
-                { name: "Services", link: "/services" },
-              ].map((item) => (
+              {[{ name: "Contact", link: "/contact" }].map((item) => (
                 <li key={item.name}>
                   <Link
                     to={item.link}
