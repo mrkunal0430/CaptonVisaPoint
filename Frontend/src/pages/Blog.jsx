@@ -126,40 +126,6 @@ const Blog = () => {
               Expert guidance on study abroad, visa processes, scholarships, and
               immigration news from around the world.
             </p>
-
-            {/* Search Bar */}
-            <div className="max-w-xl mx-auto relative">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl" />
-              <input
-                type="text"
-                placeholder="Search articles by title, topic, or keyword..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 rounded-2xl bg-white/95 backdrop-blur text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-500/30 shadow-2xl transition-all"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Category Filter */}
-      <section className="sticky top-20 z-30 bg-white border-b border-slate-200 shadow-sm">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-2 py-4 overflow-x-auto scrollbar-hide">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                  activeCategory === category.id
-                    ? "bg-brand-blue text-white shadow-lg shadow-blue-500/25"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                }`}
-              >
-                <category.icon size={16} />
-                {category.name}
-              </button>
-            ))}
           </div>
         </div>
       </section>
