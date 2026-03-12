@@ -6,9 +6,9 @@ import { FiCheckCircle, FiArrowRight } from "react-icons/fi";
 // Import map images so Vite bundles them reliably
 import russiaMap from "../assets/Home_Map/Russia.webp";
 import georgiaMap from "../assets/Home_Map/Georgia.webp";
-import uzbekistanMap from "../assets/Home_Map/Uzbekistan.webp";
+import uzbekistanMap from "../assets/Home_Map/Uzbekisthan.webp";
 import kazakhstanMap from "../assets/Home_Map/Kazakhstan.webp";
-import kyrgyzstanMap from "../assets/Home_Map/Kyrgyzstan.webp";
+import kyrgyzstanMap from "../assets/Home_Map/Kyrgystan.webp";
 import tajikistanMap from "../assets/Home_Map/Tajikistan.jpg";
 
 // MBBS destination data with country maps and visa types
