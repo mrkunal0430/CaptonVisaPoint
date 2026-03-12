@@ -3,6 +3,14 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiCheckCircle, FiArrowRight } from "react-icons/fi";
 
+// Import map images so Vite bundles them reliably
+import russiaMap from "/Home_Map/Russia.webp";
+import georgiaMap from "/Home_Map/Georgia.webp";
+import uzbekistanMap from "/Home_Map/Uzbekisthan.webp";
+import kazakhstanMap from "/Home_Map/Kazakhstan.webp";
+import kyrgyzstanMap from "/Home_Map/Kyrgystan.webp";
+import tajikistanMap from "/Home_Map/Tajikistan.jpg";
+
 // MBBS destination data with country maps and visa types
 const mbbsCountries = [
   {
@@ -11,7 +19,7 @@ const mbbsCountries = [
     gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
-        src="/Home_Map/Russia.webp"
+        src={russiaMap}
         alt="Russia map"
         loading="lazy"
         className="w-full h-full object-contain"
@@ -32,7 +40,7 @@ const mbbsCountries = [
     gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
-        src="/Home_Map/Georgia.webp"
+        src={georgiaMap}
         alt="Georgia map"
         loading="lazy"
         className="w-full h-full object-contain"
@@ -53,7 +61,7 @@ const mbbsCountries = [
     gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
-        src="/Home_Map/Uzbekisthan.webp"
+        src={uzbekistanMap}
         alt="Uzbekistan map"
         loading="lazy"
         className="w-full h-full object-contain"
@@ -74,7 +82,7 @@ const mbbsCountries = [
     gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
-        src="/Home_Map/Kazakhstan.webp"
+        src={kazakhstanMap}
         alt="Kazakhstan map"
         loading="lazy"
         className="w-full h-full object-contain"
@@ -95,7 +103,7 @@ const mbbsCountries = [
     gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
-        src="/Home_Map/Kyrgystan.webp"
+        src={kyrgyzstanMap}
         alt="Kyrgyzstan map"
         loading="lazy"
         className="w-full h-full object-contain"
@@ -116,7 +124,7 @@ const mbbsCountries = [
     gradient: "from-blue-700 via-blue-800 to-blue-900",
     mapSvg: (
       <img
-        src="/Home_Map/Tajikistan.jpg"
+        src={tajikistanMap}
         alt="Tajikistan map"
         loading="lazy"
         className="w-full h-full object-contain"

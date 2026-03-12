@@ -13,9 +13,9 @@ import {
 } from "react-icons/fi";
 import {
   FaFacebookF,
-  FaTwitter,
+  FaInstagram,
   FaLinkedinIn,
-  FaWhatsapp,
+  FaYoutube,
 } from "react-icons/fa";
 import axios from "axios";
 
@@ -25,10 +25,16 @@ const API_URL = import.meta.env.VITE_API_URL;
 const parseContent = (content) => {
   if (!content) return "";
 
-  // Split content by paragraphs
-  const paragraphs = content.split("\n\n");
+  // Split content by double newlines into paragraphs
+  const paragraphs = content.split(/\n\s*\n/);
 
   return paragraphs.map((paragraph, pIndex) => {
+    // Skip empty paragraphs
+    if (!paragraph.trim()) return null;
+
+    // Split paragraph by single newlines to preserve line breaks
+    const lines = paragraph.split("\n");
+
     // URL regex pattern
     const urlPattern =
       /(https?:\/\/[^\s<]+[^<.,:;"')\]\s])|(?:www\.[^\s<]+[^<.,:;"')\]\s])/gi;
@@ -36,76 +42,87 @@ const parseContent = (content) => {
     // Email pattern
     const emailPattern = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/gi;
 
-    // Split paragraph into parts (text and URLs)
-    const parts = [];
-    let lastIndex = 0;
-    let match;
+    // Process a single line: find URLs/emails and return array of React elements
+    const processLine = (line, lineIndex) => {
+      const parts = [];
+      let lastIndex = 0;
+      let match;
 
-    // Find URLs
-    const allMatches = [];
-    while ((match = urlPattern.exec(paragraph)) !== null) {
-      allMatches.push({ type: "url", match: match[0], index: match.index });
-    }
+      // Find URLs and emails
+      const allMatches = [];
+      urlPattern.lastIndex = 0;
+      emailPattern.lastIndex = 0;
 
-    // Find emails
-    while ((match = emailPattern.exec(paragraph)) !== null) {
-      allMatches.push({ type: "email", match: match[0], index: match.index });
-    }
-
-    // Sort by index
-    allMatches.sort((a, b) => a.index - b.index);
-
-    // Build parts array
-    allMatches.forEach((item, i) => {
-      if (item.index > lastIndex) {
-        parts.push({
-          type: "text",
-          content: paragraph.slice(lastIndex, item.index),
-        });
+      while ((match = urlPattern.exec(line)) !== null) {
+        allMatches.push({ type: "url", match: match[0], index: match.index });
       }
-      parts.push({ type: item.type, content: item.match });
-      lastIndex = item.index + item.match.length;
-    });
+      while ((match = emailPattern.exec(line)) !== null) {
+        allMatches.push({ type: "email", match: match[0], index: match.index });
+      }
 
-    if (lastIndex < paragraph.length) {
-      parts.push({ type: "text", content: paragraph.slice(lastIndex) });
-    }
+      // Sort by index
+      allMatches.sort((a, b) => a.index - b.index);
 
-    if (parts.length === 0) {
-      parts.push({ type: "text", content: paragraph });
-    }
+      // Build parts array
+      allMatches.forEach((item) => {
+        if (item.index > lastIndex) {
+          parts.push({
+            type: "text",
+            content: line.slice(lastIndex, item.index),
+          });
+        }
+        parts.push({ type: item.type, content: item.match });
+        lastIndex = item.index + item.match.length;
+      });
+
+      if (lastIndex < line.length) {
+        parts.push({ type: "text", content: line.slice(lastIndex) });
+      }
+
+      if (parts.length === 0) {
+        parts.push({ type: "text", content: line });
+      }
+
+      return parts.map((part, i) => {
+        const key = `${lineIndex}-${i}`;
+        if (part.type === "url") {
+          const href = part.content.startsWith("http")
+            ? part.content
+            : `https://${part.content}`;
+          return (
+            <a
+              key={key}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-blue hover:text-blue-700 underline decoration-blue-300 hover:decoration-blue-500 transition-colors font-medium"
+            >
+              {part.content}
+            </a>
+          );
+        } else if (part.type === "email") {
+          return (
+            <a
+              key={key}
+              href={`mailto:${part.content}`}
+              className="text-brand-blue hover:text-blue-700 underline decoration-blue-300 hover:decoration-blue-500 transition-colors font-medium"
+            >
+              {part.content}
+            </a>
+          );
+        }
+        return <span key={key}>{part.content}</span>;
+      });
+    };
 
     return (
       <p key={pIndex} className="mb-6 leading-relaxed">
-        {parts.map((part, i) => {
-          if (part.type === "url") {
-            const href = part.content.startsWith("http")
-              ? part.content
-              : `https://${part.content}`;
-            return (
-              <a
-                key={i}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-blue hover:text-blue-700 underline decoration-blue-300 hover:decoration-blue-500 transition-colors font-medium"
-              >
-                {part.content}
-              </a>
-            );
-          } else if (part.type === "email") {
-            return (
-              <a
-                key={i}
-                href={`mailto:${part.content}`}
-                className="text-brand-blue hover:text-blue-700 underline decoration-blue-300 hover:decoration-blue-500 transition-colors font-medium"
-              >
-                {part.content}
-              </a>
-            );
-          }
-          return <span key={i}>{part.content}</span>;
-        })}
+        {lines.map((line, lineIndex) => (
+          <span key={lineIndex}>
+            {lineIndex > 0 && <br />}
+            {processLine(line, lineIndex)}
+          </span>
+        ))}
       </p>
     );
   });
@@ -141,7 +158,7 @@ const BlogDetail = () => {
             (b) =>
               b._id !== id &&
               (b.category === res.data.blog.category ||
-                b.author === res.data.blog.author)
+                b.author === res.data.blog.author),
           )
           .slice(0, 3);
         setRelatedBlogs(related);
@@ -164,9 +181,7 @@ const BlogDetail = () => {
 
     const shareUrls = {
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-      twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
       linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`,
-      whatsapp: `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`,
     };
 
     if (shareUrls[platform]) {
@@ -213,7 +228,10 @@ const BlogDetail = () => {
     <div className="bg-slate-50 min-h-screen">
       <SEO
         title={blog?.title || "Blog"}
-        description={blog?.excerpt || "Read this article on Capton Visa Point blog for expert guidance on studying abroad, MBBS, and immigration."}
+        description={
+          blog?.excerpt ||
+          "Read this article on Capton Visa Point blog for expert guidance on studying abroad, MBBS, and immigration."
+        }
         keywords={`${blog?.category || "study abroad"}, ${(blog?.tags || []).join(", ")}, Capton Visa Point blog, education articles`}
       />
       {/* Hero Image */}
@@ -221,7 +239,7 @@ const BlogDetail = () => {
         <img
           src={getBlogImageUrl(
             blog,
-            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200"
+            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200",
           )}
           alt={blog.title}
           className="w-full h-full object-cover"
@@ -320,7 +338,7 @@ const BlogDetail = () => {
               )}
 
               {/* Excerpt */}
-              <div className="bg-slate-50 rounded-2xl p-6 mb-8 border-l-4 border-brand-blue">
+              <div className="bg-slate-50 rounded-2xl p-6 mb-8">
                 <p className="text-lg text-slate-700 italic leading-relaxed">
                   {blog.excerpt}
                 </p>
@@ -346,13 +364,15 @@ const BlogDetail = () => {
                     >
                       <FaFacebookF />
                     </button>
-                    <button
-                      onClick={() => handleShare("twitter")}
-                      className="w-10 h-10 bg-[#1DA1F2] text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
-                      title="Share on Twitter"
+                    <a
+                      href="https://www.instagram.com/captonvisapoint?igsh=MXUyeW11eWRzZDVpdg=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
+                      title="Follow on Instagram"
                     >
-                      <FaTwitter />
-                    </button>
+                      <FaInstagram />
+                    </a>
                     <button
                       onClick={() => handleShare("linkedin")}
                       className="w-10 h-10 bg-[#0A66C2] text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
@@ -360,13 +380,15 @@ const BlogDetail = () => {
                     >
                       <FaLinkedinIn />
                     </button>
-                    <button
-                      onClick={() => handleShare("whatsapp")}
-                      className="w-10 h-10 bg-[#25D366] text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
-                      title="Share on WhatsApp"
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-[#FF0000] text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
+                      title="Subscribe on YouTube"
                     >
-                      <FaWhatsapp />
-                    </button>
+                      <FaYoutube />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -389,7 +411,7 @@ const BlogDetail = () => {
                         <img
                           src={getBlogImageUrl(
                             relatedBlog,
-                            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400"
+                            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400",
                           )}
                           alt={relatedBlog.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -414,35 +436,6 @@ const BlogDetail = () => {
           </div>
         </div>
       </article>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-brand-blue to-blue-700">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="text-blue-100 mb-8 text-lg">
-              Get personalized guidance from our expert counselors. We've helped
-              thousands of students achieve their dreams of studying abroad.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/contact"
-                className="px-8 py-4 bg-white text-brand-blue rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-lg"
-              >
-                Book Free Consultation
-              </Link>
-              <Link
-                to="/blog"
-                className="px-8 py-4 bg-transparent text-white border-2 border-white/50 rounded-xl font-semibold hover:bg-white/10 transition-colors"
-              >
-                Explore More Articles
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
