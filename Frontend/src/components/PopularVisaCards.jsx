@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { FiCheckCircle, FiArrowRight } from "react-icons/fi";
 
 // Import map images so Vite bundles them reliably
-import russiaMap from "/Home_Map/Russia.webp";
-import georgiaMap from "/Home_Map/Georgia.webp";
-import uzbekistanMap from "/Home_Map/Uzbekisthan.webp";
-import kazakhstanMap from "/Home_Map/Kazakhstan.webp";
-import kyrgyzstanMap from "/Home_Map/Kyrgystan.webp";
-import tajikistanMap from "/Home_Map/Tajikistan.jpg";
+import russiaMap from "../assets/Home_Map/Russia.webp";
+import georgiaMap from "../assets/Home_Map/Georgia.webp";
+import uzbekistanMap from "../assets/Home_Map/Uzbekistan.webp";
+import kazakhstanMap from "../assets/Home_Map/Kazakhstan.webp";
+import kyrgyzstanMap from "../assets/Home_Map/Kyrgyzstan.webp";
+import tajikistanMap from "../assets/Home_Map/Tajikistan.jpg";
 
 // MBBS destination data with country maps and visa types
 const mbbsCountries = [
