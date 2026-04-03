@@ -161,7 +161,7 @@ const Blog = () => {
                       <div className="h-64 lg:h-96 overflow-hidden relative">
                         <img
                           src={getBlogImageUrl(featuredBlog)}
-                          alt={featuredBlog.title}
+                          alt={featuredBlog.altTag || featuredBlog.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent lg:hidden"></div>
@@ -230,7 +230,7 @@ const Blog = () => {
                         <div className="h-52 overflow-hidden relative">
                           <img
                             src={getBlogImageUrl(post)}
-                            alt={post.title}
+                            alt={post.altTag || post.title}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>

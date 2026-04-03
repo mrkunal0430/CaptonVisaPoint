@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import DOMPurify from "dompurify";
 import SEO from "../components/SEO";
 import { getBlogImageUrl } from "../utils/blog";
+import "../styles/blog-content.css";
 import {
   FiCalendar,
   FiUser,
@@ -21,34 +23,60 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-// Function to convert URLs in text to clickable links
+// Detect whether content is HTML (from TinyMCE) or plain text (legacy)
+const isHtmlContent = (content) => {
+  if (!content) return false;
+  return /<[a-z][\s\S]*>/i.test(content);
+};
+
+// Strip HTML tags for calculating reading time
+const stripHtml = (html) => {
+  if (!html) return "";
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || "";
+};
+
+// Sanitize HTML content to prevent XSS
+const sanitizeHtml = (html) => {
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
+      "h1", "h2", "h3", "h4", "h5", "h6",
+      "p", "br", "hr",
+      "strong", "b", "em", "i", "u", "s", "sub", "sup",
+      "ul", "ol", "li",
+      "a",
+      "blockquote",
+      "span", "div",
+    ],
+    ALLOWED_ATTR: [
+      "href", "target", "rel",
+      "style", "class",
+    ],
+    ADD_ATTR: ["target"],
+  });
+};
+
+// Legacy plain-text content renderer (for old blog posts)
 const parseContent = (content) => {
   if (!content) return "";
 
-  // Split content by double newlines into paragraphs
   const paragraphs = content.split(/\n\s*\n/);
 
   return paragraphs.map((paragraph, pIndex) => {
-    // Skip empty paragraphs
     if (!paragraph.trim()) return null;
 
-    // Split paragraph by single newlines to preserve line breaks
     const lines = paragraph.split("\n");
 
-    // URL regex pattern
     const urlPattern =
       /(https?:\/\/[^\s<]+[^<.,:;"')\]\s])|(?:www\.[^\s<]+[^<.,:;"')\]\s])/gi;
-
-    // Email pattern
     const emailPattern = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/gi;
 
-    // Process a single line: find URLs/emails and return array of React elements
     const processLine = (line, lineIndex) => {
       const parts = [];
       let lastIndex = 0;
       let match;
 
-      // Find URLs and emails
       const allMatches = [];
       urlPattern.lastIndex = 0;
       emailPattern.lastIndex = 0;
@@ -57,13 +85,15 @@ const parseContent = (content) => {
         allMatches.push({ type: "url", match: match[0], index: match.index });
       }
       while ((match = emailPattern.exec(line)) !== null) {
-        allMatches.push({ type: "email", match: match[0], index: match.index });
+        allMatches.push({
+          type: "email",
+          match: match[0],
+          index: match.index,
+        });
       }
 
-      // Sort by index
       allMatches.sort((a, b) => a.index - b.index);
 
-      // Build parts array
       allMatches.forEach((item) => {
         if (item.index > lastIndex) {
           parts.push({
@@ -132,7 +162,8 @@ const parseContent = (content) => {
 const calculateReadingTime = (content) => {
   if (!content) return 1;
   const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
+  const text = isHtmlContent(content) ? stripHtml(content) : content;
+  const words = text.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / wordsPerMinute));
 };
 
@@ -223,12 +254,14 @@ const BlogDetail = () => {
   }
 
   const readingTime = calculateReadingTime(blog.content);
+  const htmlMode = isHtmlContent(blog.content);
 
   return (
     <div className="bg-slate-50 min-h-screen">
       <SEO
-        title={blog?.title || "Blog"}
+        title={blog?.metaTitle || blog?.title || "Blog"}
         description={
+          blog?.metaDescription ||
           blog?.excerpt ||
           "Read this article on Capton Visa Point blog for expert guidance on studying abroad, MBBS, and immigration."
         }
@@ -241,7 +274,7 @@ const BlogDetail = () => {
             blog,
             "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200",
           )}
-          alt={blog.title}
+          alt={blog.altTag || blog.title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
@@ -345,9 +378,18 @@ const BlogDetail = () => {
               </div>
 
               {/* Main Content */}
-              <div className="prose prose-lg max-w-none text-slate-700">
-                {parseContent(blog.content)}
-              </div>
+              {htmlMode ? (
+                <div
+                  className="blog-content"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(blog.content),
+                  }}
+                />
+              ) : (
+                <div className="prose prose-lg max-w-none text-slate-700">
+                  {parseContent(blog.content)}
+                </div>
+              )}
 
               {/* Share Section */}
               <div className="mt-12 pt-8 border-t border-slate-100">
@@ -413,7 +455,7 @@ const BlogDetail = () => {
                             relatedBlog,
                             "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400",
                           )}
-                          alt={relatedBlog.title}
+                          alt={relatedBlog.altTag || relatedBlog.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>

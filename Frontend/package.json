@@ -11,11 +11,15 @@
     "preview": "vite preview"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "@tinymce/tinymce-react": "^6.3.0",
     "axios": "^1.13.2",
+    "dompurify": "^3.3.3",
     "framer-motion": "^12.24.12",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 import axios from "axios";
 import { getBlogImageUrl } from "../../utils/blog";
 import {
@@ -17,9 +18,32 @@ import {
   FiAlertCircle,
   FiUpload,
   FiTag,
+  FiChevronDown,
+  FiChevronUp,
+  FiSearch,
 } from "react-icons/fi";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const TINYMCE_API_KEY = "oyfqj8iq5n3427kxgalaxnnbmzbsvcvzr3qtoyn9miamiqwm";
+
+// Auto-generate slug from a title
+const slugify = (text) => {
+  if (!text) return "";
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+};
+
+// Strip HTML tags for word count
+const stripHtml = (html) => {
+  if (!html) return "";
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || "";
+};
 
 const BlogManager = ({ token }) => {
   const [blogs, setBlogs] = useState([]);
@@ -29,6 +53,9 @@ const BlogManager = ({ token }) => {
   const [editingBlog, setEditingBlog] = useState(null);
   const [formError, setFormError] = useState("");
   const [imageError, setImageError] = useState(false);
+  const [showSeoFields, setShowSeoFields] = useState(false);
+  const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
+  const editorRef = useRef(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -38,6 +65,10 @@ const BlogManager = ({ token }) => {
     author: "Admin",
     isPublished: true,
     tags: [],
+    altTag: "",
+    metaTitle: "",
+    metaDescription: "",
+    slug: "",
   });
 
   // Image states
@@ -66,6 +97,13 @@ const BlogManager = ({ token }) => {
     fetchBlogs();
   }, []);
 
+  // Auto-generate slug from title
+  useEffect(() => {
+    if (!slugManuallyEdited && formData.title) {
+      setFormData((prev) => ({ ...prev, slug: slugify(prev.title) }));
+    }
+  }, [formData.title, slugManuallyEdited]);
+
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this blog post?")) {
       try {
@@ -90,6 +128,10 @@ const BlogManager = ({ token }) => {
       author: blog.author,
       isPublished: blog.isPublished,
       tags: blog.tags || [],
+      altTag: blog.altTag || "",
+      metaTitle: blog.metaTitle || "",
+      metaDescription: blog.metaDescription || "",
+      slug: blog.slug || "",
     });
 
     const imgUrl = getBlogImageUrl(blog, "");
@@ -98,6 +140,8 @@ const BlogManager = ({ token }) => {
     setTagInput("");
     setFormError("");
     setImageError(false);
+    setSlugManuallyEdited(!!blog.slug);
+    setShowSeoFields(!!(blog.metaTitle || blog.metaDescription || blog.altTag));
     setShowModal(true);
   };
 
@@ -111,29 +155,50 @@ const BlogManager = ({ token }) => {
       author: "Admin",
       isPublished: true,
       tags: [],
+      altTag: "",
+      metaTitle: "",
+      metaDescription: "",
+      slug: "",
     });
     setImageFile(null);
     setImagePreview("");
     setTagInput("");
     setFormError("");
     setImageError(false);
+    setSlugManuallyEdited(false);
+    setShowSeoFields(false);
     setShowModal(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError("");
+
+    // Get content from TinyMCE editor
+    const editorContent = editorRef.current
+      ? editorRef.current.getContent()
+      : formData.content;
+
+    if (!editorContent || stripHtml(editorContent).trim().length === 0) {
+      setFormError("Content is required. Please write your blog post.");
+      return;
+    }
+
     setSaving(true);
 
     try {
       const submitData = new FormData();
       submitData.append("title", formData.title);
       submitData.append("excerpt", formData.excerpt);
-      submitData.append("content", formData.content);
+      submitData.append("content", editorContent);
       submitData.append("category", formData.category);
       submitData.append("author", formData.author);
       submitData.append("isPublished", formData.isPublished);
       submitData.append("tags", JSON.stringify(formData.tags));
+      submitData.append("slug", formData.slug);
+      submitData.append("altTag", formData.altTag);
+      submitData.append("metaTitle", formData.metaTitle);
+      submitData.append("metaDescription", formData.metaDescription);
 
       if (imageFile) {
         submitData.append("image", imageFile);
@@ -240,6 +305,10 @@ const BlogManager = ({ token }) => {
       submitData.append("author", blog.author);
       submitData.append("isPublished", !blog.isPublished);
       submitData.append("tags", JSON.stringify(blog.tags || []));
+      submitData.append("slug", blog.slug || "");
+      submitData.append("altTag", blog.altTag || "");
+      submitData.append("metaTitle", blog.metaTitle || "");
+      submitData.append("metaDescription", blog.metaDescription || "");
 
       await axios.put(`${API_URL}/blogs/${blog._id}`, submitData, {
         headers: { Authorization: `Bearer ${token}` },
@@ -250,6 +319,10 @@ const BlogManager = ({ token }) => {
       alert("Failed to update blog status");
     }
   };
+
+  const contentWordCount = stripHtml(formData.content)
+    .split(/\s+/)
+    .filter(Boolean).length;
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -301,7 +374,7 @@ const BlogManager = ({ token }) => {
                     blog,
                     "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400"
                   )}
-                  alt={blog.title}
+                  alt={blog.altTag || blog.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Status Badge */}
@@ -420,7 +493,7 @@ const BlogManager = ({ token }) => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="bg-white w-full sm:w-auto sm:max-w-2xl sm:mx-4 sm:rounded-2xl rounded-t-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+          <div className="bg-white w-full sm:w-auto sm:max-w-3xl sm:mx-4 sm:rounded-2xl rounded-t-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
             {/* Modal Header */}
             <div className="p-4 md:p-6 border-b border-slate-100 flex justify-between items-center bg-white sticky top-0 z-10">
               <div>
@@ -477,6 +550,32 @@ const BlogManager = ({ token }) => {
                     setFormData({ ...formData, title: e.target.value })
                   }
                 />
+              </div>
+
+              {/* Slug (auto-generated) */}
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700 flex items-center gap-2">
+                  URL Slug
+                  <span className="text-xs text-slate-400 font-normal">
+                    (auto-generated from title)
+                  </span>
+                </label>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-slate-400 shrink-0">/blog/</span>
+                  <input
+                    type="text"
+                    placeholder="auto-generated-slug"
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all text-sm font-mono"
+                    value={formData.slug}
+                    onChange={(e) => {
+                      setSlugManuallyEdited(true);
+                      setFormData({
+                        ...formData,
+                        slug: slugify(e.target.value),
+                      });
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Category & Author */}
@@ -590,33 +689,57 @@ const BlogManager = ({ token }) => {
                 ></textarea>
               </div>
 
-              {/* Content */}
+              {/* Content — TinyMCE Editor */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-medium text-slate-700">
-                    Content *{" "}
-                    <span className="text-slate-400 font-normal">
-                      (URLs will be clickable)
-                    </span>
+                    Content *
                   </label>
                   <span className="text-xs text-slate-400">
-                    {formData.content.split(/\s+/).filter(Boolean).length} words
+                    {contentWordCount} words
                   </span>
                 </div>
-                <textarea
-                  required
-                  rows="10"
-                  placeholder="Write your blog content here. Any URLs or email addresses will automatically become clickable links.
-
-You can write multiple paragraphs by pressing Enter twice.
-
-The content can be as long as you need - there's no character limit."
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue font-mono text-sm transition-all resize-y min-h-[200px]"
-                  value={formData.content}
-                  onChange={(e) =>
-                    setFormData({ ...formData, content: e.target.value })
-                  }
-                ></textarea>
+                <div className="rounded-xl overflow-hidden border border-slate-200">
+                  <Editor
+                    apiKey={TINYMCE_API_KEY}
+                    onInit={(_evt, editor) => (editorRef.current = editor)}
+                    initialValue={formData.content}
+                    onEditorChange={(content) =>
+                      setFormData((prev) => ({ ...prev, content }))
+                    }
+                    init={{
+                      height: 400,
+                      menubar: false,
+                      plugins: ["lists", "link", "autolink"],
+                      toolbar:
+                        "blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | removeformat",
+                      block_formats:
+                        "Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3",
+                      content_style: `
+                        body {
+                          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                          font-size: 16px;
+                          line-height: 1.7;
+                          color: #334155;
+                          padding: 16px;
+                        }
+                        h1 { font-size: 1.875rem; font-weight: 800; color: #0f172a; margin: 1.5rem 0 0.75rem; }
+                        h2 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin: 1.25rem 0 0.625rem; }
+                        h3 { font-size: 1.25rem; font-weight: 600; color: #1e293b; margin: 1rem 0 0.5rem; }
+                        p { margin: 0 0 1rem; }
+                        a { color: #2563eb; text-decoration: underline; }
+                        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+                        li { margin-bottom: 0.25rem; }
+                      `,
+                      placeholder: "Write your blog content here...",
+                      branding: false,
+                      statusbar: true,
+                      resize: true,
+                      skin: "oxide",
+                      promotion: false,
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Image Upload */}
@@ -690,6 +813,123 @@ The content can be as long as you need - there's no character limit."
                 <p className="text-xs text-slate-400">
                   Upload a blog cover image. Leave empty to use default image.
                 </p>
+              </div>
+
+              {/* Image Alt Tag */}
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700 flex items-center gap-2">
+                  Image Alt Text
+                  <span className="text-xs text-slate-400 font-normal">
+                    (improves SEO &amp; accessibility)
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Describe the image, e.g. 'Students studying abroad in Germany'"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all"
+                  value={formData.altTag}
+                  onChange={(e) =>
+                    setFormData({ ...formData, altTag: e.target.value })
+                  }
+                />
+              </div>
+
+              {/* SEO Fields — Collapsible */}
+              <div className="border border-slate-200 rounded-xl overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setShowSeoFields(!showSeoFields)}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-slate-50 hover:bg-slate-100 transition-colors text-sm font-medium text-slate-700"
+                >
+                  <span className="flex items-center gap-2">
+                    <FiSearch size={16} />
+                    SEO Settings
+                    <span className="text-xs text-slate-400 font-normal">
+                      (optional)
+                    </span>
+                  </span>
+                  {showSeoFields ? (
+                    <FiChevronUp size={18} />
+                  ) : (
+                    <FiChevronDown size={18} />
+                  )}
+                </button>
+
+                {showSeoFields && (
+                  <div className="p-4 space-y-4 border-t border-slate-200">
+                    {/* Meta Title */}
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-medium text-slate-700">
+                          Meta Title
+                        </label>
+                        <span
+                          className={`text-xs ${formData.metaTitle.length > 60 ? "text-orange-500" : "text-slate-400"}`}
+                        >
+                          {formData.metaTitle.length}/60
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Custom SEO title (defaults to blog title)"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all text-sm"
+                        value={formData.metaTitle}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            metaTitle: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    {/* Meta Description */}
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-medium text-slate-700">
+                          Meta Description
+                        </label>
+                        <span
+                          className={`text-xs ${formData.metaDescription.length > 160 ? "text-orange-500" : "text-slate-400"}`}
+                        >
+                          {formData.metaDescription.length}/160
+                        </span>
+                      </div>
+                      <textarea
+                        rows="2"
+                        placeholder="Custom SEO description (defaults to excerpt)"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all text-sm resize-y min-h-[60px]"
+                        value={formData.metaDescription}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            metaDescription: e.target.value,
+                          })
+                        }
+                      ></textarea>
+                    </div>
+
+                    {/* SEO Preview */}
+                    <div className="p-3 bg-white rounded-lg border border-slate-100">
+                      <p className="text-xs text-slate-400 mb-2 font-medium">
+                        Google Search Preview
+                      </p>
+                      <p className="text-blue-700 text-base font-medium truncate">
+                        {formData.metaTitle || formData.title || "Blog Title"} |
+                        Capton Visa Point
+                      </p>
+                      <p className="text-green-700 text-xs truncate mt-0.5">
+                        captonvisapoint.com/blog/
+                        {formData.slug || "your-blog-slug"}
+                      </p>
+                      <p className="text-slate-500 text-xs mt-1 line-clamp-2">
+                        {formData.metaDescription ||
+                          formData.excerpt ||
+                          "Your blog excerpt will appear here..."}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Publish Toggle */}

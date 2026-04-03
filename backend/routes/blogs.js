@@ -49,6 +49,17 @@ const parseTags = (tagsInput) => {
   return tagsInput.split(',').map(t => t.trim()).filter(Boolean);
 };
 
+// Helper: generate slug from title
+const generateSlug = (title) => {
+  if (!title) return '';
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+};
+
 // @route   GET /api/blogs
 // @desc    Get all published blogs (Public)
 // @access  Public
@@ -90,6 +101,24 @@ router.get('/admin', protect, async (req, res) => {
   }
 });
 
+// @route   GET /api/blogs/slug/:slug
+// @desc    Get single blog by slug
+// @access  Public
+router.get('/slug/:slug', async (req, res) => {
+  try {
+    const blog = await Blog.findOne({ slug: req.params.slug, isPublished: true });
+
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.json({ success: true, blog });
+  } catch (error) {
+    console.error('Get Blog by Slug Error:', error);
+    res.status(500).json({ message: 'Failed to fetch blog' });
+  }
+});
+
 // @route   GET /api/blogs/:id
 // @desc    Get single blog
 // @access  Public
@@ -113,7 +142,7 @@ router.get('/:id', async (req, res) => {
 // @access  Private (Admin only)
 router.post('/', protect, upload.single('image'), async (req, res) => {
   try {
-    const { title, excerpt, content, category, author, isPublished } = req.body;
+    const { title, excerpt, content, category, author, isPublished, slug, metaTitle, metaDescription, altTag } = req.body;
     const tags = parseTags(req.body.tags);
 
     // Validate required fields
@@ -140,6 +169,10 @@ router.post('/', protect, upload.single('image'), async (req, res) => {
       tags,
       author: author || 'Admin',
       image: imageData,
+      altTag: altTag || '',
+      slug: slug || generateSlug(title),
+      metaTitle: metaTitle || '',
+      metaDescription: metaDescription || '',
       isPublished: isPublished !== 'false' && isPublished !== false
     });
 
@@ -150,6 +183,9 @@ router.post('/', protect, upload.single('image'), async (req, res) => {
     });
   } catch (error) {
     console.error('Create Blog Error:', error);
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'A blog with this slug already exists. Please use a different title or slug.' });
+    }
     res.status(500).json({ message: 'Failed to create blog' });
   }
 });
@@ -164,7 +200,7 @@ router.put('/:id', protect, upload.single('image'), async (req, res) => {
       return res.status(404).json({ message: 'Blog not found' });
     }
 
-    const { title, excerpt, content, category, author, isPublished } = req.body;
+    const { title, excerpt, content, category, author, isPublished, slug, metaTitle, metaDescription, altTag } = req.body;
     const tags = parseTags(req.body.tags);
 
     const updateData = {
@@ -174,6 +210,10 @@ router.put('/:id', protect, upload.single('image'), async (req, res) => {
       category,
       tags,
       author,
+      altTag: altTag || '',
+      slug: slug || generateSlug(title),
+      metaTitle: metaTitle || '',
+      metaDescription: metaDescription || '',
       isPublished: isPublished !== 'false' && isPublished !== false,
     };
 
@@ -204,6 +244,9 @@ router.put('/:id', protect, upload.single('image'), async (req, res) => {
     });
   } catch (error) {
     console.error('Update Blog Error:', error);
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'A blog with this slug already exists. Please use a different slug.' });
+    }
     res.status(500).json({ message: 'Failed to update blog' });
   }
 });
