@@ -24,7 +24,7 @@ import {
 } from "react-icons/fi";
 
 const API_URL = import.meta.env.VITE_API_URL;
-const TINYMCE_API_KEY = import.meta.env.VITE_TINYMCE_API_KEY;
+const TINYMCE_API_KEY = "oyfqj8iq5n3427kxgalaxnnbmzbsvcvzr3qtoyn9miamiqwm";
 
 // Auto-generate slug from a title
 const slugify = (text) => {
@@ -55,41 +55,7 @@ const BlogManager = ({ token }) => {
   const [imageError, setImageError] = useState(false);
   const [showSeoFields, setShowSeoFields] = useState(false);
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
-  const [wordCount, setWordCount] = useState(0);
   const editorRef = useRef(null);
-  
-  // Stabilize TinyMCE configuration
-  const editorConfig = {
-    height: 400,
-    menubar: false,
-    plugins: ["lists", "link", "autolink"],
-    toolbar:
-      "blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | removeformat",
-    block_formats:
-      "Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3",
-    content_style: `
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 16px;
-        line-height: 1.7;
-        color: #334155;
-        padding: 16px;
-      }
-      h1 { font-size: 1.875rem; font-weight: 800; color: #0f172a; margin: 1.5rem 0 0.75rem; }
-      h2 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin: 1.25rem 0 0.625rem; }
-      h3 { font-size: 1.25rem; font-weight: 600; color: #1e293b; margin: 1rem 0 0.5rem; }
-      p { margin: 0 0 1rem; }
-      a { color: #2563eb; text-decoration: underline; }
-      ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
-      li { margin-bottom: 0.25rem; }
-    `,
-    placeholder: "Write your blog content here...",
-    branding: false,
-    statusbar: true,
-    resize: true,
-    skin: "oxide",
-    promotion: false,
-  };
 
   const [formData, setFormData] = useState({
     title: "",
@@ -248,7 +214,7 @@ const BlogManager = ({ token }) => {
         await axios.put(
           `${API_URL}/blogs/${editingBlog._id}`,
           submitData,
-          config,
+          config
         );
       } else {
         await axios.post(`${API_URL}/blogs`, submitData, config);
@@ -272,7 +238,12 @@ const BlogManager = ({ token }) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+    const allowedTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/webp",
+    ];
     if (!allowedTypes.includes(file.type)) {
       setFormError("Invalid file type. Only JPEG, PNG, and WebP are allowed.");
       return;
@@ -349,7 +320,9 @@ const BlogManager = ({ token }) => {
     }
   };
 
-  const contentWordCount = wordCount;
+  const contentWordCount = stripHtml(formData.content)
+    .split(/\s+/)
+    .filter(Boolean).length;
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -399,7 +372,7 @@ const BlogManager = ({ token }) => {
                 <img
                   src={getBlogImageUrl(
                     blog,
-                    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400",
+                    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400"
                   )}
                   alt={blog.altTag || blog.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -588,9 +561,7 @@ const BlogManager = ({ token }) => {
                   </span>
                 </label>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-slate-400 shrink-0">
-                    /blog/
-                  </span>
+                  <span className="text-sm text-slate-400 shrink-0">/blog/</span>
                   <input
                     type="text"
                     placeholder="auto-generated-slug"
@@ -731,23 +702,42 @@ const BlogManager = ({ token }) => {
                 <div className="rounded-xl overflow-hidden border border-slate-200">
                   <Editor
                     apiKey={TINYMCE_API_KEY}
-                    onInit={(_evt, editor) => {
-                      editorRef.current = editor;
-                      // Update word count on content changes without re-rendering the editor
-                      editor.on("input keyup change", () => {
-                        const text =
-                          editor.getContent({ format: "text" }) || "";
-                        setWordCount(text.split(/\s+/).filter(Boolean).length);
-                      });
-                      // Set initial word count
-                      const initialText =
-                        editor.getContent({ format: "text" }) || "";
-                      setWordCount(
-                        initialText.split(/\s+/).filter(Boolean).length,
-                      );
-                    }}
+                    onInit={(_evt, editor) => (editorRef.current = editor)}
                     initialValue={formData.content}
-                    init={editorConfig}
+                    onEditorChange={(content) =>
+                      setFormData((prev) => ({ ...prev, content }))
+                    }
+                    init={{
+                      height: 400,
+                      menubar: false,
+                      plugins: ["lists", "link", "autolink"],
+                      toolbar:
+                        "blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | removeformat",
+                      block_formats:
+                        "Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3",
+                      content_style: `
+                        body {
+                          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                          font-size: 16px;
+                          line-height: 1.7;
+                          color: #334155;
+                          padding: 16px;
+                        }
+                        h1 { font-size: 1.875rem; font-weight: 800; color: #0f172a; margin: 1.5rem 0 0.75rem; }
+                        h2 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin: 1.25rem 0 0.625rem; }
+                        h3 { font-size: 1.25rem; font-weight: 600; color: #1e293b; margin: 1rem 0 0.5rem; }
+                        p { margin: 0 0 1rem; }
+                        a { color: #2563eb; text-decoration: underline; }
+                        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+                        li { margin-bottom: 0.25rem; }
+                      `,
+                      placeholder: "Write your blog content here...",
+                      branding: false,
+                      statusbar: true,
+                      resize: true,
+                      skin: "oxide",
+                      promotion: false,
+                    }}
                   />
                 </div>
               </div>
