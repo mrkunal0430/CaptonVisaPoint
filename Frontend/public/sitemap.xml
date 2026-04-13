@@ -232,5 +232,32 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+  <loc>https://www.captonvisapoint.com/mbbs-consultant-in-delhi</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://www.captonvisapoint.com/mbbs-consultant-in-uttam-nagar</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
 
+<url>
+  <loc>https://www.captonvisapoint.com/mbbs-consultant-in-west-delhi</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://www.captonvisapoint.com/mbbs-consultant-in-dwarka</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://www.captonvisapoint.com/mbbs-consultant-in-janakpuri</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
 </urlset>

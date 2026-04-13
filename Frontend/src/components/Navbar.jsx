@@ -65,6 +65,11 @@ const NAV_LINKS = [
             path: "/mbbs/india#nri-quota",
             flag: "🌍",
           },
+          { name: "MBBS Consultant Delhi", path: "/mbbs-consultant-in-delhi", flag: "📍" },
+          { name: "MBBS Consultant Uttam Nagar", path: "/mbbs-consultant-in-uttam-nagar", flag: "📍" },
+          { name: "MBBS Consultant West Delhi", path: "/mbbs-consultant-in-west-delhi", flag: "📍" },
+          { name: "MBBS Consultant Dwarka", path: "/mbbs-consultant-in-dwarka", flag: "📍" },
+          { name: "MBBS Consultant Janakpuri", path: "/mbbs-consultant-in-janakpuri", flag: "📍" },
         ],
       },
     ],
@@ -126,8 +131,37 @@ const NAV_LINKS = [
       },
     ],
   },
-  { name: "Blog", path: "/blog" },
+  {
+  name: "Jobs Abroad",
+  path: "/jobs-abroad/after-12th",
+  type: "mega",
+  columns: [
+    {
+      title: "Jobs After 12th",
+      path: "/jobs-abroad/after-12th",
+    },
+    {
+      title: "Healthcare Jobs",
+      path: "/jobs-abroad/healthcare",
+    },
+    {
+      title: "Technical Jobs",
+      path: "/jobs-abroad/technical",
+    },
+    {
+      title: "Hospitality Jobs",
+      path: "/jobs-abroad/hospitality",
+    },
+  ],
+},
+
+
+
+
+{ name: "Blog", path: "/blog" },
 ];
+
+
 
 // Dropdown item component to reduce duplication
 const DropdownItem = ({ item, onClick }) => {
@@ -157,13 +191,12 @@ const MegaDropdown = ({ columns }) => (
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: 8 }}
     transition={{ duration: 0.15 }}
-    className={`absolute top-full left-1/2 -translate-x-1/2 w-[90vw] bg-white rounded-xl shadow-2xl border border-slate-100 pt-3 pb-3 px-4 grid gap-3 z-50 overflow-hidden ${
-      columns.length >= 4
+    className={`absolute top-full left-1/2 -translate-x-1/2 w-[90vw] bg-white rounded-xl shadow-2xl border border-slate-100 pt-3 pb-3 px-4 grid gap-3 z-50 overflow-hidden ${columns.length >= 4
         ? "max-w-[300px] grid-cols-2"
         : columns.length >= 3
-        ? "max-w-[580px] grid-cols-3"
-        : "max-w-[380px] grid-cols-2"
-    }`}
+          ? "max-w-[580px] grid-cols-3"
+          : "max-w-[380px] grid-cols-2"
+      }`}
   >
     <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-800 to-blue-900" />
     {columns.map((col, colIdx) => (
@@ -238,10 +271,9 @@ const Navbar = () => {
   // Memoize nav class to prevent recalculation
   const navClassName = useMemo(
     () =>
-      `w-full bg-gradient-to-r from-slate-50 to-white transition-all duration-300 ${
-        scrolled
-          ? "shadow-xl shadow-slate-200/50 py-2 border-b border-slate-100"
-          : "shadow-md py-3"
+      `w-full bg-gradient-to-r from-slate-50 to-white transition-all duration-300 ${scrolled
+        ? "shadow-xl shadow-slate-200/50 py-2 border-b border-slate-100"
+        : "shadow-md py-3"
       }`,
     [scrolled],
   );
@@ -315,9 +347,8 @@ const Navbar = () => {
                   {link.name}
                   {link.type === "mega" && (
                     <FiChevronDown
-                      className={`text-xs transition-transform duration-300 ${
-                        activeDropdown === link.name ? "rotate-180" : ""
-                      }`}
+                      className={`text-xs transition-transform duration-300 ${activeDropdown === link.name ? "rotate-180" : ""
+                        }`}
                       aria-hidden="true"
                     />
                   )}

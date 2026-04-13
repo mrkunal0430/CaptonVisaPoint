@@ -27,6 +27,22 @@ const mbbsLinks = [
   { name: "MBBS in Kazakhstan", path: "/mbbs/kazakhstan" },
   { name: "MBBS in Uzbekistan", path: "/mbbs/uzbekistan" },
   { name: "MBBS in Kyrgyzstan", path: "/mbbs/kyrgyzstan" },
+
+];
+
+const localMbbsLinks = [
+  { name: "MBBS Consultant Delhi", path: "/mbbs-consultant-in-delhi" },
+  { name: "MBBS Consultant Uttam Nagar", path: "/mbbs-consultant-in-uttam-nagar" },
+  { name: "MBBS Consultant West Delhi", path: "/mbbs-consultant-in-west-delhi" },
+  { name: "MBBS Consultant Dwarka", path: "/mbbs-consultant-in-dwarka" },
+  { name: "MBBS Consultant Janakpuri", path: "/mbbs-consultant-in-janakpuri" },
+  { name: "MBBS Consultant Noida", path: "/mbbs-consultant-in-noida" },
+  { name: "MBBS Consultant Haryana", path: "/mbbs-consultant-in-haryana" },
+  { name: "MBBS Consultant Ghaziabad", path: "/mbbs-consultant-in-ghaziabad" },
+  { name: "MBBS Consultant Uttar Pradesh", path: "/mbbs-consultant-in-uttar-pradesh" },
+  { name: "MBBS Consultant Uttarakhand", path: "/mbbs-consultant-in-uttarakhand" },
+  { name: "MBBS Consultant Rajasthan", path: "/mbbs-consultant-in-rajasthan" },
+  { name: "MBBS Consultant Jaipur", path: "/mbbs-consultant-in-jaipur" },
 ];
 
 const studyLinks = [
@@ -104,7 +120,7 @@ const FooterLink = ({ name, path }) => (
   <li>
     <Link
       to={path}
-      className="group inline-flex items-center gap-1.5 text-slate-400 hover:text-amber-400 text-xs leading-snug transition-colors duration-150"
+      className="group inline-flex items-center gap-1 text-slate-400 hover:text-amber-400 text-xs leading-tight py-[2px] transition-colors duration-150"
     >
       <FiArrowRight
         size={10}
@@ -151,7 +167,7 @@ const Footer = () => {
 
         <div className="container mx-auto px-4 sm:px-6 pt-14 pb-10 relative">
           {/* ── 5-COLUMN GRID ── */}
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10 lg:gap-x-10 mb-12">
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-10 lg:gap-x-10 mb-12">
             {/* ── BRAND ── */}
             <div className="col-span-2 lg:col-span-1 space-y-5">
               {/* Logo */}
@@ -214,8 +230,18 @@ const Footer = () => {
             {/* ── MBBS ABROAD ── */}
             <div className="min-w-0">
               <ColHeader text="MBBS Abroad" accentColor="bg-blue-500" />
-              <ul className="space-y-2.5">
+              <ul className="space-y-[2px]">
                 {mbbsLinks.map((item) => (
+                  <FooterLink key={item.path} {...item} />
+                ))}
+              </ul>
+            </div>
+
+            {/* ── MBBS CONSULTANT AREAS ── */}
+            <div className="min-w-0">
+              <ColHeader text="MBBS Areas" accentColor="bg-cyan-400" />
+              <ul className="flex flex-col gap-[2px]">
+                {localMbbsLinks.map((item) => (
                   <FooterLink key={item.path} {...item} />
                 ))}
               </ul>
@@ -224,7 +250,7 @@ const Footer = () => {
             {/* ── STUDY ABROAD ── */}
             <div className="min-w-0">
               <ColHeader text="Study Abroad" accentColor="bg-blue-400" />
-              <ul className="space-y-2.5">
+              <ul className="space-y-1">
                 {studyLinks.map((item) => (
                   <FooterLink key={item.path} {...item} />
                 ))}
@@ -234,7 +260,7 @@ const Footer = () => {
             {/* ── JOBS & SERVICES ── */}
             <div className="min-w-0">
               <ColHeader text="Jobs & Services" accentColor="bg-amber-400" />
-              <ul className="space-y-2.5">
+              <ul className="space-y-1">
                 {serviceLinks.map((item) => (
                   <FooterLink key={item.path} {...item} />
                 ))}
