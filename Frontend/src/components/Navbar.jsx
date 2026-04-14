@@ -131,29 +131,7 @@ const NAV_LINKS = [
       },
     ],
   },
-  {
-  name: "Jobs Abroad",
-  path: "/jobs-abroad/after-12th",
-  type: "mega",
-  columns: [
-    {
-      title: "Jobs After 12th",
-      path: "/jobs-abroad/after-12th",
-    },
-    {
-      title: "Healthcare Jobs",
-      path: "/jobs-abroad/healthcare",
-    },
-    {
-      title: "Technical Jobs",
-      path: "/jobs-abroad/technical",
-    },
-    {
-      title: "Hospitality Jobs",
-      path: "/jobs-abroad/hospitality",
-    },
-  ],
-},
+  
 
 
 
