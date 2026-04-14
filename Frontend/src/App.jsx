@@ -10,24 +10,60 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import LoadingSpinner from "./components/LoadingSpinner";
 
-// Lazy load all pages for better performance (code splitting)
+// Lazy load all pages for better performance
 const Home = lazy(() => import("./pages/Home"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Admin = lazy(() => import("./pages/Admin"));
 
-// MBBS Routes
+// MBBS main routes
 const Mbbs = lazy(() => import("./pages/Mbbs"));
 const MbbsAbroad = lazy(() => import("./pages/MbbsAbroad"));
 const MbbsIndia = lazy(() => import("./pages/MbbsIndia"));
 const MbbsCountry = lazy(() => import("./pages/MbbsCountry"));
 const MbbsUniversity = lazy(() => import("./pages/MbbsUniversity"));
 
-// Study Abroad Routes
+// MBBS consultant location pages
+const MbbsConsultantDelhi = lazy(() => import("./pages/MbbsConsultantDelhi"));
+const MbbsConsultantUttamNagar = lazy(() =>
+  import("./pages/MbbsConsultantUttamNagar")
+);
+const MbbsConsultantWestDelhi = lazy(() =>
+  import("./pages/MbbsConsultantWestDelhi")
+);
+const MbbsConsultantDwarka = lazy(() =>
+  import("./pages/MbbsConsultantDwarka")
+);
+const MbbsConsultantJanakpuri = lazy(() =>
+  import("./pages/MbbsConsultantJanakpuri")
+);
+const MbbsConsultantNoida = lazy(() => import("./pages/MbbsConsultantNoida"));
+const MbbsConsultantHaryana = lazy(() =>
+  import("./pages/MbbsConsultantHaryana")
+);
+const MbbsConsultantGhaziabad = lazy(() =>
+  import("./pages/MbbsConsultantGhaziabad")
+);
+const MbbsConsultantUttarPradesh = lazy(() =>
+  import("./pages/MbbsConsultantUttarPradesh")
+);
+const MbbsConsultantUttarakhand = lazy(() =>
+  import("./pages/MbbsConsultantUttarakhand")
+);
+const MbbsConsultantRajasthan = lazy(() =>
+  import("./pages/MbbsConsultantRajasthan")
+);
+const MbbsConsultantJaipur = lazy(() =>
+  import("./pages/MbbsConsultantJaipur")
+);
+
+// Study Abroad routes
 const StudyAbroad = lazy(() => import("./pages/StudyAbroad"));
-const StudyAbroadCountry = lazy(() => import("./pages/StudyAbroadCountry"));
+const StudyAbroadCountry = lazy(() =>
+  import("./pages/StudyAbroadCountry")
+);
 const UniversityDetail = lazy(() => import("./pages/UniversityDetail"));
 
-// Other Pages
+// Other pages
 const Ausbildung = lazy(() => import("./pages/Ausbildung"));
 const Coaching = lazy(() => import("./pages/Coaching"));
 const Blog = lazy(() => import("./pages/Blog"));
@@ -36,21 +72,26 @@ const EligibilityCheck = lazy(() => import("./pages/EligibilityCheck"));
 const PartnerWithUs = lazy(() => import("./pages/PartnerWithUs"));
 const About = lazy(() => import("./pages/About"));
 
+// Jobs Abroad routes
+const JobsAfter12th = lazy(() => import("./pages/JobsAfter12th"));
+const HealthcareJobsAbroad = lazy(() =>
+  import("./pages/HealthcareJobsAbroad")
+);
+const TechnicalJobsAbroad = lazy(() =>
+  import("./pages/TechnicalJobsAbroad")
+);
+const HospitalityJobsAbroad = lazy(() =>
+  import("./pages/HospitalityJobsAbroad")
+);
+
 // 404
 import NotFound from "./pages/NotFound";
 
-// Jobs Abroad Routes
-const JobsAfter12th = lazy(() => import("./pages/JobsAfter12th"));
-const HealthcareJobsAbroad = lazy(() => import("./pages/HealthcareJobsAbroad"));
-const TechnicalJobsAbroad = lazy(() => import("./pages/TechnicalJobsAbroad"));
-const HospitalityJobsAbroad = lazy(() => import("./pages/HospitalityJobsAbroad"));
-
-// Layout wrapper that conditionally renders Navbar/Footer
+// Layout wrapper
 const AppLayout = () => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
 
-  // Admin route - completely separate layout (no navbar/footer)
   if (isAdminRoute) {
     return (
       <Suspense fallback={<LoadingSpinner />}>
@@ -61,20 +102,18 @@ const AppLayout = () => {
     );
   }
 
-  // Regular website layout with Navbar and Footer
   return (
     <div className="bg-white min-h-screen font-sans text-slate-800">
       <Navbar />
-      {/* Spacer to account for fixed navbar height */}
       <div className="h-[68px] xl:h-[76px]" />
+
       <main>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
-          
             <Route path="/contact" element={<Contact />} />
 
-            {/* MBBS Routes */}
+            {/* MBBS routes */}
             <Route path="/mbbs" element={<Mbbs />} />
             <Route path="/mbbs/abroad" element={<MbbsAbroad />} />
             <Route path="/mbbs/india" element={<MbbsIndia />} />
@@ -84,6 +123,57 @@ const AppLayout = () => {
             />
             <Route path="/mbbs/:country" element={<MbbsCountry />} />
 
+            {/* MBBS consultant area pages */}
+            <Route
+              path="/mbbs-consultant-in-delhi"
+              element={<MbbsConsultantDelhi />}
+            />
+            <Route
+              path="/mbbs-consultant-in-uttam-nagar"
+              element={<MbbsConsultantUttamNagar />}
+            />
+            <Route
+              path="/mbbs-consultant-in-west-delhi"
+              element={<MbbsConsultantWestDelhi />}
+            />
+            <Route
+              path="/mbbs-consultant-in-dwarka"
+              element={<MbbsConsultantDwarka />}
+            />
+            <Route
+              path="/mbbs-consultant-in-janakpuri"
+              element={<MbbsConsultantJanakpuri />}
+            />
+            <Route
+              path="/mbbs-consultant-in-noida"
+              element={<MbbsConsultantNoida />}
+            />
+            <Route
+              path="/mbbs-consultant-in-haryana"
+              element={<MbbsConsultantHaryana />}
+            />
+            <Route
+              path="/mbbs-consultant-in-ghaziabad"
+              element={<MbbsConsultantGhaziabad />}
+            />
+            <Route
+              path="/mbbs-consultant-in-uttar-pradesh"
+              element={<MbbsConsultantUttarPradesh />}
+            />
+            <Route
+              path="/mbbs-consultant-in-uttarakhand"
+              element={<MbbsConsultantUttarakhand />}
+            />
+            <Route
+              path="/mbbs-consultant-in-rajasthan"
+              element={<MbbsConsultantRajasthan />}
+            />
+            <Route
+              path="/mbbs-consultant-in-jaipur"
+              element={<MbbsConsultantJaipur />}
+            />
+
+            {/* Study Abroad routes */}
             <Route path="/study-abroad" element={<StudyAbroad />} />
             <Route
               path="/study-abroad/:country"
@@ -94,17 +184,16 @@ const AppLayout = () => {
               element={<UniversityDetail />}
             />
 
+            {/* Other routes */}
             <Route path="/ausbildung" element={<Ausbildung />} />
             <Route path="/coaching" element={<Coaching />} />
-
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
-
             <Route path="/eligibility-check" element={<EligibilityCheck />} />
             <Route path="/partner" element={<PartnerWithUs />} />
             <Route path="/about" element={<About />} />
 
-            {/* Jobs Abroad Routes */}
+            {/* Jobs Abroad routes */}
             <Route path="/jobs-abroad/after-12th" element={<JobsAfter12th />} />
             <Route
               path="/jobs-abroad/healthcare"
@@ -119,14 +208,14 @@ const AppLayout = () => {
               element={<HospitalityJobsAbroad />}
             />
 
-            {/* 404 catch-all */}
+            {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
+
       <Footer />
 
-      {/* Floating WhatsApp Button */}
       <a
         href="https://wa.me/919914773125?text=Hello%20CaptonVisaPoint%2C%20I%20have%20a%20query%20regarding%20your%20services."
         target="_blank"
