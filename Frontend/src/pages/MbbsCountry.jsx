@@ -12,6 +12,8 @@ import {
   FiMapPin,
   FiArrowRight,
   FiGlobe,
+  FiUsers,
+  FiChevronDown,
 } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
 import SEO from "../components/SEO";
@@ -209,8 +211,7 @@ const countryData = {
   },
   uzbekistan: {
     name: "Uzbekistan",
-    bannerImage:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+    bannerImage: "/Mbbs_Countries/Uzbekistan.webp",
     duration: "5+1 Years (5 years study + 1 year internship)",
     medium: "English",
     recognition: "WHO, NMC (India), FAIMER",
@@ -218,7 +219,38 @@ const countryData = {
     costOfLiving: "$80–120 / month",
     feePayment: "USD payment – online transfer or cash",
     whyChoose:
-      "Uzbekistan is rapidly becoming one of the top choices for Indian students seeking an extremely affordable yet high-quality MBBS education. With annual tuition fees as low as $2,800–$3,800 and a total 6-year course cost of just ₹15–30 Lakhs, Uzbekistan offers some of the most budget-friendly medical programs in the world. Multiple universities are NMC-approved and WHO-listed (WDOMS), and all programs are taught in English medium. The country has a transparent, merit-based admission process with no donation or capitation fees. Uzbek medical institutes feature experienced faculty, modern infrastructure, well-equipped laboratories, and affiliated hospitals for practical clinical training. The cost of living is remarkably low ($80–120/month), and Indian students enjoy a safe, student-friendly environment with Indian food messes available at most universities. Uzbekistan's growing reputation as a medical education hub makes it an excellent value-for-money option.",
+      "Choosing the right destination for your MBBS is not just about education. It is about your future, your career, and your long-term success.\n\nIf you are a NEET-qualified student struggling with limited seats and high fees in India, Uzbekistan offers a reliable and affordable alternative. It combines quality education, global recognition, and a student-friendly environment.\n\nUzbekistan has emerged as a popular destination for Indian medical aspirants. In recent years, more than 4000 Indian students have chosen Uzbekistan for their MBBS studies. The growing student community ensures better support and familiarity for new students.\n\nMedical universities in Uzbekistan follow international standards similar to countries like the UK, USA, and Australia. Degrees are recognized by major global bodies such as NMC, WHO, and FAIMER, allowing students to pursue medical careers worldwide after clearing required licensing exams.\n\nAll major universities offer MBBS programs in English. This eliminates language barriers and helps Indian students adapt easily to the academic environment.\n\nThe total cost of completing MBBS in Uzbekistan is approximately 15 to 20 lakhs for six years. This makes it a cost-effective option compared to private medical colleges in India.\n\nThe MBBS program includes a mandatory one-year internship. Students gain hands-on clinical experience in university-affiliated hospitals, ensuring they are well-prepared for real-world medical practice.",
+    highlights: [
+      "Strong India–Uzbekistan relations with 4000+ Indian students",
+      "Globally recognized degrees — NMC, WHO, FAIMER approved",
+      "English medium education at all major universities",
+      "Affordable fees — total ₹15–20 Lakhs for 6 years",
+      "Mandatory 1-year internship with hands-on clinical training",
+      "Indian food, groceries & daily-use products easily available",
+      "Modern & secure hostels with AC, CCTV & separate facilities",
+      "Simple admission — 50% in PCB + NEET, no donations",
+      "Low cost of living — ₹70,000–80,000/month including accommodation",
+    ],
+    whoShouldChoose:
+      "MBBS in Uzbekistan is ideal for NEET-qualified students looking for affordable medical education, students unable to secure government seats in India, and those seeking global exposure with quality training. Do not let limited seats or high costs stop you from achieving your dream of becoming a doctor. Capton Visa Point provides complete support including university selection, admission assistance, visa processing, and travel guidance.",
+    faqs: [
+      {
+        question: "Is MBBS in Uzbekistan valid in India?",
+        answer: "Yes, universities are recognized by NMC. Students need to clear FMGE or NEXT to practice in India.",
+      },
+      {
+        question: "What is the duration of MBBS in Uzbekistan?",
+        answer: "The course duration is six years including internship.",
+      },
+      {
+        question: "Is NEET mandatory?",
+        answer: "Yes, NEET qualification is required for Indian students.",
+      },
+      {
+        question: "Is Uzbekistan safe for Indian students?",
+        answer: "Yes, it is considered safe with proper hostel facilities and campus security.",
+      },
+    ],
     partnerUniversities: [
       {
         name: "Tashkent State Medical Institute",
@@ -1122,11 +1154,11 @@ const MbbsCountry = () => {
         keywords={`MBBS in ${countryName}, study MBBS in ${countryName}, MBBS in ${countryName} fees, MBBS in ${countryName} for Indian students, ${countryName} MBBS admission, top medical universities in ${countryName}, low cost MBBS in ${countryName}, MBBS in ${countryName} eligibility, MBBS in ${countryName} consultants, MBBS abroad, WHO approved medical universities, NMC approved medical colleges, FMGE exam after MBBS abroad, NEXT exam for MBBS students`}
       />
       {/* Banner */}
-      <section className="relative min-h-[70vh] pt-24 pb-12 flex items-center justify-center overflow-hidden">
+      <section className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[550px] flex items-center justify-center overflow-hidden">
         <img
           src={data.bannerImage}
           alt={countryName}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
         {/* Dark gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/50 to-slate-900/30" />
@@ -1158,10 +1190,16 @@ const MbbsCountry = () => {
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
                 Why choose {countryName}?
               </h2>
-              <p className="text-slate-600 leading-relaxed text-lg">
-                {data.whyChoose ||
-                  `Studying MBBS in ${countryName} is an excellent choice for Indian students. ${countryName} is known for its high standard of medical education, affordable tuition fees, and world-class infrastructure. Most medical universities in ${countryName} are recognized by WHO, FAIMER, and the National Medical Commission (NMC) of India.`}
-              </p>
+              <div className="text-slate-600 leading-relaxed text-lg space-y-4">
+                {(
+                  data.whyChoose ||
+                  `Studying MBBS in ${countryName} is an excellent choice for Indian students. ${countryName} is known for its high standard of medical education, affordable tuition fees, and world-class infrastructure. Most medical universities in ${countryName} are recognized by WHO, FAIMER, and the National Medical Commission (NMC) of India.`
+                )
+                  .split("\n\n")
+                  .map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
+              </div>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1225,6 +1263,64 @@ const MbbsCountry = () => {
                   <FiDollarSign className="text-blue-500" /> Fee Payment Method
                 </h3>
                 <p className="text-slate-600 text-sm">{data.feePayment}</p>
+              </div>
+            )}
+
+            {/* Key Highlights */}
+            {data.highlights && data.highlights.length > 0 && (
+              <div className="bg-gradient-to-br from-blue-50 to-slate-50 rounded-2xl p-6 border border-blue-100">
+                <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <FiStar className="text-amber-500" /> Key Highlights — MBBS in{" "}
+                  {countryName}
+                </h3>
+                <ul className="space-y-3">
+                  {data.highlights.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <FiCheck className="text-blue-600 mt-1 shrink-0" />
+                      <span className="text-slate-700 text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Who Should Choose */}
+            {data.whoShouldChoose && (
+              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200">
+                <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  <FiUsers className="text-amber-600" /> Who Should Choose MBBS
+                  in {countryName}?
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  {data.whoShouldChoose}
+                </p>
+              </div>
+            )}
+
+            {/* FAQs */}
+            {data.faqs && data.faqs.length > 0 && (
+              <div>
+                <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <FiFileText className="text-blue-500" /> Frequently Asked Questions
+                </h3>
+                <div className="space-y-3">
+                  {data.faqs.map((faq, idx) => (
+                    <details
+                      key={idx}
+                      className="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"
+                    >
+                      <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-100 transition-colors">
+                        <span className="font-semibold text-slate-800 text-sm pr-4">
+                          {faq.question}
+                        </span>
+                        <FiChevronDown className="text-slate-400 group-open:rotate-180 transition-transform duration-300 shrink-0" />
+                      </summary>
+                      <div className="px-4 pb-4 text-slate-600 text-sm leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </details>
+                  ))}
+                </div>
               </div>
             )}
 

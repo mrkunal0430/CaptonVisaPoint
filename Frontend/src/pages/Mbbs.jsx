@@ -15,7 +15,13 @@ import {
 } from "react-icons/fi";
 import InquiryForm from "../components/forms/InquiryForm";
 import SEO from "../components/SEO";
-import { announcements, topCountries, processSteps, whyUs, faqs } from "../data/mbbsData";
+import {
+  announcements,
+  topCountries,
+  processSteps,
+  whyUs,
+  faqs,
+} from "../data/mbbsData";
 
 const Mbbs = () => {
   const [activeAnnouncement, setActiveAnnouncement] = useState(0);
@@ -36,10 +42,8 @@ const Mbbs = () => {
         keywords="MBBS in India, MBBS course in India, MBBS degree in India, study MBBS in India, MBBS medical course, MBBS abroad, study MBBS abroad, MBBS abroad admission, MBBS abroad consultants, cheapest MBBS abroad, low cost MBBS abroad, MBBS abroad eligibility, MBBS abroad fees, MBBS abroad universities, MBBS admission, MBBS admission process, MBBS admission 2026, MBBS admission 2027, top MBBS colleges in India, best MBBS colleges in India, government MBBS colleges in India, private MBBS colleges in India, MBBS consultants in India, best MBBS consultants, medical admission consultants, NEET exam, NEET UG exam, NEET cutoff for MBBS, NEET counseling process, NEET qualifying marks, WHO approved medical universities, NMC approved medical colleges, career after MBBS, PG after MBBS, MD after MBBS, MS after MBBS, scope of MBBS in India, scope of MBBS abroad, FMGE exam after MBBS abroad, NEXT exam for MBBS students, best country for MBBS for Indian students, MBBS abroad vs India, MBBS admission help India, medical education consultants India, MBBS career guidance, study medicine abroad for Indians"
       />
 
-  
-
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 overflow-hidden">
         {/* Background pattern */}
         <div
           className="absolute inset-0 opacity-10"
@@ -51,14 +55,16 @@ const Mbbs = () => {
         {/* Glowing orbs */}
         <div className="absolute top-20 right-10 w-64 sm:w-96 h-64 sm:h-96 bg-blue-600/20 rounded-full blur-3xl" />
         <div className="absolute bottom-10 left-10 w-48 sm:w-72 h-48 sm:h-72 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 py-16 sm:py-20">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Left: Text Content */}
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+            {/* Left: Text Content — 3 cols */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="lg:col-span-3"
             >
               <div className="flex items-center gap-2 mb-5">
                 <span className="bg-amber-500 text-blue-900 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wide">
@@ -89,7 +95,7 @@ const Mbbs = () => {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-3 mb-10">
+              <div className="flex flex-wrap gap-3 mb-8">
                 <Link
                   to="/eligibility-check"
                   className="bg-amber-500 hover:bg-amber-600 text-blue-900 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-amber-500/30 flex items-center gap-2"
@@ -105,7 +111,7 @@ const Mbbs = () => {
               </div>
 
               {/* Trust badges */}
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 mb-8">
                 {[
                   "NMC Approved",
                   "WHO Recognized",
@@ -121,80 +127,86 @@ const Mbbs = () => {
                   </span>
                 ))}
               </div>
+
+              {/* Compact Stats Row */}
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  {
+                    number: "70+",
+                    label: "Universities",
+                    accent: "text-amber-400",
+                  },
+                  {
+                    number: "4000+",
+                    label: "Students",
+                    accent: "text-blue-300",
+                  },
+                  {
+                    number: "10+",
+                    label: "Countries",
+                    accent: "text-amber-400",
+                  },
+                  { number: "98%", label: "Success", accent: "text-blue-300" },
+                ].map((stat, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 + idx * 0.1 }}
+                    className="text-center bg-white/5 border border-white/10 rounded-xl py-3 px-2"
+                  >
+                    <div
+                      className={`text-xl sm:text-2xl font-extrabold ${stat.accent}`}
+                    >
+                      {stat.number}
+                    </div>
+                    <div className="text-blue-300 text-[10px] sm:text-xs font-medium">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
 
-            {/* Right: Stats Cards */}
+            {/* Right: Inquiry Form — 2 cols */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-2 gap-4"
+              className="lg:col-span-2"
             >
-              {[
-                {
-                  icon: <FiGlobe className="text-3xl" />,
-                  number: "70+",
-                  label: "Partner Universities",
-                  accent: "text-amber-400",
-                },
-                {
-                  icon: <FiUsers className="text-3xl" />,
-                  number: "4000+",
-                  label: "Students Placed",
-                  accent: "text-blue-300",
-                },
-                {
-                  icon: <FiMapPin className="text-3xl" />,
-                  number: "10+",
-                  label: "Countries",
-                  accent: "text-amber-400",
-                },
-                {
-                  icon: <FiAward className="text-3xl" />,
-                  number: "98%",
-                  label: "Success Rate",
-                  accent: "text-blue-300",
-                },
-              ].map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 + idx * 0.1 }}
-                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-6 text-center hover:bg-white/15 transition-all"
-                >
-                  <div className={`${stat.accent} mb-3 flex justify-center`}>
-                    {stat.icon}
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-1">
+                <div className="bg-white rounded-[20px] p-5 sm:p-6 shadow-2xl">
+                  <InquiryForm
+                    title="Get Free Counselling"
+                    subtitle="Our expert will call you within 24 hours"
+                  />
+                  {/* Quick contact below form */}
+                  <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center shrink-0">
+                        <FiPhone className="text-blue-900 text-sm" />
+                      </div>
+                      <div>
+                        <p className="text-slate-400 text-[10px] font-semibold uppercase">
+                          Helpline
+                        </p>
+                        <a
+                          href="tel:+919914773125"
+                          className="text-slate-800 font-bold text-sm hover:text-blue-600 transition-colors"
+                        >
+                          +91 99147 73125
+                        </a>
+                      </div>
+                    </div>
+                    <a
+                      href="https://wa.me/919914773125"
+                      className="shrink-0 bg-green-500 hover:bg-green-600 text-white font-bold text-xs px-4 py-2 rounded-lg transition-colors"
+                    >
+                      WhatsApp
+                    </a>
                   </div>
-                  <div className="text-3xl sm:text-4xl font-extrabold text-white mb-1">
-                    {stat.number}
-                  </div>
-                  <div className="text-blue-200 text-sm">{stat.label}</div>
-                </motion.div>
-              ))}
-
-              {/* Quick contact card */}
-              <div className="col-span-2 bg-amber-500/20 border border-amber-400/30 rounded-2xl p-4 sm:p-5 flex items-center gap-4">
-                <div className="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center shrink-0">
-                  <FiPhone className="text-blue-900 text-xl" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-amber-300 text-xs font-semibold mb-0.5">
-                    Free Counselling Helpline
-                  </p>
-                  <a
-                    href="tel:+919914773125"
-                    className="text-white font-bold text-lg sm:text-xl hover:text-amber-300 transition-colors"
-                  >
-                    +91 99147 73125
-                  </a>
-                </div>
-                <a
-                  href="https://wa.me/919914773125"
-                  className="shrink-0 bg-amber-500 hover:bg-amber-600 text-blue-900 font-bold text-xs px-4 py-2 rounded-lg transition-colors"
-                >
-                  WhatsApp
-                </a>
               </div>
             </motion.div>
           </div>
@@ -687,80 +699,76 @@ const Mbbs = () => {
         </div>
       </section>
 
-      {/* CTA + Form Section */}
-      <section className="py-14 sm:py-20 bg-slate-50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Left */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <span className="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wide">
-                  Free Counselling
+      {/* Final CTA Section */}
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="absolute top-10 right-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="relative z-10 container mx-auto px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block bg-amber-500/20 text-amber-400 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wide border border-amber-500/30">
+                Start Today
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight">
+                Ready to Begin Your
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-300">
+                  Medical Career?
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-5 leading-tight">
-                  Ready to Start Your
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-500">
-                    MBBS Journey?
+              </h2>
+              <p className="text-blue-200 text-base sm:text-lg mb-8 max-w-xl mx-auto">
+                Join 4,000+ students who chose Capton Visa Point for their MBBS
+                admission. Free NEET evaluation, university shortlisting, and
+                complete visa support.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+                <a
+                  href="tel:+919914773125"
+                  className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-blue-900 font-bold px-8 py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-amber-500/30"
+                >
+                  <FiPhone /> Call Now — Free
+                </a>
+                <a
+                  href="https://wa.me/919914773125"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-8 py-4 rounded-xl border border-white/20 transition-all"
+                >
+                  WhatsApp Us
+                </a>
+                <Link
+                  to="/contact"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-8 py-4 rounded-xl border border-white/20 transition-all"
+                >
+                  Book Counselling <FiArrowRight />
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                {[
+                  "Free NEET Evaluation",
+                  "No Hidden Charges",
+                  "7 Days Support",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="flex items-center gap-1.5 text-blue-200 text-sm"
+                  >
+                    <FiCheckCircle className="text-amber-400" size={14} />
+                    {item}
                   </span>
-                </h2>
-                <p className="text-slate-600 leading-relaxed mb-7">
-                  Get expert guidance on university selection, documentation,
-                  and admission. Our counsellors are available 7 days a week to
-                  help you make the right choice.
-                </p>
-
-                <div className="space-y-4 mb-7">
-                  {[
-                    "Free NEET score evaluation",
-                    "University shortlisting based on budget",
-                    "Complete documentation support",
-                    "Visa filing & pre-departure guidance",
-                  ].map((point) => (
-                    <div key={point} className="flex items-center gap-3">
-                      <div className="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center shrink-0">
-                        <FiCheckCircle className="text-white" size={13} />
-                      </div>
-                      <span className="text-slate-700 text-sm font-medium">
-                        {point}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href="tel:+919914773125"
-                    className="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-5 py-3 rounded-xl transition-all"
-                  >
-                    <FiPhone /> Call Now
-                  </a>
-                  <a
-                    href="https://wa.me/919914773125"
-                    className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-3 rounded-xl transition-all"
-                  >
-                    WhatsApp Us
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* Right: Form */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl"
-              >
-                <InquiryForm
-                  title="Get Free Counselling"
-                  subtitle="Fill the form and our expert will call you back within 24 hours"
-                />
-              </motion.div>
-            </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

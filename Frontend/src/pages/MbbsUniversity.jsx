@@ -663,6 +663,96 @@ const universityData = {
       "Student Recreation Area",
     ],
   },
+  "fergana-medical-institute": {
+    name: "Fergana Medical Institute",
+    country: "Uzbekistan",
+    countrySlug: "uzbekistan",
+    location: "Fergana, Uzbekistan",
+    established: "1991",
+    fees: "$3,200 / year",
+    totalFees: "~₹15–18 Lakhs (Full Course)",
+    feeStructure: [
+      {
+        year: "1st Year",
+        tuition: "$3,200",
+        hostel: "$400",
+        food: "$600",
+        total: "$4,200",
+      },
+      {
+        year: "2nd Year",
+        tuition: "$3,200",
+        hostel: "$400",
+        food: "$600",
+        total: "$4,200",
+      },
+      {
+        year: "3rd Year",
+        tuition: "$3,200",
+        hostel: "$400",
+        food: "$600",
+        total: "$4,200",
+      },
+      {
+        year: "4th Year",
+        tuition: "$3,200",
+        hostel: "$400",
+        food: "$600",
+        total: "$4,200",
+      },
+      {
+        year: "5th Year",
+        tuition: "$3,200",
+        hostel: "$400",
+        food: "$600",
+        total: "$4,200",
+      },
+      {
+        year: "6th Year (Internship)",
+        tuition: "$1,200",
+        hostel: "$400",
+        food: "$600",
+        total: "$2,200",
+      },
+    ],
+    duration: "6 Years (including internship)",
+    medium: "English",
+    recognition: "WHO, NMC, FAIMER",
+    banner: "/Mbbs_Universitiwes/fergana.webp",
+    youtubeVideo: "https://www.youtube.com/watch?v=YN8nRpqxYbs",
+    about:
+      "Fergana Medical Institute of Public Health (FerMI) is a well-established government medical institution located in the historic Fergana Valley of Uzbekistan. The institute offers a comprehensive 6-year English-medium MBBS program that is recognized by WHO, NMC (India), and FAIMER, ensuring graduates can pursue medical careers worldwide after clearing required licensing exams. Fergana Medical Institute is known for its affordable fee structure — with total course costs as low as ₹15–18 Lakhs — making it one of the most budget-friendly MBBS options globally. The institute features experienced faculty, modern laboratories, and provides extensive clinical training at affiliated hospitals in the Fergana region. Indian students benefit from a safe, student-friendly environment with Indian food availability and comfortable hostel facilities.",
+    highlights: [
+      "Government medical institute in the historic Fergana Valley",
+      "WHO, NMC & FAIMER recognized degree",
+      "English-medium MBBS program",
+      "One of the most affordable MBBS programs — ₹15–18 Lakhs total",
+      "Experienced faculty with practical-focused curriculum",
+      "Clinical training at affiliated hospitals",
+      "Indian food mess facility available",
+      "Safe & peaceful city with very low cost of living",
+      "Comfortable hostel with AC, CCTV & separate facilities",
+      "Simple admission — 50% in PCB + NEET, no donations",
+    ],
+    eligibility: [
+      "12th pass with PCB – minimum 50% aggregate (40% for reserved)",
+      "NEET UG qualification mandatory",
+      "Age 17+ on 31st December of admission year",
+      "Valid Indian passport",
+    ],
+    hostel:
+      "Fergana Medical Institute provides well-equipped hostels with essential amenities such as beds, study tables, cupboards, air conditioning, and clean drinking water systems. Security measures include CCTV surveillance and separate hostels for boys and girls. Indian food mess is available serving home-style vegetarian and non-vegetarian meals. The cost of living in Fergana is among the lowest in Uzbekistan, making it very affordable for Indian families.",
+    facilities: [
+      "Central Library",
+      "Teaching Hospitals",
+      "Anatomy & Pathology Labs",
+      "Indian Mess",
+      "Sports Ground",
+      "Wi-Fi Campus",
+      "Simulation Lab",
+      "Student Recreation Area",
+    ],
+  },
   // ========== KAZAKHSTAN ==========
   "caspian-international-school-of-medicine": {
     name: "Caspian International School of Medicine",
@@ -1778,41 +1868,6 @@ const universityData = {
     ],
     hostel: "University hostels with amenities. Indian mess. Safe campus.",
     facilities: ["Library", "Hospital", "Labs", "Sports", "Mess", "Wi-Fi"],
-  },
-  "fergana-medical-institute": {
-    name: "Fergana Medical Institute",
-    country: "Uzbekistan",
-    countrySlug: "uzbekistan",
-    location: "Fergana, Uzbekistan",
-    established: "1991",
-    fees: "$3,200 / year",
-    totalFees: "~₹16–20 Lakhs (Full Course)",
-    duration: "5+1 Years",
-    medium: "English",
-    recognition: "WHO, NMC, FAIMER",
-    banner:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
-    about:
-      "Fergana Medical Institute is located in the fertile Fergana Valley of Uzbekistan. It offers an affordable English-medium MBBS program recognized by WHO and NMC. The institute is known for its practical training approach and supportive environment for international students.",
-    highlights: [
-      "Located in Fergana Valley",
-      "Very affordable fees",
-      "English-medium MBBS",
-      "WHO & NMC recognized",
-      "Practical training focus",
-      "Indian student community",
-      "Low cost of living",
-      "Safe city",
-    ],
-    eligibility: [
-      "12th pass with PCB – minimum 50%",
-      "NEET UG qualification mandatory",
-      "Age 17+",
-      "Valid passport",
-    ],
-    hostel:
-      "University hostel available. Indian food mess. Basic amenities provided.",
-    facilities: ["Library", "Hospital", "Labs", "Sports", "Mess", "Internet"],
   },
   "gulistan-state-university": {
     name: "Gulistan State University",
@@ -3173,11 +3228,11 @@ const MbbsUniversity = () => {
       />
 
       {/* Hero Banner */}
-      <section className="relative min-h-[60vh] pt-20 pb-12 flex items-center justify-center overflow-hidden">
+      <section className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[800px] flex items-center justify-center overflow-hidden">
         <img
           src={uniData.banner}
           alt={uniData.name}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-slate-900/30" />
         <div className="relative z-20 text-center px-4 sm:px-6 max-w-4xl mx-auto">
@@ -3269,6 +3324,33 @@ const MbbsUniversity = () => {
                 {uniData.about}
               </p>
             </motion.div>
+
+            {/* YouTube Video */}
+            {uniData.youtubeVideo && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                  <FiGlobe className="text-red-500" /> Watch Video —{" "}
+                  {uniData.name}
+                </h2>
+                <div
+                  className="relative w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200"
+                  style={{ paddingBottom: "56.25%" }}
+                >
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${uniData.youtubeVideo.split("v=")[1]?.split("&")[0]}`}
+                    title={`${uniData.name} - Video`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </motion.div>
+            )}
 
             {/* Key Highlights */}
             <motion.div
