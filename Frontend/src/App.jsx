@@ -43,7 +43,9 @@ import NotFound from "./pages/NotFound";
 const JobsAfter12th = lazy(() => import("./pages/JobsAfter12th"));
 const HealthcareJobsAbroad = lazy(() => import("./pages/HealthcareJobsAbroad"));
 const TechnicalJobsAbroad = lazy(() => import("./pages/TechnicalJobsAbroad"));
-const HospitalityJobsAbroad = lazy(() => import("./pages/HospitalityJobsAbroad"));
+const HospitalityJobsAbroad = lazy(
+  () => import("./pages/HospitalityJobsAbroad"),
+);
 
 // Layout wrapper that conditionally renders Navbar/Footer
 const AppLayout = () => {
@@ -71,7 +73,7 @@ const AppLayout = () => {
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
-          
+
             <Route path="/contact" element={<Contact />} />
 
             {/* MBBS Routes */}
@@ -131,7 +133,7 @@ const AppLayout = () => {
         href="https://wa.me/919914773125?text=Hello%20CaptonVisaPoint%2C%20I%20have%20a%20query%20regarding%20your%20services."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 hover:scale-110 transition-all"
+        className="fixed bottom-6 right-6 z-50 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 hover:scale-110 transition-all"
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
       >

@@ -161,8 +161,8 @@ const MegaDropdown = ({ columns }) => (
       columns.length >= 4
         ? "max-w-[300px] grid-cols-2"
         : columns.length >= 3
-        ? "max-w-[580px] grid-cols-3"
-        : "max-w-[380px] grid-cols-2"
+          ? "max-w-[580px] grid-cols-3"
+          : "max-w-[380px] grid-cols-2"
     }`}
   >
     <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-800 to-blue-900" />
@@ -293,60 +293,63 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Menu — shows at xl (1280px+) */}
-          <ul className="hidden xl:flex items-center gap-1" role="menubar">
-            {NAV_LINKS.map((link) => (
-              <li
-                key={link.name}
-                className="relative group px-3 py-4"
-                onMouseEnter={() => setActiveDropdown(link.name)}
-                onMouseLeave={() => setActiveDropdown(null)}
-                role="none"
-              >
-                <Link
-                  to={link.path}
-                  className="flex items-center gap-1.5 text-[15px] font-semibold text-slate-600 group-hover:text-blue-600 transition-colors"
-                  role="menuitem"
-                  aria-haspopup={link.type === "mega" ? "true" : undefined}
-                  aria-expanded={
-                    activeDropdown === link.name ? "true" : undefined
-                  }
+          {/* Desktop Right Side (Menu + Actions) */}
+          <div className="hidden xl:flex items-center gap-8">
+            {/* Desktop Menu */}
+            <ul className="flex items-center gap-1" role="menubar">
+              {NAV_LINKS.map((link) => (
+                <li
+                  key={link.name}
+                  className="relative group px-3 py-4"
+                  onMouseEnter={() => setActiveDropdown(link.name)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                  role="none"
                 >
-                  {link.name}
-                  {link.type === "mega" && (
-                    <FiChevronDown
-                      className={`text-xs transition-transform duration-300 ${
-                        activeDropdown === link.name ? "rotate-180" : ""
-                      }`}
-                      aria-hidden="true"
-                    />
-                  )}
-                </Link>
+                  <Link
+                    to={link.path}
+                    className="flex items-center gap-1.5 text-[15px] font-semibold text-slate-600 group-hover:text-blue-600 transition-colors"
+                    role="menuitem"
+                    aria-haspopup={link.type === "mega" ? "true" : undefined}
+                    aria-expanded={
+                      activeDropdown === link.name ? "true" : undefined
+                    }
+                  >
+                    {link.name}
+                    {link.type === "mega" && (
+                      <FiChevronDown
+                        className={`text-xs transition-transform duration-300 ${
+                          activeDropdown === link.name ? "rotate-180" : ""
+                        }`}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Link>
 
-                {/* Highlight Line */}
-                <span
-                  className="absolute bottom-2 left-3 right-3 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
-                  aria-hidden="true"
-                />
+                  {/* Highlight Line */}
+                  <span
+                    className="absolute bottom-2 left-3 right-3 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
+                    aria-hidden="true"
+                  />
 
-                {/* Mega Dropdown */}
-                <AnimatePresence>
-                  {link.type === "mega" && activeDropdown === link.name && (
-                    <MegaDropdown columns={link.columns} />
-                  )}
-                </AnimatePresence>
-              </li>
-            ))}
-          </ul>
+                  {/* Mega Dropdown */}
+                  <AnimatePresence>
+                    {link.type === "mega" && activeDropdown === link.name && (
+                      <MegaDropdown columns={link.columns} />
+                    )}
+                  </AnimatePresence>
+                </li>
+              ))}
+            </ul>
 
-          {/* Desktop Actions */}
-          <div className="hidden xl:flex items-center gap-3">
-            <Link
-              to="/contact"
-              className="bg-blue-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-700/25 hover:bg-blue-800 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
-            >
-              Contact Us <FiArrowRight aria-hidden="true" />
-            </Link>
+            {/* Desktop Actions */}
+            <div className="flex items-center">
+              <Link
+                to="/contact"
+                className="bg-blue-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-700/25 hover:bg-blue-800 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 "
+              >
+                Contact Us <FiArrowRight aria-hidden="true" />
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Toggle — 44×44px touch target */}
@@ -422,10 +425,15 @@ const Navbar = () => {
                     >
                       {link.type === "mega" ? (
                         <details className="group">
-                          <summary className="flex justify-between items-center py-3.5 text-slate-800 font-bold text-base list-none cursor-pointer select-none">
-                            {link.name}
+                          <summary className="flex items-center justify-between w-full py-3.5 text-slate-800 font-bold text-base list-none cursor-pointer select-none">
+                            <Link
+                              to={link.path}
+                              className="flex-1 text-left hover:text-blue-600 transition-colors"
+                            >
+                              {link.name}
+                            </Link>
                             <FiChevronDown
-                              className="group-open:rotate-180 transition-transform duration-200 text-slate-400 shrink-0"
+                              className="group-open:rotate-180 transition-transform duration-200 text-slate-400 text-sm shrink-0 ml-2"
                               aria-hidden="true"
                             />
                           </summary>
@@ -476,12 +484,14 @@ const Navbar = () => {
                                   <Link
                                     to={col.path}
                                     onClick={closeMobileMenu}
-                                    className="flex items-center gap-3 py-2.5 px-3 text-sm text-slate-700 font-semibold hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                                    className="flex items-center justify-between py-2.5 px-3 text-sm text-slate-700 font-semibold hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
                                   >
-                                    {col.title}
+                                    <span className="flex-1 text-left">
+                                      {col.title}
+                                    </span>
                                     <FiArrowRight
                                       size={12}
-                                      className="text-slate-400"
+                                      className="text-slate-400 shrink-0 ml-2"
                                     />
                                   </Link>
                                 )}
@@ -498,11 +508,11 @@ const Navbar = () => {
                         <Link
                           to={link.path}
                           onClick={closeMobileMenu}
-                          className="flex items-center justify-between py-3.5 text-slate-800 font-bold text-base hover:text-blue-600 transition-colors"
+                          className="flex items-center justify-between w-full py-3.5 text-slate-800 font-bold text-base hover:text-blue-600 transition-colors"
                         >
-                          {link.name}
+                          <span className="flex-1 text-left">{link.name}</span>
                           <FiArrowRight
-                            className="text-slate-300 text-sm"
+                            className="text-slate-300 text-sm shrink-0 ml-2"
                             aria-hidden="true"
                           />
                         </Link>

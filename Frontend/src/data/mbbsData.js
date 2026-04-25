@@ -9,6 +9,10 @@ import {
   FiTrendingUp,
   FiClock,
   FiStar,
+  FiCheckCircle,
+  FiHeadphones,
+  FiNavigation,
+  FiHeart,
 } from "react-icons/fi";
 
 export const announcements = [
@@ -20,16 +24,60 @@ export const announcements = [
 ];
 
 export const topCountries = [
-  { name: "Russia",     fees: "$3,500/yr", seats: "50+", rank: "#1 Choice",    link: "/mbbs/russia" },
-  { name: "Georgia",    fees: "$4,000/yr", seats: "20+", rank: "EU Standards", link: "/mbbs/georgia" },
-  { name: "Uzbekistan", fees: "$3,000/yr", seats: "15+", rank: "Lowest Cost",  link: "/mbbs/uzbekistan" },
-  { name: "Kazakhstan", fees: "$3,200/yr", seats: "10+", rank: "Top Rated",    link: "/mbbs/kazakhstan" },
-  { name: "Kyrgyzstan", fees: "$2,800/yr", seats: "8+",  rank: "Budget Pick",  link: "/mbbs/kyrgyzstan" },
-  { name: "Romania",    fees: "€5,000/yr", seats: "10+", rank: "EU Degree",    link: "/mbbs/romania" },
-  { name: "Bulgaria",   fees: "€6,000/yr", seats: "10+", rank: "EU & Schengen", link: "/mbbs/bulgaria" },
-  { name: "Serbia",     fees: "€4,500/yr", seats: "8+",  rank: "Affordable EU", link: "/mbbs/serbia" },
-  { name: "Bosnia",     fees: "€3,500/yr", seats: "5+",  rank: "Most Affordable", link: "/mbbs/bosnia" },
-  { name: "Germany",    fees: "€500/yr",   seats: "5+",  rank: "Free Education", link: "/mbbs/germany" },
+  {
+    name: "India",
+    fees: "$3,500/yr",
+    rank: "#1 Choice",
+    link: "/mbbs/india",
+    description: "Government & Private Colleges",
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&auto=format&fit=crop&q=80",
+    
+  },
+  {
+    name: "Georgia",
+    fees: "$4,000/yr",
+    rank: "EU Standards",
+    link: "/mbbs/georgia",
+    description: "Lowest Fees in Europe",
+    image: "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=600&auto=format&fit=crop&q=80",
+    
+  },
+  {
+    name: "Russia",
+    fees: "$3,500/yr",
+    rank: "#1 Choice",
+    link: "/mbbs/russia",
+    description: "Top Ranked Universities",
+    image: "https://images.unsplash.com/photo-1513326738677-b964603b136d?w=600&auto=format&fit=crop&q=80",
+    
+  },
+  {
+    name: "Uzbekistan",
+    fees: "$3,000/yr",
+    rank: "Lowest Cost",
+    link: "/mbbs/uzbekistan",
+    description: "NMC Approved Universities",
+    image: "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?w=600&auto=format&fit=crop&q=80",
+    
+  },
+  {
+    name: "Kyrgyzstan",
+    fees: "$2,800/yr",
+    rank: "Budget Pick",
+    link: "/mbbs/kyrgyzstan",
+    description: "Top Medical Universities",
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&auto=format&fit=crop&q=80",
+    
+  },
+  {
+    name: "Nepal",
+    fees: "$6,200/yr",
+    rank: "Nearest",
+    link: "/mbbs/nepal",
+    description: "Affordable Fees & Quality Education",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop&q=80",
+    
+  },
 ];
 
 export const processSteps = [
@@ -65,6 +113,29 @@ export const processSteps = [
   },
 ];
 
+export const whyChooseUs = [
+  {
+    icon: FiUsers,
+    title: "Expert Counseling",
+    desc: "One to one guidance by MBBS experts",
+  },
+  {
+    icon: FiCheckCircle,
+    title: "100% Admission Assistance",
+    desc: "End to end admission support",
+  },
+  {
+    icon: FiNavigation,
+    title: "Visa & Travel Support",
+    desc: "Complete visa & travel assistance",
+  },
+  {
+    icon: FiHeadphones,
+    title: "After Admission Support",
+    desc: "Continued support even after admission",
+  },
+];
+
 export const whyUs = [
   { icon: FiShield,    title: "NMC Approved Only",      desc: "We partner exclusively with universities recognized by NMC & WHO",           bg: "bg-blue-900" },
   { icon: FiDollarSign, title: "Zero Hidden Fees",       desc: "Transparent pricing — no surprise costs at any stage of admission",           bg: "bg-blue-800" },
@@ -74,29 +145,116 @@ export const whyUs = [
   { icon: FiStar,      title: "Post-Admission Support",  desc: "FMGE/NEXT coaching guidance, airport pickup, hostel assistance",             bg: "bg-blue-800" },
 ];
 
+export const costComparison = [
+  {
+    option: "Government Colleges (India)",
+    fees: "₹ 5 - 10 Lacs",
+    chance: "Very Low",
+    chanceColor: "text-red-500",
+    highlights: "Very tough competition",
+  },
+  {
+    option: "Private Colleges (India)",
+    fees: "₹ 80 Lacs - ₹ 1 Cr",
+    chance: "Medium",
+    chanceColor: "text-amber-500",
+    highlights: "High fees & donation",
+  },
+  {
+    option: "MBBS Abroad",
+    fees: "₹ 15 Lacs - ₹ 30 Lacs",
+    chance: "High",
+    chanceColor: "text-green-600",
+    highlights: "Affordable & High Admission Chance",
+    highlighted: true,
+  },
+];
+
+export const studentLife = [
+  {
+    title: "Comfortable Hostel & Indian Food",
+    image: "/mbbs-assets/student-hostel.png",
+  },
+  {
+    title: "Practical Training in Top Hospitals",
+    image: "/mbbs-assets/student-training.png",
+  },
+  {
+    title: "Modern Labs & Infrastructure",
+    image: "/mbbs-assets/student-labs.png",
+  },
+  {
+    title: "Safe & Secure Environment",
+    image: "/mbbs-assets/student-campus.png",
+  },
+  {
+    title: "Indian Student Community",
+    image: "/mbbs-assets/student-community.png",
+  },
+];
+
+export const trustBadges = [
+  { icon: FiAward, value: "10+", label: "Years of Experience" },
+  { icon: FiUsers, value: "5000+", label: "Successful Admissions" },
+  { icon: FiShield, value: "NMC & WHO", label: "Approved Universities" },
+  { icon: FiCheckCircle, value: "Transparent", label: "Process No Hidden Charges" },
+  { icon: FiHeadphones, value: "24/7", label: "Support for Students & Parents" },
+];
+
+export const mbbsTestimonials = [
+  {
+    name: "Rahul Sharma",
+    role: "MBBS, Georgia",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200",
+    text: "I couldn't get a good college in India. Thanks to Capton Visa Point, I am now studying in a top university in Georgia at an affordable cost.",
+    rating: 5,
+  },
+  {
+    name: "Anita Verma (Parent)",
+    role: "Mother of MBBS Student, Russia",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200",
+    text: "The team guided us in every step. My daughter is now pursuing MBBS in Russia. Highly recommended!",
+    rating: 5,
+  },
+  {
+    name: "Sneha Patel",
+    role: "Medical Student, Uzbekistan",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200",
+    text: "Very transparent counseling. They explained everything honestly about fees, living conditions and exam preparation. Trustworthy consultancy.",
+    rating: 5,
+  },
+  {
+    name: "Arjun Reddy",
+    role: "MBBS Student, Kyrgyzstan",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200",
+    text: "Capton Visa Point made my dream of becoming a doctor come true. The support from counseling to arrival was exceptional.",
+    rating: 5,
+  },
+];
+
 export const faqs = [
   {
-    question: "What is the duration of MBBS?",
-    answer: "MBBS is typically a 5.5 to 6-year program including internship, depending on the country and university. In Russia and CIS countries it's 6 years; in India it's 5.5 years.",
+    question: "Is MBBS abroad valid in India?",
+    answer: "Yes! MBBS degrees from NMC-approved and WHO-listed universities abroad are valid in India. Graduates need to clear the FMGE (Foreign Medical Graduate Exam) or the upcoming NEXT exam to practice medicine in India.",
   },
   {
-    question: "Is NEET mandatory for MBBS abroad?",
-    answer: "Yes, NEET qualification is mandatory for Indian students pursuing MBBS abroad to practice in India after completing the degree. Minimum qualifying marks: General 50th percentile, OBC/SC/ST 40th percentile.",
+    question: "What is FMGE / NEXT exam?",
+    answer: "FMGE (Foreign Medical Graduate Examination) is a licensing exam conducted by NMC for Indian students who completed MBBS abroad. NEXT (National Exit Test) is planned to replace FMGE as a unified exam for all medical graduates.",
   },
   {
-    question: "Can I practice in India after MBBS abroad?",
-    answer: "Yes! After completing MBBS abroad from an NMC-approved university, you must clear the FMGE (Foreign Medical Graduate Exam) or the upcoming NEXT exam conducted by NMC to register and practice in India.",
+    question: "Is NEET compulsory for MBBS abroad?",
+    answer: "Yes, NEET qualification is mandatory for Indian students pursuing MBBS abroad to be eligible to practice in India. Minimum qualifying marks: General 50th percentile, OBC/SC/ST 40th percentile.",
   },
   {
-    question: "What is the average cost of MBBS?",
-    answer: "Costs vary: Government colleges in India: ₹10K–1L/year | Private India: ₹10–25L/year | MBBS Abroad (Russia, Uzbekistan): $2,800–4,000/year | Georgia, Kazakhstan: $3,200–5,000/year. Total abroad cost: ₹20–35 lakhs for the full course.",
+    question: "Is it safe for girls to study abroad?",
+    answer: "Absolutely! All our partner universities provide safe, secure hostels with CCTV surveillance, separate girls' hostels, 24/7 security, and a dedicated support team for international students.",
   },
   {
-    question: "What is the minimum NEET score for MBBS abroad?",
-    answer: "There is no specific minimum score for admission — only the qualifying percentile (50th for General, 40th for OBC/SC/ST). However, universities may have their own criteria. We help match your score to the right university.",
+    question: "What is the total cost of MBBS abroad?",
+    answer: "The total cost varies by country: Russia ₹20-35L, Georgia ₹25-40L, Uzbekistan ₹15-20L, Kyrgyzstan ₹15-30L. This includes tuition, hostel, and living expenses for the full 6-year course.",
   },
   {
-    question: "Do MBBS abroad universities teach in English?",
-    answer: "Yes! All our partner universities in Russia, Georgia, Uzbekistan, Kazakhstan, and Kyrgyzstan offer English-medium MBBS programs specifically designed for international students.",
+    question: "What is the admission process?",
+    answer: "The process is simple: 1) NEET qualification 2) Choose university with our guidance 3) Submit documents 4) Receive admission letter 5) Visa processing 6) Travel & enrollment. We handle everything end-to-end.",
   },
 ];
