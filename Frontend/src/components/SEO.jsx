@@ -5,10 +5,18 @@ const BASE_TITLE = "Capton Visa Point";
 // Master keyword list — appended to every page for full SEO coverage
 const GLOBAL_KEYWORDS = "MBBS in India, MBBS course in India, MBBS degree in India, MBBS education in India, Study MBBS in India, MBBS medical course, MBBS admission, MBBS admission process, MBBS admission 2026, MBBS admission 2027, Top MBBS colleges in India, Best MBBS colleges in India, Government MBBS colleges in India, Private MBBS colleges in India, Top government medical colleges, Best private medical colleges, MBBS colleges with low fees, Affordable MBBS colleges in India, AIIMS MBBS colleges, State quota MBBS colleges, Low fees MBBS colleges, Cheapest MBBS colleges in India, Budget MBBS colleges, MBBS colleges under 10 lakhs, MBBS colleges under 15 lakhs, MBBS colleges under 20 lakhs, Affordable medical colleges, Low cost MBBS in India, MBBS fees structure, MBBS tuition fees in India, MBBS admission in India, MBBS admission without donation, MBBS admission through NEET, NEET MBBS admission, MBBS counseling India, All India MBBS counseling, State MBBS counseling, MBBS seat allotment, MBBS admission consultants, MBBS admission guidance, NEET exam, NEET UG exam, NEET preparation, NEET exam syllabus, NEET exam pattern, NEET qualifying marks, NEET cutoff for MBBS, NEET score for MBBS, NEET counseling process, NEET UG admission, MBBS consultants in India, MBBS abroad consultants, Best MBBS consultants, Medical admission consultants, MBBS counseling services, Overseas MBBS consultants, MBBS admission agents, Trusted MBBS consultants, MBBS admission help, Study MBBS consultants, MBBS in Abroad, Study MBBS Abroad, MBBS Abroad admission, MBBS Abroad consultants, Cheapest MBBS Abroad, MBBS Abroad without NEET, Low cost MBBS Abroad, MBBS Abroad eligibility, MBBS Abroad fees, MBBS Abroad universities, MBBS in Russia, Study MBBS in Russia, MBBS in Russia fees, MBBS in Russia for Indian students, Russia MBBS admission, Top medical universities in Russia, Low cost MBBS in Russia, MBBS in Russia without donation, MBBS in Russia eligibility, MBBS in Russia consultants, MBBS in Italy, Study MBBS in Italy, MBBS in Italy fees, MBBS in Italy for Indian students, MBBS in Italy admission, English medium MBBS in Italy, MBBS universities in Italy, MBBS in Italy scholarship, MBBS in Italy without NEET, MBBS in Italy consultants, MBBS in Kazakhstan, Study MBBS in Kazakhstan, MBBS in Kazakhstan fees, MBBS in Kazakhstan for Indian students, Low cost MBBS in Kazakhstan, Kazakhstan medical universities, MBBS admission in Kazakhstan, MBBS in Kazakhstan eligibility, MBBS in Kazakhstan consultants, MBBS in Kazakhstan without donation, MBBS in Bangladesh, Study MBBS in Bangladesh, MBBS in Bangladesh fees, MBBS in Bangladesh for Indian students, Bangladesh medical colleges, MBBS admission in Bangladesh, Private MBBS colleges in Bangladesh, MBBS in Bangladesh eligibility, MBBS in Bangladesh consultants, MBBS in Bangladesh without donation, MBBS in Nepal, Study MBBS in Nepal, MBBS in Nepal fees, MBBS in Nepal for Indian students, Nepal medical colleges, MBBS admission in Nepal, Private MBBS colleges in Nepal, MBBS in Nepal eligibility, MBBS in Nepal consultants, MBBS in Nepal without donation, MBBS in Ukraine, MBBS in Georgia, MBBS in Uzbekistan, MBBS in Philippines, MBBS in China, MBBS in Kyrgyzstan, MBBS in Armenia, MBBS in Egypt, MBBS in Poland, MBBS in Germany, MBBS in Punjab, MBBS in Haryana, MBBS in Karnataka, MBBS in Maharashtra, MBBS in Tamil Nadu, MBBS in Rajasthan, MBBS in Uttar Pradesh, MBBS in Delhi, MBBS in Gujarat, MBBS in Madhya Pradesh, MBBS in West Bengal, MBBS in Bihar, MBBS in Jharkhand, MBBS in Chhattisgarh, MBBS in Odisha, MBBS in Kerala, MBBS in Andhra Pradesh, MBBS in Telangana, MBBS in Himachal Pradesh, MBBS in Uttarakhand, Private MBBS admission, Management quota MBBS seats, MBBS without donation India, Direct MBBS admission, NRI quota MBBS admission, MBBS admission under management quota, Private medical colleges MBBS, Direct MBBS admission India, MBBS seat booking, MBBS admission services, Best country for MBBS for Indian students, Cheapest country for MBBS, MBBS without NEET abroad, MBBS abroad vs India, Is MBBS abroad valid in India, FMGE exam after MBBS abroad, NEXT exam for MBBS students, MBBS abroad recognition in India, Medical council approved colleges, WHO approved medical universities, Career after MBBS, PG after MBBS, MD after MBBS, MS after MBBS, Medical career options, Scope of MBBS in India, Scope of MBBS abroad, Doctor career path, Medical PG entrance exams, Best specialization after MBBS, NEET 2026 MBBS admission, NEET 2027 MBBS admission, MBBS counseling 2026, MBBS counseling 2027, MBBS seat availability 2026, MBBS seat availability 2027, Medical admission 2026, Medical admission 2027, MBBS admission help India, Trusted MBBS consultants India, Best medical admission guidance, Low cost medical education, Study medicine abroad, Medical universities for Indians, Indian students MBBS abroad, Safe countries for MBBS, MBBS abroad visa process, MBBS abroad admission process, MBBS colleges list India, Top medical universities abroad, Medical education consultants India, MBBS without capitation fee, MBBS admission enquiry, MBBS seat booking online, MBBS colleges comparison, MBBS abroad scholarships, MBBS admission helpline, Best MBBS destination, MBBS colleges in India list, Best medical colleges in India, Top government medical colleges India, Top private medical colleges India, Medical colleges with low fees, MBBS colleges without donation, MBBS admission guidance India, Medical admission support India, MBBS counseling experts, MBBS seat confirmation, MBBS colleges in Delhi, MBBS colleges in Mumbai, MBBS colleges in Bangalore, MBBS colleges in Chennai, MBBS colleges in Hyderabad, MBBS colleges in Pune, MBBS colleges in Jaipur, MBBS colleges in Lucknow, MBBS colleges in Patna, MBBS colleges in Bhopal, Minimum NEET marks for MBBS, NEET cutoff for government MBBS, NEET cutoff for private MBBS, NEET score required for MBBS abroad, NEET qualified MBBS admission, NEET failed MBBS options, MBBS without NEET India, MBBS without NEET abroad, NEET counseling for MBBS, NEET rank for MBBS admission, MBBS in Georgia for Indian students, MBBS in Uzbekistan fees, MBBS in Kyrgyzstan fees, MBBS in Armenia fees, MBBS in Philippines fees, MBBS in China for Indians, MBBS in Egypt for Indian students, MBBS in Poland English medium, MBBS in Germany eligibility, MBBS in Romania, Cheapest MBBS country for Indians, Lowest fees MBBS abroad, Budget MBBS universities abroad, Low cost medical colleges abroad, MBBS abroad under 25 lakhs, MBBS abroad under 30 lakhs, MBBS abroad under 35 lakhs, MBBS abroad under 40 lakhs, Affordable MBBS abroad universities, MBBS abroad cost comparison, NMC approved medical colleges, WHO approved medical universities, MBBS abroad valid in India, NMC guidelines for MBBS abroad, FMGE exam eligibility, NEXT exam for MBBS abroad, Medical council recognition, Indian medical council approved colleges, MBBS degree validity India, MBBS abroad recognition process, MBBS consultants in Delhi, MBBS consultants in Punjab, MBBS consultants in Haryana, MBBS consultants in Rajasthan, MBBS consultants in Uttar Pradesh, MBBS consultants in Bihar, MBBS consultants in Maharashtra, MBBS consultants in Karnataka, MBBS consultants in South India, MBBS consultants near me, MBBS management quota seats India, MBBS direct admission consultants, MBBS admission without donation, Private MBBS colleges fees, Management quota MBBS fees, MBBS admission through management quota, Private medical college admission, Direct MBBS seat booking, MBBS course duration, MBBS syllabus India, MBBS subjects list, MBBS internship details, MBBS clinical training, MBBS medium of instruction, English medium MBBS abroad, MBBS entrance exam, Medical entrance exams India, Medical course details, PG after MBBS in India, PG after MBBS abroad, Medical specialization options, Best PG courses after MBBS, Doctor career options, Medical career after MBBS, Higher studies after MBBS, Government jobs after MBBS, MBBS admission 2025, NEET 2025 counseling, NEET 2026 counseling, Medical admission 2026 India, Medical admission 2027 India, MBBS seat availability, MBBS admission open, MBBS counseling dates, Best MBBS option for low NEET score, MBBS for average NEET marks, Safe MBBS abroad countries, Best country for Indian medical students, MBBS abroad pros and cons, MBBS India vs abroad, MBBS admission for middle class, Medical education guidance, MBBS career counseling, MBBS abroad travel guide, Hostel facilities for MBBS students, MBBS abroad living cost, Indian food availability MBBS abroad, Safety for Indian students abroad, MBBS abroad accommodation, MBBS abroad student life, Medical student visa requirements, Best MBBS college for Indian students, Best private MBBS colleges, Best government MBBS colleges, Medical colleges comparison, MBBS college ranking, Top medical universities world, Best MBBS universities Europe, Asian medical universities MBBS, International medical colleges, MBBS scholarships abroad, MBBS scholarships for Indian students, Education loan for MBBS, Medical education loan, MBBS loan without collateral, MBBS fees installment option, Affordable MBBS education, MBBS cost breakdown, Medical education expenses, MBBS financial planning, Apply MBBS online, MBBS admission enquiry India, MBBS admission helpline number, Best MBBS consultants India, Trusted medical admission consultants, MBBS seat booking assistance, MBBS admission support services, Medical admission experts, MBBS guidance center, MBBS career guidance, Study medicine abroad for Indians, Overseas medical education, International MBBS admission, Foreign medical universities, MBBS abroad without donation, Best medical colleges abroad, MBBS abroad consultants India, Medical education abroad, MBBS abroad eligibility criteria, MBBS abroad admission requirements, MBBS abroad documents required, MBBS abroad application process, MBBS abroad entrance exam, Direct MBBS abroad admission, Low NEET score MBBS options, Medical colleges accepting low NEET, MBBS admission for drop year students, MBBS admission after 12th, Medical course after 12th PCB, Best medical course after 12th, MBBS vs BDS, MBBS vs BAMS, MBBS vs BHMS, MBBS vs BPT, Medical career options PCB, Scope of medical education, Future of MBBS in India, Demand of doctors in India, Medical profession growth, Healthcare career India, Best medical education consultants, MBBS admission India consultants, Study MBBS guidance, Medical education planning, MBBS abroad counseling India, International medical admission consultants, MBBS abroad seat availability, MBBS abroad application deadline, MBBS abroad intake, MBBS abroad academic calendar, Best intake for MBBS abroad, MBBS abroad January intake, MBBS abroad September intake, MBBS abroad fall intake, MBBS abroad spring intake, MBBS abroad admission open, Apply MBBS abroad online, MBBS abroad enquiry, MBBS abroad helpline, MBBS abroad experts, Medical admission abroad, Foreign MBBS colleges list, International MBBS universities list, Best MBBS destination 2026, Best MBBS destination 2027, MBBS admission consultancy India, Medical admission partner, MBBS seat booking consultants, MBBS admission assistance India, Overseas medical education India, MBBS abroad safe universities, MBBS abroad Indian students support, MBBS abroad education system, MBBS abroad teaching quality, MBBS abroad clinical exposure, MBBS abroad hospital training, MBBS abroad internship validity, MBBS abroad licensing exam, Medical licensing exam India, FMGE coaching after MBBS abroad, NEXT exam coaching, MBBS abroad return to India, Practice medicine after MBBS abroad, Indian doctor license process, MBBS abroad degree verification, Medical council registration, State medical council registration, Doctor registration India, MBBS graduate registration, Medical license India, Study medicine overseas, Medical universities admissions, MBBS colleges admission open, Medical admission guidance India, MBBS study options, Medical education options India, Best option after NEET, Low rank NEET MBBS options, Medical admission solutions, MBBS abroad admission support, Medical education consultancy services, MBBS seat availability India, MBBS seat availability abroad, Medical colleges intake, MBBS admission window, Medical admission calendar, MBBS counseling assistance, MBBS admission roadmap, Medical education planning India, MBBS admission checklist, MBBS abroad checklist, MBBS admission documents, Medical admission documents required, MBBS abroad eligibility India, MBBS admission criteria India, Medical admission requirements, MBBS education consultants India, Overseas education medical consultants, MBBS abroad application help, MBBS abroad counseling experts, MBBS abroad trusted consultants, MBBS abroad admission India, Medical education abroad India, MBBS abroad seat booking, MBBS abroad admission India consultants, International MBBS admission India, Best overseas MBBS consultants, Foreign MBBS admission help, Study MBBS overseas India, Medical education overseas consultants, MBBS abroad guidance center, Medical admission abroad India, MBBS abroad admission experts, MBBS abroad education consultants, MBBS abroad career guidance, MBBS abroad student support, MBBS abroad Indian counseling, MBBS abroad admission India helpline, MBBS abroad study guide, MBBS abroad education guide, MBBS abroad complete information, MBBS admission India complete guide, Medical education complete guide, MBBS study complete guide, MBBS career complete guide, Capton Visa Point, study abroad consultants, Ausbildung, German language training, IELTS coaching, healthcare jobs abroad";
 
-const SEO = ({ title, description, keywords }) => {
-  useEffect(() => {
-    document.title = title ? `${title} | ${BASE_TITLE}` : `${BASE_TITLE} | Study & Immigration Consultants`;
+const SITE_URL = "https://www.captonvisapoint.com";
+const DEFAULT_OG_IMAGE = "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
 
+const SEO = ({ title, description, keywords, canonicalPath }) => {
+  useEffect(() => {
+    // --- Page title ---
+    const fullTitle = title
+      ? (title.includes(BASE_TITLE) ? title : `${title} | ${BASE_TITLE}`)
+      : `${BASE_TITLE} | Study & Immigration Consultants`;
+    document.title = fullTitle;
+
+    // Helper: set <meta name="..."> tags
     const setMeta = (name, content) => {
       if (!content) return;
       let el = document.querySelector(`meta[name="${name}"]`);
@@ -20,6 +28,37 @@ const SEO = ({ title, description, keywords }) => {
       el.setAttribute("content", content);
     };
 
+    // Helper: set <meta property="..."> tags (for OG)
+    const setMetaProperty = (property, content) => {
+      if (!content) return;
+      let el = document.querySelector(`meta[property="${property}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("property", property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    // Helper: set <link rel="..."> tags (for canonical / alternate)
+    const setLink = (rel, href, extraAttrs = {}) => {
+      if (!href) return;
+      let selector = `link[rel="${rel}"]`;
+      // For alternate links, also match by hreflang
+      if (extraAttrs.hreflang) {
+        selector += `[hreflang="${extraAttrs.hreflang}"]`;
+      }
+      let el = document.querySelector(selector);
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("rel", rel);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("href", href);
+      Object.entries(extraAttrs).forEach(([key, val]) => el.setAttribute(key, val));
+    };
+
+    // --- Standard meta tags ---
     if (description) setMeta("description", description);
 
     // Merge page-specific keywords with global keywords
@@ -27,7 +66,26 @@ const SEO = ({ title, description, keywords }) => {
       ? `${keywords}, ${GLOBAL_KEYWORDS}`
       : GLOBAL_KEYWORDS;
     setMeta("keywords", allKeywords);
-  }, [title, description, keywords]);
+
+    // --- Open Graph tags ---
+    setMetaProperty("og:title", fullTitle);
+    if (description) setMetaProperty("og:description", description);
+    setMetaProperty("og:image", DEFAULT_OG_IMAGE);
+
+    // --- Twitter Card tags ---
+    setMeta("twitter:title", fullTitle);
+    if (description) setMeta("twitter:description", description);
+    setMeta("twitter:image", DEFAULT_OG_IMAGE);
+
+    // --- Canonical URL & OG URL ---
+    const pageUrl = canonicalPath
+      ? `${SITE_URL}${canonicalPath}`
+      : `${SITE_URL}${window.location.pathname}`;
+    setMetaProperty("og:url", pageUrl);
+    setLink("canonical", pageUrl);
+    setLink("alternate", pageUrl, { hreflang: "en-in" });
+
+  }, [title, description, keywords, canonicalPath]);
 
   return null;
 };
