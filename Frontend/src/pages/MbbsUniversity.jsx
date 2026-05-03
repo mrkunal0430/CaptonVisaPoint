@@ -3601,6 +3601,7 @@ const MbbsUniversity = () => {
               <InquiryForm
                 title={`Apply to ${uniData.name}`}
                 subtitle="Get free admission assessment"
+                showNeetScore={true}
               />
 
               {/* University Quick Facts */}

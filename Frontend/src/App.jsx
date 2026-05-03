@@ -35,6 +35,7 @@ const BlogDetail = lazy(() => import("./pages/BlogDetail"));
 const EligibilityCheck = lazy(() => import("./pages/EligibilityCheck"));
 const PartnerWithUs = lazy(() => import("./pages/PartnerWithUs"));
 const About = lazy(() => import("./pages/About"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
 // 404
 import NotFound from "./pages/NotFound";
@@ -105,6 +106,7 @@ const AppLayout = () => {
             <Route path="/eligibility-check" element={<EligibilityCheck />} />
             <Route path="/partner" element={<PartnerWithUs />} />
             <Route path="/about" element={<About />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
             {/* Jobs Abroad Routes */}
             <Route path="/jobs-abroad/after-12th" element={<JobsAfter12th />} />

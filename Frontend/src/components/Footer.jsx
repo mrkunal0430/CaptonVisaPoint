@@ -89,7 +89,7 @@ const badges = [
 const legalLinks = [
   { label: "About Us", path: "/about" },
   { label: "Blog", path: "/blog" },
-  { label: "Privacy Policy", path: "/contact" },
+  { label: "Privacy Policy", path: "/privacy-policy" },
   { label: "Terms of Service", path: "/contact" },
 ];
 

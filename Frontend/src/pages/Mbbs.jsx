@@ -122,6 +122,7 @@ const Mbbs = () => {
               title="Get Free Counselling"
               subtitle="Fill the form and our expert will call you back within 24 hours"
               variant="compact"
+              showNeetScore={true}
             />
           </div>
         </div>
@@ -195,6 +196,7 @@ const Mbbs = () => {
                 title="Get Free Counselling"
                 subtitle="Fill the form and our expert will call you back within 24 hours"
                 variant="compact"
+                showNeetScore={true}
               />
             </div>
           </div>

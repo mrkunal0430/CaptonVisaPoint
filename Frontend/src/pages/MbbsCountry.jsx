@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -481,6 +481,7 @@ const MbbsCountry = () => {
               <InquiryForm
                 title={`Apply to ${countryName}`}
                 subtitle="Get free admission assessment now"
+                showNeetScore={true}
               />
 
               <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl border border-blue-100">
