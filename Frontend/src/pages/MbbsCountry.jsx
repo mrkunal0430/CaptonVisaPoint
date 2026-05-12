@@ -20,7 +20,6 @@ import SEO from "../components/SEO";
 
 import { countryData, defaultCountryData } from "../data/mbbsData";
 
-
 // Infinite Marquee Slider Component
 const InfiniteMarqueeSlider = ({ items, renderCard, speed = 35 }) => {
   const trackRef = useRef(null);
@@ -115,9 +114,18 @@ const MbbsCountry = () => {
   return (
     <div>
       <SEO
-        title={data.seoTitle || `MBBS in ${countryName} | Fees, Universities & Admission 2026-2027`}
-        description={data.seoDescription || `Study MBBS in ${countryName} with Capton Visa Point. Complete MBBS admission guidance 2026-2027 — fees structure, eligibility, WHO & NMC approved universities, visa process, hostel facilities, and Indian food availability. Affordable MBBS for Indian students.`}
-        keywords={data.seoKeywords || `MBBS in ${countryName}, study MBBS in ${countryName}, MBBS in ${countryName} fees, MBBS in ${countryName} for Indian students, ${countryName} MBBS admission, top medical universities in ${countryName}, low cost MBBS in ${countryName}, MBBS in ${countryName} eligibility, MBBS in ${countryName} consultants, MBBS abroad, WHO approved medical universities, NMC approved medical colleges, FMGE exam after MBBS abroad, NEXT exam for MBBS students`}
+        title={
+          data.seoTitle ||
+          `MBBS in ${countryName} | Fees, Universities & Admission 2026-2027`
+        }
+        description={
+          data.seoDescription ||
+          `Study MBBS in ${countryName} with Capton Visa Point. Complete MBBS admission guidance 2026-2027 — fees structure, eligibility, WHO & NMC approved universities, visa process, hostel facilities, and Indian food availability. Affordable MBBS for Indian students.`
+        }
+        keywords={
+          data.seoKeywords ||
+          `MBBS in ${countryName}, study MBBS in ${countryName}, MBBS in ${countryName} fees, MBBS in ${countryName} for Indian students, ${countryName} MBBS admission, top medical universities in ${countryName}, low cost MBBS in ${countryName}, MBBS in ${countryName} eligibility, MBBS in ${countryName} consultants, MBBS abroad, WHO approved medical universities, NMC approved medical colleges, FMGE exam after MBBS abroad, NEXT exam for MBBS students`
+        }
       />
       {/* Banner */}
       <section className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[550px] flex items-center justify-center overflow-hidden">
@@ -267,7 +275,8 @@ const MbbsCountry = () => {
             {data.faqs && data.faqs.length > 0 && (
               <div>
                 <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <FiFileText className="text-blue-500" /> Frequently Asked Questions
+                  <FiFileText className="text-blue-500" /> Frequently Asked
+                  Questions
                 </h3>
                 <div className="space-y-3">
                   {data.faqs.map((faq, idx) => (
@@ -530,6 +539,55 @@ const MbbsCountry = () => {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery */}
+      {data.galleryImages && data.galleryImages.length > 0 && (
+        <section className="py-14 sm:py-20 bg-slate-50">
+          <div className="container mx-auto px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8 sm:mb-10"
+            >
+              <span className="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+                Photo Gallery
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
+                Life in {countryName}
+              </h2>
+              <p className="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">
+                {/* Campus facilities, city views, and university life in{" "} */}
+                {/* {countryName} */}
+              </p>
+            </motion.div>
+
+            {/* Masonry columns — each image shown at its natural full size, no cropping
+                Mobile: 1 col | Tablet: 2 cols | Desktop: 3 cols */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-3">
+              {data.galleryImages.map((src, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.08, duration: 0.5 }}
+                  className="mb-3 break-inside-avoid group relative overflow-hidden rounded-2xl shadow-sm"
+                >
+                  <img
+                    src={src}
+                    alt={`MBBS in ${countryName} – campus life ${idx + 1}`}
+                    className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {/* Subtle hover overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Explore Other Countries - Infinite Marquee Slider */}
       {otherCountries.length > 0 && (

@@ -11,34 +11,35 @@ import { FiLock, FiAlertCircle } from "react-icons/fi";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Admin = () => {
-  const [auth, setAuth] = useState(false);
-  const [token, setToken] = useState(
-    localStorage.getItem("adminToken") || null,
-  );
+  const [token] = useState(localStorage.getItem("adminToken") || null);
+  const [auth, setAuth] = useState(!!token);
   const [activeTab, setActiveTab] = useState("dashboard");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    setAuth(false);
+    setEmail("");
+    setPassword("");
+  };
+
+  // Auto-logout when any protected API call returns 401
   useEffect(() => {
-    // Verify token on mount
-    const verifyToken = async () => {
-      if (token) {
-        try {
-          await axios.get(`${API_URL}/auth/me`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          setAuth(true);
-        } catch (error) {
-          console.error("Token verification failed:", error);
+    if (!auth) return;
+    const id = axios.interceptors.response.use(
+      (res) => res,
+      (err) => {
+        if (err.response?.status === 401) {
           handleLogout();
         }
-      }
-    };
-
-    verifyToken();
-  }, [token]);
+        return Promise.reject(err);
+      },
+    );
+    return () => axios.interceptors.response.eject(id);
+  }, [auth]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -52,10 +53,9 @@ const Admin = () => {
       });
 
       if (res.data.success) {
-        const authToken = res.data.token;
-        localStorage.setItem("adminToken", authToken);
-        setToken(authToken);
-        setAuth(true);
+        localStorage.setItem("adminToken", res.data.token);
+        // Reload so the token state initialises fresh with the new value
+        window.location.reload();
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -63,14 +63,6 @@ const Admin = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    setToken(null);
-    setAuth(false);
-    setEmail("");
-    setPassword("");
   };
 
   if (!auth) {

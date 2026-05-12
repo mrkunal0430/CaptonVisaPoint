@@ -72,10 +72,16 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogsRoutes);
 
-// Apply stricter rate limiting to form submission routes
-app.use("/api/leads", formLimiter, leadsRoutes);
-app.use("/api/eligibility", formLimiter, eligibilityRoutes);
-app.use("/api/service-leads", formLimiter, serviceLeadsRoutes);
+// Apply stricter rate limiting only to form submission (POST) routes
+// Admin GET requests must not be throttled by the form limiter
+const postOnlyFormLimiter = (req, res, next) => {
+  if (req.method === "POST") return formLimiter(req, res, next);
+  return next();
+};
+
+app.use("/api/leads", postOnlyFormLimiter, leadsRoutes);
+app.use("/api/eligibility", postOnlyFormLimiter, eligibilityRoutes);
+app.use("/api/service-leads", postOnlyFormLimiter, serviceLeadsRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

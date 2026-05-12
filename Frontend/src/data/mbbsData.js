@@ -1188,6 +1188,14 @@ export const countryData = {
     seoKeywords: "MBBS in Bulgaria for Indian students, study MBBS in Bulgaria fees, Bulgaria medical universities admission, low cost MBBS Bulgaria, Bulgaria MBBS eligibility India, study medicine in Bulgaria, Bulgaria MBBS consultants India, MBBS Bulgaria admission 2026, Bulgaria medical college fees, Bulgaria MBBS visa process, study abroad consultants India, best study abroad consultants in Delhi, student visa consultants India, overseas education consultants",
     whyChoose:
       "Bulgaria is a top-tier EU destination for Indian students seeking an affordable, internationally recognized MBBS degree. As an EU and Schengen member, Bulgarian medical degrees are automatically valid across all EU countries. Annual tuition fees range from Γé¼6,000ΓÇôΓé¼8,000, making it one of the most affordable options in Western and Central Europe, with a total 6-year cost of approximately Γé╣35ΓÇô50 Lakhs. Bulgarian universities like Medical University of Sofia, Plovdiv, and Varna have decades of experience teaching international students in English. Clinical training takes place in well-equipped university hospitals. Bulgaria offers very low cost of living, a safe student-friendly environment, and strong cultural appeal. Graduates can work across Europe or return to India to practice after clearing FMGE/NEXT.",
+    galleryImages: [
+      "/Mbbs_Countries/bulgeria-1.jpeg",
+      "/Mbbs_Countries/bulgeria-2.jpeg",
+      "/Mbbs_Countries/bulgeria-3.jpeg",
+      "/Mbbs_Countries/bulgeria-4.jpeg",
+      "/Mbbs_Countries/bulgeria-5.jpeg",
+      "/Mbbs_Countries/bulgeria-6.jpeg",
+    ],
     partnerUniversities: [
       {
         name: "Medical University of Sofia",

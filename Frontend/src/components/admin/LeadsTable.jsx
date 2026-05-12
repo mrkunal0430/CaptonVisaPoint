@@ -40,9 +40,11 @@ const LeadsTable = ({ token }) => {
     total: 0,
     pages: 0,
   });
+  const [fetchError, setFetchError] = useState(null);
 
   const fetchLeads = async () => {
     setLoading(true);
+    setFetchError(null);
     try {
       const params = {
         page: pagination.page,
@@ -59,7 +61,10 @@ const LeadsTable = ({ token }) => {
       setPagination(res.data.pagination);
     } catch (error) {
       console.error("Error fetching leads:", error);
-      alert("Failed to fetch leads");
+      if (error.response?.status === 401) return; // interceptor handles logout
+      setFetchError(
+        error.response?.data?.message || "Failed to fetch leads.",
+      );
     } finally {
       setLoading(false);
     }
@@ -90,7 +95,7 @@ const LeadsTable = ({ token }) => {
         fetchLeads();
       } catch (error) {
         console.error("Error deleting lead:", error);
-        alert("Failed to delete lead");
+        if (error.response?.status !== 401) fetchLeads();
       }
     }
   };
@@ -105,7 +110,6 @@ const LeadsTable = ({ token }) => {
       fetchLeads();
     } catch (error) {
       console.error("Error updating status:", error);
-      alert("Failed to update status");
     }
   };
 
@@ -121,7 +125,6 @@ const LeadsTable = ({ token }) => {
       fetchLeads();
     } catch (error) {
       console.error("Error updating notes:", error);
-      alert("Failed to update notes");
     }
   };
 
@@ -558,6 +561,22 @@ const LeadsTable = ({ token }) => {
             </div>
           )}
         </>
+      ) : fetchError ? (
+        <div className="bg-white rounded-xl p-12 text-center">
+          <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <FiSearch className="text-red-400 text-2xl" />
+          </div>
+          <h3 className="text-lg font-semibold text-slate-800 mb-2">
+            Could Not Load Leads
+          </h3>
+          <p className="text-slate-500 mb-4">{fetchError}</p>
+          <button
+            onClick={fetchLeads}
+            className="px-4 py-2 bg-brand-blue text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2 mx-auto"
+          >
+            <FiRefreshCw size={16} /> Retry
+          </button>
+        </div>
       ) : (
         <div className="bg-white rounded-xl p-12 text-center">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
