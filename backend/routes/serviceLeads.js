@@ -341,38 +341,106 @@ router.get('/export', protect, async (req, res) => {
 
     const leads = await ServiceLead.find(filter).sort({ createdAt: -1 });
 
-    // Build CSV
+    // Build CSV with all fields
     const headers = [
       'Date', 'Service Type', 'Job Sub Type', 'Full Name', 'Email', 'Phone', 'City', 'WhatsApp',
-      'Status', 'Source', 'NEET Score', 'Budget', 'Country Preference', 'Notes'
+      'Status', 'Source',
+      // MBBS India
+      '12th Stream', 'Physics %', 'Chemistry %', 'Biology %', 'Overall PCB %',
+      'NEET Appeared', 'NEET Score', 'NEET Qualified',
+      'Budget', 'College Category', 'State Preference',
+      // MBBS Abroad
+      'PCB Studied', 'PCB Percentage', 'Passport Available', 'Plan To Go',
+      // Study Abroad
+      'Highest Qualification', 'Course Type', 'Current Percentage',
+      'Language Test', 'Language Score',
+      // Work Abroad
+      'Qualification', 'Specialization', 'Years of Experience', 'Key Skills',
+      'English Level', 'Language Certification', 'Job Field',
+      'Age', 'Driving License',
+      // Common
+      'Country Preference',
+      // Tracking
+      'UTM Source', 'UTM Medium', 'UTM Campaign', 'UTM Term', 'UTM Content',
+      'Landing Page', 'Referrer',
+      // Management
+      'Assigned To', 'Follow Up Date', 'Notes'
     ];
 
     const csvRows = [headers.join(',')];
 
     leads.forEach(lead => {
+      const d = new Date(lead.createdAt);
+      const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
       const row = [
-        new Date(lead.createdAt).toLocaleDateString(),
-        lead.serviceType,
+        date,
+        lead.serviceType || '',
         lead.jobSubType || '',
-        `"${lead.fullName || ''}"`,
+        `"${(lead.fullName || '').replace(/"/g, '""')}"`,
         lead.email || '',
         lead.phone || '',
-        `"${lead.city || ''}"`,
+        `"${(lead.city || '').replace(/"/g, '""')}"`,
         lead.whatsapp || '',
         lead.status || '',
         lead.source || '',
+        // MBBS India
+        lead.twelfthStream || '',
+        lead.physicsPercent || '',
+        lead.chemistryPercent || '',
+        lead.biologyPercent || '',
+        lead.overallPCBPercent || '',
+        lead.neetAppeared || '',
         lead.neetScore || '',
+        lead.neetQualified || '',
         lead.budgetMbbsIndia || lead.budgetMbbsAbroad || lead.budgetStudyAbroad || '',
+        lead.collegeCategory || '',
+        `"${(lead.statePreference || '').replace(/"/g, '""')}"`,
+        // MBBS Abroad
+        lead.pcbStudied || '',
+        lead.pcbPercentage || '',
+        lead.passportAvailable || '',
+        lead.planToGo || '',
+        // Study Abroad
+        lead.highestQualification || '',
+        lead.courseType || '',
+        lead.currentPercentage || '',
+        lead.languageTest || '',
+        lead.languageScore || '',
+        // Work Abroad
+        lead.qualification || '',
+        `"${(lead.specialization || '').replace(/"/g, '""')}"`,
+        lead.yearsOfExperience || '',
+        `"${(lead.keySkills || '').replace(/"/g, '""')}"`,
+        lead.englishLevel || '',
+        lead.languageCertification || '',
+        lead.jobField || '',
+        lead.age || '',
+        lead.drivingLicense || '',
+        // Common
         `"${(lead.countryPreferenceMbbs || lead.countryPreferenceStudy || lead.countryPreferenceWork || []).join(', ')}"`,
+        // Tracking
+        lead.utmSource || '',
+        lead.utmMedium || '',
+        `"${(lead.utmCampaign || '').replace(/"/g, '""')}"`,
+        lead.utmTerm || '',
+        lead.utmContent || '',
+        `"${(lead.landingPage || '').replace(/"/g, '""')}"`,
+        `"${(lead.referrer || '').replace(/"/g, '""')}"`,
+        // Management
+        lead.assignedTo || '',
+        lead.followUpDate ? (() => { const fd = new Date(lead.followUpDate); return `${fd.getFullYear()}-${String(fd.getMonth() + 1).padStart(2, '0')}-${String(fd.getDate()).padStart(2, '0')}`; })() : '',
         `"${(lead.notes || '').replace(/"/g, '""')}"`
       ];
       csvRows.push(row.join(','));
     });
 
-    const csv = csvRows.join('\n');
+    // Add UTF-8 BOM so Excel opens the CSV correctly
+    const BOM = '\uFEFF';
+    const csv = BOM + csvRows.join('\r\n');
 
-    res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', `attachment; filename=leads_export_${Date.now()}.csv`);
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', `attachment; filename=service-leads-${new Date().toISOString().split('T')[0]}.csv`);
     res.send(csv);
   } catch (error) {
     console.error('Export Error:', error);

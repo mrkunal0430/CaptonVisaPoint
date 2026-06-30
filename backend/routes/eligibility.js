@@ -174,29 +174,64 @@ router.get('/export', protect, async (req, res) => {
 
     const leads = await EligibilityLead.find(filter).sort({ createdAt: -1 });
 
-    // Generate CSV
-    const headers = ['Date', 'Name', 'Email', 'Phone', 'City', 'Preference', 'Score', 'Score Category', 'Status', 'Notes'];
+    // Generate CSV with all fields
+    const headers = [
+      'Date', 'Name', 'Email', 'Phone', 'City', 'Preference',
+      'Score', 'Score Category',
+      // Ausbildung
+      'Qualification', 'Age', 'German Level',
+      // MBBS
+      'NEET Appeared', 'NEET Score', 'Preferred Country', 'Preferred State',
+      // Study Abroad
+      'Highest Qualification', 'Language Test',
+      // Jobs
+      'Preferred Sector',
+      // Common
+      'Status', 'Notes'
+    ];
     const csvRows = [headers.join(',')];
 
     leads.forEach(lead => {
+      const d = new Date(lead.createdAt);
+      const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
       const row = [
-        new Date(lead.createdAt).toLocaleDateString(),
+        date,
         `"${(lead.name || '').replace(/"/g, '""')}"`,
         `"${(lead.email || '').replace(/"/g, '""')}"`,
         `"${(lead.phone || '').replace(/"/g, '""')}"`,
         `"${(lead.city || '').replace(/"/g, '""')}"`,
-        `"${(lead.preference || '').replace(/"/g, '""')}"`,
+        lead.preference || '',
         lead.score || 0,
-        `"${(lead.scoreCategory || '').replace(/"/g, '""')}"`,
+        lead.scoreCategory || '',
+        // Ausbildung
+        lead.qualification || '',
+        lead.age || '',
+        lead.germanLevel || '',
+        // MBBS
+        lead.neetAppeared || '',
+        lead.neetScore || '',
+        `"${(lead.preferredCountry || '').replace(/"/g, '""')}"`,
+        `"${(lead.preferredState || '').replace(/"/g, '""')}"`,
+        // Study Abroad
+        lead.highestQualification || '',
+        lead.languageTest || '',
+        // Jobs
+        lead.preferredSector || '',
+        // Common
         lead.status || 'new',
         `"${(lead.notes || '').replace(/"/g, '""')}"`
       ];
       csvRows.push(row.join(','));
     });
 
-    res.setHeader('Content-Type', 'text/csv');
+    // Add UTF-8 BOM so Excel opens the CSV correctly
+    const BOM = '\uFEFF';
+    const csv = BOM + csvRows.join('\r\n');
+
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
     res.setHeader('Content-Disposition', `attachment; filename=eligibility-leads-${new Date().toISOString().split('T')[0]}.csv`);
-    res.send(csvRows.join('\n'));
+    res.send(csv);
   } catch (error) {
     console.error('Export Error:', error);
     res.status(500).json({ message: 'Failed to export eligibility leads' });

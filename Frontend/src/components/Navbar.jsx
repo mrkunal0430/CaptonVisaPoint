@@ -23,21 +23,21 @@ const NAV_LINKS = [
         title: "MBBS Abroad",
         path: "/mbbs/abroad",
         items: [
-          { name: "Russia", path: "/mbbs/russia" },
-          { name: "Georgia", path: "/mbbs/georgia" },
-          { name: "Uzbekistan", path: "/mbbs/uzbekistan" },
-          { name: "Kazakhstan", path: "/mbbs/kazakhstan" },
-          { name: "Germany", path: "/mbbs/germany" },
-          { name: "Romania", path: "/mbbs/romania" },
-          { name: "Bulgaria", path: "/mbbs/bulgaria" },
-          { name: "Serbia", path: "/mbbs/serbia" },
-          { name: "Bosnia", path: "/mbbs/bosnia" },
-          { name: "Italy", path: "/mbbs/italy" },
-          { name: "Nepal", path: "/mbbs/nepal" },
-          { name: "Bangladesh", path: "/mbbs/bangladesh" },
-          { name: "Barbados", path: "/mbbs/barbados" },
-          { name: "Kyrgyzstan", path: "/mbbs/kyrgyzstan" },
-          { name: "Tajikistan", path: "/mbbs/tajikistan" },
+          { name: "Russia", path: "/mbbs/russia", flagCode: "ru" },
+          { name: "Georgia", path: "/mbbs/georgia", flagCode: "ge" },
+          { name: "Uzbekistan", path: "/mbbs/uzbekistan", flagCode: "uz" },
+          { name: "Kazakhstan", path: "/mbbs/kazakhstan", flagCode: "kz" },
+          { name: "Germany", path: "/mbbs/germany", flagCode: "de" },
+          { name: "Romania", path: "/mbbs/romania", flagCode: "ro" },
+          { name: "Bulgaria", path: "/mbbs/bulgaria", flagCode: "bg" },
+          { name: "Serbia", path: "/mbbs/serbia", flagCode: "rs" },
+          { name: "Bosnia", path: "/mbbs/bosnia", flagCode: "ba" },
+          { name: "Italy", path: "/mbbs/italy", flagCode: "it" },
+          { name: "Nepal", path: "/mbbs/nepal", flagCode: "np" },
+          { name: "Bangladesh", path: "/mbbs/bangladesh", flagCode: "bd" },
+          { name: "Barbados", path: "/mbbs/barbados", flagCode: "bb" },
+          { name: "Kyrgyzstan", path: "/mbbs/kyrgyzstan", flagCode: "kg" },
+          { name: "Tajikistan", path: "/mbbs/tajikistan", flagCode: "tj" },
         ],
       },
       {
@@ -78,25 +78,25 @@ const NAV_LINKS = [
         title: "Premier Destinations",
         path: "/study-abroad",
         items: [
-          { name: "Germany", path: "/study-abroad/germany" },
-          { name: "Cyprus", path: "/study-abroad/cyprus" },
-          { name: "France", path: "/study-abroad/france" },
-          { name: "United Arab Emirates", path: "/study-abroad/uae" },
-          { name: "Mauritius", path: "/study-abroad/mauritius" },
-          { name: "Singapore", path: "/study-abroad/singapore" },
+          { name: "Germany", path: "/study-abroad/germany", flagCode: "de" },
+          { name: "Cyprus", path: "/study-abroad/cyprus", flagCode: "cy" },
+          { name: "France", path: "/study-abroad/france", flagCode: "fr" },
+          { name: "United Arab Emirates", path: "/study-abroad/uae", flagCode: "ae" },
+          { name: "Mauritius", path: "/study-abroad/mauritius", flagCode: "mu" },
+          { name: "Singapore", path: "/study-abroad/singapore", flagCode: "sg" },
         ],
       },
       {
         title: "More Countries",
         path: "/study-abroad",
         items: [
-          { name: "United Kingdom", path: "/study-abroad/uk" },
-          { name: "United States", path: "/study-abroad/usa" },
-          { name: "Canada", path: "/study-abroad/canada" },
-          { name: "Australia", path: "/study-abroad/australia" },
-          { name: "New Zealand", path: "/study-abroad/new-zealand" },
-          { name: "Denmark", path: "/study-abroad/denmark" },
-          { name: "Finland", path: "/study-abroad/finland" },
+          { name: "United Kingdom", path: "/study-abroad/uk", flagCode: "gb" },
+          { name: "United States", path: "/study-abroad/usa", flagCode: "us" },
+          { name: "Canada", path: "/study-abroad/canada", flagCode: "ca" },
+          { name: "Australia", path: "/study-abroad/australia", flagCode: "au" },
+          { name: "New Zealand", path: "/study-abroad/new-zealand", flagCode: "nz" },
+          { name: "Denmark", path: "/study-abroad/denmark", flagCode: "dk" },
+          { name: "Finland", path: "/study-abroad/finland", flagCode: "fi" },
         ],
       },
     ],
@@ -142,6 +142,13 @@ const DropdownItem = ({ item, onClick }) => {
       onClick={onClick}
       className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-blue-50 group/item transition-colors"
     >
+      {item.flagCode && (
+        <img
+          src={`https://flagcdn.com/${item.flagCode}.svg`}
+          alt=""
+          className="w-5 h-3.5 object-cover rounded-sm shadow-sm"
+        />
+      )}
       {item.flag && <span className="text-base">{item.flag}</span>}
       <span className="text-xs font-medium text-slate-600 group-hover/item:text-blue-600">
         {item.name}
@@ -469,6 +476,13 @@ const Navbar = () => {
                                           onClick={closeMobileMenu}
                                           className="flex items-center gap-3 py-2 px-3 text-sm text-slate-600 font-medium hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
                                         >
+                                          {item.flagCode && (
+                                            <img
+                                              src={`https://flagcdn.com/${item.flagCode}.svg`}
+                                              alt=""
+                                              className="w-5 h-3.5 object-cover rounded-sm shadow-sm shrink-0"
+                                            />
+                                          )}
                                           {item.flag && (
                                             <span className="text-base leading-none shrink-0">
                                               {item.flag}

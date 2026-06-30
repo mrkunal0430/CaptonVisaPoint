@@ -103,6 +103,109 @@ router.get('/', protect, async (req, res) => {
   }
 });
 
+// =====================================================
+// IMPORTANT: /export and /stats MUST come BEFORE /:id
+// so Express doesn't match "export" or "stats" as an id
+// =====================================================
+
+// @route   GET /api/leads/export
+// @desc    Export leads as CSV
+// @access  Private (Admin only)
+router.get('/export', protect, async (req, res) => {
+  try {
+    const { status, startDate, endDate } = req.query;
+
+    const filter = {};
+    if (status && status !== 'all') filter.status = status;
+    if (startDate || endDate) {
+      filter.createdAt = {};
+      if (startDate) filter.createdAt.$gte = new Date(startDate);
+      if (endDate) filter.createdAt.$lte = new Date(endDate + 'T23:59:59.999Z');
+    }
+
+    const leads = await Lead.find(filter).sort({ createdAt: -1 });
+
+    // Generate CSV — all fields from the Lead model
+    const headers = [
+      'Date',
+      'Name',
+      'Email',
+      'Phone',
+      'City',
+      'Service',
+      'Education / NEET Score',
+      'Message',
+      'Status',
+      'Notes'
+    ];
+    const csvRows = [headers.join(',')];
+
+    leads.forEach(lead => {
+      // Format date as YYYY-MM-DD for reliable display
+      const d = new Date(lead.createdAt);
+      const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+      const row = [
+        date,
+        `"${(lead.name || '').replace(/"/g, '""')}"`,
+        `"${(lead.email || '').replace(/"/g, '""')}"`,
+        `"${(lead.phone || '').replace(/"/g, '""')}"`,
+        `"${(lead.city || '').replace(/"/g, '""')}"`,
+        `"${(lead.service || '').replace(/"/g, '""')}"`,
+        `"${(lead.education || '').replace(/"/g, '""')}"`,
+        `"${(lead.message || '').replace(/"/g, '""')}"`,
+        lead.status || '',
+        `"${(lead.notes || '').replace(/"/g, '""')}"`
+      ];
+      csvRows.push(row.join(','));
+    });
+
+    // Add UTF-8 BOM so Excel opens the CSV correctly
+    const BOM = '\uFEFF';
+    const csv = BOM + csvRows.join('\r\n');
+
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', `attachment; filename=general-leads-${new Date().toISOString().split('T')[0]}.csv`);
+    res.send(csv);
+  } catch (error) {
+    console.error('Export Error:', error);
+    res.status(500).json({ message: 'Failed to export leads' });
+  }
+});
+
+// @route   GET /api/leads/stats
+// @desc    Get lead statistics
+// @access  Private (Admin only)
+router.get('/stats', protect, async (req, res) => {
+  try {
+    const [total, newLeads, contacted, converted] = await Promise.all([
+      Lead.countDocuments(),
+      Lead.countDocuments({ status: 'new' }),
+      Lead.countDocuments({ status: 'contacted' }),
+      Lead.countDocuments({ status: 'converted' })
+    ]);
+
+    // Service breakdown
+    const serviceStats = await Lead.aggregate([
+      { $group: { _id: '$service', count: { $sum: 1 } } }
+    ]);
+
+    res.json({
+      success: true,
+      stats: {
+        total,
+        new: newLeads,
+        contacted,
+        converted,
+        byService: serviceStats
+      }
+    });
+  } catch (error) {
+    console.error('Stats Error:', error);
+    res.status(500).json({ message: 'Failed to fetch stats' });
+  }
+});
+
 // @route   PUT /api/leads/:id
 // @desc    Update lead status and notes
 // @access  Private (Admin only)
@@ -146,83 +249,6 @@ router.delete('/:id', protect, async (req, res) => {
   } catch (error) {
     console.error('Delete Lead Error:', error);
     res.status(500).json({ message: 'Failed to delete lead' });
-  }
-});
-
-// @route   GET /api/leads/export
-// @desc    Export leads as CSV
-// @access  Private (Admin only)
-router.get('/export', protect, async (req, res) => {
-  try {
-    const { status, startDate, endDate } = req.query;
-
-    const filter = {};
-    if (status && status !== 'all') filter.status = status;
-    if (startDate || endDate) {
-      filter.createdAt = {};
-      if (startDate) filter.createdAt.$gte = new Date(startDate);
-      if (endDate) filter.createdAt.$lte = new Date(endDate + 'T23:59:59.999Z');
-    }
-
-    const leads = await Lead.find(filter).sort({ createdAt: -1 });
-
-    // Generate CSV
-    const headers = ['Date', 'Name', 'Email', 'Phone', 'City', 'Service', 'Message', 'Status'];
-    const csvRows = [headers.join(',')];
-
-    leads.forEach(lead => {
-      const row = [
-        new Date(lead.createdAt).toLocaleDateString(),
-        `"${(lead.name || '').replace(/"/g, '""')}"`,
-        `"${(lead.email || '').replace(/"/g, '""')}"`,
-        `"${(lead.phone || '').replace(/"/g, '""')}"`,
-        `"${(lead.city || '').replace(/"/g, '""')}"`,
-        `"${(lead.service || '').replace(/"/g, '""')}"`,
-        `"${(lead.message || '').replace(/"/g, '""')}"`,
-        lead.status
-      ];
-      csvRows.push(row.join(','));
-    });
-
-    res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', `attachment; filename=general-leads-${new Date().toISOString().split('T')[0]}.csv`);
-    res.send(csvRows.join('\n'));
-  } catch (error) {
-    console.error('Export Error:', error);
-    res.status(500).json({ message: 'Failed to export leads' });
-  }
-});
-
-// @route   GET /api/leads/stats
-// @desc    Get lead statistics
-// @access  Private (Admin only)
-router.get('/stats', protect, async (req, res) => {
-  try {
-    const [total, newLeads, contacted, converted] = await Promise.all([
-      Lead.countDocuments(),
-      Lead.countDocuments({ status: 'new' }),
-      Lead.countDocuments({ status: 'contacted' }),
-      Lead.countDocuments({ status: 'converted' })
-    ]);
-
-    // Service breakdown
-    const serviceStats = await Lead.aggregate([
-      { $group: { _id: '$service', count: { $sum: 1 } } }
-    ]);
-
-    res.json({
-      success: true,
-      stats: {
-        total,
-        new: newLeads,
-        contacted,
-        converted,
-        byService: serviceStats
-      }
-    });
-  } catch (error) {
-    console.error('Stats Error:', error);
-    res.status(500).json({ message: 'Failed to fetch stats' });
   }
 });
 

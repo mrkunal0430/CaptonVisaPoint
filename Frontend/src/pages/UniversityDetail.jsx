@@ -233,7 +233,16 @@ const UniversityDetail = () => {
             </h1>
             <p className="text-xl text-blue-100/90 flex items-center gap-2">
               <FiMapPin /> {universityData.location}, {countryData.name}{" "}
-              {countryData.flag}
+              <img
+                src={`https://flagcdn.com/${{
+                  germany: "de", cyprus: "cy", france: "fr", uae: "ae",
+                  mauritius: "mu", singapore: "sg", uk: "gb", usa: "us",
+                  canada: "ca", australia: "au", "new-zealand": "nz",
+                  denmark: "dk", finland: "fi",
+                }[country] || "un"}.svg`}
+                alt={`${countryData.name} flag`}
+                className="w-8 h-6 object-cover rounded shadow-sm border border-white/30 inline-block"
+              />
             </p>
           </motion.div>
         </div>

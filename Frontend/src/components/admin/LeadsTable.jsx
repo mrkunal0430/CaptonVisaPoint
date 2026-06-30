@@ -128,12 +128,33 @@ const LeadsTable = ({ token }) => {
     }
   };
 
-  const handleExport = () => {
-    const params = new URLSearchParams();
-    if (filters.status !== "all") params.append("status", filters.status);
-    if (filters.startDate) params.append("startDate", filters.startDate);
-    if (filters.endDate) params.append("endDate", filters.endDate);
-    window.open(`${API_URL}/leads/export?${params.toString()}`, "_blank");
+  const handleExport = async () => {
+    try {
+      const params = new URLSearchParams();
+      if (filters.status !== "all") params.append("status", filters.status);
+      if (filters.startDate) params.append("startDate", filters.startDate);
+      if (filters.endDate) params.append("endDate", filters.endDate);
+
+      const res = await axios.get(
+        `${API_URL}/leads/export?${params.toString()}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          responseType: "blob",
+        }
+      );
+
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `general-leads-${new Date().toISOString().split("T")[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Export error:", error);
+      alert("Failed to export leads. Please try again.");
+    }
   };
 
   const startEditNotes = (lead) => {
@@ -633,6 +654,16 @@ const LeadsTable = ({ token }) => {
                 <div>
                   <label className="text-xs text-slate-400">City</label>
                   <p className="font-medium text-slate-800">{selectedLead.city || "-"}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">Service</label>
+                  <p className="font-medium text-slate-800">{selectedLead.service || "-"}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">
+                    {selectedLead.education && !isNaN(selectedLead.education) ? "NEET Score" : "Education"}
+                  </label>
+                  <p className="font-medium text-slate-800">{selectedLead.education || "-"}</p>
                 </div>
                 <div>
                   <label className="text-xs text-slate-400">Status</label>

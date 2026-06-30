@@ -169,13 +169,34 @@ const EligibilityLeadsTable = ({ token }) => {
     }
   };
 
-  const handleExport = () => {
-    const params = new URLSearchParams();
-    if (filters.preference !== "all") params.append("preference", filters.preference);
-    if (filters.status !== "all") params.append("status", filters.status);
-    if (filters.startDate) params.append("startDate", filters.startDate);
-    if (filters.endDate) params.append("endDate", filters.endDate);
-    window.open(`${API_URL}/eligibility/export?${params.toString()}`, "_blank");
+  const handleExport = async () => {
+    try {
+      const params = new URLSearchParams();
+      if (filters.preference !== "all") params.append("preference", filters.preference);
+      if (filters.status !== "all") params.append("status", filters.status);
+      if (filters.startDate) params.append("startDate", filters.startDate);
+      if (filters.endDate) params.append("endDate", filters.endDate);
+
+      const res = await axios.get(
+        `${API_URL}/eligibility/export?${params.toString()}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          responseType: "blob",
+        }
+      );
+
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `eligibility-leads-${new Date().toISOString().split("T")[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Export error:", error);
+      alert("Failed to export leads. Please try again.");
+    }
   };
 
   const startEditNotes = (lead) => {

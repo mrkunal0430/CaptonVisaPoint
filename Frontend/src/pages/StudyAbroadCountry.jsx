@@ -283,9 +283,13 @@ const StudyAbroadCountry = () => {
     finland: "fi",
   };
 
-  const getFlagUrl = (size = 48) => {
+  const getFlagUrl = () => {
     const code = flagCodes[country] || "un";
-    return `https://flagcdn.com/w${size}/${code}.png`;
+    return `https://flagcdn.com/${code}.svg`;
+  };
+
+  const getFlagUrlByCode = (code) => {
+    return `https://flagcdn.com/${code}.svg`;
   };
 
   return (
@@ -321,8 +325,7 @@ const StudyAbroadCountry = () => {
 
             <div className="flex items-center gap-5 mb-4">
               <img
-                src={getFlagUrl(64)}
-                srcSet={`${getFlagUrl(128)} 2x`}
+                src={getFlagUrl()}
                 alt={`${countryData.name} flag`}
                 className="w-16 h-12 object-cover rounded-lg shadow-lg border-2 border-white/30"
               />
@@ -588,7 +591,7 @@ const StudyAbroadCountry = () => {
                   )}
                   <div className="absolute bottom-3 left-4">
                     <img
-                      src={`https://flagcdn.com/w40/${
+                      src={getFlagUrlByCode(
                         {
                           germany: "de",
                           cyprus: "cy",
@@ -604,7 +607,7 @@ const StudyAbroadCountry = () => {
                           denmark: "dk",
                           finland: "fi",
                         }[c.id] || "un"
-                      }.png`}
+                      )}
                       alt={`${c.name} flag`}
                       className="w-8 h-6 object-cover rounded shadow border border-white/30 inline-block mr-2 align-middle"
                     />

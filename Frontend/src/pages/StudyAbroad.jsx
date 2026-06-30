@@ -37,9 +37,9 @@ const StudyAbroad = () => {
     finland: "fi",
   };
 
-  const getFlagUrl = (countryId, size = 40) => {
+  const getFlagUrl = (countryId) => {
     const code = flagCodes[countryId] || "un";
-    return `https://flagcdn.com/w${size}/${code}.png`;
+    return `https://flagcdn.com/${code}.svg`;
   };
 
   const stats = [
@@ -178,8 +178,7 @@ const StudyAbroad = () => {
                   className="flex items-center gap-3 px-5 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-white shadow-xl hover:bg-white/25 hover:border-white/40 hover:scale-105 transition-all duration-300 cursor-pointer"
                 >
                   <img
-                    src={getFlagUrl(country.id, 40)}
-                    srcSet={`${getFlagUrl(country.id, 80)} 2x`}
+                    src={getFlagUrl(country.id)}
                     alt={country.name}
                     className="w-8 h-6 object-cover rounded shadow-sm"
                   />
@@ -325,8 +324,7 @@ const StudyAbroad = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4 flex items-center gap-3">
                       <img
-                        src={getFlagUrl(country.id, 48)}
-                        srcSet={`${getFlagUrl(country.id, 96)} 2x`}
+                        src={getFlagUrl(country.id)}
                         alt={`${country.name} flag`}
                         className="w-10 h-7 object-cover rounded shadow-md border border-white/30"
                       />
@@ -407,8 +405,7 @@ const StudyAbroad = () => {
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <img
-                      src={getFlagUrl(country.id, 48)}
-                      srcSet={`${getFlagUrl(country.id, 96)} 2x`}
+                      src={getFlagUrl(country.id)}
                       alt={`${country.name} flag`}
                       className="w-10 h-7 object-cover rounded shadow-sm border border-slate-200"
                     />

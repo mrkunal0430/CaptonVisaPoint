@@ -145,12 +145,25 @@ const ServiceLeadsTable = ({ token }) => {
       if (filters.startDate) params.append("startDate", filters.startDate);
       if (filters.endDate) params.append("endDate", filters.endDate);
 
-      window.open(
+      const res = await axios.get(
         `${API_URL}/service-leads/export?${params.toString()}`,
-        "_blank"
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          responseType: "blob",
+        }
       );
+
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `service-leads-${new Date().toISOString().split("T")[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Export error:", error);
+      alert("Failed to export leads. Please try again.");
     }
   };
 
@@ -790,8 +803,20 @@ const ServiceLeadsTable = ({ token }) => {
                       <p className="font-medium text-slate-800">{selectedLead.twelfthStream || "-"}</p>
                     </div>
                     <div>
-                      <label className="text-xs text-slate-400">PCB %</label>
+                      <label className="text-xs text-slate-400">Overall PCB %</label>
                       <p className="font-medium text-slate-800">{selectedLead.overallPCBPercent || "-"}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-400">Physics %</label>
+                      <p className="font-medium text-slate-800">{selectedLead.physicsPercent || "-"}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-400">Chemistry %</label>
+                      <p className="font-medium text-slate-800">{selectedLead.chemistryPercent || "-"}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-400">Biology %</label>
+                      <p className="font-medium text-slate-800">{selectedLead.biologyPercent || "-"}</p>
                     </div>
                     <div>
                       <label className="text-xs text-slate-400">NEET Appeared</label>
@@ -802,12 +827,20 @@ const ServiceLeadsTable = ({ token }) => {
                       <p className="font-medium text-slate-800">{selectedLead.neetScore || "-"}</p>
                     </div>
                     <div>
+                      <label className="text-xs text-slate-400">NEET Qualified</label>
+                      <p className="font-medium text-slate-800">{selectedLead.neetQualified || "-"}</p>
+                    </div>
+                    <div>
                       <label className="text-xs text-slate-400">Budget</label>
                       <p className="font-medium text-slate-800">{selectedLead.budgetMbbsIndia || "-"}</p>
                     </div>
                     <div>
                       <label className="text-xs text-slate-400">College Category</label>
                       <p className="font-medium text-slate-800">{selectedLead.collegeCategory || "-"}</p>
+                    </div>
+                    <div className="col-span-2">
+                      <label className="text-xs text-slate-400">State Preference</label>
+                      <p className="font-medium text-slate-800">{selectedLead.statePreference || "-"}</p>
                     </div>
                   </div>
                 </div>
@@ -828,8 +861,16 @@ const ServiceLeadsTable = ({ token }) => {
                       <p className="font-medium text-slate-800">{selectedLead.pcbPercentage || "-"}</p>
                     </div>
                     <div>
+                      <label className="text-xs text-slate-400">NEET Appeared</label>
+                      <p className="font-medium text-slate-800">{selectedLead.neetAppeared || "-"}</p>
+                    </div>
+                    <div>
                       <label className="text-xs text-slate-400">NEET Score</label>
                       <p className="font-medium text-slate-800">{selectedLead.neetScore || "-"}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-400">NEET Qualified</label>
+                      <p className="font-medium text-slate-800">{selectedLead.neetQualified || "-"}</p>
                     </div>
                     <div>
                       <label className="text-xs text-slate-400">Budget</label>
@@ -844,6 +885,10 @@ const ServiceLeadsTable = ({ token }) => {
                     <div>
                       <label className="text-xs text-slate-400">Passport</label>
                       <p className="font-medium text-slate-800">{selectedLead.passportAvailable || "-"}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-400">Plan To Go</label>
+                      <p className="font-medium text-slate-800">{selectedLead.planToGo || "-"}</p>
                     </div>
                   </div>
                 </div>
@@ -864,22 +909,26 @@ const ServiceLeadsTable = ({ token }) => {
                       <p className="font-medium text-slate-800">{selectedLead.courseType || "-"}</p>
                     </div>
                     <div>
+                      <label className="text-xs text-slate-400">Current Percentage</label>
+                      <p className="font-medium text-slate-800">{selectedLead.currentPercentage || "-"}</p>
+                    </div>
+                    <div>
                       <label className="text-xs text-slate-400">Language Test</label>
                       <p className="font-medium text-slate-800">{selectedLead.languageTest || "-"}</p>
                     </div>
                     <div>
-                      <label className="text-xs text-slate-400">Score</label>
+                      <label className="text-xs text-slate-400">Language Score</label>
                       <p className="font-medium text-slate-800">{selectedLead.languageScore || "-"}</p>
-                    </div>
-                    <div>
-                      <label className="text-xs text-slate-400">Countries</label>
-                      <p className="font-medium text-slate-800">
-                        {selectedLead.countryPreferenceStudy?.join(", ") || "-"}
-                      </p>
                     </div>
                     <div>
                       <label className="text-xs text-slate-400">Budget</label>
                       <p className="font-medium text-slate-800">{selectedLead.budgetStudyAbroad || "-"}</p>
+                    </div>
+                    <div className="col-span-2">
+                      <label className="text-xs text-slate-400">Preferred Countries</label>
+                      <p className="font-medium text-slate-800">
+                        {selectedLead.countryPreferenceStudy?.join(", ") || "-"}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -896,7 +945,7 @@ const ServiceLeadsTable = ({ token }) => {
                       <label className="text-xs text-slate-400">Qualification</label>
                       <p className="font-medium text-slate-800">{selectedLead.qualification || "-"}</p>
                     </div>
-                    {selectedLead.jobSubType === "HEALTHCARE_JOBS" && (
+                    {(selectedLead.jobSubType === "HEALTHCARE_JOBS" || selectedLead.jobSubType === "HOSPITALITY_JOBS") && (
                       <div>
                         <label className="text-xs text-slate-400">Specialization</label>
                         <p className="font-medium text-slate-800">{selectedLead.specialization || "-"}</p>
@@ -908,6 +957,10 @@ const ServiceLeadsTable = ({ token }) => {
                         <p className="font-medium text-slate-800">{selectedLead.yearsOfExperience || "-"}</p>
                       </div>
                     )}
+                    <div>
+                      <label className="text-xs text-slate-400">English Level</label>
+                      <p className="font-medium text-slate-800">{selectedLead.englishLevel || "-"}</p>
+                    </div>
                     {selectedLead.jobSubType === "JOBS_AFTER_12TH" && (
                       <>
                         <div>
