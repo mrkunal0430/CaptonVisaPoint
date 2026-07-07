@@ -329,6 +329,7 @@ const LeadsTable = ({ token }) => {
                     <th className="p-4">Name</th>
                     <th className="p-4">Contact</th>
                     <th className="p-4">City</th>
+                    <th className="p-4">Country</th>
                     <th className="p-4">Message</th>
                     <th className="p-4">Status</th>
                     <th className="p-4 text-center">Actions</th>
@@ -364,6 +365,9 @@ const LeadsTable = ({ token }) => {
                       </td>
                       <td className="p-4 text-slate-600">
                         {lead.city || "-"}
+                      </td>
+                      <td className="p-4 text-slate-600">
+                        {lead.country || "-"}
                       </td>
                       <td
                         className="p-4 text-sm text-slate-600 max-w-[200px] truncate"
@@ -469,12 +473,19 @@ const LeadsTable = ({ token }) => {
                   </a>
                 </div>
 
-                {/* City Badge */}
-                {lead.city && (
-                  <div>
-                    <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
-                      {lead.city}
-                    </span>
+                {/* City / Country Badges */}
+                {(lead.city || lead.country) && (
+                  <div className="flex flex-wrap gap-2">
+                    {lead.city && (
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                        {lead.city}
+                      </span>
+                    )}
+                    {lead.country && (
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700">
+                        {lead.country}
+                      </span>
+                    )}
                   </div>
                 )}
 
@@ -654,6 +665,10 @@ const LeadsTable = ({ token }) => {
                 <div>
                   <label className="text-xs text-slate-400">City</label>
                   <p className="font-medium text-slate-800">{selectedLead.city || "-"}</p>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400">Country</label>
+                  <p className="font-medium text-slate-800">{selectedLead.country || "-"}</p>
                 </div>
                 <div>
                   <label className="text-xs text-slate-400">Service</label>

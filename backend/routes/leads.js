@@ -9,7 +9,7 @@ const router = express.Router();
 // @access  Public
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone, city, service, education, message } = req.body;
+    const { name, email, phone, city, country, service, education, message } = req.body;
 
     // Validate required fields
     if (!name || !email || !phone) {
@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
       email,
       phone,
       city: city || '',
+      country: country || '',
       service: service || 'General Inquiry',
       education: education || '',
       message: message || ''
@@ -132,6 +133,7 @@ router.get('/export', protect, async (req, res) => {
       'Email',
       'Phone',
       'City',
+      'Country',
       'Service',
       'Education / NEET Score',
       'Message',
@@ -151,6 +153,7 @@ router.get('/export', protect, async (req, res) => {
         `"${(lead.email || '').replace(/"/g, '""')}"`,
         `"${(lead.phone || '').replace(/"/g, '""')}"`,
         `"${(lead.city || '').replace(/"/g, '""')}"`,
+        `"${(lead.country || '').replace(/"/g, '""')}"`,
         `"${(lead.service || '').replace(/"/g, '""')}"`,
         `"${(lead.education || '').replace(/"/g, '""')}"`,
         `"${(lead.message || '').replace(/"/g, '""')}"`,
