@@ -404,6 +404,7 @@ const Home = () => {
                 <InquiryForm
                   title="Book Free Counselling"
                   subtitle="Start your international journey today"
+                  formLabel="Homepage — Book Free Counselling"
                 />
               </div>
             </div>

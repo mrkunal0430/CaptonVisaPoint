@@ -22,6 +22,10 @@ const MbbsIndia = lazy(() => import("./pages/MbbsIndia"));
 const MbbsCountry = lazy(() => import("./pages/MbbsCountry"));
 const MbbsUniversity = lazy(() => import("./pages/MbbsUniversity"));
 
+// Medical PG Routes
+const MedicalPGIndia = lazy(() => import("./pages/MedicalPGIndia"));
+const MedicalPGGermany = lazy(() => import("./pages/MedicalPGGermany"));
+
 // Study Abroad Routes
 const StudyAbroad = lazy(() => import("./pages/StudyAbroad"));
 const StudyAbroadCountry = lazy(() => import("./pages/StudyAbroadCountry"));
@@ -86,6 +90,11 @@ const AppLayout = () => {
               element={<MbbsUniversity />}
             />
             <Route path="/mbbs/:country" element={<MbbsCountry />} />
+
+            {/* Medical PG Routes */}
+            <Route path="/medical-pg/india" element={<MedicalPGIndia />} />
+            <Route path="/medical-pg/germany" element={<MedicalPGGermany />} />
+            <Route path="/medical-pg" element={<MedicalPGGermany />} />
 
             <Route path="/study-abroad" element={<StudyAbroad />} />
             <Route

@@ -491,6 +491,8 @@ const MbbsCountry = () => {
                 title={`Apply to ${countryName}`}
                 subtitle="Get free admission assessment now"
                 showNeetScore={true}
+                service="MBBS Abroad"
+                formLabel={`MBBS Country Page — ${countryName}`}
               />
 
               <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl border border-blue-100">

@@ -296,6 +296,7 @@ const PartnerWithUs = () => {
               <InquiryForm
                 title="Become a Partner"
                 subtitle="Fill out the form below and we'll connect with you shortly"
+                formLabel="Partner With Us"
               />
             </motion.div>
           </div>

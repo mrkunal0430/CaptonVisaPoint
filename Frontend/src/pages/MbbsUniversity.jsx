@@ -3827,6 +3827,8 @@ const MbbsUniversity = () => {
                 title={`Apply to ${uniData.name}`}
                 subtitle="Get free admission assessment"
                 showNeetScore={true}
+                service="MBBS Abroad"
+                formLabel={`University Page — ${uniData.name}`}
               />
 
               {/* University Quick Facts */}

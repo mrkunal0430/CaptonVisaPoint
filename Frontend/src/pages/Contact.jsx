@@ -74,6 +74,7 @@ const Contact = () => {
             <InquiryForm
               title="Send us a Message"
               subtitle="Fill the form below and we'll get back to you"
+              formLabel="Contact Page"
             />
           </div>
         </div>

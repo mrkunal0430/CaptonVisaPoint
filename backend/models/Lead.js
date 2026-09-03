@@ -42,6 +42,21 @@ const leadSchema = new mongoose.Schema({
     trim: true,
     default: ''
   },
+  // ===== MARKETING & TRACKING =====
+  // Mirrors ServiceLead so campaign attribution works across every form.
+  source: {
+    type: String,
+    enum: ['Meta Ads', 'Google', 'Organic', 'Referral', 'Direct', 'Other'],
+    default: 'Direct'
+  },
+  utmSource: { type: String, default: '' },
+  utmMedium: { type: String, default: '' },
+  utmCampaign: { type: String, default: '' },
+  utmTerm: { type: String, default: '' },
+  utmContent: { type: String, default: '' },
+  landingPage: { type: String, default: '' },
+  referrer: { type: String, default: '' },
+
   status: {
     type: String,
     enum: ['new', 'contacted', 'converted', 'closed'],
@@ -61,5 +76,6 @@ leadSchema.index({ createdAt: -1 });
 leadSchema.index({ service: 1 });
 leadSchema.index({ status: 1 });
 leadSchema.index({ city: 1 });
+leadSchema.index({ source: 1 });
 
 module.exports = mongoose.model('Lead', leadSchema);

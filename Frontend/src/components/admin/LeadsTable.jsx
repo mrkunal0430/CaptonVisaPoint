@@ -30,6 +30,8 @@ const LeadsTable = ({ token }) => {
   const [notesText, setNotesText] = useState("");
   const [filters, setFilters] = useState({
     status: "all",
+    service: "all",
+    source: "all",
     search: "",
     startDate: "",
     endDate: "",
@@ -75,6 +77,8 @@ const LeadsTable = ({ token }) => {
   }, [
     pagination.page,
     filters.status,
+    filters.service,
+    filters.source,
     filters.startDate,
     filters.endDate,
   ]);
@@ -132,6 +136,8 @@ const LeadsTable = ({ token }) => {
     try {
       const params = new URLSearchParams();
       if (filters.status !== "all") params.append("status", filters.status);
+      if (filters.service !== "all") params.append("service", filters.service);
+      if (filters.source !== "all") params.append("source", filters.source);
       if (filters.startDate) params.append("startDate", filters.startDate);
       if (filters.endDate) params.append("endDate", filters.endDate);
 
@@ -178,6 +184,8 @@ const LeadsTable = ({ token }) => {
   const clearFilters = () => {
     setFilters({
       status: "all",
+      service: "all",
+      source: "all",
       search: "",
       startDate: "",
       endDate: "",
@@ -186,6 +194,8 @@ const LeadsTable = ({ token }) => {
 
   const hasActiveFilters =
     filters.status !== "all" ||
+    filters.service !== "all" ||
+    filters.source !== "all" ||
     filters.startDate ||
     filters.endDate;
 
@@ -282,6 +292,48 @@ const LeadsTable = ({ token }) => {
 
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-600">
+                Service
+              </label>
+              <select
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue bg-white text-slate-700"
+                value={filters.service}
+                onChange={(e) =>
+                  setFilters({ ...filters, service: e.target.value })
+                }
+              >
+                <option value="all">All Services</option>
+                <option value="MBBS Abroad">MBBS Abroad</option>
+                <option value="Study Abroad">Study Abroad</option>
+                <option value="Ausbildung">Ausbildung</option>
+                <option value="Language Coaching">Language Coaching</option>
+                <option value="Visa Service">Visa Service</option>
+                <option value="General Inquiry">General Inquiry</option>
+              </select>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-slate-600">
+                Source
+              </label>
+              <select
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue bg-white text-slate-700"
+                value={filters.source}
+                onChange={(e) =>
+                  setFilters({ ...filters, source: e.target.value })
+                }
+              >
+                <option value="all">All Sources</option>
+                <option value="Meta Ads">Meta Ads</option>
+                <option value="Google">Google</option>
+                <option value="Organic">Organic</option>
+                <option value="Referral">Referral</option>
+                <option value="Direct">Direct</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-slate-600">
                 From Date
               </label>
               <input
@@ -330,6 +382,8 @@ const LeadsTable = ({ token }) => {
                     <th className="p-4">Contact</th>
                     <th className="p-4">City</th>
                     <th className="p-4">Country</th>
+                    <th className="p-4">Service</th>
+                    <th className="p-4">Source</th>
                     <th className="p-4">Message</th>
                     <th className="p-4">Status</th>
                     <th className="p-4 text-center">Actions</th>
@@ -368,6 +422,19 @@ const LeadsTable = ({ token }) => {
                       </td>
                       <td className="p-4 text-slate-600">
                         {lead.country || "-"}
+                      </td>
+                      <td className="p-4">
+                        <span className="text-xs font-medium px-2 py-1 rounded-lg bg-slate-100 text-slate-700 whitespace-nowrap">
+                          {lead.service || "General Inquiry"}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <span
+                          className="text-xs font-medium px-2 py-1 rounded-lg bg-indigo-50 text-indigo-700 whitespace-nowrap"
+                          title={lead.utmCampaign ? `Campaign: ${lead.utmCampaign}` : undefined}
+                        >
+                          {lead.source || "Direct"}
+                        </span>
                       </td>
                       <td
                         className="p-4 text-sm text-slate-600 max-w-[200px] truncate"
@@ -495,7 +562,7 @@ const LeadsTable = ({ token }) => {
                     <div className="flex items-center gap-2 text-xs text-slate-500 mb-1">
                       <FiMessageSquare size={12} /> Message
                     </div>
-                    <p className="text-sm text-slate-600">{lead.message}</p>
+                    <p className="text-sm text-slate-600 whitespace-pre-wrap break-words">{lead.message}</p>
                   </div>
                 )}
 
@@ -696,11 +763,48 @@ const LeadsTable = ({ token }) => {
               {selectedLead.message && (
                 <div>
                   <label className="text-xs text-slate-400">Message</label>
-                  <p className="font-medium text-slate-700 bg-slate-50 p-3 rounded-lg mt-1">
+                  <p className="font-medium text-slate-700 bg-slate-50 p-3 rounded-lg mt-1 whitespace-pre-wrap break-words">
                     {selectedLead.message}
                   </p>
                 </div>
               )}
+
+              {/* Marketing Attribution */}
+              <div>
+                <label className="text-xs text-slate-400">Attribution</label>
+                <div className="grid grid-cols-2 gap-4 mt-1 bg-slate-50 p-3 rounded-lg">
+                  <div>
+                    <span className="text-xs text-slate-400">Source</span>
+                    <p className="font-medium text-slate-800 text-sm">
+                      {selectedLead.source || "Direct"}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-slate-400">Landing Page</span>
+                    <p className="font-medium text-slate-800 text-sm break-words">
+                      {selectedLead.landingPage || "-"}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-slate-400">UTM Campaign</span>
+                    <p className="font-medium text-slate-800 text-sm break-words">
+                      {selectedLead.utmCampaign || "-"}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-slate-400">UTM Medium</span>
+                    <p className="font-medium text-slate-800 text-sm break-words">
+                      {selectedLead.utmMedium || "-"}
+                    </p>
+                  </div>
+                  <div className="col-span-2">
+                    <span className="text-xs text-slate-400">Referrer</span>
+                    <p className="font-medium text-slate-800 text-sm break-words">
+                      {selectedLead.referrer || "-"}
+                    </p>
+                  </div>
+                </div>
+              </div>
 
               {/* Notes */}
               <div>

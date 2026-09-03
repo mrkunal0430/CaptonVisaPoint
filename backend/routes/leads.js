@@ -9,7 +9,11 @@ const router = express.Router();
 // @access  Public
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone, city, country, service, education, message } = req.body;
+    const {
+      name, email, phone, city, country, service, education, message,
+      source, utmSource, utmMedium, utmCampaign, utmTerm, utmContent,
+      landingPage, referrer
+    } = req.body;
 
     // Validate required fields
     if (!name || !email || !phone) {
@@ -24,7 +28,15 @@ router.post('/', async (req, res) => {
       country: country || '',
       service: service || 'General Inquiry',
       education: education || '',
-      message: message || ''
+      message: message || '',
+      source: source || 'Direct',
+      utmSource: utmSource || '',
+      utmMedium: utmMedium || '',
+      utmCampaign: utmCampaign || '',
+      utmTerm: utmTerm || '',
+      utmContent: utmContent || '',
+      landingPage: landingPage || '',
+      referrer: referrer || ''
     });
 
     res.status(201).json({
@@ -43,13 +55,17 @@ router.post('/', async (req, res) => {
 // @access  Private (Admin only)
 router.get('/', protect, async (req, res) => {
   try {
-    const { service, status, startDate, endDate, search, page = 1, limit = 20 } = req.query;
+    const { service, source, status, startDate, endDate, search, page = 1, limit = 20 } = req.query;
 
     // Build filter query
     const filter = {};
 
     if (service && service !== 'all') {
       filter.service = service;
+    }
+
+    if (source && source !== 'all') {
+      filter.source = source;
     }
 
     if (status && status !== 'all') {
@@ -114,10 +130,12 @@ router.get('/', protect, async (req, res) => {
 // @access  Private (Admin only)
 router.get('/export', protect, async (req, res) => {
   try {
-    const { status, startDate, endDate } = req.query;
+    const { status, service, source, startDate, endDate } = req.query;
 
     const filter = {};
     if (status && status !== 'all') filter.status = status;
+    if (service && service !== 'all') filter.service = service;
+    if (source && source !== 'all') filter.source = source;
     if (startDate || endDate) {
       filter.createdAt = {};
       if (startDate) filter.createdAt.$gte = new Date(startDate);
@@ -138,7 +156,13 @@ router.get('/export', protect, async (req, res) => {
       'Education / NEET Score',
       'Message',
       'Status',
-      'Notes'
+      'Notes',
+      'Source',
+      'UTM Source',
+      'UTM Medium',
+      'UTM Campaign',
+      'Landing Page',
+      'Referrer'
     ];
     const csvRows = [headers.join(',')];
 
@@ -158,7 +182,13 @@ router.get('/export', protect, async (req, res) => {
         `"${(lead.education || '').replace(/"/g, '""')}"`,
         `"${(lead.message || '').replace(/"/g, '""')}"`,
         lead.status || '',
-        `"${(lead.notes || '').replace(/"/g, '""')}"`
+        `"${(lead.notes || '').replace(/"/g, '""')}"`,
+        `"${(lead.source || '').replace(/"/g, '""')}"`,
+        `"${(lead.utmSource || '').replace(/"/g, '""')}"`,
+        `"${(lead.utmMedium || '').replace(/"/g, '""')}"`,
+        `"${(lead.utmCampaign || '').replace(/"/g, '""')}"`,
+        `"${(lead.landingPage || '').replace(/"/g, '""')}"`,
+        `"${(lead.referrer || '').replace(/"/g, '""')}"`
       ];
       csvRows.push(row.join(','));
     });

@@ -40,6 +40,7 @@ const InquiryPopup = ({ isOpen, onClose }) => {
               title="Quick Inquiry"
               subtitle="Fill the form and we'll get back to you"
               variant="popup"
+              formLabel="Site-wide Popup"
               onSuccess={handleSuccess}
             />
           </motion.div>

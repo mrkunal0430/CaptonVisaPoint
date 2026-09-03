@@ -595,6 +595,8 @@ const Coaching = () => {
                   <InquiryForm
                     title="Register for Free Demo"
                     subtitle="Fill in your details and we'll contact you within 24 hours"
+                    service="Language Coaching"
+                    formLabel="Coaching — Free Demo Registration"
                   />
                 </div>
               </div>

@@ -124,6 +124,8 @@ const Mbbs = () => {
               variant="compact"
               showNeetScore={true}
               showCountry={true}
+              service="MBBS Abroad"
+              formLabel="MBBS Hub Page"
             />
           </div>
         </div>

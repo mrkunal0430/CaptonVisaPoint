@@ -1,5 +1,5 @@
 import React, { useState, memo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   FiArrowRight,
@@ -10,6 +10,7 @@ import {
   FiSend,
   FiHelpCircle,
   FiPhoneCall,
+  FiChevronDown,
 } from "react-icons/fi";
 import InquiryPopup from "./forms/InquiryPopup";
 
@@ -141,6 +142,7 @@ const ServiceCard = memo(({ service }) => (
 
 const Hero = () => {
   const [showInquiry, setShowInquiry] = useState(false);
+  const [showPgDropdown, setShowPgDropdown] = useState(false);
 
   // Double the services for seamless infinite scroll
   const marqueeServices = [...services, ...services, ...services];
@@ -254,7 +256,132 @@ const Hero = () => {
                 Jobs After 12th
               </button>
             </Link>
+
+            {/* 5: PG after MBBS — Toggles slide down section */}
+            <button
+              onClick={() => setShowPgDropdown((prev) => !prev)}
+              className={`col-span-2 sm:col-span-1 group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 rounded-lg sm:rounded-xl font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap cursor-pointer ${
+                showPgDropdown
+                  ? "bg-slate-900 text-white shadow-xl ring-2 ring-blue-500 scale-[1.02]"
+                  : "bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-800 text-white shadow-lg shadow-blue-600/25 hover:shadow-xl hover:-translate-y-0.5"
+              }`}
+              aria-expanded={showPgDropdown}
+            >
+              <span className="text-xs sm:text-sm">🩺</span>
+              <span>PG after MBBS</span>
+              <FiChevronDown
+                className={`text-sm transition-transform duration-300 ${
+                  showPgDropdown ? "rotate-180 text-amber-300" : ""
+                }`}
+              />
+            </button>
           </div>
+
+          {/* ===== SLIDE DOWN SECTION: PG AFTER MBBS OPTIONS ===== */}
+          <AnimatePresence>
+            {showPgDropdown && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, y: -16 }}
+                animate={{ opacity: 1, height: "auto", y: 0 }}
+                exit={{ opacity: 0, height: 0, y: -16 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="mt-6 sm:mt-8 max-w-4xl mx-auto bg-gradient-to-br from-white via-white to-blue-50/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-blue-200/90 shadow-2xl shadow-blue-900/15 relative">
+                  <div className="text-center mb-6">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+                      <span>🩺</span> Specialized Clinical Pathways
+                    </div>
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">
+                      PG after MBBS Options
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto mt-1">
+                      Choose your desired medical post-graduation destination below to view complete details, eligibility, and guidance:
+                    </p>
+                  </div>
+
+                  {/* Two destination cards with independent pages */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Option 1: PG in India */}
+                    <Link
+                      to="/medical-pg/india"
+                      className="group relative bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-orange-400 shadow-sm hover:shadow-lg hover:shadow-orange-500/10 transition-all flex flex-col justify-between"
+                    >
+                      <div className="absolute top-4 right-4 text-xs font-bold text-orange-600 bg-orange-50 border border-orange-200 px-2.5 py-0.5 rounded-full">
+                        NEET PG 2025–26
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+                            PG in India (NEET PG)
+                          </h4>
+                        </div>
+                        <p className="text-xs text-slate-500 mb-3.5 leading-relaxed">
+                          End-to-end counselling guidance for MD/MS/DNB seats across India.
+                        </p>
+                        <ul className="space-y-1.5 text-xs text-slate-600">
+                          <li className="flex items-center gap-2">
+                            <FiCheckCircle className="text-orange-500 shrink-0 text-sm" />
+                            <span>AIQ 50% & State Domicile Quota Guidance</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <FiCheckCircle className="text-orange-500 shrink-0 text-sm" />
+                            <span>Deemed, Private & Management / NRI Seats</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <FiCheckCircle className="text-orange-500 shrink-0 text-sm" />
+                            <span>Data-backed Choice Filling & Cutoff Strategy</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-orange-600 group-hover:translate-x-0.5 transition-transform">
+                        <span>View India NEET PG Details</span>
+                        <FiArrowRight />
+                      </div>
+                    </Link>
+
+                    {/* Option 2: PG in Germany */}
+                    <Link
+                      to="/medical-pg/germany"
+                      className="group relative bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-blue-500 shadow-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all flex flex-col justify-between"
+                    >
+                      <div className="absolute top-4 right-4 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
+                        100% Tuition Free
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
+                            Medical PG in Germany
+                          </h4>
+                        </div>
+                        <p className="text-xs text-slate-500 mb-3.5 leading-relaxed">
+                          Work-Learn-Earn pathway for Indian doctors with guaranteed stipend.
+                        </p>
+                        <ul className="space-y-1.5 text-xs text-slate-600">
+                          <li className="flex items-center gap-2">
+                            <FiCheckCircle className="text-emerald-500 shrink-0 text-sm" />
+                            <span><strong>€4,800 – €5,500/mo</strong> Salaried Residency (~₹5L)</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <FiCheckCircle className="text-emerald-500 shrink-0 text-sm" />
+                            <span>No Competitive Entrance Exam (Clinical License)</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <FiCheckCircle className="text-emerald-500 shrink-0 text-sm" />
+                            <span>EU Blue Card & Permanent Residency in 21 Months</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-700 group-hover:translate-x-0.5 transition-transform">
+                        <span>View Germany Pathway Details</span>
+                        <FiArrowRight />
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.div>
 

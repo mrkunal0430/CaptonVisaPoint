@@ -14,6 +14,7 @@ import {
   FiGlobe,
 } from "react-icons/fi";
 import axios from "axios";
+import { getTrackingData, trackFormSubmission } from "../../utils/tracking";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -62,6 +63,8 @@ const InquiryForm = ({
   variant = "default", // "default" | "compact" | "popup"
   showNeetScore = false, // When true, replaces education dropdown with NEET score selector
   showCountry = false, // When true, shows a preferred country selector (defaults to India)
+  service = "General Inquiry", // Which service bucket this lead belongs to in admin
+  formLabel = "", // Human-readable origin, e.g. "Contact Page" — shown to admin
   onSuccess,
 }) => {
   const [formData, setFormData] = useState({
@@ -86,9 +89,24 @@ const InquiryForm = ({
     setStatus({ type: "", message: "" });
 
     try {
-      const response = await axios.post(`${API_URL}/leads`, formData);
+      const tracking = getTrackingData ? getTrackingData() : {};
+
+      const payload = {
+        ...formData,
+        service,
+        // Prefix the origin so admin can see which page produced the lead.
+        message: formLabel
+          ? `[${formLabel}]${formData.message ? `\n${formData.message}` : ""}`
+          : formData.message,
+        ...tracking,
+      };
+
+      const response = await axios.post(`${API_URL}/leads`, payload);
 
       if (response.data.success) {
+        if (trackFormSubmission) {
+          trackFormSubmission(service, payload);
+        }
         setStatus({
           type: "success",
           message: "Thank you! We will contact you shortly.",
