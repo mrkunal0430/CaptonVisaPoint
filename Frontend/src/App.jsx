@@ -144,7 +144,7 @@ const AppLayout = () => {
         href="https://wa.me/919914773125?text=Hello%20CaptonVisaPoint%2C%20I%20have%20a%20query%20regarding%20your%20services."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 hover:scale-110 transition-all"
+        className="fab-safe fixed bottom-6 right-4 sm:right-6 z-50 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 hover:scale-110 transition-all"
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
       >

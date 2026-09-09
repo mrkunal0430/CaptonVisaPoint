@@ -218,15 +218,15 @@ const HospitalityJobsAbroad = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-4 mt-12">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-8 sm:mt-12">
             {[
               { val: "5★", label: "Hotel Partners" },
               { val: "Gulf+", label: "Top Destinations" },
               { val: "24h", label: "Response Time" },
             ].map((s) => (
-              <div key={s.label} className="text-center bg-white/10 rounded-2xl py-4 px-2 backdrop-blur border border-white/10">
-                <div className="text-2xl font-extrabold text-yellow-300">{s.val}</div>
-                <div className="text-xs text-white/70 mt-1">{s.label}</div>
+              <div key={s.label} className="text-center bg-white/10 rounded-2xl py-3 sm:py-4 px-1.5 sm:px-2 backdrop-blur border border-white/10">
+                <div className="text-lg sm:text-2xl font-extrabold text-yellow-300">{s.val}</div>
+                <div className="text-[10px] sm:text-xs text-white/70 mt-1 leading-tight">{s.label}</div>
               </div>
             ))}
           </div>

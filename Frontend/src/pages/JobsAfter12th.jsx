@@ -217,7 +217,7 @@ const JobsAfter12th = () => {
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="bg-gradient-to-r from-blue-800 to-blue-900 p-5 text-white relative overflow-hidden">
-                  <div className="absolute top-0 right-0 text-7xl opacity-10">
+                  <div className="absolute top-0 right-0 text-5xl sm:text-7xl opacity-10 pointer-events-none select-none">
                     {cat.icon}
                   </div>
                   <div className="relative z-10">
@@ -317,7 +317,7 @@ const JobsAfter12th = () => {
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 text-center"
               >
-                <div className="text-5xl font-extrabold text-blue-100 mb-2">
+                <div className="text-3xl sm:text-5xl font-extrabold text-blue-100 mb-2">
                   {step.s}
                 </div>
                 <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-700 text-2xl mx-auto mb-3">

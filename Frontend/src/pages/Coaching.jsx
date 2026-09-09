@@ -370,11 +370,11 @@ const Coaching = () => {
                 <div
                   className={`bg-gradient-to-r ${course.gradient} p-8 text-white relative overflow-hidden`}
                 >
-                  <div className="absolute top-0 right-0 text-9xl opacity-10">
+                  <div className="absolute top-0 right-0 text-6xl sm:text-9xl opacity-10 pointer-events-none select-none">
                     {course.icon}
                   </div>
                   <div className="relative z-10">
-                    <div className="text-5xl mb-4">{course.icon}</div>
+                    <div className="text-4xl sm:text-5xl mb-4">{course.icon}</div>
                     <h3 className="text-2xl font-extrabold mb-2">
                       {course.name}
                     </h3>
@@ -534,7 +534,7 @@ const Coaching = () => {
                 key={index}
                 className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all hover:scale-105"
               >
-                <div className="text-6xl mb-4 text-center">{story.image}</div>
+                <div className="text-4xl sm:text-6xl mb-4 text-center">{story.image}</div>
                 <h4 className="text-xl font-bold text-center mb-2 text-slate-800">
                   {story.name}
                 </h4>
@@ -608,23 +608,23 @@ const Coaching = () => {
       {/* Course Detail Modal */}
       {selectedCourse && (
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto overscroll-contain"
           onClick={() => setSelectedCourse(null)}
         >
           <div
-            className="bg-white rounded-3xl max-w-4xl w-full my-8 shadow-2xl"
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-4xl w-full my-4 sm:my-8 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div
-              className={`bg-gradient-to-r ${selectedCourse.gradient} p-8 text-white relative overflow-hidden`}
+              className={`bg-gradient-to-r ${selectedCourse.gradient} p-5 sm:p-8 text-white relative overflow-hidden`}
             >
-              <div className="absolute top-0 right-0 text-9xl opacity-10">
+              <div className="absolute top-0 right-0 text-6xl sm:text-9xl opacity-10 pointer-events-none select-none">
                 {selectedCourse.icon}
               </div>
               <div className="relative z-10 flex justify-between items-start">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2">
                     {selectedCourse.name}
                   </h2>
                   <div className="flex items-center gap-4">
@@ -756,7 +756,7 @@ const Coaching = () => {
               </div>
 
               {/* CTA */}
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button
                   onClick={() => {
                     setSelectedCourse(null);
@@ -764,7 +764,7 @@ const Coaching = () => {
                       .getElementById("trial-class")
                       ?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className={`flex-1 bg-gradient-to-r ${selectedCourse.gradient} text-white py-4 rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105`}
+                  className={`flex-1 bg-gradient-to-r ${selectedCourse.gradient} text-white py-3.5 sm:py-4 px-3 rounded-xl font-bold text-sm sm:text-base hover:shadow-lg transition-all hover:scale-105`}
                 >
                   Enroll Now
                 </button>
@@ -775,7 +775,7 @@ const Coaching = () => {
                       .getElementById("trial-class")
                       ?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="flex-1 bg-slate-100 text-slate-900 py-4 rounded-xl font-bold hover:bg-slate-200 transition-all"
+                  className="flex-1 bg-slate-100 text-slate-900 py-3.5 sm:py-4 px-3 rounded-xl font-bold text-sm sm:text-base hover:bg-slate-200 transition-all"
                 >
                   Book Free Demo
                 </button>

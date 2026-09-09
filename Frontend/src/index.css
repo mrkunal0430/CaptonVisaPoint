@@ -202,16 +202,28 @@ body {
   position: relative;
 }
 
-/* Global image responsiveness */
-img {
-  max-width: 100%;
+/* Global image responsiveness.
+   Tailwind v4 preflight sets `img,video{max-width:100%;height:auto}`. That
+   `height:auto` has the same specificity as a single utility class and is
+   emitted BEFORE the utilities, so it normally loses to `h-full` correctly.
+   But images that also carry `absolute inset-0` resolve height from `auto`
+   against a static-height parent and collapse to their intrinsic ratio.
+   Restoring explicit height for the sizing utilities fixes full-bleed banners
+   and card media without affecting ordinary aspect-ratio-preserving images. */
+img.h-full {
+  height: 100%;
+}
+
+img.h-auto {
   height: auto;
 }
 
-/* Minimum touch target size for accessibility */
+/* Minimum touch target size for accessibility.
+   Scoped to exclude inline links inside prose (blog content, list items,
+   paragraphs), where a forced 44px box would break text flow. */
 button,
-a,
-[role="button"] {
+[role="button"],
+a:not(.blog-content a):not(p a):not(li a) {
   min-height: 44px;
   min-width: 44px;
 }
@@ -247,4 +259,11 @@ a,
 /* Smoother scrolling on iOS */
 .scroll-smooth {
   -webkit-overflow-scrolling: touch;
+}
+
+/* Floating action buttons: respect notched-phone safe areas so they are
+   never obscured by the iOS home indicator / Android gesture bar. */
+.fab-safe {
+  margin-bottom: env(safe-area-inset-bottom);
+  margin-right: env(safe-area-inset-right);
 }

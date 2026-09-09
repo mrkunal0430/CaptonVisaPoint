@@ -588,23 +588,23 @@ const MedicalPGGermany = () => {
             </div>
 
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xl">
-              <div className="grid grid-cols-4 bg-slate-900 text-white font-bold text-xs sm:text-sm p-4 sm:p-5">
+              <div className="grid grid-cols-4 bg-slate-900 text-white font-bold text-[9px] sm:text-sm p-2 sm:p-5 gap-1 sm:gap-3">
                 <div>Language Level</div>
                 <div className="text-center text-teal-400">Capton Intensive</div>
                 <div className="text-center text-sky-400">In Germany</div>
                 <div className="text-center text-slate-400">Standard Goethe</div>
               </div>
 
-              <div className="divide-y divide-slate-100 text-xs sm:text-sm">
+              <div className="divide-y divide-slate-100 text-[9px] sm:text-sm">
                 {GERMAN_LEVEL_DURATIONS.map((row, idx) => (
                   <div
                     key={idx}
-                    className={`grid grid-cols-4 p-4 sm:p-5 items-center ${
+                    className={`grid grid-cols-4 p-2 sm:p-5 items-center gap-1 sm:gap-3 ${
                       idx % 2 === 1 ? "bg-slate-50/50" : ""
                     }`}
                   >
                     <div className="font-bold text-slate-900">{row.level}</div>
-                    <div className="text-center font-semibold text-teal-700 bg-teal-50 py-1.5 px-2 rounded-lg">
+                    <div className="text-center font-semibold text-teal-700 bg-teal-50 py-1 px-1 sm:py-1.5 sm:px-2 rounded-md sm:rounded-lg break-words">
                       {row.captonTime}
                     </div>
                     <div className="text-center text-slate-600">{row.inGermanyTime}</div>

@@ -223,10 +223,10 @@ const Hero = () => {
         className="relative z-10 pt-4 sm:pt-8 pb-6 sm:pb-14 lg:pb-16"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap lg:flex-nowrap items-stretch justify-center gap-2.5 min-[400px]:gap-3 sm:gap-4 max-w-[280px] min-[400px]:max-w-sm sm:max-w-3xl lg:max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap lg:flex-nowrap items-stretch justify-center gap-2.5 min-[400px]:gap-3 sm:gap-4 max-w-[320px] min-[400px]:max-w-sm sm:max-w-3xl lg:max-w-5xl mx-auto">
             {/* 1: Free Eligibility Check */}
             <Link to="/eligibility-check" className="block">
-              <button className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg sm:rounded-xl hover:from-amber-600 hover:to-amber-700 text-white font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5 whitespace-nowrap">
+              <button className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg sm:rounded-xl hover:from-amber-600 hover:to-amber-700 text-white font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5 text-center leading-tight sm:whitespace-nowrap">
                 <FiSend className="text-sm sm:text-base shrink-0" />
                 Free Eligibility Check
               </button>
@@ -234,7 +234,7 @@ const Hero = () => {
 
             {/* 2: Call Us — triggers phone dialer */}
             <a href="tel:+919914773125" className="block">
-              <button className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-blue-700 rounded-lg sm:rounded-xl hover:bg-blue-800 text-white font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-blue-700/20 hover:shadow-xl hover:shadow-blue-700/30 hover:-translate-y-0.5 whitespace-nowrap">
+              <button className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-blue-700 rounded-lg sm:rounded-xl hover:bg-blue-800 text-white font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-blue-700/20 hover:shadow-xl hover:shadow-blue-700/30 hover:-translate-y-0.5 text-center leading-tight sm:whitespace-nowrap">
                 <FiPhoneCall className="text-sm sm:text-base shrink-0" />
                 Don't Know? Call Us
               </button>
@@ -243,7 +243,7 @@ const Hero = () => {
             {/* 3: Apply Now — opens inquiry popup */}
             <button
               onClick={() => setShowInquiry(true)}
-              className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-white border border-blue-200 rounded-lg sm:rounded-xl hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-800 font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm hover:shadow-lg hover:shadow-blue-700/20 hover:-translate-y-0.5 whitespace-nowrap"
+              className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-white border border-blue-200 rounded-lg sm:rounded-xl hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-800 font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm hover:shadow-lg hover:shadow-blue-700/20 hover:-translate-y-0.5 text-center leading-tight sm:whitespace-nowrap"
             >
               <FiArrowRight className="text-sm sm:text-base shrink-0" />
               Apply Now
@@ -251,7 +251,7 @@ const Hero = () => {
 
             {/* 4: Jobs After 12th — navigates to page */}
             <Link to="/jobs-abroad/after-12th" className="block">
-              <button className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-white border border-blue-200 rounded-lg sm:rounded-xl hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-800 font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm hover:shadow-lg hover:shadow-blue-700/20 hover:-translate-y-0.5 whitespace-nowrap">
+              <button className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-white border border-blue-200 rounded-lg sm:rounded-xl hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-800 font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm hover:shadow-lg hover:shadow-blue-700/20 hover:-translate-y-0.5 text-center leading-tight sm:whitespace-nowrap">
                 <FiBriefcase className="text-sm sm:text-base shrink-0" />
                 Jobs After 12th
               </button>
@@ -260,7 +260,7 @@ const Hero = () => {
             {/* 5: PG after MBBS — Toggles slide down section */}
             <button
               onClick={() => setShowPgDropdown((prev) => !prev)}
-              className={`col-span-2 sm:col-span-1 group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 rounded-lg sm:rounded-xl font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap cursor-pointer ${
+              className={`col-span-2 sm:col-span-1 group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 rounded-lg sm:rounded-xl font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center leading-tight sm:whitespace-nowrap cursor-pointer ${
                 showPgDropdown
                   ? "bg-slate-900 text-white shadow-xl ring-2 ring-blue-500 scale-[1.02]"
                   : "bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-800 text-white shadow-lg shadow-blue-600/25 hover:shadow-xl hover:-translate-y-0.5"
@@ -391,7 +391,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
         onClick={() => setShowInquiry(true)}
-        className="lg:hidden fixed bottom-6 right-6 z-50 bg-blue-700 p-4 rounded-full shadow-xl shadow-blue-700/30 flex items-center justify-center text-white hover:scale-110 hover:bg-blue-800 transition-all"
+        className="fab-safe lg:hidden fixed bottom-24 right-4 sm:right-6 z-50 bg-blue-700 p-4 rounded-full shadow-xl shadow-blue-700/30 flex items-center justify-center text-white hover:scale-110 hover:bg-blue-800 transition-all"
       >
         <FiHelpCircle size={24} />
       </motion.button>

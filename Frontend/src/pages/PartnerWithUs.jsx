@@ -280,9 +280,12 @@ const PartnerWithUs = () => {
                 </p>
                 <a
                   href="mailto:partners@captonvisapoint.com"
-                  className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700"
+                  className="inline-flex items-center gap-2 max-w-full text-blue-600 font-medium hover:text-blue-700"
                 >
-                  partners@captonvisapoint.com <FiArrowRight />
+                  <span className="min-w-0 break-all">
+                    partners@captonvisapoint.com
+                  </span>{" "}
+                  <FiArrowRight className="shrink-0" />
                 </a>
               </div>
             </motion.div>

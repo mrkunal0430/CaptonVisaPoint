@@ -1,0 +1,97 @@
+[
+ {
+  "vp": "425",
+  "route": "/mbbs/india",
+  "error": "Error: page.evaluate: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> C:\\Users\\91701\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1234\\chrome-headless-shell-win64\\chr"
+ },
+ {
+  "vp": "425",
+  "route": "/mbbs/russia",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/mbbs/russia/crimea-federal-university",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/medical-pg/india",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/medical-pg/germany",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/study-abroad",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/study-abroad/germany",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/ausbildung",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/coaching",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/blog",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/eligibility-check",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/partner",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/about",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/privacy-policy",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/jobs-abroad/after-12th",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/jobs-abroad/healthcare",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/jobs-abroad/technical",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/jobs-abroad/hospitality",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ },
+ {
+  "vp": "425",
+  "route": "/nonexistent-page-404",
+  "error": "Error: page.goto: Target page, context or browser has been closed"
+ }
+]

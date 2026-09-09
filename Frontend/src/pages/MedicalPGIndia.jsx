@@ -703,49 +703,49 @@ const MedicalPGIndia = () => {
           </div>
 
           <div className="max-w-4xl mx-auto overflow-hidden rounded-3xl border border-slate-200 shadow-xl bg-white">
-            <div className="grid grid-cols-3 bg-slate-900 text-white font-bold text-xs sm:text-sm p-4 sm:p-5">
+            <div className="grid grid-cols-3 bg-slate-900 text-white font-bold text-[10px] sm:text-sm p-2.5 sm:p-5 gap-1.5 sm:gap-3">
               <div>Parameter</div>
               <div className="text-orange-400 text-center">PG in India (NEET PG)</div>
               <div className="text-blue-400 text-center">Medical PG in Germany</div>
             </div>
 
-            <div className="divide-y divide-slate-100 text-xs sm:text-sm">
-              <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div className="divide-y divide-slate-100 text-[10px] sm:text-sm">
+              <div className="grid grid-cols-3 p-2.5 sm:p-5 items-center gap-1.5 sm:gap-3">
                 <div className="font-bold text-slate-800">Entrance Examination</div>
                 <div className="text-center text-slate-600">Heavy competitive MCQ exam (2.4L+ doctors)</div>
-                <div className="text-center font-semibold text-emerald-700 bg-emerald-50/70 p-2 rounded-xl">
+                <div className="text-center font-semibold text-emerald-700 bg-emerald-50/70 p-1.5 sm:p-2 rounded-lg sm:rounded-xl break-words">
                   No competitive MCQ entrance test
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 p-4 sm:p-5 items-center bg-slate-50/50">
+              <div className="grid grid-cols-3 p-2.5 sm:p-5 items-center gap-1.5 sm:gap-3 bg-slate-50/50">
                 <div className="font-bold text-slate-800">Tuition Fees</div>
                 <div className="text-center text-slate-600">₹0 (Govt) to ₹60L–₹1.5Cr (Private/Deemed)</div>
-                <div className="text-center font-semibold text-emerald-700 bg-emerald-50/70 p-2 rounded-xl">
+                <div className="text-center font-semibold text-emerald-700 bg-emerald-50/70 p-1.5 sm:p-2 rounded-lg sm:rounded-xl break-words">
                   €0 Zero Tuition (Salaried clinical employment)
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
+              <div className="grid grid-cols-3 p-2.5 sm:p-5 items-center gap-1.5 sm:gap-3">
                 <div className="font-bold text-slate-800">Monthly Compensation</div>
                 <div className="text-center text-slate-600">₹40,000 – ₹90,000 / month (varies by state)</div>
-                <div className="text-center font-semibold text-blue-700 bg-blue-50/70 p-2 rounded-xl">
+                <div className="text-center font-semibold text-blue-700 bg-blue-50/70 p-1.5 sm:p-2 rounded-lg sm:rounded-xl break-words">
                   €4,800 – €5,500 (~₹4.3L – ₹5L / month)
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 p-4 sm:p-5 items-center bg-slate-50/50">
+              <div className="grid grid-cols-3 p-2.5 sm:p-5 items-center gap-1.5 sm:gap-3 bg-slate-50/50">
                 <div className="font-bold text-slate-800">Specialty Selection</div>
                 <div className="text-center text-slate-600">Strictly cutoff-dependent (top 2% pick desired branch)</div>
-                <div className="text-center font-semibold text-emerald-700 bg-emerald-50/70 p-2 rounded-xl">
+                <div className="text-center font-semibold text-emerald-700 bg-emerald-50/70 p-1.5 sm:p-2 rounded-lg sm:rounded-xl break-words">
                   Direct choice of desired specialization
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
+              <div className="grid grid-cols-3 p-2.5 sm:p-5 items-center gap-1.5 sm:gap-3">
                 <div className="font-bold text-slate-800">Permanent Settlement</div>
                 <div className="text-center text-slate-600">Home country practice</div>
-                <div className="text-center font-semibold text-blue-700 bg-blue-50/70 p-2 rounded-xl">
+                <div className="text-center font-semibold text-blue-700 bg-blue-50/70 p-1.5 sm:p-2 rounded-lg sm:rounded-xl break-words">
                   EU Blue Card & PR in 21 Months
                 </div>
               </div>

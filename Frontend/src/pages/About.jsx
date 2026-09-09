@@ -138,13 +138,19 @@ const About = () => {
                   className="w-full h-72 sm:h-96 object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-blue-900 text-white p-5 rounded-2xl shadow-xl">
-                <p className="text-4xl font-bold text-amber-400">15+</p>
-                <p className="text-sm text-blue-200 mt-1">Years of Trust</p>
+              <div className="absolute bottom-3 left-3 sm:-bottom-6 sm:-left-6 bg-blue-900 text-white p-3 sm:p-5 rounded-xl sm:rounded-2xl shadow-xl">
+                <p className="text-2xl sm:text-4xl font-bold text-amber-400">
+                  15+
+                </p>
+                <p className="text-xs sm:text-sm text-blue-200 mt-0.5 sm:mt-1">
+                  Years of Trust
+                </p>
               </div>
-              <div className="absolute -top-6 -right-6 bg-amber-500 text-white p-5 rounded-2xl shadow-xl">
-                <p className="text-4xl font-bold">500+</p>
-                <p className="text-sm text-amber-100 mt-1">Partner Institutes</p>
+              <div className="absolute top-3 right-3 sm:-top-6 sm:-right-6 bg-amber-500 text-white p-3 sm:p-5 rounded-xl sm:rounded-2xl shadow-xl">
+                <p className="text-2xl sm:text-4xl font-bold">500+</p>
+                <p className="text-xs sm:text-sm text-amber-100 mt-0.5 sm:mt-1">
+                  Partner Institutes
+                </p>
               </div>
             </motion.div>
           </div>
@@ -358,9 +364,9 @@ const About = () => {
                   ].map((name, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-2 text-sm font-medium"
+                      className="flex items-center gap-2 bg-white/10 rounded-lg px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-medium min-w-0"
                     >
-                      <span className="text-blue-100">{name}</span>
+                      <span className="text-blue-100 leading-tight break-words">{name}</span>
                     </div>
                   ))}
                 </div>
@@ -494,9 +500,9 @@ const About = () => {
                 </p>
                 <a
                   href="mailto:partners@captonvisapoint.com"
-                  className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700"
+                  className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 text-sm sm:text-base break-all"
                 >
-                  partners@captonvisapoint.com <FiArrowRight />
+                  partners@captonvisapoint.com <FiArrowRight className="shrink-0" />
                 </a>
               </div>
             </motion.div>

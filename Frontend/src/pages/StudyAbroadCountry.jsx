@@ -48,11 +48,11 @@ const InfiniteMarqueeSlider = ({ items, renderCard, speed = 35 }) => {
   return (
     <div className="relative w-full overflow-hidden">
       <div
-        className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+        className="absolute left-0 top-0 bottom-0 w-8 sm:w-32 z-10 pointer-events-none"
         style={{ background: "linear-gradient(to right, white, transparent)" }}
       />
       <div
-        className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
+        className="absolute right-0 top-0 bottom-0 w-8 sm:w-32 z-10 pointer-events-none"
         style={{ background: "linear-gradient(to left, white, transparent)" }}
       />
 
@@ -67,6 +67,9 @@ const InfiniteMarqueeSlider = ({ items, renderCard, speed = 35 }) => {
         }}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+        onTouchCancel={() => setIsPaused(false)}
       >
         {repeatedItems.map((item, idx) => (
           <div
@@ -113,7 +116,9 @@ const UniversityMinimalSlider = ({ universities, countryId }) => {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = 350;
+      // Advance by one card + gap so arrows land on card boundaries
+      const card = scrollRef.current.querySelector("[data-card]");
+      const scrollAmount = card ? card.offsetWidth + 24 : 300;
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -147,23 +152,26 @@ const UniversityMinimalSlider = ({ universities, countryId }) => {
       </button>
 
       {/* Gradient Fades */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+      <div className="hidden md:block absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
+      <div className="hidden md:block absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity" />
 
       {/* Scrollable Container */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 no-scrollbar scroll-smooth"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 pt-4 px-4 sm:px-4 -mx-4 sm:mx-0 no-scrollbar scroll-smooth snap-x snap-mandatory"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          WebkitOverflowScrolling: "touch",
+          touchAction: "pan-x pan-y",
+          overscrollBehaviorX: "contain",
+        }}
       >
-        {universities.map((uni, idx) => (
-          <motion.div
+        {universities.map((uni) => (
+          <div
             key={uni.id}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="flex-shrink-0"
+            data-card
+            className="flex-shrink-0 snap-start"
           >
             <Link
               to={`/study-abroad/${countryId}/${uni.id}`}
@@ -206,8 +214,10 @@ const UniversityMinimalSlider = ({ universities, countryId }) => {
                 </div>
               </div>
             </Link>
-          </motion.div>
+          </div>
         ))}
+        {/* Trailing spacer so the last card can scroll clear of the edge */}
+        <div className="shrink-0 w-1" aria-hidden="true" />
       </div>
 
       <style>{`
@@ -300,14 +310,14 @@ const StudyAbroadCountry = () => {
         keywords={countryData.seoKeywords || `study in ${countryData?.name || "abroad"}, universities ${countryData?.name || ""}, study abroad ${countryData?.name || ""}, education consultants, ${countryData?.name || ""} admission, ${countryData?.name || ""} student visa, ${countryData?.name || ""} scholarships, study abroad for Indian students, overseas education, top universities abroad, study abroad 2026, study abroad 2027`}
       />
       {/* Hero Banner */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center overflow-hidden">
+      <section className="relative h-auto min-h-[440px] sm:h-[60vh] sm:min-h-[500px] py-16 sm:py-0 flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={countryData.bannerImage}
             alt={countryData.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/80 to-slate-900/50 sm:bg-gradient-to-r sm:from-slate-900/90 sm:via-slate-900/70 sm:to-transparent" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -323,28 +333,28 @@ const StudyAbroadCountry = () => {
               </span>
             )}
 
-            <div className="flex items-center gap-5 mb-4">
+            <div className="flex items-center gap-3 sm:gap-5 mb-4">
               <img
                 src={getFlagUrl()}
                 alt={`${countryData.name} flag`}
-                className="w-16 h-12 object-cover rounded-lg shadow-lg border-2 border-white/30"
+                className="w-11 h-8 sm:w-16 sm:h-12 object-cover rounded-lg shadow-lg border-2 border-white/30 shrink-0"
               />
               <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white">
                 Study in {countryData.name}
               </h1>
             </div>
 
-            <p className="text-xl text-blue-100/90 mb-8 max-w-2xl">
+            <p className="text-base sm:text-xl text-blue-100/90 mb-6 sm:mb-8 max-w-2xl">
               {countryData.tagline}
             </p>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               {countryData.highlights.map((h, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-white text-sm font-medium"
+                  className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-white text-xs sm:text-sm font-medium max-w-full"
                 >
-                  <FiCheckCircle className="text-blue-400" /> {h}
+                  <FiCheckCircle className="text-blue-400 shrink-0" /> <span className="min-w-0">{h}</span>
                 </span>
               ))}
             </div>
@@ -355,17 +365,17 @@ const StudyAbroadCountry = () => {
       {/* Quick Facts Bar */}
       <section className="bg-slate-900 py-6">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 sm:gap-8 md:gap-16">
             {quickFacts.map((fact, i) => (
-              <div key={i} className="flex items-center gap-3 text-white">
-                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+              <div key={i} className="flex items-center gap-2.5 sm:gap-3 text-white min-w-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
                   {fact.icon}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <div className="text-xs text-blue-300 uppercase tracking-wider">
                     {fact.label}
                   </div>
-                  <div className="font-bold">{fact.value}</div>
+                  <div className="font-bold text-sm sm:text-base break-words">{fact.value}</div>
                 </div>
               </div>
             ))}
@@ -374,21 +384,21 @@ const StudyAbroadCountry = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-16">
+      <section className="py-10 sm:py-16">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-10 lg:gap-12">
             {/* Left Content */}
-            <div className="lg:col-span-2 space-y-16">
+            <div className="lg:col-span-2 space-y-16 min-w-0">
               {/* About Country */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl font-bold text-slate-900 mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">
                   Why Study in {countryData.name}?
                 </h2>
-                <p className="text-lg text-slate-600 leading-relaxed mb-8">
+                <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6 sm:mb-8">
                   {countryData.description}
                 </p>
 
@@ -396,12 +406,12 @@ const StudyAbroadCountry = () => {
                   {countryData.highlights.map((highlight, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100"
+                      className="flex items-center gap-3 p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-100"
                     >
-                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
                         <FiCheckCircle className="text-blue-700" />
                       </div>
-                      <span className="font-medium text-slate-800">
+                      <span className="font-medium text-slate-800 text-sm sm:text-base min-w-0">
                         {highlight}
                       </span>
                     </div>
@@ -432,10 +442,10 @@ const StudyAbroadCountry = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="grid md:grid-cols-2 gap-8"
+                className="grid md:grid-cols-2 gap-6 sm:gap-8"
               >
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-50 border border-blue-100">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-2xl mb-6">
+                <div className="p-5 sm:p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-50 border border-blue-100">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-xl sm:text-2xl mb-4 sm:mb-6">
                     <FiFileText />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-4">
@@ -450,16 +460,16 @@ const StudyAbroadCountry = () => {
                       "Recommendation Letters",
                       "CV/Resume",
                     ].map((doc, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <FiCheckCircle className="text-blue-600 shrink-0" />{" "}
+                      <li key={i} className="flex items-start gap-2">
+                        <FiCheckCircle className="text-blue-600 shrink-0 mt-1" />{" "}
                         {doc}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-pink-50 border border-blue-100">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl mb-6">
+                <div className="p-5 sm:p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-pink-50 border border-blue-100">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-xl sm:text-2xl mb-4 sm:mb-6">
                     <FiClock />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-4">
@@ -474,8 +484,8 @@ const StudyAbroadCountry = () => {
                       "Wait for admission (4-8 weeks)",
                       "Visa processing (4-8 weeks)",
                     ].map((step, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-full bg-blue-200 text-blue-800 text-xs font-bold flex items-center justify-center shrink-0">
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="w-6 h-6 min-w-[1.5rem] rounded-full bg-blue-200 text-blue-800 text-xs font-bold flex items-center justify-center shrink-0">
                           {i + 1}
                         </span>
                         {step}
@@ -487,8 +497,8 @@ const StudyAbroadCountry = () => {
             </div>
 
             {/* Right Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24 space-y-6">
+            <div className="lg:col-span-1 min-w-0">
+              <div className="lg:sticky lg:top-24 space-y-6">
                 {/* Lead Form */}
                 <div
                   className={`rounded-2xl overflow-hidden shadow-xl ${isPreferred ? "ring-2 ring-amber-400" : ""}`}
@@ -512,8 +522,8 @@ const StudyAbroadCountry = () => {
                       "Pre-departure & post-arrival support",
                       "Scholarship assistance",
                     ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <FiCheckCircle className="text-blue-400 shrink-0" />{" "}
+                      <li key={i} className="flex items-start gap-2">
+                        <FiCheckCircle className="text-blue-400 shrink-0 mt-0.5" />{" "}
                         {item}
                       </li>
                     ))}
@@ -539,7 +549,7 @@ const StudyAbroadCountry = () => {
       </section>
       {/* Explore Other Countries - Infinite Marquee Slider */}
       {otherStudyCountries.length > 0 && (
-        <section className="py-16 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
+        <section className="py-10 sm:py-16 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -589,7 +599,7 @@ const StudyAbroadCountry = () => {
                       <FiStar className="text-yellow-200" /> Premier
                     </span>
                   )}
-                  <div className="absolute bottom-3 left-4">
+                  <div className="absolute bottom-3 left-4 right-3 flex items-center gap-2">
                     <img
                       src={getFlagUrlByCode(
                         {
@@ -609,9 +619,9 @@ const StudyAbroadCountry = () => {
                         }[c.id] || "un"
                       )}
                       alt={`${c.name} flag`}
-                      className="w-8 h-6 object-cover rounded shadow border border-white/30 inline-block mr-2 align-middle"
+                      className="w-7 h-5 sm:w-8 sm:h-6 object-cover rounded shadow border border-white/30 shrink-0"
                     />
-                    <span className="text-white font-bold text-lg drop-shadow-lg align-middle group-hover:translate-x-1 transition-transform duration-300 inline-block">
+                    <span className="text-white font-bold text-base sm:text-lg drop-shadow-lg group-hover:translate-x-1 transition-transform duration-300 leading-tight min-w-0">
                       {c.name}
                     </span>
                   </div>
@@ -627,9 +637,9 @@ const StudyAbroadCountry = () => {
                       <FiGlobe className="text-blue-500 flex-shrink-0" />
                       <span>{c.language}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <FiCalendar className="text-blue-500 flex-shrink-0" />
-                      <span>Intakes: {c.intakes.join(", ")}</span>
+                    <div className="flex items-start gap-2 text-xs text-slate-500 min-w-0">
+                      <FiCalendar className="text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span className="break-words">Intakes: {c.intakes.join(", ")}</span>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-slate-500">
                       <FiBookOpen className="text-blue-500 flex-shrink-0" />

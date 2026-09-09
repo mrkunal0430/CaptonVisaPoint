@@ -281,7 +281,7 @@ const UniversityDetail = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Left Content */}
-            <div className="lg:col-span-2 space-y-12">
+            <div className="lg:col-span-2 space-y-12 min-w-0">
               {/* About University */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -448,7 +448,7 @@ const UniversityDetail = () => {
             </div>
 
             {/* Right Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 min-w-0">
               <div className="sticky top-24 space-y-6">
                 {/* Lead Form */}
                 <div

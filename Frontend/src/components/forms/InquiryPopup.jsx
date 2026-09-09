@@ -18,7 +18,7 @@ const InquiryPopup = ({ isOpen, onClose }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 pt-8 overflow-y-auto overscroll-contain"
           onClick={onClose}
         >
           <motion.div
@@ -31,7 +31,7 @@ const InquiryPopup = ({ isOpen, onClose }) => {
           >
             <button
               onClick={onClose}
-              className="absolute -top-3 -right-3 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-slate-50 transition-colors"
+              className="absolute -top-2 right-1 sm:-top-3 sm:-right-3 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-slate-50 transition-colors"
             >
               <FiX size={20} />
             </button>

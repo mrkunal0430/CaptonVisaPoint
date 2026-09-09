@@ -763,14 +763,14 @@ const ServiceLeadsTable = ({ token }) => {
                 <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-2">
                   <FiUser size={14} /> Basic Information
                 </h4>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs text-slate-400">Full Name</label>
                     <p className="font-medium text-slate-800">{selectedLead.fullName}</p>
                   </div>
                   <div>
                     <label className="text-xs text-slate-400">Email</label>
-                    <p className="font-medium text-slate-800">{selectedLead.email}</p>
+                    <p className="font-medium text-slate-800 break-all">{selectedLead.email}</p>
                   </div>
                   <div>
                     <label className="text-xs text-slate-400">Phone</label>
@@ -797,7 +797,7 @@ const ServiceLeadsTable = ({ token }) => {
                   <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-2">
                     <FiBook size={14} /> Academic Details
                   </h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-slate-400">12th Stream</label>
                       <p className="font-medium text-slate-800">{selectedLead.twelfthStream || "-"}</p>
@@ -851,7 +851,7 @@ const ServiceLeadsTable = ({ token }) => {
                   <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-2">
                     <FiGlobe size={14} /> MBBS Abroad Details
                   </h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-slate-400">PCB Studied</label>
                       <p className="font-medium text-slate-800">{selectedLead.pcbStudied || "-"}</p>
@@ -899,7 +899,7 @@ const ServiceLeadsTable = ({ token }) => {
                   <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-2">
                     <FiBook size={14} /> Study Abroad Details
                   </h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-slate-400">Qualification</label>
                       <p className="font-medium text-slate-800">{selectedLead.highestQualification || "-"}</p>
@@ -940,7 +940,7 @@ const ServiceLeadsTable = ({ token }) => {
                     <FiGlobe size={14} />
                     {formatJobSubType(selectedLead.jobSubType) || "Work Abroad"} Details
                   </h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-slate-400">Qualification</label>
                       <p className="font-medium text-slate-800">{selectedLead.qualification || "-"}</p>
@@ -1010,7 +1010,7 @@ const ServiceLeadsTable = ({ token }) => {
                 <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-2">
                   <FiGlobe size={14} /> Tracking Info
                 </h4>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs text-slate-400">Source</label>
                     <p className="font-medium text-slate-800">{selectedLead.source || "-"}</p>

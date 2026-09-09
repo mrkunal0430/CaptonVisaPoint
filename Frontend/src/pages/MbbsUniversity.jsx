@@ -3535,7 +3535,7 @@ const MbbsUniversity = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-3 gap-12">
           {/* Left Content */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-12 min-w-0">
             {/* About */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -3821,7 +3821,7 @@ const MbbsUniversity = () => {
           </div>
 
           {/* Sidebar — Enhanced */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 min-w-0">
             <div className="sticky top-24 space-y-6">
               <InquiryForm
                 title={`Apply to ${uniData.name}`}
@@ -3873,12 +3873,13 @@ const MbbsUniversity = () => {
                   ].map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-center justify-between py-2.5 border-b border-slate-100 last:border-b-0"
+                      className="flex items-center justify-between gap-3 py-2.5 border-b border-slate-100 last:border-b-0"
                     >
-                      <span className="text-slate-500 text-sm flex items-center gap-2">
-                        {item.icon} {item.label}
+                      <span className="text-slate-500 text-sm flex items-center gap-2 min-w-0 shrink-0">
+                        <span className="shrink-0">{item.icon}</span>
+                        <span className="truncate">{item.label}</span>
                       </span>
-                      <span className="font-bold text-slate-800 text-sm text-right max-w-[55%] truncate">
+                      <span className="font-bold text-slate-800 text-sm text-right min-w-0 break-words">
                         {item.value}
                       </span>
                     </div>

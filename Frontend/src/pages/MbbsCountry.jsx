@@ -159,7 +159,7 @@ const MbbsCountry = () => {
       {/* Overview & Quick Stats */}
       <section className="py-14 sm:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-12">
-          <div className="md:col-span-2 space-y-10">
+          <div className="md:col-span-2 space-y-10 min-w-0">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
                 Why choose {countryName}?
@@ -485,7 +485,7 @@ const MbbsCountry = () => {
           </div>
 
           {/* Sidebar Form */}
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 min-w-0">
             <div className="sticky top-24">
               <InquiryForm
                 title={`Apply to ${countryName}`}

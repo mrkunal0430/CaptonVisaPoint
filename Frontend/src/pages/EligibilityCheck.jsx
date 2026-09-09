@@ -242,7 +242,7 @@ const EligibilityCheck = () => {
               onClick={() =>
                 handleInputChange("qualification", qual.toLowerCase())
               }
-              className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+              className={`px-1.5 py-3 sm:p-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all leading-tight ${
                 formData.qualification === qual.toLowerCase()
                   ? "border-blue-500 bg-blue-50 text-blue-700"
                   : "border-slate-200 hover:border-blue-300"
@@ -276,7 +276,7 @@ const EligibilityCheck = () => {
             <button
               key={level}
               onClick={() => handleInputChange("germanLevel", level)}
-              className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+              className={`px-1.5 py-3 sm:p-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all leading-tight ${
                 formData.germanLevel === level
                   ? "border-blue-500 bg-blue-50 text-blue-700"
                   : "border-slate-200 hover:border-blue-300"
@@ -296,7 +296,7 @@ const EligibilityCheck = () => {
         <label className="block text-sm font-semibold text-slate-700 mb-2">
           Have you appeared for NEET?
         </label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {[
             { id: "yes", label: "Yes" },
             { id: "no", label: "No" },
@@ -305,7 +305,7 @@ const EligibilityCheck = () => {
             <button
               key={opt.id}
               onClick={() => handleInputChange("neetAppeared", opt.id)}
-              className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+              className={`px-1.5 py-3 sm:p-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all leading-tight ${
                 formData.neetAppeared === opt.id
                   ? "border-blue-500 bg-blue-50 text-blue-700"
                   : "border-slate-200 hover:border-blue-300"
@@ -363,7 +363,7 @@ const EligibilityCheck = () => {
         <label className="block text-sm font-semibold text-slate-700 mb-2">
           Have you appeared for NEET?
         </label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {[
             { id: "yes", label: "Yes" },
             { id: "no", label: "No" },
@@ -372,7 +372,7 @@ const EligibilityCheck = () => {
             <button
               key={opt.id}
               onClick={() => handleInputChange("neetAppeared", opt.id)}
-              className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+              className={`px-1.5 py-3 sm:p-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all leading-tight ${
                 formData.neetAppeared === opt.id
                   ? "border-blue-500 bg-blue-50 text-blue-700"
                   : "border-slate-200 hover:border-blue-300"
@@ -435,7 +435,7 @@ const EligibilityCheck = () => {
               onClick={() =>
                 handleInputChange("highestQualification", qual.toLowerCase())
               }
-              className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+              className={`px-1.5 py-3 sm:p-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all leading-tight ${
                 formData.highestQualification === qual.toLowerCase()
                   ? "border-blue-500 bg-blue-50 text-blue-700"
                   : "border-slate-200 hover:border-blue-300"
@@ -527,7 +527,7 @@ const EligibilityCheck = () => {
               onClick={() =>
                 handleInputChange("highestQualification", qual.toLowerCase())
               }
-              className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+              className={`px-1.5 py-3 sm:p-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all leading-tight ${
                 formData.highestQualification === qual.toLowerCase()
                   ? "border-blue-500 bg-blue-50 text-blue-700"
                   : "border-slate-200 hover:border-blue-300"
@@ -550,7 +550,7 @@ const EligibilityCheck = () => {
               onClick={() =>
                 handleInputChange("preferredSector", sector.toLowerCase())
               }
-              className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+              className={`px-1.5 py-3 sm:p-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all leading-tight ${
                 formData.preferredSector === sector.toLowerCase()
                   ? "border-blue-500 bg-blue-50 text-blue-700"
                   : "border-slate-200 hover:border-blue-300"
@@ -762,7 +762,7 @@ const EligibilityCheck = () => {
           </defs>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center flex-col">
-          <span className="text-5xl font-bold text-slate-800">{score}%</span>
+          <span className="text-4xl sm:text-5xl font-bold text-slate-800">{score}%</span>
           <span className="text-sm text-slate-500">Score</span>
         </div>
       </div>
@@ -806,7 +806,7 @@ const EligibilityCheck = () => {
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center flex-col">
-          <span className="text-5xl font-bold text-slate-800">{score}%</span>
+          <span className="text-4xl sm:text-5xl font-bold text-slate-800">{score}%</span>
           <span
             className={`text-sm font-semibold ${
               score >= 70

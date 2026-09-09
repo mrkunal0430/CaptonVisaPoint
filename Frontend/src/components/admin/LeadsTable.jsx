@@ -716,14 +716,14 @@ const LeadsTable = ({ token }) => {
 
             <div className="p-6 space-y-5">
               {/* Basic Info */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs text-slate-400">Full Name</label>
                   <p className="font-medium text-slate-800">{selectedLead.name}</p>
                 </div>
                 <div>
                   <label className="text-xs text-slate-400">Email</label>
-                  <p className="font-medium text-slate-800">{selectedLead.email}</p>
+                  <p className="font-medium text-slate-800 break-all">{selectedLead.email}</p>
                 </div>
                 <div>
                   <label className="text-xs text-slate-400">Phone</label>

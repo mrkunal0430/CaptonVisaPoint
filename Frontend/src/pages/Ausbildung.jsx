@@ -519,28 +519,28 @@ const Ausbildung = () => {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-extrabold text-yellow-300">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-white/20">
+                  <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-yellow-300">
                     €1,300
                   </div>
-                  <div className="text-xs text-blue-100 mt-1">
+                  <div className="text-[10px] sm:text-xs text-blue-100 mt-1 leading-tight">
                     Monthly Stipend
                   </div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-extrabold text-blue-300">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-white/20">
+                  <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-blue-300">
                     85%
                   </div>
-                  <div className="text-xs text-blue-100 mt-1">
+                  <div className="text-[10px] sm:text-xs text-blue-100 mt-1 leading-tight">
                     Job Placement
                   </div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-extrabold text-pink-300">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-white/20">
+                  <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-pink-300">
                     Zero
                   </div>
-                  <div className="text-xs text-blue-100 mt-1">Tuition Fees</div>
+                  <div className="text-[10px] sm:text-xs text-blue-100 mt-1 leading-tight">Tuition Fees</div>
                 </div>
               </div>
             </div>
@@ -588,7 +588,7 @@ const Ausbildung = () => {
                 key={index}
                 className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-6 text-center hover:shadow-xl transition-all duration-500 group border border-slate-100 hover:-translate-y-2"
               >
-                <div className="text-6xl font-extrabold text-slate-200 mb-4">
+                <div className="text-4xl sm:text-6xl font-extrabold text-slate-200 mb-4">
                   {item.step}
                 </div>
                 <div
@@ -705,11 +705,11 @@ const Ausbildung = () => {
                 <div
                   className={`bg-gradient-to-r ${sector.gradient} p-8 text-white relative overflow-hidden`}
                 >
-                  <div className="absolute top-0 right-0 text-9xl opacity-10">
+                  <div className="absolute top-0 right-0 text-6xl sm:text-9xl opacity-10 pointer-events-none select-none">
                     {sector.icon}
                   </div>
                   <div className="relative z-10">
-                    <div className="text-5xl mb-4">{sector.icon}</div>
+                    <div className="text-4xl sm:text-5xl mb-4">{sector.icon}</div>
                     <h3 className="text-2xl font-extrabold mb-2">
                       {sector.title}
                     </h3>
@@ -770,9 +770,9 @@ const Ausbildung = () => {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-5xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-5xl overflow-hidden mx-auto">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[620px]">
                 <thead>
                   <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
                     <th className="px-4 sm:px-6 py-4 text-left font-bold">Feature</th>
@@ -839,7 +839,7 @@ const Ausbildung = () => {
                 className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition-all"
               >
                 <div className="flex items-start gap-6">
-                  <div className="text-6xl font-extrabold text-blue-100">
+                  <div className="text-4xl sm:text-6xl font-extrabold text-blue-100">
                     {step.step}
                   </div>
                   <div className="flex-1">
@@ -1038,23 +1038,23 @@ const Ausbildung = () => {
       {/* Sector Detail Modal */}
       {selectedSector && (
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto overscroll-contain"
           onClick={() => setSelectedSector(null)}
         >
           <div
-            className="bg-white rounded-3xl max-w-4xl w-full my-8 shadow-2xl"
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-4xl w-full my-4 sm:my-8 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div
-              className={`bg-gradient-to-r ${selectedSector.gradient} p-8 text-white relative overflow-hidden`}
+              className={`bg-gradient-to-r ${selectedSector.gradient} p-5 sm:p-8 text-white relative overflow-hidden`}
             >
-              <div className="absolute top-0 right-0 text-9xl opacity-10">
+              <div className="absolute top-0 right-0 text-6xl sm:text-9xl opacity-10 pointer-events-none select-none">
                 {selectedSector.icon}
               </div>
               <div className="relative z-10 flex justify-between items-start">
                 <div>
-                  <div className="text-6xl mb-4">{selectedSector.icon}</div>
-                  <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
+                  <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">{selectedSector.icon}</div>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2">
                     {selectedSector.title}
                   </h2>
                   <p className="text-lg opacity-90">
@@ -1145,7 +1145,7 @@ const Ausbildung = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button
                   onClick={() => {
                     setSelectedSector(null);
@@ -1153,13 +1153,13 @@ const Ausbildung = () => {
                       .getElementById("apply-now")
                       ?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className={`flex-1 bg-gradient-to-r ${selectedSector.gradient} text-white py-4 rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105`}
+                  className={`flex-1 bg-gradient-to-r ${selectedSector.gradient} text-white py-3.5 sm:py-4 px-3 rounded-xl font-bold text-sm sm:text-base hover:shadow-lg transition-all hover:scale-105`}
                 >
                   Apply for this Sector
                 </button>
                 <button
                   onClick={() => setSelectedSector(null)}
-                  className="flex-1 bg-slate-100 text-slate-900 py-4 rounded-xl font-bold hover:bg-slate-200 transition-all"
+                  className="flex-1 bg-slate-100 text-slate-900 py-3.5 sm:py-4 px-3 rounded-xl font-bold text-sm sm:text-base hover:bg-slate-200 transition-all"
                 >
                   Close
                 </button>

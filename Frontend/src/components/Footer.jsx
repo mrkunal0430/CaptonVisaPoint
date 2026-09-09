@@ -252,12 +252,27 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
-                      Office
+                      India Office
                     </p>
                     <p className="text-slate-300 text-xs leading-relaxed">
                       B-15, Ram Dutt Enclave,
                       <br />
                       Uttam Nagar, New Delhi&nbsp;–&nbsp;110059
+                    </p>
+                  </div>
+                </div>
+
+                {/* Canada Address */}
+                <div className="flex gap-3 items-start">
+                  <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 mt-0.5">
+                    <FiMapPin size={13} className="text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
+                      Canada Office
+                    </p>
+                    <p className="text-slate-300 text-xs leading-relaxed">
+                      Calgary, Canada
                     </p>
                   </div>
                 </div>
@@ -275,10 +290,31 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
-                      Phone
+                      Phone (India)
                     </p>
                     <p className="text-slate-300 text-xs group-hover:text-white transition-colors">
                       +91 99147 73125
+                    </p>
+                  </div>
+                </a>
+
+                {/* Canada Phone */}
+                <a
+                  href="tel:+18258836784"
+                  className="flex gap-3 items-center group"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 group-hover:bg-blue-700 group-hover:border-blue-600 transition-colors">
+                    <FiPhone
+                      size={13}
+                      className="text-blue-400 group-hover:text-white transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
+                      Phone (Canada)
+                    </p>
+                    <p className="text-slate-300 text-xs group-hover:text-white transition-colors">
+                      +1 (825) 883-6784
                     </p>
                   </div>
                 </a>

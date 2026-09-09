@@ -429,7 +429,7 @@ const Mbbs = () => {
           <div className="max-w-3xl mx-auto">
             {/* Desktop table */}
             <div className="hidden sm:block overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full min-w-[560px] text-sm">
                 <thead>
                   <tr className="border-b-2 border-slate-200 text-left">
                     <th className="py-3 px-4 font-bold text-slate-600 text-xs uppercase tracking-wider">
@@ -592,7 +592,7 @@ const Mbbs = () => {
                 className="w-[300px] sm:w-[340px] shrink-0 relative bg-white/[0.06] backdrop-blur-lg rounded-2xl p-5 sm:p-6 border border-white/10 hover:border-blue-500/30 transition-all"
               >
                 {/* Quote mark */}
-                <div className="absolute top-3 right-4 text-blue-500/10 text-6xl font-serif leading-none select-none">
+                <div className="absolute top-3 right-4 text-blue-500/10 text-4xl sm:text-6xl font-serif leading-none select-none">
                   "
                 </div>
 

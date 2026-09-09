@@ -232,10 +232,10 @@ const TechnicalJobsForm = forwardRef(function TechnicalJobsForm(_, ref) {
                   </div>
                   <div>
                     <label className={labelClass}>Preferred Countries (select all that apply)</label>
-                    <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 mt-2">
+                    <div className="grid grid-cols-2 min-[400px]:grid-cols-3 gap-2 mt-2">
                       {countries.map((c) => (
                         <button key={c} type="button" onClick={() => handleCountryToggle(c)}
-                          className={`py-2.5 px-3 rounded-xl border-2 text-xs font-semibold transition-all ${formData.countryPreferenceWork.includes(c) ? "border-blue-600 bg-blue-50 text-blue-800" : "border-slate-200 hover:border-slate-300 text-slate-600"}`}>
+                          className={`py-2.5 px-1.5 sm:px-3 rounded-xl border-2 text-[11px] sm:text-xs font-semibold transition-all leading-tight break-words ${formData.countryPreferenceWork.includes(c) ? "border-blue-600 bg-blue-50 text-blue-800" : "border-slate-200 hover:border-slate-300 text-slate-600"}`}>
                           {c}
                         </button>
                       ))}
