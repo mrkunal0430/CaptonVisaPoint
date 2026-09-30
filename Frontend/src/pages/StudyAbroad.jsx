@@ -1,28 +1,10 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { StudyAbroadForm } from "../components/forms";
-import { preferredCountries, otherCountries } from "../data/studyAbroadData";
+import CountryExplorer from "../components/CountryExplorer";
+import WhatsAppQR from "../components/WhatsAppQR";
 import SEO from "../components/SEO";
-
-const flagCodes = {
-  germany: "de",
-  cyprus: "cy",
-  france: "fr",
-  uae: "ae",
-  mauritius: "mu",
-  singapore: "sg",
-  uk: "gb",
-  usa: "us",
-  canada: "ca",
-  australia: "au",
-  "new-zealand": "nz",
-  denmark: "dk",
-  finland: "fi",
-};
-
-const getFlagUrl = (countryId) =>
-  `https://flagcdn.com/${flagCodes[countryId] || "un"}.svg`;
 
 /* ── small shared pieces, mirrored from the reference design ── */
 
@@ -68,6 +50,14 @@ const SectionHead = ({ eyebrow, dark, pulse, title, lede }) => (
 );
 
 const StudyAbroad = () => {
+  // countries the visitor has tapped "+ Add" on, carried into the enquiry form
+  const [picked, setPicked] = useState([]);
+  const togglePick = useCallback((name) => {
+    setPicked((prev) =>
+      prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]
+    );
+  }, []);
+
   const benefits = [
     {
       icon: "🎯",
@@ -157,7 +147,7 @@ const StudyAbroad = () => {
       bar: "bg-blue-600",
     },
     {
-      value: "13+",
+      value: "45+",
       label: "Destinations on our desk",
       sub: "Not one country sold to everyone who walks in",
       bar: "bg-[#0A1628]",
@@ -317,6 +307,14 @@ const StudyAbroad = () => {
                   </span>
                 ))}
               </div>
+
+              {/* Scan-to-chat, for anyone who would rather talk than fill a form */}
+              <WhatsAppQR
+                variant="dark"
+                className="mt-6 hidden sm:flex max-w-md"
+                title="Rather talk it through first?"
+                subtitle="Scan to message a counsellor on WhatsApp — ask about a country, a course or your eligibility."
+              />
             </motion.div>
           </div>
         </div>
@@ -419,187 +417,42 @@ const StudyAbroad = () => {
         <div className="max-w-[1180px] mx-auto px-[22px]">
           <SectionHead
             eyebrow="Country Explorer"
-            title="Pick a country. Or let us pick for you."
-            lede="Open any card to see universities, intakes and requirements. Still undecided? Skip the whole thing — that is what the form is for."
+            title="Pick a city. Or let us pick for you."
+            lede="Tap any card to add it to your assessment. Still undecided? Skip the whole thing — that is what the form is for."
           />
 
-          {/* premier destinations */}
-          <div className="mb-[52px]">
-            <div className="flex items-center gap-4 mb-5">
-              <div className="w-[52px] h-[52px] rounded-[14px] shrink-0 grid place-items-center text-2xl bg-blue-50 border border-blue-100">
-                🌎
-              </div>
-              <div>
-                <h3 className="text-[21px] font-extrabold tracking-[-0.03em] mb-[3px] leading-tight">
-                  High-demand global destinations
-                </h3>
-                <p className="m-0 text-[14.5px] text-slate-500 leading-[1.45]">
-                  The names everyone knows — deepest course choice, longest work
-                  rights, biggest budget
-                </p>
-              </div>
-            </div>
-            <div className="h-[3px] rounded-[3px] mb-5 bg-gradient-to-r from-blue-700 to-blue-100" />
+          <CountryExplorer selected={picked} onToggle={togglePick} />
 
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(238px,1fr))] gap-[18px] mb-[26px]">
-              {preferredCountries.map((country, i) => (
-                <motion.div
-                  key={country.id}
-                  initial={{ opacity: 0, y: 22 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06, duration: 0.45 }}
-                  className={i % 2 === 1 ? "lg:mt-[22px]" : ""}
-                >
-                  <Link
-                    to={`/study-abroad/${country.id}`}
-                    className="group relative flex h-full flex-col overflow-hidden rounded-[18px] border-[1.5px] border-slate-200 bg-white pb-[17px] transition-all duration-300 hover:-translate-y-[7px] hover:border-blue-600 hover:shadow-[0_12px_32px_rgba(10,22,40,.10)]"
-                  >
-                    <span className="relative block h-[132px] shrink-0 overflow-hidden bg-[linear-gradient(168deg,#16295A_0%,#0F1F42_55%,#0A1628_100%)]">
-                      <img
-                        src={country.bannerImage}
-                        alt={country.name}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.07]"
-                      />
-                      <span
-                        className="absolute inset-0 z-[1] pointer-events-none"
-                        style={{
-                          background:
-                            "linear-gradient(180deg,rgba(10,22,40,.20) 0%,rgba(10,22,40,0) 34%,rgba(10,22,40,.50) 74%,rgba(10,22,40,.90) 100%)",
-                        }}
-                      />
-                      <img
-                        src={getFlagUrl(country.id)}
-                        alt=""
-                        className="absolute top-3 right-[13px] z-[3] w-[50px] h-[34px] object-cover animate-[cvpWave_5.5s_ease-in-out_infinite] origin-left"
-                        style={{
-                          filter:
-                            "drop-shadow(0 0 1.5px rgba(255,255,255,.85)) drop-shadow(0 3px 7px rgba(0,0,0,.55))",
-                          animationDelay: `${-1.8 * (i % 3)}s`,
-                        }}
-                      />
-                      <span className="absolute top-3 left-[13px] z-[4] rounded-full bg-white/[0.93] px-[11px] py-[5px] text-[11px] font-extrabold tracking-[0.04em] text-blue-800 shadow-[0_1px_3px_rgba(10,22,40,.06)] transition-colors group-hover:bg-amber-500 group-hover:text-[#0A1628]">
-                        PREMIER
-                      </span>
-                      <span className="absolute bottom-2.5 left-[15px] z-[3] text-[10.5px] font-extrabold uppercase tracking-[0.15em] text-amber-400 [text-shadow:0_1px_5px_rgba(0,0,0,.65)]">
-                        {country.universities.length} universities
-                      </span>
-                    </span>
-
-                    <span className="block flex-1 px-4 pt-[15px]">
-                      <span className="block text-[16.5px] font-extrabold tracking-[-0.032em] leading-tight text-[#0A1628]">
-                        {country.name}
-                      </span>
-                      <span className="mt-[5px] block text-[13.5px] font-medium leading-[1.48] text-slate-600">
-                        {country.tagline}
-                      </span>
-                      <span className="mt-3 flex flex-wrap gap-1.5">
-                        {country.highlights.slice(0, 2).map((h) => (
-                          <span
-                            key={h}
-                            className="rounded-full border border-amber-100 bg-amber-50 px-2.5 py-1 text-[11.5px] font-semibold text-amber-700"
-                          >
-                            {h}
-                          </span>
-                        ))}
-                      </span>
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-
-            <a
-              href="#consultation-form"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-700 px-[26px] py-[15px] text-[15.5px] font-bold tracking-[-0.01em] text-white shadow-[0_8px_22px_rgba(29,78,216,.24)] transition-all hover:-translate-y-0.5 hover:bg-blue-800"
+          {picked.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="sticky bottom-4 z-30 mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-blue-100 bg-white/95 p-4 shadow-[0_12px_32px_rgba(10,22,40,.14)] backdrop-blur"
             >
-              See if I qualify for these
-            </a>
-          </div>
-
-          {/* other destinations */}
-          <div className="mb-[52px]">
-            <div className="flex items-center gap-4 mb-5">
-              <div className="w-[52px] h-[52px] rounded-[14px] shrink-0 grid place-items-center text-2xl bg-amber-50 border border-amber-500/30">
-                🎓
-              </div>
-              <div>
-                <h3 className="text-[21px] font-extrabold tracking-[-0.03em] mb-[3px] leading-tight">
-                  More destinations worth comparing
-                </h3>
-                <p className="m-0 text-[14.5px] text-slate-500 leading-[1.45]">
-                  Lower total outlay, faster admission decisions, recognised
-                  qualifications
-                </p>
-              </div>
-            </div>
-            <div className="h-[3px] rounded-[3px] mb-5 bg-gradient-to-r from-amber-500 to-amber-50" />
-
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(238px,1fr))] gap-[18px] mb-[26px]">
-              {otherCountries.map((country, i) => (
-                <motion.div
-                  key={country.id}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.04, duration: 0.4 }}
-                >
-                  <Link
-                    to={`/study-abroad/${country.id}`}
-                    className="group flex h-full flex-col rounded-[18px] border-[1.5px] border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-[7px] hover:border-blue-600 hover:shadow-[0_12px_32px_rgba(10,22,40,.10)]"
+              <span className="text-[13px] font-bold text-slate-500">
+                {picked.length} selected:
+              </span>
+              <span className="flex flex-wrap gap-1.5">
+                {picked.map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => togglePick(n)}
+                    aria-label={`Remove ${n}`}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[12.5px] font-semibold text-amber-800 transition-colors hover:bg-amber-100"
                   >
-                    <div className="mb-3.5 flex items-center gap-3.5">
-                      <img
-                        src={getFlagUrl(country.id)}
-                        alt=""
-                        className="h-7 w-10 rounded border border-slate-200 object-cover shadow-sm"
-                      />
-                      <div>
-                        <span className="block text-[16.5px] font-extrabold tracking-[-0.032em] leading-tight text-[#0A1628] transition-colors group-hover:text-blue-700">
-                          {country.name}
-                        </span>
-                        <span className="block text-[12.5px] text-slate-500">
-                          {country.tagline}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="mb-4 flex flex-wrap gap-1.5">
-                      {country.highlights.slice(0, 2).map((h) => (
-                        <span
-                          key={h}
-                          className="rounded-full bg-slate-100 px-2.5 py-1 text-[11.5px] font-medium text-slate-600"
-                        >
-                          {h}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-3.5">
-                      <span className="text-[12.5px] text-slate-500">
-                        {country.universities.length} Universities
-                      </span>
-                      <span className="text-[13px] font-bold text-amber-600 transition-all group-hover:translate-x-1">
-                        Explore →
-                      </span>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-
-            <a
-              href="#consultation-form"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-700 px-[26px] py-[15px] text-[15.5px] font-bold tracking-[-0.01em] text-white shadow-[0_8px_22px_rgba(29,78,216,.24)] transition-all hover:-translate-y-0.5 hover:bg-blue-800"
-            >
-              Match a country to my budget
-            </a>
-          </div>
-
-          <p className="mt-6 rounded-r-lg border-l-[3px] border-amber-500 bg-amber-50 px-[18px] py-3.5 text-[13.5px] leading-[1.6] text-slate-600">
-            Course availability, tuition, living costs, entry requirements, visa
-            rules and career outcomes differ by country, university, programme
-            and individual profile, and they change between intakes. Nothing
-            here is an offer of admission or an indication of a visa outcome.
-          </p>
+                    {n} <span aria-hidden="true">×</span>
+                  </button>
+                ))}
+              </span>
+              <a
+                href="#consultation-form"
+                className="ml-auto inline-flex shrink-0 items-center gap-2 rounded-xl bg-blue-700 px-5 py-2.5 text-[14px] font-bold text-white transition-colors hover:bg-blue-800"
+              >
+                Continue →
+              </a>
+            </motion.div>
+          )}
         </div>
       </section>
 

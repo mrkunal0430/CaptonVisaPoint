@@ -44,7 +44,7 @@ const serviceLinks = [
   { name: "Technical Jobs Abroad", path: "/jobs-abroad/technical" },
   { name: "Hospitality Jobs Abroad", path: "/jobs-abroad/hospitality" },
   { name: "Jobs After 12th", path: "/jobs-abroad/after-12th" },
-  { name: "Language Coaching", path: "/coaching" },
+  { name: "Language & Entrance Exam Prep", path: "/coaching" },
   { name: "Eligibility Check", path: "/eligibility-check" },
   { name: "Partner With Us", path: "/partner" },
 ];

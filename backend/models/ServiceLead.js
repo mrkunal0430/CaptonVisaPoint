@@ -207,12 +207,24 @@ const serviceLeadSchema = new mongoose.Schema({
   assignedTo: String,
   followUpDate: Date,
 
+
+  // ===== TELECRM SYNC =====
+  // Mirror status for the one-way push to TeleCRM. See services/telecrmService.js
+  telecrmStatus: {
+    type: String,
+    enum: ['pending', 'synced', 'failed', 'skipped'],
+    default: 'pending'
+  },
+  telecrmSyncedAt: Date,
+  telecrmError: { type: String, default: '' },
+  telecrmAttempts: { type: Number, default: 0 },
 }, {
   timestamps: true
 });
 
 // Indexes for efficient querying
 serviceLeadSchema.index({ createdAt: -1 });
+serviceLeadSchema.index({ telecrmStatus: 1 });
 serviceLeadSchema.index({ serviceType: 1 });
 serviceLeadSchema.index({ status: 1 });
 serviceLeadSchema.index({ source: 1 });

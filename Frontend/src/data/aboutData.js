@@ -12,12 +12,12 @@ import {
 } from "react-icons/fi";
 
 export const services = [
-  { icon: FiBookOpen, title: "MBBS Abroad",            description: "NMC-approved medical universities in Russia, Georgia, Uzbekistan, Kazakhstan, and 8+ more countries with direct seat booking." },
-  { icon: FiGlobe,    title: "Study Abroad",           description: "Undergraduate and postgraduate admissions in Germany, UK, Canada, Australia, UAE, and 15+ countries with full application support." },
-  { icon: FiTarget,   title: "Ausbildung Germany",     description: "Vocational training programs in Germany with paid apprenticeships, language preparation (A1–B2), and visa filing." },
-  { icon: FiHeart,    title: "Healthcare Recruitment", description: "Nurse and paramedic placements in UAE and Germany with licensing support, language coaching, and employer connect." },
-  { icon: FiStar,     title: "IELTS & German Coaching", description: "In-house IELTS, PTE, and German language training (A1–C1) conducted by certified trainers for global readiness." },
-  { icon: FiShield,   title: "Visa & Documentation",  description: "End-to-end visa filing, APS certification, financial documentation, and pre-departure orientation for every student." },
+  { icon: FiBookOpen, to: "/mbbs/abroad", title: "MBBS Abroad",            description: "NMC-approved medical universities in Russia, Georgia, Uzbekistan, Kazakhstan, and 8+ more countries with direct seat booking." },
+  { icon: FiGlobe,    to: "/study-abroad", title: "Study Abroad",           description: "Undergraduate and postgraduate admissions in Germany, UK, Canada, Australia, UAE, and 15+ countries with full application support." },
+  { icon: FiTarget,   to: "/ausbildung", title: "Ausbildung Germany",     description: "Vocational training programs in Germany with paid apprenticeships, language preparation (A1–B2), and visa filing." },
+  { icon: FiHeart,    to: "/jobs-abroad/healthcare", title: "Healthcare Recruitment", description: "Nurse and paramedic placements in UAE and Germany with licensing support, language coaching, and employer connect." },
+  { icon: FiStar,     to: "/coaching", title: "IELTS & German Coaching", description: "In-house IELTS, PTE, and German language training (A1–C1) conducted by certified trainers for global readiness." },
+  { icon: FiShield,   to: "/contact", title: "Visa & Documentation",  description: "End-to-end visa filing, APS certification, financial documentation, and pre-departure orientation for every student." },
 ];
 
 export const values = [

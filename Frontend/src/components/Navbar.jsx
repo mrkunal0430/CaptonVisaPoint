@@ -81,9 +81,21 @@ const NAV_LINKS = [
           { name: "Germany", path: "/study-abroad/germany", flagCode: "de" },
           { name: "Cyprus", path: "/study-abroad/cyprus", flagCode: "cy" },
           { name: "France", path: "/study-abroad/france", flagCode: "fr" },
-          { name: "United Arab Emirates", path: "/study-abroad/uae", flagCode: "ae" },
-          { name: "Mauritius", path: "/study-abroad/mauritius", flagCode: "mu" },
-          { name: "Singapore", path: "/study-abroad/singapore", flagCode: "sg" },
+          {
+            name: "United Arab Emirates",
+            path: "/study-abroad/uae",
+            flagCode: "ae",
+          },
+          {
+            name: "Mauritius",
+            path: "/study-abroad/mauritius",
+            flagCode: "mu",
+          },
+          {
+            name: "Singapore",
+            path: "/study-abroad/singapore",
+            flagCode: "sg",
+          },
         ],
       },
       {
@@ -93,8 +105,16 @@ const NAV_LINKS = [
           { name: "United Kingdom", path: "/study-abroad/uk", flagCode: "gb" },
           { name: "United States", path: "/study-abroad/usa", flagCode: "us" },
           { name: "Canada", path: "/study-abroad/canada", flagCode: "ca" },
-          { name: "Australia", path: "/study-abroad/australia", flagCode: "au" },
-          { name: "New Zealand", path: "/study-abroad/new-zealand", flagCode: "nz" },
+          {
+            name: "Australia",
+            path: "/study-abroad/australia",
+            flagCode: "au",
+          },
+          {
+            name: "New Zealand",
+            path: "/study-abroad/new-zealand",
+            flagCode: "nz",
+          },
           { name: "Denmark", path: "/study-abroad/denmark", flagCode: "dk" },
           { name: "Finland", path: "/study-abroad/finland", flagCode: "fi" },
         ],
@@ -104,30 +124,38 @@ const NAV_LINKS = [
   { name: "Coaching", path: "/coaching" },
   { name: "Ausbildung", path: "/ausbildung" },
   {
-    name: "Jobs Abroad",
-    path: "/jobs-abroad/after-12th",
+    name: "PG after MBBS",
+    path: "/medical-pg",
     type: "mega",
     columns: [
       {
-        title: "Jobs After 12th",
-        path: "/jobs-abroad/after-12th",
+        title: "PG in India (NEET PG)",
+        path: "/medical-pg/india",
       },
       {
-        title: "Healthcare Jobs",
-        path: "/jobs-abroad/healthcare",
-      },
-      {
-        title: "Technical Jobs",
-        path: "/jobs-abroad/technical",
-      },
-      {
-        title: "Hospitality Jobs",
-        path: "/jobs-abroad/hospitality",
+        title: "Medical PG in Germany",
+        path: "/medical-pg/germany",
       },
     ],
   },
   { name: "Blog", path: "/blog" },
 ];
+
+// Desktop menu: Y-Axis style cells, each with its own colour bar
+const LINK_COLORS = {
+  "Free Eligibility Check": "bg-red-600",
+  MBBS: "bg-violet-700",
+  "Study Abroad": "bg-teal-500",
+  Coaching: "bg-amber-400",
+  Ausbildung: "bg-blue-700",
+  "PG after MBBS": "bg-green-500",
+  Blog: "bg-slate-800",
+};
+
+const DESKTOP_LINKS = [
+  { name: "Free Eligibility Check", path: "/eligibility-check" },
+  ...NAV_LINKS,
+].map((link) => ({ ...link, color: LINK_COLORS[link.name] }));
 
 // Dropdown item component to reduce duplication
 const DropdownItem = ({ item, onClick }) => {
@@ -245,10 +273,8 @@ const Navbar = () => {
   // Memoize nav class to prevent recalculation
   const navClassName = useMemo(
     () =>
-      `w-full bg-gradient-to-r from-slate-50 to-white transition-all duration-300 ${
-        scrolled
-          ? "shadow-xl shadow-slate-200/50 py-2 border-b border-slate-100"
-          : "shadow-md py-3"
+      `w-full bg-white transition-shadow duration-300 ${
+        scrolled ? "shadow-lg shadow-slate-200/60" : "shadow-sm"
       }`,
     [scrolled],
   );
@@ -278,8 +304,151 @@ const Navbar = () => {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="container mx-auto px-3 sm:px-4 lg:px-8 flex justify-between items-center text-slate-800">
-          {/* Branding — shrink-0 prevents logo from being squeezed by nav items */}
+        {/* ===== Desktop (xl+): Y-Axis style boxed header ===== */}
+        <div className="hidden xl:block text-slate-800">
+          {/* Utility bar — collapses on scroll */}
+          <div
+            className={`overflow-hidden transition-all duration-300 ${
+              scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
+            }`}
+          >
+            <div className="max-w-7xl mx-auto px-8 h-11 flex items-center justify-end gap-8 text-[15px] font-semibold tracking-wide">
+              <a
+                href="tel:+919914773125"
+                className="flex items-center gap-2.5 hover:text-blue-700 transition-colors"
+              >
+                <FiPhone className="text-base" aria-hidden="true" />
+                +91 99147 73125
+              </a>
+              <a
+                href="https://wa.me/919914773125"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 hover:text-blue-700 transition-colors"
+              >
+                <FaWhatsapp
+                  className="text-lg text-green-600"
+                  aria-hidden="true"
+                />
+                +91 99147 73125
+              </a>
+              <a
+                href="mailto:info@captonvisapoint.com"
+                className="flex items-center gap-2.5 hover:text-blue-700 transition-colors"
+              >
+                <FiMail className="text-base" aria-hidden="true" />
+                info@captonvisapoint.com
+              </a>
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 h-8 px-4 bg-blue-900 text-white text-sm font-bold tracking-wide border-b-2 border-amber-500 hover:bg-blue-800 active:bg-blue-950 active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 transition-colors"
+              >
+                Contact Us
+                <FiArrowRight
+                  className="text-sm transition-transform group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </Link>
+            </div>
+          </div>
+
+          {/* Boxed nav row */}
+          <div className="max-w-7xl mx-auto px-8">
+            <div className="flex items-stretch h-16 border-t border-x border-slate-200">
+              {/* Logo cell with multi-colour underline */}
+              <Link
+                to="/"
+                className="relative flex items-center gap-3 px-5 shrink-0"
+                aria-label="Capton Visa Point - Home"
+              >
+                <img
+                  src="/logo.png"
+                  alt="Capton Visa Point Logo"
+                  className="h-10 w-10 object-contain shrink-0"
+                />
+                <div className="flex flex-col leading-none">
+                  <span className="text-xl font-extrabold tracking-tight text-slate-900 whitespace-nowrap">
+                    CAPTON<span className="text-blue-600">VISAPOINT</span>
+                  </span>
+                </div>
+                <span
+                  className="absolute bottom-0 left-0 right-0 h-1 flex"
+                  aria-hidden="true"
+                >
+                  {DESKTOP_LINKS.map((l) => (
+                    <span key={l.name} className={`flex-1 ${l.color}`} />
+                  ))}
+                </span>
+              </Link>
+
+              {/* Menu cells */}
+              <ul className="flex flex-1 items-stretch" role="menubar">
+                {DESKTOP_LINKS.map((link) => {
+                  const isActive =
+                    location.pathname === link.path ||
+                    (link.path !== "/" &&
+                      location.pathname.startsWith(link.path));
+                  return (
+                    <li
+                      key={link.name}
+                      className="relative flex-auto border-l border-slate-200"
+                      onMouseEnter={() => setActiveDropdown(link.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                      role="none"
+                    >
+                      <Link
+                        to={link.path}
+                        className={`h-full flex items-center justify-center gap-1 px-3 text-[15px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
+                          isActive || activeDropdown === link.name
+                            ? "bg-slate-50 text-slate-900"
+                            : "text-slate-800 hover:bg-slate-50"
+                        }`}
+                        role="menuitem"
+                        aria-haspopup={
+                          link.type === "mega" ? "true" : undefined
+                        }
+                        aria-expanded={
+                          activeDropdown === link.name ? "true" : undefined
+                        }
+                      >
+                        {link.name}
+                        {link.type === "mega" && (
+                          <FiChevronDown
+                            className={`text-xs text-slate-500 transition-transform duration-300 ${
+                              activeDropdown === link.name ? "rotate-180" : ""
+                            }`}
+                            aria-hidden="true"
+                          />
+                        )}
+                      </Link>
+
+                      {/* Colour bar */}
+                      <span
+                        className={`absolute bottom-0 left-0 right-0 ${link.color} transition-all duration-200 ${
+                          isActive || activeDropdown === link.name
+                            ? "h-1.5"
+                            : "h-1"
+                        }`}
+                        aria-hidden="true"
+                      />
+
+                      {/* Mega Dropdown */}
+                      <AnimatePresence>
+                        {link.type === "mega" &&
+                          activeDropdown === link.name && (
+                            <MegaDropdown columns={link.columns} />
+                          )}
+                      </AnimatePresence>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* ===== Mobile / tablet (<xl) ===== */}
+        <div className="xl:hidden container mx-auto px-3 sm:px-4 lg:px-8 py-3 flex justify-between items-center text-slate-800">
           <Link
             to="/"
             className="flex items-center gap-2 sm:gap-3 group relative z-50 shrink-0"
@@ -299,65 +468,6 @@ const Navbar = () => {
               </span>
             </div>
           </Link>
-
-          {/* Desktop Right Side (Menu + Actions) */}
-          <div className="hidden xl:flex items-center gap-8">
-            {/* Desktop Menu */}
-            <ul className="flex items-center gap-1" role="menubar">
-              {NAV_LINKS.map((link) => (
-                <li
-                  key={link.name}
-                  className="relative group px-3 py-4"
-                  onMouseEnter={() => setActiveDropdown(link.name)}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                  role="none"
-                >
-                  <Link
-                    to={link.path}
-                    className="flex items-center gap-1.5 text-[15px] font-semibold text-slate-600 group-hover:text-blue-600 transition-colors"
-                    role="menuitem"
-                    aria-haspopup={link.type === "mega" ? "true" : undefined}
-                    aria-expanded={
-                      activeDropdown === link.name ? "true" : undefined
-                    }
-                  >
-                    {link.name}
-                    {link.type === "mega" && (
-                      <FiChevronDown
-                        className={`text-xs transition-transform duration-300 ${
-                          activeDropdown === link.name ? "rotate-180" : ""
-                        }`}
-                        aria-hidden="true"
-                      />
-                    )}
-                  </Link>
-
-                  {/* Highlight Line */}
-                  <span
-                    className="absolute bottom-2 left-3 right-3 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
-                    aria-hidden="true"
-                  />
-
-                  {/* Mega Dropdown */}
-                  <AnimatePresence>
-                    {link.type === "mega" && activeDropdown === link.name && (
-                      <MegaDropdown columns={link.columns} />
-                    )}
-                  </AnimatePresence>
-                </li>
-              ))}
-            </ul>
-
-            {/* Desktop Actions */}
-            <div className="flex items-center">
-              <Link
-                to="/contact"
-                className="bg-blue-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg shadow-blue-700/25 hover:bg-blue-800 hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 "
-              >
-                Contact Us <FiArrowRight aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
 
           {/* Mobile Toggle — 44×44px touch target */}
           <button

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import TelecrmStatusCell from "./TelecrmStatusCell";
 import {
   FiSearch,
   FiTrash2,
@@ -386,6 +387,7 @@ const LeadsTable = ({ token }) => {
                     <th className="p-4">Source</th>
                     <th className="p-4">Message</th>
                     <th className="p-4">Status</th>
+                    <th className="p-4">CRM</th>
                     <th className="p-4 text-center">Actions</th>
                   </tr>
                 </thead>
@@ -455,6 +457,14 @@ const LeadsTable = ({ token }) => {
                           <option value="converted">Converted</option>
                           <option value="closed">Closed</option>
                         </select>
+                      </td>
+                      <td className="p-4">
+                        <TelecrmStatusCell
+                          lead={lead}
+                          token={token}
+                          endpoint="leads"
+                          onSynced={fetchLeads}
+                        />
                       </td>
                       <td className="p-4">
                         <div className="flex items-center justify-center gap-1">

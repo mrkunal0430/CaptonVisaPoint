@@ -74,8 +74,8 @@ const Coaching = () => {
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white">
       <SEO
-        title="German Language & IELTS Coaching"
-        description="Learn German (A1–C1) and prepare for IELTS with expert trainers at Capton Visa Point. In-house language coaching for MBBS students, Ausbildung aspirants, and study abroad candidates. Personalized training, mock tests, and study materials."
+        title="Language & Entrance Exam Preparation"
+        description="Expert coaching for IELTS, PTE, TOEFL, GRE, GMAT, and other study abroad exams to help you achieve your target score. Plus German (A1–C1) and French training at Capton Visa Point — small batches, certified trainers, mock tests and study materials."
         keywords="German language course, IELTS coaching, learn German A1 C1, German language training India, IELTS preparation, language coaching, NEET preparation, MBBS entrance exam, FMGE coaching after MBBS abroad, NEXT exam coaching, IELTS PTE coaching, medical entrance exams India, German language for MBBS, German language for Ausbildung, English medium MBBS abroad, MBBS medium of instruction"
       />
       {/* Hero Section */}

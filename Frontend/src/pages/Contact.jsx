@@ -45,6 +45,14 @@ const quickActions = [
   },
 ];
 
+// figures kept in step with the About page's stats bar
+const heroStats = [
+  { value: "10,000+", label: "Students guided" },
+  { value: "25+", label: "Countries covered" },
+  { value: "500+", label: "University partners" },
+  { value: "15+", label: "Years of experience" },
+];
+
 const offices = [
   {
     country: "India — Head Office",
@@ -110,63 +118,106 @@ const Contact = () => {
       />
 
       {/* ================= HERO ================= */}
-      <section className="relative min-h-[50vh] flex items-center text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/Home_Hero/4.webp"
-            alt="Contact Capton Visa Point"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/60 to-black/40" />
-        </div>
+      <section
+        className="relative flex items-center text-white overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(150deg,#16295A 0%,#0F2148 45%,#0A1628 100%)",
+        }}
+      >
+        {/* dot grid — the same motif the Study Abroad hero uses */}
+        <div
+          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
 
+        {/* soft glow orbs */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/[0.12] rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/[0.16] rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <span className="inline-block px-4 py-2 bg-amber-500/20 backdrop-blur-sm rounded-full text-xs sm:text-sm font-semibold mb-5 sm:mb-6 border border-amber-400/30 text-amber-200">
-              We Reply Within 24 Hours
-            </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
-              Let&apos;s Plan Your{" "}
-              <span className="text-amber-400">Global Future</span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto">
-              One honest conversation can change your entire career path. Talk to
-              a counsellor who tells you the truth — not just what you want to
-              hear.
-            </p>
+        {/* thin amber rule along the bottom edge */}
+        <div className="absolute bottom-0 inset-x-0 h-[3px] bg-gradient-to-r from-amber-500 via-amber-400/40 to-transparent" />
 
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-7 sm:mt-9">
-              <a
-                href="tel:+919914773125"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-blue-950 rounded-xl font-semibold shadow-lg shadow-amber-500/25 transition-colors"
-              >
-                <FiPhone /> Call Now
-              </a>
-              <a
-                href="https://wa.me/919914773125"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/25 text-white rounded-xl font-semibold transition-colors"
-              >
-                <FiMessageCircle /> WhatsApp Us
-              </a>
-            </div>
-          </motion.div>
+        <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-20 relative z-10">
+          <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-flex items-center gap-2.5 px-4 py-2 bg-amber-500/[0.15] rounded-full text-xs sm:text-sm font-semibold mb-5 sm:mb-6 border border-amber-400/30 text-amber-300">
+                <i className="w-[7px] h-[7px] rounded-full bg-amber-400 animate-pulse not-italic" />
+                We reply within 24 hours
+              </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight tracking-[-0.02em]">
+                Let&apos;s Plan Your{" "}
+                <span className="text-amber-400">Global Future</span>
+              </h1>
+              <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-xl">
+                One honest conversation can change your entire career path. Talk
+                to a counsellor who tells you the truth — not just what you want
+                to hear.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3 mt-7 sm:mt-9">
+                <a
+                  href="tel:+919914773125"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-blue-950 rounded-xl font-semibold shadow-lg shadow-amber-500/25 transition-colors"
+                >
+                  <FiPhone /> Call Now
+                </a>
+                <a
+                  href="https://wa.me/919914773125"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/25 text-white rounded-xl font-semibold transition-colors"
+                >
+                  <FiMessageCircle /> WhatsApp Us
+                </a>
+              </div>
+            </motion.div>
+
+            {/* at-a-glance panel — carries the visual weight the photo used to */}
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="hidden lg:block"
+            >
+              <div className="rounded-3xl border border-white/[0.12] bg-white/[0.05] p-7">
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-blue-300 mb-5">
+                  At a glance
+                </p>
+                <div className="grid grid-cols-2 gap-y-6 gap-x-4">
+                  {heroStats.map((s) => (
+                    <div key={s.label}>
+                      <p className="text-2xl font-bold text-amber-400 leading-none">
+                        {s.value}
+                      </p>
+                      <p className="text-[13px] text-blue-200 mt-1.5 leading-snug">
+                        {s.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-5 border-t border-white/10 flex items-center gap-2.5 text-sm text-blue-100">
+                  <FiClock className="text-amber-400 shrink-0" />
+                  Mon – Sat, 9am – 7pm IST
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ================= QUICK ACTION CARDS ================= */}
-      <section className="relative z-20 -mt-10 sm:-mt-14 px-4 sm:px-6">
+      <section className="relative z-20 mt-10 sm:mt-14 px-4 sm:px-6">
         <div className="container mx-auto">
           <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
             {quickActions.map(({ Icon, label, value, sub, href, accent }, i) => (
@@ -288,6 +339,7 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
+
 
                 {/* Assurances */}
                 <div className="mt-8 pt-7 border-t border-white/10">

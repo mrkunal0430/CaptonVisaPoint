@@ -108,13 +108,25 @@ const eligibilityLeadSchema = new mongoose.Schema({
     type: String,
     trim: true,
     default: ''
-  }
+  },
+
+  // ===== TELECRM SYNC =====
+  // Mirror status for the one-way push to TeleCRM. See services/telecrmService.js
+  telecrmStatus: {
+    type: String,
+    enum: ['pending', 'synced', 'failed', 'skipped'],
+    default: 'pending'
+  },
+  telecrmSyncedAt: Date,
+  telecrmError: { type: String, default: '' },
+  telecrmAttempts: { type: Number, default: 0 },
 }, {
   timestamps: true
 });
 
 // Indexes for filtering and sorting
 eligibilityLeadSchema.index({ createdAt: -1 });
+eligibilityLeadSchema.index({ telecrmStatus: 1 });
 eligibilityLeadSchema.index({ score: -1 });
 eligibilityLeadSchema.index({ preference: 1 });
 eligibilityLeadSchema.index({ status: 1 });

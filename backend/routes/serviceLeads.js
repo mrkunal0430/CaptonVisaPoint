@@ -1,6 +1,8 @@
 const express = require('express');
 const ServiceLead = require('../models/ServiceLead');
 const { protect } = require('../middleware/auth');
+const { syncLeadInBackground, syncLead } = require('../services/telecrmService');
+const { mapServiceLead } = require('../services/telecrmMappers');
 
 const router = express.Router();
 
@@ -30,150 +32,40 @@ function handleLeadError(error, res, context) {
 
 // ============ PUBLIC ROUTES (Form Submissions) ============
 
-// @route   POST /api/service-leads/mbbs-india
-// @desc    Submit MBBS India inquiry
-// @access  Public
-router.post('/mbbs-india', async (req, res) => {
+/**
+ * All public service-lead forms share one shape: create the lead, respond,
+ * then mirror it to TeleCRM. The sync runs after the response is sent so a
+ * TeleCRM outage can never fail or delay a visitor submission.
+ */
+async function createServiceLead(req, res, base, message, context) {
   try {
-    const lead = await ServiceLead.create({ serviceType: 'MBBS_INDIA', ...req.body });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id,
-    });
-  } catch (error) {
-    handleLeadError(error, res, 'MBBS India Lead');
-  }
-});
+    const lead = await ServiceLead.create({ ...base, ...req.body });
+    res.status(201).json({ success: true, message, leadId: lead._id });
 
-// @route   POST /api/service-leads/mbbs-abroad
-// @desc    Submit MBBS Abroad inquiry
-// @access  Public
-router.post('/mbbs-abroad', async (req, res) => {
-  try {
-    const lead = await ServiceLead.create({ serviceType: 'MBBS_ABROAD', ...req.body });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id,
-    });
+    syncLeadInBackground(ServiceLead, lead, mapServiceLead(lead));
   } catch (error) {
-    handleLeadError(error, res, 'MBBS Abroad Lead');
+    handleLeadError(error, res, context);
   }
-});
+}
 
-// @route   POST /api/service-leads/study-abroad
-// @desc    Submit Study Abroad inquiry
-// @access  Public
-router.post('/study-abroad', async (req, res) => {
-  try {
-    const lead = await ServiceLead.create({ serviceType: 'STUDY_ABROAD', ...req.body });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id,
-    });
-  } catch (error) {
-    handleLeadError(error, res, 'Study Abroad Lead');
-  }
-});
+const COUNSELLOR_MSG = 'Thank you! Our counselor will contact you shortly.';
+const jobsMsg = (role) => `Thank you! Our ${role} will contact you within 24 hours.`;
 
-// @route   POST /api/service-leads/work-abroad
-// @desc    Submit Work Abroad inquiry
-// @access  Public
-router.post('/work-abroad', async (req, res) => {
-  try {
-    const lead = await ServiceLead.create({ serviceType: 'WORK_ABROAD', ...req.body });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our counselor will contact you shortly.',
-      leadId: lead._id,
-    });
-  } catch (error) {
-    handleLeadError(error, res, 'Work Abroad Lead');
-  }
-});
+// Public form endpoints: path -> the fields the server pins plus its reply
+const PUBLIC_LEAD_ROUTES = [
+  ['/mbbs-india',      { serviceType: 'MBBS_INDIA' },   COUNSELLOR_MSG, 'MBBS India Lead'],
+  ['/mbbs-abroad',     { serviceType: 'MBBS_ABROAD' },  COUNSELLOR_MSG, 'MBBS Abroad Lead'],
+  ['/study-abroad',    { serviceType: 'STUDY_ABROAD' }, COUNSELLOR_MSG, 'Study Abroad Lead'],
+  ['/work-abroad',     { serviceType: 'WORK_ABROAD' },  COUNSELLOR_MSG, 'Work Abroad Lead'],
+  ['/healthcare-jobs',  { serviceType: 'WORK_ABROAD', jobSubType: 'HEALTHCARE_JOBS' },  jobsMsg('healthcare recruitment consultant'), 'Healthcare Jobs Lead'],
+  ['/jobs-after-12th',  { serviceType: 'WORK_ABROAD', jobSubType: 'JOBS_AFTER_12TH' },  jobsMsg('placement consultant'),             'Jobs After 12th Lead'],
+  ['/technical-jobs',   { serviceType: 'WORK_ABROAD', jobSubType: 'TECHNICAL_JOBS' },   jobsMsg('technical recruitment consultant'), 'Technical Jobs Lead'],
+  ['/hospitality-jobs', { serviceType: 'WORK_ABROAD', jobSubType: 'HOSPITALITY_JOBS' }, jobsMsg('hospitality recruitment consultant'), 'Hospitality Jobs Lead'],
+];
 
-// @route   POST /api/service-leads/healthcare-jobs
-// @desc    Submit Healthcare Jobs Abroad inquiry
-// @access  Public
-router.post('/healthcare-jobs', async (req, res) => {
-  try {
-    const lead = await ServiceLead.create({
-      serviceType: 'WORK_ABROAD',
-      jobSubType: 'HEALTHCARE_JOBS',
-      ...req.body,
-    });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our healthcare recruitment consultant will contact you within 24 hours.',
-      leadId: lead._id,
-    });
-  } catch (error) {
-    handleLeadError(error, res, 'Healthcare Jobs Lead');
-  }
-});
-
-// @route   POST /api/service-leads/jobs-after-12th
-// @desc    Submit Jobs After 12th inquiry
-// @access  Public
-router.post('/jobs-after-12th', async (req, res) => {
-  try {
-    const lead = await ServiceLead.create({
-      serviceType: 'WORK_ABROAD',
-      jobSubType: 'JOBS_AFTER_12TH',
-      ...req.body,
-    });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our placement consultant will contact you within 24 hours.',
-      leadId: lead._id,
-    });
-  } catch (error) {
-    handleLeadError(error, res, 'Jobs After 12th Lead');
-  }
-});
-
-// @route   POST /api/service-leads/technical-jobs
-// @desc    Submit Technical Jobs Abroad inquiry
-// @access  Public
-router.post('/technical-jobs', async (req, res) => {
-  try {
-    const lead = await ServiceLead.create({
-      serviceType: 'WORK_ABROAD',
-      jobSubType: 'TECHNICAL_JOBS',
-      ...req.body,
-    });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our technical recruitment consultant will contact you within 24 hours.',
-      leadId: lead._id,
-    });
-  } catch (error) {
-    handleLeadError(error, res, 'Technical Jobs Lead');
-  }
-});
-
-
-// @route   POST /api/service-leads/hospitality-jobs
-// @desc    Submit Hospitality Jobs Abroad inquiry
-// @access  Public
-router.post('/hospitality-jobs', async (req, res) => {
-  try {
-    const lead = await ServiceLead.create({
-      serviceType: 'WORK_ABROAD',
-      jobSubType: 'HOSPITALITY_JOBS',
-      ...req.body,
-    });
-    res.status(201).json({
-      success: true,
-      message: 'Thank you! Our hospitality recruitment consultant will contact you within 24 hours.',
-      leadId: lead._id,
-    });
-  } catch (error) {
-    handleLeadError(error, res, 'Hospitality Jobs Lead');
-  }
-});
+for (const [path, base, message, context] of PUBLIC_LEAD_ROUTES) {
+  router.post(path, (req, res) => createServiceLead(req, res, base, message, context));
+}
 
 // ============ ADMIN ROUTES (Protected) ============
 
@@ -511,6 +403,29 @@ router.delete('/:id', protect, async (req, res) => {
   } catch (error) {
     console.error('Delete Lead Error:', error);
     res.status(500).json({ message: 'Failed to delete lead' });
+  }
+});
+
+
+// @route   POST /api/service-leads/:id/telecrm-retry
+// @desc    Re-push a single lead to TeleCRM after a failed sync
+// @access  Private (Admin only)
+router.post('/:id/telecrm-retry', protect, async (req, res) => {
+  try {
+    const lead = await ServiceLead.findById(req.params.id);
+    if (!lead) return res.status(404).json({ success: false, message: 'Lead not found' });
+
+    const result = await syncLead(ServiceLead, lead, mapServiceLead(lead));
+
+    return res.json({
+      success: result.ok,
+      message: result.ok ? 'Lead synced to TeleCRM' : (result.skipped ? 'TeleCRM is not configured' : 'TeleCRM sync failed'),
+      telecrmStatus: result.ok ? 'synced' : (result.skipped ? 'skipped' : 'failed'),
+      error: result.ok ? '' : result.error,
+    });
+  } catch (error) {
+    console.error('TeleCRM Retry Error:', error);
+    return res.status(500).json({ success: false, message: 'Failed to retry TeleCRM sync' });
   }
 });
 

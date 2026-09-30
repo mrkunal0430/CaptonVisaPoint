@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import TelecrmStatusCell from "./TelecrmStatusCell";
 import {
   FiSearch,
   FiTrash2,
@@ -552,6 +553,7 @@ const EligibilityLeadsTable = ({ token }) => {
                     <th className="p-4">Preference</th>
                     <th className="p-4 text-center">Score</th>
                     <th className="p-4">Status</th>
+                    <th className="p-4">CRM</th>
                     <th className="p-4 text-center">Details</th>
                     <th className="p-4 text-center">Actions</th>
                   </tr>
@@ -618,6 +620,14 @@ const EligibilityLeadsTable = ({ token }) => {
                             <option value="closed">Closed</option>
                           </select>
                         </td>
+                        <td className="p-4">
+                          <TelecrmStatusCell
+                            lead={lead}
+                            token={token}
+                            endpoint="eligibility"
+                            onSynced={fetchLeads}
+                          />
+                        </td>
                         <td className="p-4 text-center">
                           <button
                             onClick={() =>
@@ -657,7 +667,7 @@ const EligibilityLeadsTable = ({ token }) => {
                       </tr>
                       {expandedLead === lead._id && (
                         <tr key={`${lead._id}-expanded`} className="bg-slate-50">
-                          <td colSpan={8} className="p-4">
+                          <td colSpan={9} className="p-4">
                             <div className="space-y-4">
                               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {renderLeadDetails(lead).map((detail, idx) => (

@@ -1,6 +1,8 @@
 const express = require('express');
 const Lead = require('../models/Lead');
 const { protect } = require('../middleware/auth');
+const { syncLeadInBackground, syncLead } = require('../services/telecrmService');
+const { mapLead } = require('../services/telecrmMappers');
 
 const router = express.Router();
 
@@ -44,6 +46,9 @@ router.post('/', async (req, res) => {
       message: 'Thank you! We will contact you shortly.',
       lead
     });
+
+    // Mirror to TeleCRM after responding so the visitor never waits on it
+    syncLeadInBackground(Lead, lead, mapLead(lead));
   } catch (error) {
     console.error('Lead Creation Error:', error);
     res.status(500).json({ message: 'Failed to submit form. Please try again.' });
@@ -282,6 +287,29 @@ router.delete('/:id', protect, async (req, res) => {
   } catch (error) {
     console.error('Delete Lead Error:', error);
     res.status(500).json({ message: 'Failed to delete lead' });
+  }
+});
+
+
+// @route   POST /api/leads/:id/telecrm-retry
+// @desc    Re-push a single lead to TeleCRM after a failed sync
+// @access  Private (Admin only)
+router.post('/:id/telecrm-retry', protect, async (req, res) => {
+  try {
+    const lead = await Lead.findById(req.params.id);
+    if (!lead) return res.status(404).json({ success: false, message: 'Lead not found' });
+
+    const result = await syncLead(Lead, lead, mapLead(lead));
+
+    return res.json({
+      success: result.ok,
+      message: result.ok ? 'Lead synced to TeleCRM' : (result.skipped ? 'TeleCRM is not configured' : 'TeleCRM sync failed'),
+      telecrmStatus: result.ok ? 'synced' : (result.skipped ? 'skipped' : 'failed'),
+      error: result.ok ? '' : result.error,
+    });
+  } catch (error) {
+    console.error('TeleCRM Retry Error:', error);
+    return res.status(500).json({ success: false, message: 'Failed to retry TeleCRM sync' });
   }
 });
 

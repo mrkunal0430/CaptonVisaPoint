@@ -73,7 +73,7 @@ const AppLayout = () => {
     <div className="bg-white min-h-screen font-sans text-slate-800">
       <Navbar />
       {/* Spacer to account for fixed navbar height */}
-      <div className="h-[68px] xl:h-[76px]" />
+      <div className="h-[68px] xl:h-[108px]" />
       <main>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
