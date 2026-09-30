@@ -22,6 +22,38 @@ import {
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Website forms prefix the message with their origin, e.g. "[Welcome Popup]\n..."
+const FORM_OPTIONS = [
+  "Welcome Popup",
+  "Site-wide Popup",
+  "Homepage — Book Free Counselling",
+  "Contact Page",
+  "MBBS Hub Page",
+  "Coaching — Free Demo Registration",
+  "About Page — Partner Inquiry",
+  "Partner With Us",
+];
+
+const splitMessage = (message = "") => {
+  const match = message.match(/^\[([^\]]+)\]\s*/);
+  return match
+    ? { form: match[1], text: message.slice(match[0].length) }
+    : { form: "", text: message };
+};
+
+const FormBadge = ({ form }) =>
+  form ? (
+    <span
+      className={`inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md whitespace-nowrap ${
+        form === "Welcome Popup"
+          ? "bg-amber-100 text-amber-800"
+          : "bg-slate-100 text-slate-600"
+      }`}
+    >
+      {form}
+    </span>
+  ) : null;
+
 const LeadsTable = ({ token }) => {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,6 +65,7 @@ const LeadsTable = ({ token }) => {
     status: "all",
     service: "all",
     source: "all",
+    form: "all",
     search: "",
     startDate: "",
     endDate: "",
@@ -80,6 +113,7 @@ const LeadsTable = ({ token }) => {
     filters.status,
     filters.service,
     filters.source,
+    filters.form,
     filters.startDate,
     filters.endDate,
   ]);
@@ -139,6 +173,7 @@ const LeadsTable = ({ token }) => {
       if (filters.status !== "all") params.append("status", filters.status);
       if (filters.service !== "all") params.append("service", filters.service);
       if (filters.source !== "all") params.append("source", filters.source);
+      if (filters.form !== "all") params.append("form", filters.form);
       if (filters.startDate) params.append("startDate", filters.startDate);
       if (filters.endDate) params.append("endDate", filters.endDate);
 
@@ -187,6 +222,7 @@ const LeadsTable = ({ token }) => {
       status: "all",
       service: "all",
       source: "all",
+      form: "all",
       search: "",
       startDate: "",
       endDate: "",
@@ -197,6 +233,7 @@ const LeadsTable = ({ token }) => {
     filters.status !== "all" ||
     filters.service !== "all" ||
     filters.source !== "all" ||
+    filters.form !== "all" ||
     filters.startDate ||
     filters.endDate;
 
@@ -249,7 +286,7 @@ const LeadsTable = ({ token }) => {
         <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
-          placeholder="Search by name, email, phone, or city..."
+          placeholder="Search by name, email, phone, city, or message..."
           className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all bg-white"
           value={filters.search}
           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
@@ -309,6 +346,26 @@ const LeadsTable = ({ token }) => {
                 <option value="Language Coaching">Language Coaching</option>
                 <option value="Visa Service">Visa Service</option>
                 <option value="General Inquiry">General Inquiry</option>
+              </select>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-slate-600">
+                Form
+              </label>
+              <select
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue bg-white text-slate-700"
+                value={filters.form}
+                onChange={(e) =>
+                  setFilters({ ...filters, form: e.target.value })
+                }
+              >
+                <option value="all">All Forms</option>
+                {FORM_OPTIONS.map((form) => (
+                  <option key={form} value={form}>
+                    {form}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -426,9 +483,12 @@ const LeadsTable = ({ token }) => {
                         {lead.country || "-"}
                       </td>
                       <td className="p-4">
-                        <span className="text-xs font-medium px-2 py-1 rounded-lg bg-slate-100 text-slate-700 whitespace-nowrap">
-                          {lead.service || "General Inquiry"}
-                        </span>
+                        <div className="flex flex-col items-start gap-1">
+                          <span className="text-xs font-medium px-2 py-1 rounded-lg bg-slate-100 text-slate-700 whitespace-nowrap">
+                            {lead.service || "General Inquiry"}
+                          </span>
+                          <FormBadge form={splitMessage(lead.message).form} />
+                        </div>
                       </td>
                       <td className="p-4">
                         <span
@@ -442,7 +502,7 @@ const LeadsTable = ({ token }) => {
                         className="p-4 text-sm text-slate-600 max-w-[200px] truncate"
                         title={lead.message}
                       >
-                        {lead.message || "-"}
+                        {splitMessage(lead.message).text || "-"}
                       </td>
                       <td className="p-4">
                         <select
@@ -517,6 +577,9 @@ const LeadsTable = ({ token }) => {
                       <FiCalendar size={12} />
                       {new Date(lead.createdAt).toLocaleDateString()}
                     </div>
+                    <div className="mt-1.5">
+                      <FormBadge form={splitMessage(lead.message).form} />
+                    </div>
                   </div>
                   <select
                     value={lead.status}
@@ -567,12 +630,12 @@ const LeadsTable = ({ token }) => {
                 )}
 
                 {/* Message */}
-                {lead.message && (
+                {splitMessage(lead.message).text && (
                   <div className="bg-slate-50 rounded-lg p-3">
                     <div className="flex items-center gap-2 text-xs text-slate-500 mb-1">
                       <FiMessageSquare size={12} /> Message
                     </div>
-                    <p className="text-sm text-slate-600 whitespace-pre-wrap break-words">{lead.message}</p>
+                    <p className="text-sm text-slate-600 whitespace-pre-wrap break-words">{splitMessage(lead.message).text}</p>
                   </div>
                 )}
 
@@ -752,6 +815,10 @@ const LeadsTable = ({ token }) => {
                   <p className="font-medium text-slate-800">{selectedLead.service || "-"}</p>
                 </div>
                 <div>
+                  <label className="text-xs text-slate-400">Form</label>
+                  <p className="font-medium text-slate-800">{splitMessage(selectedLead.message).form || "-"}</p>
+                </div>
+                <div>
                   <label className="text-xs text-slate-400">
                     {selectedLead.education && !isNaN(selectedLead.education) ? "NEET Score" : "Education"}
                   </label>
@@ -770,11 +837,11 @@ const LeadsTable = ({ token }) => {
               </div>
 
               {/* Message */}
-              {selectedLead.message && (
+              {splitMessage(selectedLead.message).text && (
                 <div>
                   <label className="text-xs text-slate-400">Message</label>
                   <p className="font-medium text-slate-700 bg-slate-50 p-3 rounded-lg mt-1 whitespace-pre-wrap break-words">
-                    {selectedLead.message}
+                    {splitMessage(selectedLead.message).text}
                   </p>
                 </div>
               )}

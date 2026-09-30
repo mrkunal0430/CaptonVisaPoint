@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import {
   FiCheck,
@@ -17,9 +18,22 @@ import {
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Pathways that can be preselected via ?path= (e.g. from the home-page evaluation section)
+const LINKABLE_PATHS = [
+  "ausbildung",
+  "mbbs-abroad",
+  "mbbs-india",
+  "study-abroad",
+  "jobs",
+];
+
 const EligibilityCheck = () => {
-  const [step, setStep] = useState(1);
-  const [preference, setPreference] = useState("");
+  const [searchParams] = useSearchParams();
+  const initialPath = LINKABLE_PATHS.includes(searchParams.get("path"))
+    ? searchParams.get("path")
+    : "";
+  const [step, setStep] = useState(initialPath ? 2 : 1);
+  const [preference, setPreference] = useState(initialPath);
   const [formData, setFormData] = useState({
     // Step 2 - Ausbildung
     qualification: "",

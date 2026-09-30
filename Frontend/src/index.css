@@ -110,6 +110,15 @@ html {
   animation-play-state: paused;
 }
 
+/* Mobile hero cards scale with screen height so heading + cards + CVP panel fill the first screen */
+@media (max-width: 639px) {
+  .hero-card {
+    --hero-card-h: clamp(230px, calc(100svh - 410px), 340px);
+    height: var(--hero-card-h);
+    width: calc(var(--hero-card-h) * 0.74);
+  }
+}
+
 /* Floating animation for background orbs */
 @keyframes float-slow {
   0%,

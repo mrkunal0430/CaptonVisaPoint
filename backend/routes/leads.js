@@ -6,6 +6,15 @@ const { mapLead } = require('../services/telecrmMappers');
 
 const router = express.Router();
 
+// Website forms prefix the message with their origin, e.g. "[Welcome Popup]".
+// ?form=<label> filters on that prefix.
+const escapeRegex = (str) => String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const applyFormFilter = (filter, form) => {
+  if (form && form !== 'all') {
+    filter.message = { $regex: '^\\[' + escapeRegex(form) + '\\]' };
+  }
+};
+
 // @route   POST /api/leads
 // @desc    Create a new lead (from website form)
 // @access  Public
@@ -60,7 +69,7 @@ router.post('/', async (req, res) => {
 // @access  Private (Admin only)
 router.get('/', protect, async (req, res) => {
   try {
-    const { service, source, status, startDate, endDate, search, page = 1, limit = 20 } = req.query;
+    const { service, source, status, form, startDate, endDate, search, page = 1, limit = 20 } = req.query;
 
     // Build filter query
     const filter = {};
@@ -77,6 +86,8 @@ router.get('/', protect, async (req, res) => {
       filter.status = status;
     }
 
+    applyFormFilter(filter, form);
+
     // Date range filter
     if (startDate || endDate) {
       filter.createdAt = {};
@@ -88,13 +99,15 @@ router.get('/', protect, async (req, res) => {
       }
     }
 
-    // Search by name, email, phone, or city
+    // Search by name, email, phone, city, or message
     if (search) {
+      const term = escapeRegex(search);
       filter.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { email: { $regex: search, $options: 'i' } },
-        { phone: { $regex: search, $options: 'i' } },
-        { city: { $regex: search, $options: 'i' } }
+        { name: { $regex: term, $options: 'i' } },
+        { email: { $regex: term, $options: 'i' } },
+        { phone: { $regex: term, $options: 'i' } },
+        { city: { $regex: term, $options: 'i' } },
+        { message: { $regex: term, $options: 'i' } }
       ];
     }
 
@@ -135,9 +148,10 @@ router.get('/', protect, async (req, res) => {
 // @access  Private (Admin only)
 router.get('/export', protect, async (req, res) => {
   try {
-    const { status, service, source, startDate, endDate } = req.query;
+    const { status, service, source, form, startDate, endDate } = req.query;
 
     const filter = {};
+    applyFormFilter(filter, form);
     if (status && status !== 'all') filter.status = status;
     if (service && service !== 'all') filter.service = service;
     if (source && source !== 'all') filter.source = source;

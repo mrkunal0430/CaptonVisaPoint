@@ -11,6 +11,7 @@ import {
   FiPhoneCall,
 } from "react-icons/fi";
 import InquiryPopup from "./forms/InquiryPopup";
+import CVPEvaluation from "./CVPEvaluation";
 
 const services = [
   {
@@ -65,8 +66,7 @@ const ServiceCard = memo(({ service }) => (
     <div className="relative group cursor-pointer">
       <div
         className="relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-white/20 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-blue-500/15 group-hover:border-blue-300/40
-        h-[190px] w-[148px]
-        min-[400px]:h-52 min-[400px]:w-[160px]
+        hero-card
         sm:h-48 sm:w-40
         md:h-56 md:w-48
         lg:h-64 lg:w-52"
@@ -81,13 +81,13 @@ const ServiceCard = memo(({ service }) => (
 
         {/* Default state */}
         <div className="absolute bottom-0 left-0 w-full p-2 sm:p-4 text-center transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-4">
-          <span className="text-lg sm:text-2xl md:text-3xl block mb-1 sm:mb-1.5 drop-shadow-lg">
+          <span className="text-2xl md:text-3xl block mb-1 sm:mb-1.5 drop-shadow-lg">
             {service.icon}
           </span>
-          <span className="text-white text-[10px] sm:text-xs md:text-sm font-bold tracking-wide drop-shadow-md block leading-tight">
+          <span className="text-white text-sm sm:text-xs md:text-sm font-bold tracking-wide drop-shadow-md block leading-tight">
             {service.name}
             {service.subtitle && (
-              <span className="block text-[8px] sm:text-[10px] md:text-xs font-medium opacity-90">
+              <span className="block text-[11px] sm:text-[10px] md:text-xs font-medium opacity-90">
                 {service.subtitle}
               </span>
             )}
@@ -145,7 +145,7 @@ const Hero = () => {
   const marqueeServices = [...services, ...services, ...services];
 
   return (
-    <section className="relative sm:min-h-screen flex flex-col justify-center bg-gradient-to-br from-white via-blue-50 to-slate-50 overflow-hidden">
+    <section className="relative flex flex-col justify-start bg-gradient-to-br from-white via-blue-50 to-slate-50 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-50/50 to-slate-100 opacity-90" />
@@ -163,7 +163,7 @@ const Hero = () => {
       </div>
 
       {/* ===== ROW 1: Hero Text ===== */}
-      <div className="relative z-10 pt-5 pb-3">
+      <div className="relative z-10 pt-6 sm:pt-8 pb-2">
         <div className="container mx-auto sm:px-6 lg:px-8 text-center">
           {/* Headline */}
           <motion.h1
@@ -177,17 +177,6 @@ const Hero = () => {
               Global Career Success
             </span>
           </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="mt-3 sm:mt-5 text-xs min-[400px]:text-sm sm:text-base md:text-lg lg:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto px-2 sm:px-0"
-          >
-            Study abroad, work overseas, and build your dream future with expert
-            guidance. We turn your global aspirations into reality.
-          </motion.p>
         </div>
       </div>
 
@@ -212,15 +201,21 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* ===== ROW 3: CTA Buttons ===== */}
+      {/* ===== ROW 3: CVP Evaluation badge + CTA Buttons ===== */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="relative z-10 pt-4 sm:pt-8 pb-6 sm:pb-14 lg:pb-16"
+        className="relative z-10 pt-4 sm:pt-6 pb-6 sm:pb-8"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap lg:flex-nowrap items-stretch justify-center gap-2.5 min-[400px]:gap-3 sm:gap-4 max-w-[320px] min-[400px]:max-w-sm sm:max-w-3xl lg:max-w-5xl mx-auto">
+          <div className="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-5 xl:gap-6 bg-white/80 backdrop-blur border border-white shadow-xl shadow-blue-900/5 rounded-2xl px-5 py-6 sm:px-8 sm:py-8 xl:px-6">
+          <CVPEvaluation />
+          <span
+            className="hidden xl:block w-px h-20 bg-slate-200"
+            aria-hidden="true"
+          />
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap lg:flex-nowrap items-stretch justify-center gap-2.5 min-[400px]:gap-3 sm:gap-4 max-w-[320px] min-[400px]:max-w-sm sm:max-w-3xl xl:max-w-none">
             {/* 1: Free Eligibility Check */}
             <Link to="/eligibility-check" className="block">
               <button className="group relative w-full h-full sm:w-auto px-3 min-[400px]:px-5 sm:px-6 py-2.5 min-[400px]:py-3 sm:py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg sm:rounded-xl hover:from-amber-600 hover:to-amber-700 text-white font-semibold text-[11px] min-[400px]:text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5 text-center leading-tight sm:whitespace-nowrap">
@@ -245,7 +240,7 @@ const Hero = () => {
               <FiArrowRight className="text-sm sm:text-base shrink-0" />
               Apply Now
             </button>
-
+          </div>
           </div>
         </div>
       </motion.div>

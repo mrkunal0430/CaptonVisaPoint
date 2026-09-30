@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import WelcomeEnquiryPopup from "./components/forms/WelcomeEnquiryPopup";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import LoadingSpinner from "./components/LoadingSpinner";
@@ -72,8 +73,9 @@ const AppLayout = () => {
   return (
     <div className="bg-white min-h-screen font-sans text-slate-800">
       <Navbar />
+      <WelcomeEnquiryPopup />
       {/* Spacer to account for fixed navbar height */}
-      <div className="h-[68px] xl:h-[108px]" />
+      <div className="h-[72px] xl:h-[108px]" />
       <main>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>

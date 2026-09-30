@@ -306,12 +306,8 @@ const Navbar = () => {
       >
         {/* ===== Desktop (xl+): Y-Axis style boxed header ===== */}
         <div className="hidden xl:block text-slate-800">
-          {/* Utility bar — collapses on scroll */}
-          <div
-            className={`overflow-hidden transition-all duration-300 ${
-              scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
-            }`}
-          >
+          {/* Utility bar — stays pinned with the nav while scrolling */}
+          <div>
             <div className="max-w-7xl mx-auto px-8 h-11 flex items-center justify-end gap-8 text-[15px] font-semibold tracking-wide">
               <a
                 href="tel:+919914773125"
@@ -479,6 +475,13 @@ const Navbar = () => {
           >
             <FiMenu className="text-2xl" aria-hidden="true" />
           </button>
+        </div>
+
+        {/* Mobile colour strip (Y-Axis style) */}
+        <div className="xl:hidden flex h-1" aria-hidden="true">
+          {DESKTOP_LINKS.map((l) => (
+            <span key={l.name} className={`flex-1 ${l.color}`} />
+          ))}
         </div>
       </nav>
 
