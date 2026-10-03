@@ -21,32 +21,25 @@ import {
 ───────────────────────────────────────────── */
 const mbbsLinks = [
   { name: "MBBS Abroad Overview", path: "/mbbs/abroad" },
-  { name: "MBBS India", path: "/mbbs/india" },
+  { name: "MBBS in India", path: "/mbbs/india" },
   { name: "MBBS in Russia", path: "/mbbs/russia" },
   { name: "MBBS in Georgia", path: "/mbbs/georgia" },
-  { name: "MBBS in Kazakhstan", path: "/mbbs/kazakhstan" },
   { name: "MBBS in Uzbekistan", path: "/mbbs/uzbekistan" },
+  { name: "MBBS in Kazakhstan", path: "/mbbs/kazakhstan" },
   { name: "MBBS in Kyrgyzstan", path: "/mbbs/kyrgyzstan" },
+  { name: "Medical PG in Germany", path: "/medical-pg/germany" },
 ];
 
 const studyLinks = [
-  { name: "Study Abroad", path: "/study-abroad" },
+  { name: "Study Abroad Overview", path: "/study-abroad" },
   { name: "Study in Germany", path: "/study-abroad/germany" },
   { name: "Study in UK", path: "/study-abroad/uk" },
   { name: "Study in Canada", path: "/study-abroad/canada" },
   { name: "Study in Cyprus", path: "/study-abroad/cyprus" },
   { name: "Study in France", path: "/study-abroad/france" },
-  { name: "Ausbildung Germany", path: "/ausbildung" },
-];
-
-const serviceLinks = [
-  { name: "Healthcare Jobs Abroad", path: "/jobs-abroad/healthcare" },
-  { name: "Technical Jobs Abroad", path: "/jobs-abroad/technical" },
-  { name: "Hospitality Jobs Abroad", path: "/jobs-abroad/hospitality" },
-  { name: "Jobs After 12th", path: "/jobs-abroad/after-12th" },
-  { name: "Language & Entrance Exam Prep", path: "/coaching" },
-  { name: "Eligibility Check", path: "/eligibility-check" },
-  { name: "Partner With Us", path: "/partner" },
+  { name: "Ausbildung in Germany", path: "/ausbildung" },
+  { name: "Language & Test Prep", path: "/coaching" },
+  { name: "Free Eligibility Check", path: "/eligibility-check" },
 ];
 
 const stats = [
@@ -89,8 +82,9 @@ const badges = [
 const legalLinks = [
   { label: "About Us", path: "/about" },
   { label: "Blog", path: "/blog" },
+  { label: "Partner With Us", path: "/partner" },
   { label: "Privacy Policy", path: "/privacy-policy" },
-  { label: "Terms of Service", path: "/contact" },
+  { label: "Contact Us", path: "/contact" },
 ];
 
 const countryFlags = ["🇮🇳", "🇷🇺", "🇩🇪", "🇬🇧", "🇨🇦", "🇦🇺", "🇦🇪"];
@@ -104,20 +98,20 @@ const FooterLink = ({ name, path }) => (
   <li>
     <Link
       to={path}
-      className="group inline-flex items-center gap-1.5 text-slate-400 hover:text-amber-400 text-xs leading-snug transition-colors duration-150"
+      className="group inline-flex items-center gap-2 text-slate-400 hover:text-amber-400 text-[13px] leading-relaxed transition-colors duration-150"
     >
       <FiArrowRight
-        size={10}
-        className="shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+        size={11}
+        className="shrink-0 opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-amber-400"
       />
-      {name}
+      <span>{name}</span>
     </Link>
   </li>
 );
 
 /** Column section header with colored underline accent */
 const ColHeader = ({ text, accentColor }) => (
-  <h4 className="text-white font-bold text-[10px] uppercase tracking-[2.5px] mb-5 flex items-center gap-2.5">
+  <h4 className="text-white font-bold text-xs uppercase tracking-[2px] mb-5 flex items-center gap-2.5">
     <span className={`block w-5 h-[3px] rounded-full ${accentColor}`} />
     {text}
   </h4>
@@ -150,10 +144,10 @@ const Footer = () => {
         <div className="absolute -bottom-32 -left-20 w-[400px] h-[400px] bg-amber-500/8 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 pt-14 pb-10 relative">
-          {/* ── 5-COLUMN GRID ── */}
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10 lg:gap-x-10 mb-12">
-            {/* ── BRAND ── */}
-            <div className="col-span-2 lg:col-span-1 space-y-5">
+          {/* ── 4-COLUMN REDESIGNED GRID ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-14">
+            {/* ── COLUMN 1: BRAND & CREDENTIALS ── */}
+            <div className="space-y-5">
               {/* Logo */}
               <Link to="/" className="inline-flex items-center gap-2.5 group">
                 <img
@@ -176,14 +170,14 @@ const Footer = () => {
               </div>
 
               {/* Description */}
-              <p className="text-slate-400 text-xs leading-relaxed">
-                India's leading immigration and education consultancy. Trusted
-                by 15,000+ students and professionals across 20+ countries since
-                2010.
+              <p className="text-slate-400 text-xs sm:text-[13px] leading-relaxed">
+                India's premier education and visa consultancy. Helping 15,000+
+                students secure medical seats and global careers across 20+
+                countries with transparent guidance.
               </p>
 
               {/* Social icons */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 pt-1">
                 {socials.map(({ Icon, href, label, hover }) => (
                   <a
                     key={label}
@@ -191,7 +185,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className={`w-9 h-9 rounded-lg bg-slate-800 border border-slate-700/50 flex items-center justify-center text-slate-400 ${hover} hover:text-white hover:border-transparent transition-all duration-200 hover:scale-105 active:scale-95`}
+                    className={`w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 ${hover} hover:text-white hover:border-transparent transition-all duration-200 hover:scale-105 active:scale-95`}
                   >
                     <Icon size={15} />
                   </a>
@@ -199,21 +193,21 @@ const Footer = () => {
               </div>
 
               {/* Country flags */}
-              <div className="flex items-center gap-1.5 flex-wrap">
+              <div className="flex items-center gap-1.5 flex-wrap pt-1">
                 {countryFlags.map((flag, i) => (
                   <span key={i} className="text-base leading-none">
                     {flag}
                   </span>
                 ))}
-                <span className="text-slate-600 text-[10px] ml-0.5">
-                  +15 more
+                <span className="text-slate-500 text-[11px] ml-1">
+                  +15 more destinations
                 </span>
               </div>
             </div>
 
-            {/* ── MBBS ABROAD ── */}
+            {/* ── COLUMN 2: MBBS PROGRAMS ── */}
             <div className="min-w-0">
-              <ColHeader text="MBBS Abroad" accentColor="bg-blue-500" />
+              <ColHeader text="MBBS Programs" accentColor="bg-blue-500" />
               <ul className="space-y-2.5">
                 {mbbsLinks.map((item) => (
                   <FooterLink key={item.path} {...item} />
@@ -221,9 +215,9 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* ── STUDY ABROAD ── */}
+            {/* ── COLUMN 3: STUDY ABROAD & PATHWAYS ── */}
             <div className="min-w-0">
-              <ColHeader text="Study Abroad" accentColor="bg-blue-400" />
+              <ColHeader text="Study Abroad" accentColor="bg-teal-500" />
               <ul className="space-y-2.5">
                 {studyLinks.map((item) => (
                   <FooterLink key={item.path} {...item} />
@@ -231,113 +225,71 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* ── JOBS & SERVICES ── */}
-            <div className="min-w-0">
-              <ColHeader text="Jobs & Services" accentColor="bg-amber-400" />
-              <ul className="space-y-2.5">
-                {serviceLinks.map((item) => (
-                  <FooterLink key={item.path} {...item} />
-                ))}
-              </ul>
-            </div>
-
-            {/* ── CONTACT ── */}
+            {/* ── COLUMN 4: CONTACT & SUPPORT ── */}
             <div className="min-w-0">
               <ColHeader text="Contact Us" accentColor="bg-amber-500" />
-              <div className="space-y-4">
-                {/* Address */}
-                <div className="flex gap-3 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="space-y-3.5">
+                {/* India Office */}
+                <div className="flex gap-3 items-start p-2.5 rounded-xl bg-slate-900/60 border border-slate-850">
+                  <div className="w-7 h-7 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 mt-0.5">
                     <FiMapPin size={13} className="text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
-                      India Office
+                    <p className="text-slate-400 text-[10px] uppercase tracking-wider font-bold">
+                      Delhi Office
                     </p>
-                    <p className="text-slate-300 text-xs leading-relaxed">
-                      B-15, Ram Dutt Enclave,
-                      <br />
-                      Uttam Nagar, New Delhi&nbsp;–&nbsp;110059
+                    <p className="text-slate-300 text-xs leading-snug mt-0.5">
+                      B-15, Ram Dutt Enclave, Uttam Nagar, New Delhi – 110059
                     </p>
                   </div>
                 </div>
 
-                {/* Canada Address */}
-                <div className="flex gap-3 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 mt-0.5">
+                {/* Canada Office */}
+                <div className="flex gap-3 items-start p-2.5 rounded-xl bg-slate-900/60 border border-slate-850">
+                  <div className="w-7 h-7 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 mt-0.5">
                     <FiMapPin size={13} className="text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
+                    <p className="text-slate-400 text-[10px] uppercase tracking-wider font-bold">
                       Canada Office
                     </p>
-                    <p className="text-slate-300 text-xs leading-relaxed">
-                      Calgary, Canada
+                    <p className="text-slate-300 text-xs leading-snug mt-0.5">
+                      Calgary, Alberta, Canada
                     </p>
                   </div>
                 </div>
 
-                {/* Phone */}
+                {/* Phone India */}
                 <a
                   href="tel:+919914773125"
-                  className="flex gap-3 items-center group"
+                  className="flex gap-3 items-center group text-xs text-slate-300 hover:text-white transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 group-hover:bg-blue-700 group-hover:border-blue-600 transition-colors">
-                    <FiPhone
-                      size={13}
-                      className="text-blue-400 group-hover:text-white transition-colors"
-                    />
+                  <div className="w-7 h-7 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 group-hover:bg-blue-700 group-hover:border-blue-600 transition-colors">
+                    <FiPhone size={12} className="text-blue-400 group-hover:text-white" />
                   </div>
-                  <div>
-                    <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
-                      Phone (India)
-                    </p>
-                    <p className="text-slate-300 text-xs group-hover:text-white transition-colors">
-                      +91 99147 73125
-                    </p>
-                  </div>
+                  <span>+91 99147 73125 (India)</span>
                 </a>
 
-                {/* Canada Phone */}
+                {/* Phone Canada */}
                 <a
                   href="tel:+18258836784"
-                  className="flex gap-3 items-center group"
+                  className="flex gap-3 items-center group text-xs text-slate-300 hover:text-white transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 group-hover:bg-blue-700 group-hover:border-blue-600 transition-colors">
-                    <FiPhone
-                      size={13}
-                      className="text-blue-400 group-hover:text-white transition-colors"
-                    />
+                  <div className="w-7 h-7 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 group-hover:bg-blue-700 group-hover:border-blue-600 transition-colors">
+                    <FiPhone size={12} className="text-blue-400 group-hover:text-white" />
                   </div>
-                  <div>
-                    <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
-                      Phone (Canada)
-                    </p>
-                    <p className="text-slate-300 text-xs group-hover:text-white transition-colors">
-                      +1 (825) 883-6784
-                    </p>
-                  </div>
+                  <span>+1 (825) 883-6784 (Canada)</span>
                 </a>
 
                 {/* Email */}
                 <a
                   href="mailto:info@captonvisapoint.com"
-                  className="flex gap-3 items-center group"
+                  className="flex gap-3 items-center group text-xs text-slate-300 hover:text-white transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 group-hover:bg-blue-700 group-hover:border-blue-600 transition-colors">
-                    <FiMail
-                      size={13}
-                      className="text-blue-400 group-hover:text-white transition-colors"
-                    />
+                  <div className="w-7 h-7 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center shrink-0 group-hover:bg-blue-700 group-hover:border-blue-600 transition-colors">
+                    <FiMail size={12} className="text-blue-400 group-hover:text-white" />
                   </div>
-                  <div>
-                    <p className="text-slate-600 text-[10px] uppercase tracking-wider mb-0.5 font-semibold">
-                      Email
-                    </p>
-                    <p className="text-slate-300 text-xs group-hover:text-white transition-colors break-all">
-                      info@captonvisapoint.com
-                    </p>
-                  </div>
+                  <span className="truncate">info@captonvisapoint.com</span>
                 </a>
 
                 {/* WhatsApp CTA */}
@@ -345,7 +297,7 @@ const Footer = () => {
                   href="https://wa.me/919914773125"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1 flex items-center justify-center gap-2 w-full py-2.5 bg-green-600 hover:bg-green-500 text-white rounded-xl text-xs font-bold transition-all hover:shadow-lg hover:shadow-green-600/20 active:scale-95"
+                  className="mt-2 flex items-center justify-center gap-2 w-full py-2.5 bg-green-600 hover:bg-green-500 text-white rounded-xl text-xs font-bold transition-all hover:shadow-lg hover:shadow-green-600/20 active:scale-95"
                 >
                   <FiMessageCircle size={14} />
                   Chat on WhatsApp
@@ -364,28 +316,43 @@ const Footer = () => {
               {/* ABOUT US label pill */}
               <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/30 rounded-full px-3 py-1 mb-4">
                 <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
-                <span className="text-amber-400 text-[10px] font-bold uppercase tracking-[2px]">About Us</span>
+                <span className="text-amber-400 text-[10px] font-bold uppercase tracking-[2px]">
+                  About Us
+                </span>
               </div>
 
               <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10 relative">
                 {/* Left — text */}
                 <div className="flex-1 space-y-3">
                   <h3 className="text-white text-lg sm:text-xl font-bold leading-tight">
-                    Who is{" "}
-                    <span className="text-blue-400">Capton</span>
+                    Who is <span className="text-blue-400">Capton</span>
                     <span className="text-amber-400">VisaPoint</span>?
                   </h3>
                   <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl">
-                    Founded in <span className="text-slate-200 font-semibold">2010</span>, CaptonVisaPoint is India's most trusted immigration &amp; overseas education consultancy. We guide students and professionals through every step — from career counselling and university selection to visa processing and pre-departure support — across{" "}
-                    <span className="text-slate-200 font-semibold">20+ countries</span>. With a team of certified counsellors and a 98 % visa success rate, we turn your global ambitions into reality.
+                    Founded in{" "}
+                    <span className="text-slate-200 font-semibold">2010</span>,
+                    CaptonVisaPoint is India's most trusted immigration &amp;
+                    overseas education consultancy. We guide students and
+                    professionals through every step — from career counselling
+                    and university selection to visa processing and
+                    pre-departure support — across{" "}
+                    <span className="text-slate-200 font-semibold">
+                      20+ countries
+                    </span>
+                    . With a team of certified counsellors and a 98% visa
+                    success rate, we turn your global ambitions into reality.
                   </p>
 
                   {/* mini stats row */}
                   <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
                     {stats.map(({ value, label }) => (
                       <div key={label} className="flex items-baseline gap-1.5">
-                        <span className="text-amber-400 font-bold text-sm">{value}</span>
-                        <span className="text-slate-500 text-[11px]">{label}</span>
+                        <span className="text-amber-400 font-bold text-sm">
+                          {value}
+                        </span>
+                        <span className="text-slate-500 text-[11px]">
+                          {label}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -414,7 +381,7 @@ const Footer = () => {
                   className="inline-flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-full px-3.5 py-1.5"
                 >
                   <Icon size={11} className="text-amber-400 shrink-0" />
-                  <span className="text-slate-500 text-[11px] font-medium">
+                  <span className="text-slate-400 text-[11px] font-medium">
                     {text}
                   </span>
                 </div>
@@ -425,7 +392,7 @@ const Footer = () => {
           {/* ── BOTTOM BAR ── */}
           <div className="border-t border-slate-800/60 pt-6">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-slate-600 text-[11px] text-center sm:text-left">
+              <p className="text-slate-500 text-[11px] text-center sm:text-left">
                 © {year} Capton Visa Point Pvt. Ltd. All rights reserved.
                 <span className="mx-1.5 text-slate-700">·</span>
                 Empowering students &amp; professionals globally.
@@ -435,7 +402,7 @@ const Footer = () => {
                   <Link
                     key={label}
                     to={path}
-                    className="text-slate-600 hover:text-slate-400 text-[11px] transition-colors"
+                    className="text-slate-500 hover:text-slate-300 text-[11px] transition-colors"
                   >
                     {label}
                   </Link>

@@ -18,7 +18,6 @@ import InquiryPopup from "../components/forms/InquiryPopup";
 import Testimonials from "../components/Testimonials";
 import Hero from "../components/Hero";
 import SEO from "../components/SEO";
-import PopularVisaCards from "../components/PopularVisaCards";
 import LatestBlogs from "../components/LatestBlogs";
 import ServicesShowcase from "../components/ServicesShowcase";
 
@@ -49,9 +48,8 @@ const Home = () => {
       {/* Hero Section */}
       <Hero />
 
-
-      {/* Popular Visa Cards Section */}
-      <PopularVisaCards />
+      {/* Services Showcase */}
+      <ServicesShowcase />
 
       {/* Director Message - Premium Design */}
       <section className="py-2 sm:py-3 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -158,7 +156,7 @@ const Home = () => {
               {/* Section Label */}
 
               {/* Main quote */}
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-800 leading-tight mb-6">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 leading-snug mb-5">
                 Our mission is to{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">
                   democratize international education
@@ -239,9 +237,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Showcase */}
-      <ServicesShowcase />
-
       {/* Testimonials */}
       <Testimonials />
 
@@ -311,53 +306,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 sm:py-24 bg-bg-soft">
-        <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-          <motion.div {...fadeInUp} className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-brand-dark">
-              Frequently Asked Questions
-            </h2>
-          </motion.div>
-          <div className="space-y-3 sm:space-y-4">
-            {[
-              {
-                q: "How do I choose the right country for my MBBS?",
-                a: "Choosing the right country depends on National Medical Commission (NMC) recognition, English-medium instruction, total budget, and clinical exposure. Popular destinations include Russia, Uzbekistan, and Georgia. We provide personalized counselling based on your budget and academic profile.",
-              },
-              {
-                q: "What is the total cost for MBBS in Russia including stay?",
-                a: "A 6-year MBBS program in Russia typically costs between ₹25 Lakhs to ₹45 Lakhs. This budget covers tuition fees, hostel, and food expenses. The exact cost depends on the university's location, ranking, and current exchange rates.",
-              },
-              {
-                q: "Can I work while studying in Germany?",
-                a: "Yes, international students in Germany can work up to 140 full days (or 280 half days) per year. During semesters, you can work 20 hours per week, which is sufficient to cover most of your living expenses while gaining international work experience.",
-              },
-              {
-                q: "Is NEET mandatory for studying MBBS abroad?",
-                a: "Yes, qualifying for NEET-UG is mandatory for all Indian students planning to study MBBS abroad if they wish to practice in India upon return. Your NEET score remains valid for three years for the purpose of seeking admission to foreign medical universities.",
-              },
-              {
-                q: "Do you provide education loan assistance?",
-                a: "Absolutely! We provide end-to-end support for education loans, including documentation guidance and direct tie-ups with major banks (like SBI, HDFC, and ICICI) to help you secure both secured and unsecured loans at competitive rates.",
-              },
-            ].map((faq, i) => (
-              <details
-                key={i}
-                className="group bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-sm cursor-pointer [&_summary::-webkit-details-marker]:hidden border border-slate-100"
-              >
-                <summary className="flex items-center justify-between font-semibold text-slate-800 text-sm sm:text-base gap-2">
-                  <span>{faq.q}</span>
-                  <FiChevronDown className="group-open:rotate-180 transition-transform text-slate-400 shrink-0" />
-                </summary>
-                <p className="text-slate-600 mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base">
-                  {faq.a}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Lead Form Section */}
       <section className="py-16 sm:py-24 bg-white">

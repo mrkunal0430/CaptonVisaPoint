@@ -70,6 +70,21 @@ const NAV_LINKS = [
     ],
   },
   {
+    name: "PG after MBBS",
+    path: "/medical-pg",
+    type: "mega",
+    columns: [
+      {
+        title: "PG in India (NEET PG)",
+        path: "/medical-pg/india",
+      },
+      {
+        title: "Medical PG in Germany",
+        path: "/medical-pg/germany",
+      },
+    ],
+  },
+  {
     name: "Study Abroad",
     path: "/study-abroad",
     type: "mega",
@@ -123,21 +138,7 @@ const NAV_LINKS = [
   },
   { name: "Coaching", path: "/coaching" },
   { name: "Ausbildung", path: "/ausbildung" },
-  {
-    name: "PG after MBBS",
-    path: "/medical-pg",
-    type: "mega",
-    columns: [
-      {
-        title: "PG in India (NEET PG)",
-        path: "/medical-pg/india",
-      },
-      {
-        title: "Medical PG in Germany",
-        path: "/medical-pg/germany",
-      },
-    ],
-  },
+  { name: "About", path: "/about" },
   { name: "Blog", path: "/blog" },
 ];
 
@@ -149,6 +150,7 @@ const LINK_COLORS = {
   Coaching: "bg-amber-400",
   Ausbildung: "bg-blue-700",
   "PG after MBBS": "bg-green-500",
+  About: "bg-indigo-600",
   Blog: "bg-slate-800",
 };
 
@@ -157,7 +159,7 @@ const DESKTOP_LINKS = [
   ...NAV_LINKS,
 ].map((link) => ({ ...link, color: LINK_COLORS[link.name] }));
 
-// Dropdown item component to reduce duplication
+// Dropdown item component to reduce duplication - 1.5x enlarged for readability
 const DropdownItem = ({ item, onClick }) => {
   const Component = item.path.includes("#") ? HashLink : Link;
   const props = item.path.includes("#")
@@ -168,52 +170,54 @@ const DropdownItem = ({ item, onClick }) => {
     <Component
       {...props}
       onClick={onClick}
-      className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-blue-50 group/item transition-colors"
+      className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-blue-50/90 group/item transition-all"
     >
       {item.flagCode && (
         <img
           src={`https://flagcdn.com/${item.flagCode}.svg`}
           alt=""
-          className="w-5 h-3.5 object-cover rounded-sm shadow-sm"
+          className="w-7 h-5 object-cover rounded shadow-sm shrink-0"
         />
       )}
-      {item.flag && <span className="text-base">{item.flag}</span>}
-      <span className="text-xs font-medium text-slate-600 group-hover/item:text-blue-600">
+      {item.flag && (
+        <span className="text-xl shrink-0 leading-none">{item.flag}</span>
+      )}
+      <span className="text-sm font-medium text-slate-700 group-hover/item:text-blue-700 transition-colors">
         {item.name}
       </span>
     </Component>
   );
 };
 
-// Mega dropdown component
+// Mega dropdown component - 1.5x enlarged
 const MegaDropdown = ({ columns }) => (
   <motion.div
     initial={{ opacity: 0, y: 8 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: 8 }}
     transition={{ duration: 0.15 }}
-    className={`absolute top-full left-1/2 -translate-x-1/2 w-[90vw] bg-white rounded-xl shadow-2xl border border-slate-100 pt-3 pb-3 px-4 grid gap-3 z-50 overflow-hidden ${
+    className={`absolute top-full left-1/2 -translate-x-1/2 w-[92vw] bg-white rounded-2xl shadow-2xl border border-slate-100 p-5 grid gap-5 z-50 overflow-hidden ${
       columns.length >= 4
-        ? "max-w-[300px] grid-cols-2"
+        ? "max-w-[450px] grid-cols-2"
         : columns.length >= 3
-          ? "max-w-[580px] grid-cols-3"
-          : "max-w-[380px] grid-cols-2"
+          ? "max-w-[850px] grid-cols-3"
+          : "max-w-[560px] grid-cols-2"
     }`}
   >
-    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-800 to-blue-900" />
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900" />
     {columns.map((col, colIdx) => (
       <div key={colIdx} className="flex flex-col min-h-0">
         <Link
           to={col.path}
-          className="flex items-center gap-1.5 mb-1.5 px-2 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all group/header border border-slate-100 shrink-0"
+          className="flex items-center justify-between gap-2 mb-2.5 px-3.5 py-2.5 bg-gradient-to-r from-blue-50 to-blue-100/70 rounded-xl hover:from-blue-100 hover:to-blue-200 transition-all group/header border border-blue-100/50 shrink-0"
         >
-          <span className="text-xs font-bold text-slate-800 group-hover/header:text-blue-700">
+          <span className="text-sm font-bold text-slate-800 group-hover/header:text-blue-800 tracking-wide">
             {col.title}
           </span>
-          <FiArrowRight className="text-xs text-blue-500 opacity-0 group-hover/header:opacity-100 transition-opacity" />
+          <FiArrowRight className="text-sm text-blue-600 opacity-0 group-hover/header:opacity-100 -translate-x-1 group-hover/header:translate-x-0 transition-all" />
         </Link>
         {col.items && col.items.length > 0 && (
-          <ul className="space-y-0.5 pl-2 border-l-2 border-slate-100 ml-1 max-h-44 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent pr-1">
+          <ul className="space-y-1 pl-2.5 border-l-2 border-slate-200/80 ml-1.5 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent pr-1.5">
             {col.items.map((item, itemIdx) => (
               <li key={itemIdx}>
                 <DropdownItem item={item} />

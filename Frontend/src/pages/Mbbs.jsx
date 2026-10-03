@@ -11,6 +11,7 @@ import {
 } from "react-icons/fi";
 import SEO from "../components/SEO";
 import InquiryForm from "../components/forms/InquiryForm";
+import PopularVisaCards from "../components/PopularVisaCards";
 import {
   topCountries,
   whyChooseUs,
@@ -231,6 +232,9 @@ const Mbbs = () => {
           </div>
         </div>
       </section>
+
+      {/* ═══ POPULAR MBBS DESTINATIONS ═══ */}
+      <PopularVisaCards />
 
       {/* ═══ EXPLORE MBBS PATHWAYS ═══ */}
       <section className="py-10 sm:py-14 bg-white">
